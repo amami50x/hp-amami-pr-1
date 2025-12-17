@@ -1,0 +1,39 @@
+<table id="tourismTable">
+    <tr>
+        <td onclick="showData('東京', 101, '観光')">東京 - 観光</td>
+    </tr>
+</table>
+
+<div id="info"></div>
+
+<script>
+let tourismData = []; // JSONデータを読み込むための配列
+
+async function loadData() {
+    let response = await fetch("data.json");
+    tourismData = await response.json();
+}
+
+// クリックしたセルの情報を表示
+function showData(city, cellNumber, category) {
+    let selectedData = tourismData.find(item => 
+        item.市町村名 === city && item.セル番号 === cellNumber && item.ジャンル === category
+    );
+
+    if (selectedData) {
+        let placesHtml = selectedData.情報.map(place => `
+            <h2>${place.場所名}</h2>
+            <p>${place.説明}</p>
+            <p>住所: ${place.住所}</p>
+            <p>連絡先: ${place.連絡先}</p>
+            <img src="${place.画像}" alt="${place.場所名}">
+            <hr>
+        `).join("");
+
+        document.getElementById("info").innerHTML = placesHtml;
+    }
+}
+
+// ページ読み込み時にJSONデータを取得
+loadData();
+</script>

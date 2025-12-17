@@ -1,0 +1,25 @@
+<style>
+.shop-card {
+  border: 1px solid purple; /* 細い紫線 */
+  margin: 5px;
+  padding: 8px;
+  font-size: 13px;
+  color: #0077cc; /* 全体の文字色：青 */
+}
+.shop-info, .shop-pr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.shop-info span, .shop-pr span {
+  margin: 2px 0;
+}
+.highlight {
+  font-weight: bold;
+  color: #003399; /* 店舗名と住所だけ：濃い太青字 */
+}
+a {
+  color: #0055aa;
+  text-decoration: underline;
+}
+</style>

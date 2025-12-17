@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF表示</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <style>
+        /* PDFコンテナのスタイル */
+        #pdfContainer {
+            width: 100%;
+            height: 100vh;
+            background-color: #f1f1f1;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- PDFを表示するコンテナ -->
+    <div id="pdfContainer"></div>
+
+    <script>
+        const pdfURL = 'hp-chuijiko.pdf'; // PDFファイルのパス
+        const pdfContainer = document.getElementById('pdfContainer');
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+        async function renderPDF(url, container) {
+            const pdfDoc = await pdfjsLib.getDocument(url).promise;
+            const page = await pdfDoc.getPage(1); // 1ページ目を取得
+            const viewport = page.getViewport({ scale: 1.5 });
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            container.appendChild(canvas);
+
+            await page.render({ canvasContext: context, viewport: viewport }).promise;
+        }
+
+        // PDFを描画する関数を呼び出し
+        renderPDF(pdfURL, pdfContainer);
+
+        // **履歴を追加（戻るボタンを有効化）**
+        history.pushState(null, null, location.href);
+
+        // **ブラウザの戻るボタンが押された時に元のページに戻る**
+        window.addEventListener('popstate', () => {
+            location.href = 'amami.html'; // 元の画面に戻る
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,962 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css"> <!-- CSSファイルへのリンク -->
+  <script src="script.js"></script>　
+  <!-- JSファイルへのリンク -->
+  <title>奄美群島PR</title>
+  <style>
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   削除チェック中 */
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+    
+
+    /* 一段目：3分割テーブル形式 */
+    .top-bar {
+      display: table;
+      width: 100%;
+      background-color: #f0f0f0;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    
+    .top-cell {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .top-left {
+      width: 20%;
+      text-align: left;
+    }
+
+    .top-center {
+      width: 60%;
+    }
+
+    .top-right {
+      width: 20%;
+      text-align: right;
+    }
+
+    /* 各BOXの見た目 */
+    .box {
+      padding: 4px 8px;
+      background: #ddd;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      display: inline-block;
+      color: rgb(6, 6, 252);
+    }
+
+    /* Google翻訳バーの容器 */
+    #google_translate_element {
+      display: inline-block;
+    }
+/* シンプルなスタイル */
+#japaneseCount, #foreignCount {
+    margin: 10px 0;
+    font-size: 1.2em;
+  }
+  /* PDF表示領域 */
+  #pdfContainer {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  /* フォールバック用ポップアップ */
+  #fallbackPopup {
+    display: none; /* 初期は非表示 */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background: #fff;
+    border: 2px solid #444;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+  }
+  #fallbackPopup button {
+    padding: 5px 10px;
+    font-size: 1em;
+    margin-top: 10px;
+  }
+
+  </style>
+
+<style>
+  .bgm-container {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f8f8f8;
+      padding: 20px;
+  }
+  .bgm-title {
+      margin-bottom: 15px;
+  }
+  .bgm-box {
+      border: 2px solid purple;
+      padding: 10px;
+      margin: 10px auto;
+      width: 80%;
+      max-width: 400px;
+      background-color: #eee;
+      border-radius: 5px;
+  }
+  .bgm-highlight {
+      color: blue;
+      font-weight: bold;
+      margin-bottom: 10px;
+  }
+  .bgm-button-container {
+      margin-top: 10px;
+  }
+  .bgm-button {
+      margin: 5px;
+      padding: 8px 16px;
+      font-size: 16px;
+  }
+  .bgm-progress-container {
+      margin-top: 10px;
+  }
+  input[type="range"] {
+      width: 80%;
+      max-width: 400px;
+  }
+  .bgm-time-display {
+      font-size: 14px;
+      color: #333;
+      margin-top: 5px;
+  }
+</style>
+
+</head>
+
+<body>
+  
+
+  <script type="text/javascript">
+    window.onunload = function(){};
+  </script>
+  
+
+<!-- PDF表示用のモーダル -->
+<div id="pdfModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closePDF()">&times;</span>
+        <iframe id="pdfFrame" src="" style="width: 100%; height: 500px; border: none;"></iframe>
+    </div>
+
+</div>
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <!--最上段の3つのBOXの設定-->
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--> 
+  <div class="top-bar">
+    <div class="top-cell top-left">
+      <a href="kison-hp/kison.html" class="box">東京奄美会HPへ</a>
+      
+    </div>
+    <div class="top-cell top-center">
+      <div id="google_translate_element" class="box">言語切替</div>
+    </div>
+    <div class="top-cell top-right">
+       <!--<a href="pdfopn.html"class="box">閲覧者へのお願い</a>-->
+     <a href="pdfopn.html"class="box">閲覧者へのお願い</a>
+    </div>
+  </div>
+
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<!--Google翻訳スクリプト -->
+<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<!-- 翻訳バーの表示領域 -->
+<!-- 翻訳バー読込 -->
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- 翻訳バー常時表示 -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    console.log("googleTranslateElementInit 呼び出し");
+    new google.translate.TranslateElement({
+      pageLanguage: 'ja',
+      includedLanguages: 'ja,en,zh-CN,ko,fr,es,zh-TW,de,it,pt,ru',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+
+  function retryGoogleTranslateInit() {
+    let attempts = 0;
+    let maxAttempts = 10;
+    let intervalId = setInterval(() => {
+      const elem = document.getElementById('google_translate_element');
+      if (elem && elem.innerHTML.trim()) {
+        clearInterval(intervalId);
+        console.log("翻訳バーが正常に表示されました。");
+      } else {
+        console.log("翻訳バー再初期化", attempts);
+        googleTranslateElementInit();
+        if (++attempts >= maxAttempts) {
+          clearInterval(intervalId);
+        }
+      }
+    }, 1000);
+  }
+
+  window.addEventListener('load', function () {
+    retryGoogleTranslateInit();
+  });
+</script>
+
+<!-- アクセスカウント制御 -->
+<script type="text/javascript">
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function updateServerCounter(isForeign) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "access-counter.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        try {
+          const res = JSON.parse(xhr.responseText);
+          document.querySelector("#japaneseCount span").textContent = res.japaneseCount;
+          document.querySelector("#foreignCount span").textContent = res.foreignCount;
+        } catch (e) {
+          console.error("JSONパースエラー:", e);
+        }
+      }
+    };
+    xhr.send("isForeign=" + (isForeign ? 1 : 0));
+  }
+
+  function detectInitialLanguageAndCount() {
+    if (sessionStorage.getItem("alreadyCounted")) {
+      console.log("セッション中なのでカウントスキップ");
+      return;
+    }
+
+    let isForeign = false;
+    let googtrans = getCookie("googtrans");
+
+    if (googtrans && googtrans.indexOf("/") >= 0) {
+      const parts = googtrans.split("/");
+      const targetLang = parts[2]?.toLowerCase();
+      isForeign = (targetLang && targetLang !== "ja");
+    } else {
+      const lang = (navigator.language || navigator.userLanguage || "ja").toLowerCase();
+      isForeign = !lang.startsWith("ja");
+    }
+
+    updateServerCounter(isForeign);
+    sessionStorage.setItem("alreadyCounted", "true");
+  }
+
+  function observeTranslationChange() {
+    const target = document.body;
+    let lastLang = getCookie("googtrans");
+
+    const observer = new MutationObserver(() => {
+      const currentLang = getCookie("googtrans");
+      if (currentLang && lastLang !== currentLang) {
+        console.log("翻訳が切り替わりました:", lastLang, "→", currentLang);
+        const prev = (lastLang || "/ja/ja").split("/")[2];
+        const curr = currentLang.split("/")[2];
+
+        if (prev === "ja" && curr !== "ja") {
+          console.log("日本語→外国語に翻訳されたので外国語＋1します");
+          updateServerCounter(true);
+        }
+
+        lastLang = currentLang;
+      }
+    });
+
+    observer.observe(target, { childList: true, subtree: true });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      detectInitialLanguageAndCount();
+      observeTranslationChange();
+    }, 2000);
+  });
+</script>
+
+<script>
+  
+function openPDF() {
+    // PDFを開くURLを指定
+    const pdfURL = 'hp-chuijiko.pdf'; // ここを実際のPDFファイルのパスに変更してください
+    window.location.href = pdfURL; // 新しいタブでPDFを開く
+    <!--window.open(pdfURL, '');-->
+}
+</script>
+
+  <div class="title1">☆奄美群島の魅力をあなたに！☆ </div>
+  <div class="title2">美しい自然と文化</div>
+
+  <!-- 奄美を象徴する画像 -->
+  <div>
+    <img src="hp-image/title_gazo.jpg" alt="奄美群島の景色" style="width:100%; height:auto;">
+  </div>
+  <div class="hp-image-container02">
+    <img src="hp-image/title_map.png" alt="奄美群島地図.png" style="width:100%; height:auto;">
+
+  </div>
+
+  <!-- スライドショー -->
+<div id="slideshow">
+  <img src="hp-image/IsenTownInudabuCapeMemorial.jpg" alt="hp-image 1">
+  <img src="hp-image/IsenTownBullfight.jpg" alt="hp-image 2">
+  <img src="hp-image/UkenVillageArangachi.webp" alt="hp-image 3">
+  <img src="hp-image/SumiyoMangrove.webp" alt="hp-image 5">
+  <img src="hp-image/KikaiIslandX.jpg" alt="hp-image 6">
+  <img src="hp-image/SetouchiTownKakeroma.webp" alt="hp-image 7">
+  <img src="hp-image/YamatoVillageHanahanaBeach.webp" alt="hp-image 8">
+  <img src="hp-image/ChinamiTownTanami.webp" alt="hp-image 10">
+  <img src="hp-image/AmagiTownInutoNoFuta.webp" alt="hp-image 11">
+  <img src="hp-image/TokunoshiCapeObservatory.webp" alt="hp-image 12">
+  <img src="hp-image/NazeKinsakubaru.webp" alt="hp-image 13">
+  <img src="hp-image/YoronTownYurigahama.jpg" alt="hp-image 14">
+  <img src="hp-image/TatsugoSaigoNanshu.jpg" alt="hp-image 15">
+  <img src="hp-image/WadomariTownKasashi.jpg" alt="hp-image 16">
+  <img src="hp-image/kinsakubaru.jpg" alt="hp-image 17">
+  <img src="hp-image/manguro-bU.jpg" alt="hp-image 18">
+  
+
+
+  </div>
+
+  <!-- モニュメント画像とセリフボタン（横並び） -->
+  
+<div class="monument-container">
+  <!-- 女性モニュメント -->
+  <div class="monument" onclick="playVoice('amami-jyosei-annai.mp3')">
+    <div class="monument-image-wrapper">
+      <img src="women-monument.png" alt="女性モニュメント">
+      <div class="monument-name">【Jun】</div>
+    </div>
+    <p class="click-label">私をクリックしてね！</p>
+  </div>
+
+  <!-- 黒兎モニュメント -->
+  <div class="monument" onclick="playVoice('amami-kurousagi-annai.mp3')">
+    <div class="monument-image-wrapper">
+      <img src="kurousagi-monument.png" alt="黒兎モニュメント">
+      <div class="monument-name">【Brabi】</div>
+    </div>
+    <p class="click-label">私をクリックしてね！</p>
+  </div>
+
+  <!-- 男性モニュメント -->
+  <div class="monument" onclick="playVoice('amami-dansei-annai.mp3')">
+    <div class="monument-image-wrapper">
+      <img src="men-monument.png" alt="男性モニュメント">
+      <div class="monument-name">【Taro】</div>
+    </div>
+    <p class="click-label">私をクリックしてね！</p>
+  </div>
+</div>
+
+ 
+  <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+        <!--テーブル部分 -->
+　　<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<div class="title3">奄美群島各地の観光情報一覧</div>
+
+<table id="amami-table" class="styled-table">
+  
+    <tr>
+      <th style="font-weight: bold;">市町村名</th>
+      <th style="font-weight: bold;">箝口</th>
+      <th style="font-weight: bold;">グルメ</th>
+      <th style="font-weight: bold;">特産品</th>
+      <th style="font-weight: bold;">郷土芸能</th>
+      <th style="font-weight: bold;">歴史文化</th>
+      <th style="font-weight: bold;">体験</th>
+      <th style="font-weight: bold;">アクセス</th>
+      <th style="font-weight: bold;">天気</th>
+      <th style="font-weight: bold;">市町村旗</th>
+      <th style="font-weight: bold;">市町村歌</th>
+    </tr>
+    <!--  12市町村 × 13行を追加 -->
+    <tr>
+
+      <td><a href="" style="color: white; font-weight: bold;">【 喜界島 】</a></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="right-border-only"></td>
+    </tr>
+
+    <tr>
+      <td id="cell-01-01"><a href="https://www.town.kikai.lg.jp/densan/home.html" style="color: #ffff00; font-weight: bold;">喜界町</a></td>
+      <td id="cell-01-02"><a href="https://www.bing.com/search?q=%E5%96%9C%E7%95%8C%E5%B3%B6%E3%81%AE%E8%A6%B3%E5%85%89%E5%9C%B0&cvid=23cfe06f7a8249429440637f1fc2dc88&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhA0gEJMTU4ODJqMGo0qAIAsAIA&FORM=ANAB01&ucpdpc=UCPD&PC=U531">観光</a></td>
+      <td id="cell-01-03"><a href="https://www.town.kikai.lg.jp/kankou/kanko-iju/tokusanhin/kyodoryori1.html">グルメ</a></td>
+      <td id="cell-01-04"><a href="https://www.town.kikai.lg.jp/kankou/kanko-iju/tokusanhin/tokusanhin.html">特産品</a></td>
+      <td id="cell-01-05"><a href="https://amamipark.com/islandinfo/kikai/dento/index.html">郷土芸能</a></td>
+      <td id="cell-01-06"><a href="https://kikaijimanavi.com/history-culture/">歴史文化</a></td>
+      <td id="cell-01-07"><a href="https://kikaijimanavi.com/tourism-and-experience/activity/">体験</a></td>
+      <td id="cell-01-08"><a href="https://ritoful.com/archives/41630">経　路</a></td>
+      <td id="cell-01-09"><a href="https://tenki.jp/forecast/9/49/1000/46529/">天気</a></td>
+      <td id="cell-01-10"><img src="towninfo/kikai_ki.png" alt="喜界町" style="width: 40px; height: auto;"></td>
+    </tr>
+   
+    <tr>
+
+      <td><a href="" style="color: white; font-weight: bold;">【 奄美大島 】</a></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="right-border-only"></td>
+    </tr>
+    <tr>
+      <td id="cell-02-01"><a href="https://www.town.tatsugo.lg.jp/" style="color: #ffff00; font-weight: bold;">龍郷町</a></td>
+      <td id="cell-02-02"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/kanko/index.html">観光</a></td>
+      <td id="cell-02-03"><a href="https://www.jalan.net/gourmet/cit_465270000/?msockid=1bb6f84e15506cea3ad9ecbe14346d26">グルメ</a></td>
+      <td id="cell-02-04"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/event-bunka/tokusanhin/index.html">特産品</a></td>
+      <td id="cell-02-05"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/event-bunka/index.html">郷土芸能</a></td>
+      <td id="cell-02-06"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/event-bunka/rekishi-bunka/index.html">歴史文化</a></td>
+      <td id="cell-02-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=tatsugocho">体験</a></td>
+      <td id="cell-02-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
+      <td id="cell-02-09"><a href="https://tenki.jp/forecast/9/49/1000/46527/">天気</a></td>
+      <td id="cell-02-10"><img src="towninfo/tatugo_ki.png" alt="龍郷町" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-03-01"><a href="https://www.city.amami.lg.jp/" style="color: #ffff00; font-weight: bold;">奄美市</a></td>
+      <td id="cell-03-02"><a href="https://www.city.amami.lg.jp/kanko/kanko/index.html">観光</a></td>
+      <td id="cell-03-03"><a href="https://tabelog.com/kagoshima/C46222/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-03-04"><a href="https://www.city.amami.lg.jp/kanko/tokusan/index.html">特産品</a></td>
+      <td id="cell-03-05"><a href="https://www.city.amami.lg.jp/kyoiku/bunka/index.html">郷土芸能</a></td>
+      <td id="cell-03-06"><a href="https://www.city.amami.lg.jp/kyoiku/bunka/index.html">歴史文化</a></td>
+      <td id="cell-03-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=amami-nase">体験</a></td>
+      <td id="cell-03-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
+      <td id="cell-03-09"><a href="https://tenki.jp/forecast/9/49/1000/46222/">天気</a></td>
+      <td id="cell-03-10"><img src="towninfo/amami_ki.png" alt="奄美市" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-04-01"><a href="https://www.vill.yamato.lg.jp/" style="color: #ffff00; font-weight: bold;">大和村</a></td>
+      <td id="cell-04-02"><a href="https://www.vill.yamato.lg.jp/kikaku/kanko/spot.html">観光</a></td>
+      <td id="cell-04-03"><a href="https://tabelog.com/kagoshima/C46523/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-04-04"><a href="https://www.vill.yamato.lg.jp/kikaku/shisetsu/kankoannaijo/002.html">特産品</a></td>
+      <td id="cell-04-05"><a href="https://www.vill.yamato.lg.jp/kikaku/kanko/dentogyoji.html">郷土芸能</a></td>
+      <td id="cell-04-06"><a href="https://www.vill.yamato.lg.jp/kikaku/kanko/kankokosu/roman-tanbou.html">歴史文化</a></td>
+      <td id="cell-04-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=yamatoson">体験</a></td>
+      <td id="cell-04-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
+      <td id="cell-04-09"><a href="https://tenki.jp/forecast/9/49/1000/46523/">天気</a></td>
+      <td id="cell-04-10"><img src="towninfo/yamato_ki.png" alt="大和村" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-05-01"><a href="https://www.uken.net/home.html" style="color: #ffff00; font-weight: bold;">宇検村</a></td>
+      <td id="cell-05-02"><a href="https://www.uken.net/kouhoutoukei/kanko/index.html">観光</a></td>
+      <td id="cell-05-03"><a href="https://tabelog.com/kagoshima/C46524/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-05-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46045.html">特産品</a></td>
+      <td id="cell-05-05"><a href="https://www.youtube.com/watch?v=N8TCDw2rUyoh">郷土芸能</a></td>
+      <td id="cell-05-06"><a href="https://www.uken.net/bunkashinkou/kyoiku-bunka/bunkazai/murashite/ukenson.html">歴史文化</a></td>
+      <td id="cell-05-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=ukenson">体験</a></td>
+      <td id="cell-05-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
+      <td id="cell-05-09"><a href="https://tenki.jp/forecast/9/49/1000/46524/">天気</a></td>
+      <td id="cell-05-10"><img src="towninfo/uken_ki.png" alt="宇検村" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-06-01"><a href="https://www.town.setouchi.lg.jp/" style="color: #ffff00; font-weight: bold;">瀬戸内町</a></td>
+      <td id="cell-06-02"><a href="https://www.uken.net/kouhoutoukei/kanko/index.html">観光</a></td>
+      <td id="cell-06-03"><a href="https://tabelog.com/kagoshima/C46524/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-06-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46045.html">特産品</a></td>
+      <td id="cell-06-05"><a href="https://www.youtube.com/watch?v=N8TCDw2rUyoh">郷土芸能</a></td>
+      <td id="cell-06-06"><a href="https://www.uken.net/bunkashinkou/kyoiku-bunka/bunkazai/murashite/ukenson.html">歴史文化</a></td>
+      <td id="cell-06-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=setouchicho">体験</a></td>
+      <td id="cell-06-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
+      <td id="cell-06-09"><a href="https://tenki.jp/forecast/9/49/1000/46524/">天気</a></td>
+      <td id="cell-06-10"><img src="towninfo/setouchi_ki.png" alt="瀬戸内町" style="width: 40px; height: auto;"></td>
+    </tr>
+   
+    <tr>
+      <td id="cell-07-01"><a href="https://www.tokunoshima-town.org/" style="color: #ffff00; font-weight: bold;">徳之島町</a></td>
+      <td id="cell-07-02"><a href="https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html">観光</a></td>
+      <td id="cell-07-03"><a href="https://tabelog.com/kagoshima/C46530/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-07-04"><a href="https://www.tokunoshima-town.org/kanko/tokusan/index.html">特産品</a></td>
+      <td id="cell-07-05"><a href="https://www.tokunoshima-town.org/shakaikyoikuka/kanko/rekishi/geno.html">郷土芸能</a></td>
+      <td id="cell-07-06"><a href="https://www.tokunoshima-town.org/kanko/rekishi/index.html">歴史文化</a></td>
+      <td id="cell-07-07"><a href="https://activityjapan.com/search/?addressAndKeyword=%E5%BE%B3%E4%B9%8B%E5%B3%B6">体験</a></td>
+      <td id="cell-07-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
+      <td id="cell-07-09"><a href="https://tenki.jp/forecast/9/49/1000/46530/">天気</a></td>
+      <td id="cell-07-10"><img src="towninfo/tokunosima_ki.jpg" alt="徳之島町" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-08-01"><a href="https://www.town.amagi.lg.jp/" style="color: #ffff00; font-weight: bold;">天城町</a></td>
+      <td id="cell-08-02"><a href="https://www.town.amagi.lg.jp/tourism/?lng=ja">観光</a></td>
+      <td id="cell-08-03"><a href="https://www.tripadvisor.jp/Restaurants-g1121607-Amagi_cho_Tokunoshima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html">グルメ</a></td>
+      <!--<td id="cell-08-04"><a href="extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.town.amagi.lg.jp/img/staff/Restaurant-Introduction.pdf"></a></td>-->
+      <td id="cell-08-04"><a href=" http://www.tokunoshima-kanko.com/item/">特産品 </a></td>
+      <td id="cell-08-05"><a href="https://bunka.nii.ac.jp/heritages/detail/580336">郷土芸能</a></td>
+      <td id="cell-08-06"><a href="http://www.tokunoshima-kanko.com/tourist_spot/yuinoyakata/">歴史文化</a></td>
+      <td id="cell-08-07"><a href="http://www.tokunoshima-kanko.com/tourist_spot/yuinoyakata/">体験</a></td>
+      <td id="cell-08-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
+      <td id="cell-08-09"><a href="https://tenki.jp/forecast/9/49/1000/46531/">天気</a></td>
+      <td id="cell-08-10"><img src="towninfo/amagi_ki.png" alt="天城町" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-09-01"><a href="https://www.town.isen.kagoshima.jp/" style="color: #ffff00; font-weight: bold;">伊仙町</a></td>
+      <td id="cell-09-02"><a href="https://www.town.isen.kagoshima.jp/mirai/ijuu.html">観光</a></td>
+      <td id="cell-09-03"><a href="https://www.bing.com/search?q=%E9%A3%9F%E3%81%B9%E3%83%AD%E3%82%B0%E3%80%80%E4%BC%8A%E4%BB%99%E7%
+    74%BA&qs=n&form=QBRE&sp=-1&lq=0&pq=%E9%A3%9F%E3%81%B9%E3%83%AD%E3%82%B0%E3%80%80%E4%BC%8A%E4%BB%99%E7%94%BA&sc=10-8&sk=&cvid=6544F1BE3BC34B03BE97D9E1D6244A79&ghsh=0&ghacc=0&ghpl=">グルメ</a></td>
+      <td id="cell-09-04"><a href="https://rito-guide.com/hyakusai/">特産品</a></td>
+      <td id="cell-09-05"><a href="https://jmapps.ne.jp/isen/list.html?keywords=&kwd_and_or=and&bunrui=20&f2=&list_type=LLA001&list_count=10&title_query=yes">郷土芸能</a></td>
+      <td id="cell-09-06"><a href="https://rekimin.wixsite.com/home">歴史文化</a></td>
+      <td id="cell-09-07"><a href="https://activityjapan.com/search/?addressAndKeyword=%E5%BE%B3%E4%B9%8B%E5%B3%B6">体験</a></td>
+      <td id="cell-09-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
+      <td id="cell-09-09"><a href="https://tenki.jp/forecast/9/49/1000/46532/">天気</a></td>
+      <td id="cell-09-10"><img src="towninfo/isen_ki.png" alt="伊仙町" style="width: 40px; height: auto;"></td>
+    </tr>
+ 
+
+    <tr>
+
+      <td><a href="" style="color: white; font-weight: bold;">【 沖永良部島 】</a></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="right-border-only"></td>
+      　　　　
+    </tr>
+
+    <tr>
+      <td id="cell-10-01"><a href="https://www.town.china.lg.jp/" style="color: #ffff00; font-weight: bold;">知名町</a></td>
+      <td id="cell-10-02"><a href="https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html">観光</a></td>
+      <td id="cell-10-03"><a href="https://tabelog.com/kagoshima/C46534/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-10-04"><a href="https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html">特産品</a></td>
+      <td id="cell-10-05"><a href="https://www.town.china.lg.jp/shougai/kurasu/kosodate-kyoiku/shogaigakushu/denshogeno/denshogeno.html">郷土芸能</a></td>
+      <td id="cell-10-06"><a href="https://www.bing.com/images/search?q=%e7%9f%a5%e5%90%8d%e7%94%ba+%e6%ad%b4%e5%8f%b2&qpvt=%e7%9f%a5%e5%90%8d%e7%94%ba%e3%80%80%e6%ad%b4%e5%8f%b2&form=IGRE&first=1">歴史文化</a></td>
+      <td id="cell-10-07"><a href="https://okinoerabujima.info/activity?utm_source=chatgpt.com">体験</a></td>
+      <td id="cell-10-08"><a href="https://rito-guide.com/okierabu-access/">経　路</a></td>
+      <td id="cell-10-09"><a href="https://tenki.jp/forecast/9/49/1000/46534/">天気</a></td>
+      <td id="cell-10-10"><img src="towninfo/china_ki.png" alt="知名町" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-11-01"><a href="https://www.town.wadomari.lg.jp/" style="color: #ffff00; font-weight: bold;">和泊町</a></td>
+      <td id="cell-11-02"><a href="https://okinoerabujima.info/">観光</a></td>
+      <td id="cell-11-03"><a href="https://tabelog.com/kagoshima/C46533/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-11-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46044.html">特産品</a></td>
+      <td id="cell-11-05"><a href="https://www.bing.com/images/search?q=%e5%92%8c%e6%b3%8a%e7%94%ba+%e9%83%b7%e5%9c%9f%e8%8a%b8%e8%83%bd&qpvt=%e5%92%8c%e6%b3%8a%e7%94%ba%e3%80%80%e9%83%b7%e5%9c%9f%e8%8a%b8%e8%83%bd&form=IGRE&first=1">郷土芸能</a></td>
+      <td id="cell-11-06"><a href="https://www.bing.com/images/search?q=%e5%92%8c%e6%b3%8a%e7%94%ba+%e6%ad%b4%e5%8f%b2+%e6%96%87%e5%8c%96&qpvt=%e5%92%8c%e6%b3%8a%e7%94%ba+%e6%ad%b4%e5%8f%b2+%e6%96%87%e5%8c%96&form=IGRE&first=1">歴史文化</a></td>
+      <td id="cell-11-07"><a href="https://www.tripadvisor.jp/Attractions-g1121609-Activities-Wadomari_cho_Okinoerabu_jima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html">体験</a></td>
+      <td id="cell-11-08"><a href="https://rito-guide.com/okierabu-access/">経　路</a></td>
+      <td id="cell-11-09"><a href="https://tenki.jp/forecast/9/49/1000/46533/">天気</a></td>
+      <td id="cell-11-10"><img src="towninfo/wadomari_ki.png" alt="和泊町" style="width: 40px; height: auto;"></td>
+    </tr>
+    
+
+    <tr>
+
+      <td><a href="" style="color: white; font-weight: bold;">【 与論島 】</a></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="no-vertical-border"></td>
+      <td class="right-border-only"></td>
+      　　　　
+    </tr>
+
+    <tr>
+      <td id="cell-12-01"><a href="https://www.yoron.jp/default.html" style="color: #ffff00; font-weight: bold;">与論町</a></td>
+      <td id="cell-12-02"><a href="https://www.yorontou.info/">観光</a></td>
+      <td id="cell-12-03"><a href="https://tabelog.com/kagoshima/C46535/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-12-04"><a href="https://www.yorontou.info/specialty.html">特産品</a></td>
+      <td id="cell-12-05"><a href="https://www.kagojinjacho.or.jp/tanbou/1653/">郷土芸能</a></td>
+      <td id="cell-12-06"><a href="https://www.yoron.jp/list00178.html">歴史文化</a></td>
+      <td id="cell-12-07"><a href="https://www.yoron.jp/pages/taiken">体験</a></td>
+      <td id="cell-12-08"><a href="https://yoron-iju.com/access/">経　路</a></td>
+      <td id="cell-12-09"><a href="https://tenki.jp/forecast/9/49/1000/46535/">天気</a></td>
+      <td id="cell-12-10"><img src="towninfo/yoron_ki.png" alt="与論町" style="width: 40px; height: auto;"></td>
+    </tr>
+    <tr>
+      <td id="cell-13-01"><a href="https://www.tokyo-amamikai.com/" style="color: WHITE; font-weight: bold;">東京奄美会</a></td>
+      <td id="cell-13-02"><a href="https://www.tokyo-amamikai.com" style="color: BLUE; font-weight: bold;">ホームページ</a></td>
+      <td id="cell-13-03"><a href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/kanto-info/index.html">関東近郊情報</a></td>
+      
+      <td id="cell-13-04">
+        <a href="#" onclick="event.preventDefault(); openBGMWindow();" 
+           style="color: blue; font-weight: bold;">♪ BGM再生</a>
+    </td>
+    
+      
+      <td id="cell-13-05">
+        <a href="javascript:void(0)" onclick="showMultiLinkPopup([
+          { label: 'X（旧Twitter）：東京奄美会', url: 'https://x.com/PiiZmi' },
+          { label: 'Facebook：東京奄美会', url: 'https://www.facebook.com/profile.php?id=61575154336855' },
+          { label: 'Instagram：東京奄美会', url: 'https://www.instagram.com/accounts/edit/' },
+          { label: 'Facebook：喜界町', url: 'https://www.facebook.com/kikaicho/' },
+          { label: 'Instagram：喜界町', url: 'https://www.instagram.com/kikaicho/' },
+          { label: 'X（旧Twitter）：喜界町', url: 'https://x.com/kikaicho' },
+          { label: 'Facebook：龍郷町', url: 'https://www.facebook.com/tatsugocho/' },
+          { label: 'Instagram：龍郷町', url: 'https://www.instagram.com/tatsugocho/' },
+          { label: 'X（旧Twitter）：龍郷町', url: 'https://x.com/tatsugocho' },
+          { label: 'Facebook：奄美市', url: 'https://www.facebook.com/amami.city/' },
+          { label: 'Instagram：奄美市', url: 'https://www.instagram.com/amami_city/' },
+          { label: 'X（旧Twitter）：奄美市', url: 'https://x.com/amami_city' },
+          { label: 'Facebook：大和村', url: 'https://www.facebook.com/yamatomura/' },
+          { label: 'Instagram：大和村', url: 'https://www.instagram.com/yamatomura/' },
+          { label: 'X（旧Twitter）：大和村', url: 'https://x.com/yamatomura' },
+          { label: 'Facebook：宇検村', url: 'https://www.facebook.com/ukenmura/' },
+          { label: 'Instagram：宇検村', url: 'https://www.instagram.com/ukenmura/' },
+          { label: 'X（旧Twitter）：宇検村', url: 'https://x.com/ukenmura' },
+          { label: 'Facebook：瀬戸内町', url: 'https://www.facebook.com/setouchicho/' },
+          { label: 'Instagram：瀬戸内町', url: 'https://www.instagram.com/setouchicho/' },
+          { label: 'X（旧Twitter）：瀬戸内町', url: 'https://x.com/setouchicho' },
+          { label: 'Facebook：徳之島町', url: 'https://www.facebook.com/tokunoshimacho/' },
+          { label: 'Instagram：徳之島町', url: 'https://www.instagram.com/tokunoshimacho/' },
+          { label: 'X（旧Twitter）：徳之島町', url: 'https://x.com/tokunoshimacho' },
+          { label: 'Facebook：伊仙町', url: 'https://www.facebook.com/isencho/' },
+          { label: 'Instagram：伊仙町', url: 'https://www.instagram.com/isencho/' },
+          { label: 'X（旧Twitter）：伊仙町', url: 'https://x.com/isencho' },
+          { label: 'Facebook：天城町', url: 'https://www.facebook.com/amagicho/' },
+          { label: 'Instagram：天城町', url: 'https://www.instagram.com/amagicho/' },
+          { label: 'X（旧Twitter）：天城町', url: 'https://x.com/amagicho' },
+          { label: 'Facebook：和泊町', url: 'https://www.facebook.com/wadomari/' },
+          { label: 'Instagram：和泊町', url: 'https://www.instagram.com/wadomari/' },
+          { label: 'X（旧Twitter）：和泊町', url: 'https://x.com/wadomari' },
+          { label: 'Facebook：知名町', url: 'https://www.facebook.com/chinacho/' },
+          { label: 'Instagram：知名町', url: 'https://www.instagram.com/chinacho/' },
+          { label: 'X（旧Twitter）：知名町', url: 'https://x.com/chinacho' },
+          { label: 'Facebook：与論町', url: 'https://www.facebook.com/yoroncho/' },
+          { label: 'Instagram：与論町', url: 'https://www.instagram.com/yoroncho/' },
+          { label: 'X（旧Twitter）：与論町', url: 'https://x.com/yoroncho' }
+        ])">【S N S 一覧】</a>
+      
+  
+ 
+
+
+      <td id="cell-13-06" class="no-vertical-border"></td>
+      <td id="cell-13-07" class="no-vertical-border"></td>
+      <td id="cell-13-08" class="no-vertical-border"></td>
+      <td id="cell-13-09" class="no-vertical-border"></td>
+      <td id="cell-13-10"><a href="https://oceana.ne.jp/blue-economy/environment/113873">世界自然遺産</a></td>
+     
+    
+
+
+  </table>
+
+ <!-- 複数URL用のポップアップ -->
+<div class="overlay" id="multiOverlay"></div>
+<div class="multi-popup" id="multiPopup">
+  <div class="multi-content">
+    <p>SNSリンク一覧</p>
+    <div id="multiLinks" class="multi-links"></div>
+    <button onclick="closeMultiPopup()">戻る</button>
+  </div>
+</div>
+
+
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    <p>準備中です</p>
+    <button onclick="closePopup()">戻り</button>
+  </div>
+
+  <script>
+    // ページ読み込み後に実行
+    window.onload = () => {
+      const cells = document.querySelectorAll('td');
+
+      // セルのクリックイベントを設定
+      cells.forEach(cell => {
+        cell.addEventListener('click', (event) => {
+          const url = cell.getAttribute('data-url'); // URLを取得
+
+          if (url && url.trim() !== "") {
+            // URLがある場合：ポップアップを出さずにリダイレクト
+            sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
+            window.location.href = url; // リダイレクト
+          } else {
+            // URLがない場合：ポップアップを表示
+            event.preventDefault(); // デフォルト動作を防止
+            sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
+            showPopup();
+          }
+        });
+      });
+    };
+
+    // ポップアップを表示する関数
+    function showPopup() {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    // ポップアップを閉じてスクロール位置を復元する関数
+    function closePopup() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('popup').style.display = 'none';
+
+      const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+      if (savedScrollPosition !== null) {
+        window.scrollTo(0, parseInt(savedScrollPosition, 10)); // スクロール位置を復元
+      }
+    }
+  </script>
+　
+  <div class="feedback">
+    <h3>
+      <a href="#" class="feedback-link" id="sendMail">ご意見・ご要望</a>
+    </h3>
+    <p id="statusMessage" style="display: none;">メール送信中です...</p>
+    <p id="instructionMessage">送信後メール画面右上のXで終了してください。</p>
+  </div>
+
+  <script>
+    document.getElementById('sendMail').addEventListener('click', function (event) {
+      event.preventDefault(); // デフォルトのリンク動作を防ぐ
+
+      // メール作成画面をポップアップウィンドウで開く
+      let mailWindow = window.open(
+        "https://mail.google.com/mail/?view=cm&fs=1&to=tokyo.amamikai5550@gmail.com&su=%E3%81%94%E6%84%8F%E8%A6%8B%E3%83%BB%E3%81%94%E8%A6%81%E6%9C%9B",
+        "",
+        "width=800,height=600"
+      );
+
+      // メッセージを表示
+      const statusMessage = document.getElementById('statusMessage');
+      statusMessage.style.display = 'block';
+
+      // ポップアップウィンドウが開かれたら元のページをリロード
+      if (mailWindow) {
+        location.reload();
+      }
+    });
+  </script>
+
+  <style>
+    .slideshow-container {
+      max-width: 1000px;
+      /* スライドショー全体の幅を設定 */
+      margin:0 auto;
+      /* 中央揃え */
+      position: relative;
+      /* 子要素を絶対配置するために使用 */
+      overflow: hidden;
+      /* 画像のはみ出し部分を隠す */
+    }
+
+    .slide img {
+      width: 100%;
+      /* 横幅を親要素にフィット */
+      height: 500px;
+      /* 高さを固定 */
+      object-fit: cover;
+      /* 画像を中央に調整して余白を埋める */
+      border-radius: 10px;
+      /* 角を丸くしたい場合 */
+      margin:0 auto;
+    }
+  </style>
+
+  <script>
+    // スライドショー
+    
+    let slides = document.querySelectorAll("#slideshow img");
+    let currentSlide = 0;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length; // 最後まで行ったら最初に戻る
+      slides[currentSlide].classList.add("active");
+    }
+
+    setInterval(showNextSlide, 3000); // 3秒ごとにスライド切り替え
+
+<!--　BGMがめん　　-->
+  
+  </script>
+
+
+<script>
+    <!--// LocalStorageから日本語と外国語のカウントを取得、または初期化-->
+    let japaneseCount = parseInt(localStorage.getItem('japaneseCount')) || 0;
+    let foreignCount = parseInt(localStorage.getItem('foreignCount')) || 0;
+
+    <!--// 現在のセッションでカウント済みか確認-->
+    const hasCounted = sessionStorage.getItem('hasCounted');
+
+    <!--// 履歴の戻る操作を判定 (新しいAPI対応)-->
+    const isBackNavigation = performance.getEntriesByType("navigation")[0].type === "back_forward";
+
+    <!--// カウント条件を満たしているか確認-->
+    if (!hasCounted && !isBackNavigation) {
+      <!--// セルのタイトル属性を取得-->
+      const cell = document.querySelector('.purple-border');
+      if (cell) {
+        const cellTitle = cell.getAttribute('title');
+
+        <!--// タイトルが英語かどうかで判定-->
+        if (cellTitle && /^[A-Za-z\s]+$/.test(cellTitle)) {
+          // 英語なら外国語にカウント
+          foreignCount++;
+          localStorage.setItem('foreignCount', foreignCount);
+        } else {
+          <!-// 英語以外なら日本語にカウント-->
+          japaneseCount++;
+          localStorage.setItem('japaneseCount', japaneseCount);
+        }
+
+        <!-// 現在のセッションでカウント済みフラグを設定-->
+        sessionStorage.setItem('hasCounted', 'true');
+      } else {
+        console.error("紫枠の要素が見つかりませんでした。");
+      }
+    }
+
+    <!--// HTMLにカウントを表示-->
+    document.getElementById('japanese-counter').textContent = japaneseCount;
+    document.getElementById('foreign-counter').textContent = foreignCount;
+  </script>
+
+<!-- アクセスカウンター表示：1行にまとめる -->
+<div id="counterContainer" style="text-align: center;">
+  <span id="japaneseCount" style="color:blue;">日本語訪問数: <span id="japaneseNumber">0</span></span>
+  <span style="margin: 0 15px;">｜</span>
+  <span id="foreignCount" style="color:blue;">外国語訪問数: <span id="foreignNumber">0</span></span>
+</div>
+
+<script>
+  // 訪問数を正しく更新するロジック
+  function updateCounter(japaneseCount, foreignCount) {
+    // 1行表示用の要素に数値を反映
+    document.getElementById("japaneseNumber").textContent = japaneseCount;
+    document.getElementById("foreignNumber").textContent = foreignCount;
+  }
+
+  // 初期値を表示       
+</script>
+
+    <script>
+      window.onload = () => {
+        const cells = document.querySelectorAll('td');
+
+        // セルのクリックイベントを設定
+        cells.forEach(cell => {
+          cell.addEventListener('click', (event) => {
+            const link = event.target.closest('a'); // クリックされた要素の最も近い祖先の<a>要素を取得
+            if (link) {
+              const href = link.getAttribute('href'); // href属性の値を取得
+              if (href && href !== "" && href !== "#") {
+                // href属性がある場合：リダイレクト
+                sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
+                window.location.href = href; // リダイレクト
+              } else {
+                // href属性がない場合：ポップアップを表示
+                event.preventDefault(); // デフォルト動作を防止
+                sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
+                showPopup();
+              }
+            } else {
+              // <a>要素がない場合：ポップアップを表示
+              event.preventDefault(); // デフォルト動作を防止
+              sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
+              showPopup();
+            }
+          });
+        });
+      };
+    </script>
+
+<!--　翻訳関係処理-->
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!--  モニュメントの　音声-->
+<script>
+  let currentAudio = null;
+
+  function playVoice(filename) {
+    // 再生中の音声があれば止める
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    currentAudio = new Audio(filename);
+    currentAudio.play();
+  }
+</script>
+
+  </div>
+</div>
+
+
+<script>
+  function showMultiLinkPopup(links) {
+    const container = document.getElementById('multiLinks');
+    container.innerHTML = ''; // リセット
+  
+    links.forEach(link => {
+      const a = document.createElement('a');
+      a.href = link.url;
+      a.textContent = link.label;
+      a.target = '_blank';
+      container.appendChild(a);
+    });
+  
+    document.getElementById('multiOverlay').style.display = 'block';
+    document.getElementById('multiPopup').style.display = 'block';
+  }
+  
+  function closeMultiPopup() {
+    document.getElementById('multiOverlay').style.display = 'none';
+    document.getElementById('multiPopup').style.display = 'none';
+  }
+  </script>
+ <!-- ボタンで別ウィンドウからBGM起動 -->
+
+<!--　セルにbgm入れ　遷移で停止しない動き　-->　
+<script>
+  let bgmWindow = null;
+
+  function openBGMWindow() {
+      if (!bgmWindow || bgmWindow.closed) {
+          bgmWindow = window.open("bgm-amami.html", "bgmPlayer", "width=400,height=300");
+      } else {
+          bgmWindow.focus();
+      }
+  }
+</script>
+
+  </body>
+
+</html>
+

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>観光情報</title>
+</head>
+<body>
+    <h1>観光情報</h1>
+    <div id="output"></div>
+
+    <script>
+        fetch("http://127.0.0.1:8000/data.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTPエラー! ステータス: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("取得したデータ:", data); // データ構造を確認
+
+                // データ構造チェック
+                if (!data || !Array.isArray(data) || data.length === 0 || !data[0].情報) {
+                    document.getElementById("output").innerHTML = "<p>データの構造が違います。取得したデータを確認してください。</p>";
+                    console.error("データの構造が違います！", data);
+                    return;
+                }
+
+                let output = document.getElementById("output");
+                output.innerHTML = data[0].情報.map(place => `
+                    <h2>${place.場所名}</h2>
+                    <p>${place.説明}</p>
+                    <p>住所: ${place.住所}</p>
+                    <p>連絡先: ${place.連絡先}</p>
+                    <img src="${place.画像}" alt="${place.場所名}" width="200">
+                `).join("");
+            })
+            .catch(error => console.error("データ取得エラー:", error));
+    </script>
+</body>
+</html>

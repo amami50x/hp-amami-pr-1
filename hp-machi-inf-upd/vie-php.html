@@ -1,0 +1,23 @@
+<?php
+$uploadDir = 'uploads/';
+
+$files = [];
+if (is_dir($uploadDir)) {
+    $files = array_diff(scandir($uploadDir), ['.', '..']);
+}
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アップロード済みファイル一覧</title>
+</head>
+<body>
+    <h1>アップロード済みファイル一覧</h1>
+    <ul>
+        <?php foreach ($files as $file): ?>
+            <li><a href="view_file.php?file=<?= urlencode($file) ?>"><?= htmlspecialchars($file) ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+
+  <title>東京奄美会HP 目次</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+
+<!-- メイン画面に戻るボタン -->
+<div class="highlight-box" onclick="goBackToAmami();">
+  奄美諸島の魅力をあなたに！HPへ戻る
+</div>
+
+
+<a href="../amami.html">奄美諸島の魅力をあなたに！</a>
+
+<script>
+  // .htmlから1階層上に戻り、amami.htmlに遷移
+  function goBackToAmami() {
+  
+    window.location.href ="../amami.html";  
+  
+  }
+  </script>
+<!--タブを増やさないためのリンク-->
+<a href="../amami.html" id="navigateToAmami"></a>
+
+
+
+<script>
+  // JavaScript code should be properly enclosed within the script tag
+  document.addEventListener("DOMContentLoaded", () => {
+    const tooltip = document.getElementById("tooltip");
+    function showTooltip(event, text) {
+      event.preventDefault();
+      tooltip.textContent = text;
+      tooltip.style.display = "block";
+      tooltip.style.left = event.pageX + 10 + "px";
+      tooltip.style.top = event.pageY + 10 + "px";
+    }
+    document.addEventListener("click", () => {
+      tooltip.style.display = "none";
+    });
+    document.addEventListener("touchend", () => {
+      tooltip.style.display = "none";
+    });
+  });
+</script>
+
+<h1 class="title">東京奄美会 ホームページMENU</h1>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th style="background-color: #dfebf4; color: rgb(23, 4, 227); font-weight: bold;">M　　E　　N　　U</th>
+  <th style="background-color: #e1dff5; color: rgb(38, 5, 253); font-weight: bold;">概　　　　　　　　要</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/893">▶ 東京奄美会関係（郷友会・関係団体含む）行事日程</a></td><td>奄美会関係行事日程</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/1501">▶ 東京奄美会からのお知らせコーナー</a></td><td>東京奄美会からのお知らせを掲載</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/1579">▶ 外部からの新着情報コーナー</a></td><td>東京奄美会以外からのお知らせを掲載</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/415">▶ 執行部コーナー</a></td><td>執行部の紹介と活動</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/856">▶ 事務局コーナー</a></td><td>事務局からのお知らせなど</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/85">▶ 各郷友会コーナー</a></td><td>全13郷友会の情報</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/86">▷ 東京喜界会</a></td><td>喜界町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/387">▷ 東京笠利会</a></td><td>笠利町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/984">▷ 東京龍郷会</a></td><td>龍郷町の郷友会</td></tr>
+        <tr><td class="child"><a href="#">▷ アルバム</a></td><td>写真アルバム（未リンク）</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/89">▷ 東京名瀬会</a></td><td>奄美市（名瀬地区）の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/90">▷ 東京住用会</a></td><td>奄美市（住用地区）の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/387">▷ 東京笠利会</a></td><td>奄美市（笠利地区）の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/91">▷ 関東大和会</a></td><td>大和村の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/92">▷ 関東宇検村会</a></td><td>宇検村の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/93">▷ 東京瀬戸内会</a></td><td>瀬戸内町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/94">▷ 関東徳之島町会</a></td><td>徳之島町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/95">▷ 関東天城町会</a></td><td>天城町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/96">▷ 関東伊仙町会</a></td><td>伊仙町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/97">▷ 東京沖洲会</a></td><td>知名町・和泊町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/98">▷ 東京与論会</a></td><td>与論町の郷友会</td></tr>
+        <tr><td class="child"><a href="https://www.tokyo-amamikai.com/node/155">▷ その他の会</a></td><td>その他の地域の会</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/99">▶ 文化広報部コーナー</a></td><td>文化広報部の紹介と活動</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/100">▶ 青年部コーナー</a></td><td>青年部の紹介と活動</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/101">▶ 女性部コーナー</a></td><td>女性部の紹介と活動</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/1190">▶ 活動記録コーナー</a></td><td>イベントや会議の記録</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/tayori">▶ ふるさと便りコーナー</a></td><td>奄美のふるさと情報</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/sien">▶ ふるさと支援コーナー</a></td><td>奄美支援に関する情報</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/album">▶ 共通アルバム</a></td><td>イベント写真アルバム</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/gaiyou">▶ 東京奄美会概要</a></td><td>会の紹介・規約等</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/otoiawase">▶ ご意見・ご要望・お問合せ</a></td><td>お問い合わせフォーム</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/links">▶ リンク集</a></td><td>各種関連団体リンク</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/848">▶ HP情報受付窓口</a></td><td>ホームページ情報受付</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/node/849">▶ 奄美群島日本復帰記念行事特集</a></td><td>復帰記念行事特集</td></tr>
+        <tr><td class="parent"><a href="https://www.tokyo-amamikai.com/banner">▶ バナー広告について</a></td><td>バナー広告の案内</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="tooltip" class="tooltip"></div>
+  <!-- Removed duplicate tooltip script -->
+</body>
+</html>
+

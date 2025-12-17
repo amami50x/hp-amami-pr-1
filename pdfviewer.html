@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF Viewer with Fallback Popup</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* PDF表示領域 */
+    #pdfContainer {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* フォールバック用ポップアップ */
+    #fallbackPopup {
+      display: none; /* 初期は非表示 */
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -30%);
+      background: #fff;
+      border: 2px solid #444;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    #fallbackPopup button {
+      padding: 5px 10px;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- PDF表示エリア（PDFファイルのURLをsrcに指定） -->
+  <iframe id="pdfContainer" src="hp-chuijiko.pdf"></iframe>
+
+  <!-- フォールバック用ポップアップ -->
+  <div id="fallbackPopup">
+    <p>PDFが正常に表示されていません。</p>
+    <p>ページを再読み込みするか、戻るボタンをクリックしてください。</p>
+    <button onclick="window.location.reload();">再読み込み</button>
+    <button onclick="window.history.back();">戻る</button>
+  </div>
+
+  <script>
+    // PDF表示のチェックとポップアップ表示のサンプル（※PDFの読み込みチェックは環境によって難しいため、今回は一定時間経過後にiframeの内容が空の可能性で判断）
+    window.addEventListener('load', function() {
+      // 例えば、5秒後にチェックする
+      setTimeout(function() {
+        var iframe = document.getElementById('pdfContainer');
+        // ※　ここでは、iframe の contentWindow/document にアクセスしようとすると同一オリジンポリシーの制約があって使えない場合もあります。
+        // そのため、シンプルにリロード前のユーザーの操作がなかった場合のフォールバックとしてポップアップを表示する例です。
+        // ※ もしPDFファイルが正しく読み込まれていたかのチェックができれば、より正確な判定を実装してください。
+        // 今回はあくまでも一定時間経過後にポップアップを表示するサンプルとします。
+        document.getElementById('fallbackPopup').style.display = 'block';
+      }, 5000);
+    });
+  </script>
+
+
+  
+</body>
+</html>

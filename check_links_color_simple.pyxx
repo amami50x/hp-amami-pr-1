@@ -1,0 +1,34 @@
+from bs4 import BeautifulSoup
+
+def check_link(url):
+    return True  # 一時的にリンクをすべて正常とする
+
+def process_html_with_highlight(input_file, output_file):
+    print("ファイル読み込み開始")
+    with open(input_file, encoding="utf-8") as f:
+        soup = BeautifulSoup(f, "lxml")
+
+    print("リンク確認と色付け開始")
+    for td in soup.find_all("td"):
+        link = td.find("a")
+        if link and link.get("href"):
+            url = link["href"].strip()  # 空白削除
+            if url.startswith("http"):
+                ok = check_link(url)
+                color = "#ccffcc" if ok else "#ffdddd"
+            else:
+                color = "#ffe4b5"
+        else:
+            color = "#ccccff"
+
+        existing_style = td.get("style", "")
+        td["style"] = f"background-color: {color};" + existing_style
+
+    print("ファイル書き込み開始")
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(str(soup))
+
+    print(f"完了：{output_file} を作成しました")
+
+# 実行
+process_html_with_highlight("amami.html", "amami_checked_new.html")

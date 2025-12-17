@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>訪問件数カウント</title>
+</head>
+<body>
+  <h2>訪問件数</h2>
+  <p>日本語: <span id="jpCount">読み込み中...</span></p>
+  <p>外国語: <span id="enCount">読み込み中...</span></p>
+
+  <script>
+    // ブラウザの言語を取得
+    const userLang = navigator.language || navigator.userLanguage;
+    const langType = userLang.startsWith('ja') ? 'jp' : 'en';
+
+    // 言語タイプをPHPに送信
+    fetch('counter.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: 'lang=' + langType
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('jpCount').textContent = data.jp;
+      document.getElementById('enCount').textContent = data.en;
+    });
+  </script>
+</body>
+</html>

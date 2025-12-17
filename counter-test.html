@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アクセスカウンター シンプルテスト</title>
+  <style>
+    /* カウンター表示用のシンプルなスタイル */
+    #countDisplay {
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: inline-block;
+    }
+    #countDisplay p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- カウンター表示エリア -->
+  <div id="countDisplay">
+    <p>総訪問件数: <span>0</span></p>
+  </div>
+
+  <script type="text/javascript">
+    // サーバー側のカウンターを更新する AJAX 関数
+    function updateSimpleCounter() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "access-counter.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+      // デバッグ用ログをコンソールに出力
+      console.log("カウント更新のリクエストを送信します（常に日本語としてカウント）");
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              // サーバー側から返される JSON に "totalCount" プロパティがある前提です
+              var response = JSON.parse(xhr.responseText);
+              document.querySelector("#countDisplay span").textContent = response.totalCount;
+              console.log("カウンター更新成功:", response);
+            } catch(e) {
+              console.error("レスポンス解析エラー:", e);
+            }
+          } else {
+            console.error("カウンター更新エラー: ステータス", xhr.status);
+          }
+        }
+      };
+
+      // 言語にかかわらずカウントする場合、isForeign の値を常に 0 として送信
+      xhr.send("isForeign=0");
+    }
+
+    // ページの読み込み時にカウンター更新を実行
+    document.addEventListener("DOMContentLoaded", updateSimpleCounter);
+  </script>
+</body>
+</html>

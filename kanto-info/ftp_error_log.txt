@@ -1,0 +1,12 @@
+import pandas as pd
+
+# Excelファイルを読み込み（複数シートがある場合は sheet_name を指定）
+df = pd.read_excel("shops.xlsx")
+
+# 並べ替え
+df_sorted = df.sort_values(by=["カテゴリ", "〒", "店名"])
+
+# 上書き保存（インデックス列なしで）
+df_sorted.to_excel("shops.xlsx", index=False)
+
+print("Excelを並べ替えて保存しました。")

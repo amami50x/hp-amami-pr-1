@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>市町村とジャンル選択</title>
+</head>
+<body>
+
+<form id="selectionForm">
+    <label>市町村名:
+        <select id="citySelect">
+            <option value="喜界町">喜界町</option>
+            <option value="龍郷町">龍郷町</option>
+            <option value="奄美市">奄美市</option>
+            <option value="大和村">大和村</option>
+            <option value="宇検村">宇検村</option>
+            <option value="瀬戸内町">瀬戸内町</option>
+            <option value="徳之島町">徳之島町</option>
+            <option value="天城町">天城町</option>
+            <option value="伊仙町">伊仙町</option>
+            <option value="知名町">知名町</option>
+            <option value="和泊町">和泊町</option>
+            <option value="与論町">与論町</option>
+        </select>
+    </label>
+
+    <label>ジャンル:
+        <select id="categorySelect">
+            <option value="観光">観光</option>
+            <option value="グルメ">グルメ</option>
+            <option value="特産品">特産品</option>
+            <option value="郷土芸能">郷土芸能</option>
+            <option value="歴史文化">歴史文化</option>
+            <option value="体験">体験</option>
+            <option value="経路">経路</option>
+        </select>
+    </label>
+
+    <button type="submit">ダウンロード</button>
+</form>
+
+<script>
+document.getElementById("selectionForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let city = document.getElementById("citySelect").value;
+    let category = document.getElementById("categorySelect").value;
+
+    // ここでダウンロードの処理へ進める
+    window.location.href = `/download_csv?city=${city}&category=${category}`;
+});
+</script>
+
+</body>
+</html>

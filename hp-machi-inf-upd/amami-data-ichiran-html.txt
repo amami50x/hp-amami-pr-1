@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>観光情報管理</title>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 8px; }
+        th { background-color: #f2f2f2; }
+        input, select { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>観光情報管理システム</h1>
+
+    <!-- 登録フォーム -->
+    <h2>新規データ登録</h2>
+    <form id="dataForm">
+        <label for="municipality">市町村コード:</label>
+        <select id="municipality">
+            <option value="01">01: 喜界町</option>
+            <option value="02">02: 龍郷町</option>
+            <option value="03">03: 奄美市</option>
+            <option value="04">04: 大和村</option>
+            <option value="05">05: 宇検村</option>
+            <option value="06">06: 瀬戸内町</option>
+            <option value="07">07: 徳之島町</option>
+            <option value="08">08: 天城町</option>
+            <option value="09">09: 伊仙町</option>
+            <option value="10">10: 知名町</option>
+            <option value="11">11: 和泊町</option>
+            <option value="12">12: 与論町</option>
+        </select><br>
+
+        <label for="genre">ジャンルコード:</label>
+        <select id="genre">
+            <option value="02">02: 観光</option>
+            <option value="03">03: グルメ</option>
+            <option value="04">04: 特産品</option>
+            <option value="05">05: 郷土芸能</option>
+            <option value="06">06: 歴史文化</option>
+            <option value="07">07: 体験</option>
+            <option value="08">08: 経路</option>
+            <option value="09">09: 天気</option>
+            <option value="10">10: 市町村旗</option>
+        </select><br>
+
+        <label for="subcategory">小分類コード:</label>
+        <input type="text" id="subcategory" placeholder="3桁コードを入力"><br>
+
+        <label for="name">名称:</label>
+        <input type="text" id="name" required><br>
+
+        <label for="overview">概要:</label>
+        <input type="text" id="overview" required><br>
+
+        <label for="zipcode">郵便番号:</label>
+        <input type="text" id="zipcode"><br>
+
+        <label for="address">住所:</label>
+        <input type="text" id="address" required><br>
+
+        <label for="phone">電話番号:</label>
+        <input type="text" id="phone"><br>
+
+        <button type="submit">登録</button>
+    </form>
+
+    <h2>登録データ一覧</h2>
+    <input type="text" id="searchBar" placeholder="検索キーワード入力">
+    <button onclick="searchData()">検索</button>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>市町村コード</th>
+                <th>ジャンルコード</th>
+                <th>小分類コード</th>
+                <th>名称</th>
+                <th>概要</th>
+                <th>住所</th>
+                <th>電話番号</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        let dataList = [];
+
+        document.getElementById("dataForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const entry = {
+                municipality: document.getElementById("municipality").value,
+                genre: document.getElementById("genre").value,
+                subcategory: document.getElementById("subcategory").value,
+                name: document.getElementById("name").value,
+                overview: document.getElementById("overview").value,
+                zipcode: document.getElementById("zipcode").value,
+                address: document.getElementById("address").value,
+                phone: document.getElementById("phone").value
+            };
+
+            dataList.push(entry);
+            displayData();
+        });
+
+        function displayData() {
+            const tableBody = document.querySelector("#dataTable tbody");
+            tableBody.innerHTML = "";
+            dataList.forEach((data, index) => {
+                let row = `<tr>
+                    <td>${data.municipality}</td>
+                    <td>${data.genre}</td>
+                    <td>${data.subcategory}</td>
+                    <td>${data.name}</td>
+                    <td>${data.overview}</td>
+                    <td>${data.address}</td>
+                    <td>${data.phone}</td>
+                    <td><button onclick="editData(${index})">編集</button></td>
+                    <td><button onclick="deleteData(${index})">削除</button></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function deleteData(index) {
+            dataList.splice(index, 1);
+            displayData();
+        }
+
+        function editData(index) {
+            const entry = dataList[index];
+            document.getElementById("municipality").value = entry.municipality;
+            document.getElementById("genre").value = entry.genre;
+            document.getElementById("subcategory").value = entry.subcategory;
+            document.getElementById("name").value = entry.name;
+            document.getElementById("overview").value = entry.overview;
+            document.getElementById("zipcode").value = entry.zipcode;
+            document.getElementById("address").value = entry.address;
+            document.getElementById("phone").value = entry.phone;
+            dataList.splice(index, 1);
+            displayData();
+        }
+
+        function searchData() {
+            const keyword = document.getElementById("searchBar").value.toLowerCase();
+            const filteredData = dataList.filter(entry => Object.values(entry).some(value => value.toLowerCase().includes(keyword)));
+            
+            document.querySelector("#dataTable tbody").innerHTML = "";
+            filteredData.forEach((data, index) => {
+                let row = `<tr>
+                    <td>${data.municipality}</td>
+                    <td>${data.genre}</td>
+                    <td>${data.subcategory}</td>
+                    <td>${data.name}</td>
+                    <td>${data.overview}</td>
+                    <td>${data.address}</td>
+                    <td>${data.phone}</td>
+                    <td><button onclick="editData(${index})">編集</button></td>
+                    <td><button onclick="deleteData(${index})">削除</button></td>
+                </tr>`;
+                document.querySelector("#dataTable tbody").innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>

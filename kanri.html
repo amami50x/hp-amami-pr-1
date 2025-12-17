@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>HP管理メニュー</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 20px;
+        }
+        h1 {
+            color: #333366;
+        }
+        .menu-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #555555;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        .file {
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>HP管理メニュー</h1>
+
+    <div class="menu-section">
+        <h2>1. HPの開始</h2>
+        <ul>
+            <li>HTMLファイルの作成・管理</li>
+            <li>基本ファイル名：<span class="file">index.html</span></li>
+            <li>各市町村ごとに個別HTMLを作成</li>
+        </ul>
+    </div>
+
+    <div class="menu-section">
+        <h2>2. HPの運用</h2>
+        <h3>2-1. セルのリンクチェック（背景色で識別）</h3>
+        <ul>
+            <li>対象ファイル：<span class="file">shops.xlsx</span></li>
+            <li>背景色の識別：
+                <ul>
+                    <li>白色 → 正常</li>
+                    <li>黄色 → 要確認</li>
+                    <li>赤色 → リンク切れ・不備</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>2-2. Excelデータのソート・サーバーアップロード</h3>
+        <ul>
+            <li>作業手順：
+                <ol>
+                    <li>shops.xlsx を更新</li>
+                    <li><span class="file">run_all.bat</span> を実行</li>
+                    <li>処理内容：ソート → HTML生成（<span class="file">shop-html.py</span>） → サーバーアップロード（<span class="file">watch_and_upload.py</span>）</li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+
+    <div class="menu-section">
+        <h2>3. 補足・ツール一覧</h2>
+        <ul>
+            <li>HTML生成スクリプト：<span class="file">shop-html.py</span></li>
+            <li>一括実行バッチ：<span class="file">run_all.bat</span></li>
+            <li>FTPアップロード：<span class="file">watch_and_upload.py</span></li>
+            <li>Excelデータ：<span class="file">shops.xlsx</span></li>
+            <li>スタイルシート：<span class="file">style.css</span></li>
+        </ul>
+    </div>
+
+    <div class="menu-section">
+        <h2>4. サーバ情報</h2>
+        <ul>
+            <li>FTPホスト名：<span class="file">www1786.sakura.ne.jp</span></li>
+            <li>ユーザー名：<span class="file">violetfoal2</span></li>
+            <li>保存先：<span class="file">public_html/tokyo/</span></li>
+        </ul>
+    </div>
+</body>
+</html>
