@@ -1,0 +1,875 @@
+/* 島タイトル行の重なり防止・デザイン */
+.island-title-row td {
+  background: #0033cc !important;
+  color: #fff !important;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 0 !important;
+  font-size: 1.18em;
+  border: 3px solid #fff;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 2px;
+}
+
+/* テーブルとタイトルの間隔調整 */
+#amami-table {
+  margin-top: 0px !important;
+  border: 4px solid #0033cc;
+  font-weight: bold;
+  font-size: 1.1em;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* テーブルヘッダーとデータセルの余白調整 */
+th, td {
+  border: 2px solid #0033cc !important;
+  padding: 12px 6px !important;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.08em;
+}
+#counterContainer {
+  color: blue;
+  margin-top: 20px;
+  /* ← この行で下にずらす */
+}
+
+/* Removed JavaScript code from CSS file */
+body {
+  background-color: #b6e1f3;
+  /* 薄いグリーン */
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h1.title {
+  text-align: center;
+  color: rgb(5, 5, 251);
+  font-weight: bold;
+}
+
+/* 言語切り替え部分のスタイル */
+.language-switcher {
+  position: fixed;
+  /* 必要に応じてabsoluteに変更 */
+  z-index: 1000;
+  /* Googleのバナーよりも前面に表示 */
+  background-color: white;
+  /* 必要なら背景色を設定して明瞭化 */
+  padding: 5px;
+  /* 隠れにくくするための余白 */
+}
+
+/* Google翻訳バーの容器　html内 */
+#google_translate_element {
+  display: inline-block;
+}
+
+/* 一段目：3分割テーブル形式 */
+.top-bar {
+  display: table;
+  width: 100%;
+  background-color: #33b5ecdb;
+  border-collapse: collapse;
+  table-layout: fixed;
+  position: fixed;
+  /* 画面の最上部に固定 */
+  top: 0;
+  /* 上から0pxの位置 */
+  z-index: 1000;
+  /* 他の要素より前面に配置 */
+
+}
+
+/* モーダルのスタイル */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  background: rgb(220, 20, 60);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.popup-overlay {
+  display: none;
+  /* 初期状態では非表示　PDF読み込み */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* 背景を暗くするPdf読み込み */
+  z-index: 1000;
+  /* 最前面に表示 */
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  height: 80%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+  /* pdfpopup */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: #f44336;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.close-btn2 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1020;
+  /* ボタンが上に表示されるように */
+}
+
+
+.popup-overlay2 {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* 背景を暗くする */
+  z-index: 1000;
+  /* 最前面に表示 */
+}
+
+.popup-content2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  height: 90%;
+  z-index: 1010;
+  /* オーバーレイ内で最前面 */
+}
+
+/* 最上部に配置するリンクボックス */
+.header-links {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+  z-index: 9999;
+  background-color: #fff;
+  margin: 0;
+  /* 最上段ボックスの外部マージンをゼロに */
+}
+
+.link-box {
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+}
+
+.link-box a {
+  color: rgb(251, 249, 249);
+  text-decoration: none;
+}
+
+.link-box.left {
+  margin-left: 0px;
+  padding-left: 0;
+}
+
+.link-box.right {
+  margin-right: 10px;
+}
+
+/* ポップアップのスタイル */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  display: none;
+}
+
+.popup a {
+  display: block;
+  margin: 8px 0;
+  color: #0066cc;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.popup button {
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+.popup-content {
+  position: relative;
+}
+
+.popup .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Removed invalid JavaScript code from CSS file */
+
+
+/* CSS スタイル（必要に応じて調整） */
+.toc {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+}
+
+.toc li {
+  margin-bottom: 5px;
+}
+
+
+/* オーバーレイのスタイル */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* ポップアップのスタイル */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(128, 0, 128);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  z-index: 1000;
+}
+
+
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* ボタンのスタイル */
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: rgb(251, 246, 246);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* タイトルのデザイン */
+.title1 {
+  background-color: rgb(9, 9, 243);
+  color: rgb(221, 225, 228);
+  text-align: center;
+  font-size: 2em;
+  padding: 10px;
+  margin-top: 25px;
+  /* 上段との間隔を調整 */
+
+}
+
+.title2 {
+  background-color: rgb(172, 225, 243);
+  color: rgb(8, 8, 247);
+  text-align: center;
+  font-size: 2em;
+  padding: 10px;
+}
+
+.title3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #0033cc;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  text-align: center;
+  background: #e6f2fa;
+  padding: 10px 0 10px 0;
+  border-radius: 8px;
+  letter-spacing: 2px;
+}
+
+/* スライドショー */
+#slideshow {
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 600px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+/* monument-container中央寄せ */
+.monument-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto 20px auto;
+  width: 100%;
+  gap: 40px;
+  max-width: 800px;
+}
+
+.monument {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.monument-image-wrapper img {
+  width: 220px;
+  height: auto;
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  background: #e6f2fa;
+}
+
+#slideshow img {
+  width: 100%;
+  display: none;
+  margin: 0 auto;
+}
+
+#slideshow img.active {
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* テーブル */
+table {
+  width: 100%;
+  margin: 0px auto;
+  margin-bottom: 0px;
+  /* タイトルの下の余白を10pxに設定 */
+  border-collapse: collapse;
+  margin-top: -20px;
+}
+
+th,
+td {
+  border: 1px solid #0000ff;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #8000c0;
+  color: #fff;
+  font-size: 1.13em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #fff;
+}
+
+td:first-child {
+  background-color: #0033cc;
+  color: #ffff00;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+td {
+  background-color: #f9cccc;
+}
+
+#amami-table {
+  border: 3px solid rgb(248, 199, 207);
+  /* 戻る際に一時的に目立たせる */
+}
+
+
+h2 {
+  margin-bottom: 0px;
+  /* タイトルの下の余白を10pxに設定
+        color: #0000ff;  H3タグを紫に設定 */
+}
+
+h5 {
+  margin-bottom: 0px;
+  /* タイトルの下の余白を10pxに設定
+        color: #0000ff;  H3タグを紫に設定  */
+  background-color: light blue;
+}
+
+h3 {
+  color: rgb(128, 0, 128);
+  /* H3タグを紫に設定 */
+}
+
+
+/* ご意見・ご要望欄 */
+.feedback,
+.purple-border-bgm {
+  width: 100%;
+  /* 上段の幅に合わせる */
+  max-width: 400px;
+  /* 最大幅を制限して調整 */
+  margin: 20px auto;
+  /* 中央配置を維持 */
+}
+
+.feedback,
+.purple-border-bgm {
+  width: 400px;
+  margin: 20px auto;
+  box-sizing: border-box;
+  /* 余白や枠線を含めてサイズ計算 */
+}
+
+
+.feedback {
+  text-align: center;
+  color: purple;
+  margin: 20px auto;
+  width: 400px;
+  border: 2px solid rgb(128, 0, 128);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* BGMとカウント数 */
+.centered {
+  text-align: center;
+  margin: 20px;
+}
+
+#counter {
+  color: #0000ff;
+  /* counter部分のみ青に設定 */
+}
+
+/* ポップアップのスタイル */
+/* ポップアップのスタイル */
+.popup {
+  display: none;
+  /* 初期状態では非表示 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(251, 245, 245);
+  border: 2px solid rgb(128, 0, 128);
+  /* 枠線の色と太さ */
+  border-radius: 15px;
+  /* 枠線の角を丸くする */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* ポップアップに影をつける */
+  text-align: center;
+  z-index: 1000;
+  /* ポップアップを最前面に */
+}
+
+/* 背景のオーバーレイ */
+.overlay {
+  display: none;
+  /* 初期状態では非表示 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 半透明の黒 */
+  z-index: 999;
+  /* ポップアップの背後に */
+}
+
+
+#message {
+  display: none;
+  margin-top: 20px;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+button {
+  cursor: pointer;
+  background-color: #007BFF;
+  color: rgb(253, 248, 248);
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.kensu-border {
+  color: rgb(26, 0, 128);
+  margin: 20px auto;
+  width: 60%;
+  border: 2px solid rgb(128, 0, 128);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  /* テキストを中央寄せ */
+  line-height: 0.7;
+  /* 行の高さを調整 */
+  display: block;
+}
+
+.kensu-border h3 {
+  margin-bottom: 5px;
+  /* h3要素の下の余白を調整 */
+}
+
+.kensu-border p {
+  margin: 5px 0;
+  /* p要素の上下の余白を調整 */
+}
+
+purple-line {
+  border: 2px solid rgb(128, 0, 128);
+  /* 紫色の枠線 */
+  padding: 10px;
+  /* 内側の余白 */
+  margin: 10px;
+  /* 外側の余白 */
+  border-radius: 10px;
+  /* 角の丸み */
+  text-align: center;
+  color: rgb(125, 3, 125);
+  width: 60%;
+  border: 2px solid rgb(131, 2, 131);
+}
+
+.audio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 水平方向中央寄せ */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  /* 水平方向中央寄せ */
+  margin-top: 10px;
+  /* ボタン間の余白 */
+}
+
+.button-container button {
+  margin: 0 5px;
+  /* ボタン間の余白 */
+}
+
+/* アクセス件数枠線 */
+.purple-border {
+  border: 2px solid rgb(128, 0, 128) !important;
+  /* 枠線の色と太さを強制適用 */
+  width: 400px;
+  /* 横幅 */
+  height: auto;
+  /* 縦幅をコンテンツに合わせる */
+  padding: 10px;
+  /* 内側の余白 */
+  box-sizing: border-box;
+  /* 枠線を含めたサイズを計算 */
+  display: flex;
+  /* フレックスボックスで整列 */
+  flex-direction: column;
+  /* 子要素を縦方向に並べる */
+  justify-content: center;
+  /* 子要素を縦方向に中央配置 */
+  align-items: center;
+  /* 子要素を横方向に中央配置 */
+  border-radius: 15px;
+  /* 枠線の角を丸くする */
+  margin: 0 auto;
+  /* 枠全体を中央配置 */
+}
+
+.blue-bold {
+  color: rgb(9, 9, 246);
+  /* 青色の文字 */
+  font-weight: bold;
+  /* 太字にする */
+  width: 400px;
+  text-align: center;
+}
+
+p {
+  margin: 5px 0;
+  /* 各段落の間隔を設定 */
+}
+
+.purple-border-bgm {
+  border: 2px solid rgb(126, 4, 126);
+  /* 枠線の色と太さ */
+  width: 400px;
+  /* 横幅 */
+  padding: 10px;
+  /* 内側の余白 */
+  box-sizing: border-box;
+  /* 枠線を含めたサイズを計算 */
+  border-radius: 15px;
+  /* 枠線の角を丸くする */
+  margin: 20px auto;
+  /* 枠全体を中央配置 */
+  text-align: center;
+  /* テキストを中央揃えにする */
+}
+
+// 最終行の10列目だけ別クラスを使う 
+
+/* ポップアップのスタイル */
+#popup-message {
+  max-width: 90%;
+  /* 画面サイズに合わせて幅を調整 */
+  display: none;
+  /* 初期状態は非表示 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  /* Removed invalid comment syntax */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+}
+
+#overlay {
+  display: none;
+  /* 初期状態は非表示 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+button {
+  cursor: pointer;
+  background-color: #007BFF;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* 2〜9列目のセル：左右（縦罫線）を消す */
+.no-vertical-border {
+  border-left: none;
+  border-right: none;
+}
+
+/* 10列目のセル：右線だけ表示 */
+.right-border-only {
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid rgb(5, 5, 240);
+}
+
+.right-border-bottom {
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid rgb(9, 9, 245);
+  border-bottom: 1px solid rgba(8, 8, 246, 0.968);
+  /* 下線を表示 */
+}
+
+iframe {
+  width: 90%;
+  height: 400px;
+  border: 2px solid rgb(128, 128, 128);
+  margin-top: 20px;
+}
+
+
+table tr:nth-child(n+2):nth-child(-n+19) td:nth-child(n+2):nth-child(-n+10) {
+  background-color: #ffcccb;
+  /* 薄紅色 */
+}
+
+.highlight-box {
+  background-color:rgb(21, 0, 255);
+  color: white;
+  text-align: center;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border: 2px solid hwb(253 0% 0%);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  z-index: 1000;
+  width: auto;
+}
+.highlight-box:hover {
+  background-color: #2200fff8;
+  color: white;
+}
+
+.table-container {
+  border: 2px solid rgb(6, 6, 248);
+  padding: 20px;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  min-width: 600px;
+}
+th, td {
+  border: 1px solid rgb(5, 5, 248);
+  padding: 8px;
+  word-break: break-word;
+  cursor: pointer;
+  position: relative;
+}
+tr:hover {
+  background-color: #f0f8ff;
+}
+.tooltip {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  max-width: 200px;
+  pointer-events: none;
+}
+.parent {
+  font-weight: bold;
+  color: green;
+}
+.child {
+  padding-left: 1em;
+  color: #333;
+}
+@media (max-width: 768px) {
+  td {
+    font-size: 14px;
+    padding: 6px;
+  }
+}

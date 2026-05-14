@@ -1,0 +1,17 @@
+# island-links-manage.php に Basic 認証をかける記述例（Apache / さくらのレンタルサーバなど）
+#
+# 使い方の概要:
+# 1) サーバ上で .htpasswd を作成し、AuthUserFile にフルパスで書く
+#    （さくらのコントロールパネルや htpasswd コマンドで作成可能）
+# 2) このファイルの内容をコピーして Web 公開フォルダ内の .htaccess に追記するか、
+#    ファイル名を .htaccess にしてアップロードする（既存 .htaccess がある場合は統合）
+# 3) AuthUserFile のパスはサーバのホームディレクトリ配下など、Web から直接読めない場所を推奨
+#
+# ※ island-links-manage.php は PHP でパスワード認証しません。Basic 認証はサーバ側の実ロックとして利用してください。
+
+<Files "island-links-manage.php">
+    AuthType Basic
+    AuthName "Island Links Admin"
+    AuthUserFile /home/あなたのFTPユーザー名/.htpasswd_island_links
+    Require valid-user
+</Files>

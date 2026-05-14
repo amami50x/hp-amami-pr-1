@@ -6,22 +6,28 @@
   <title>BGMプレーヤー</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: "Segoe UI", "Yu Gothic UI", Meiryo, sans-serif;
       text-align: center;
-      background-color: #f8f8f8;
-      padding: 20px;
+      margin: 0;
+      min-height: 100vh;
+      padding: 18px 14px 24px;
+      box-sizing: border-box;
+      background: linear-gradient(165deg, #e8f2ff 0%, #f3e9f8 40%, #fff8f0 100%);
     }
     h3 {
-      margin-bottom: 15px;
+      margin: 0 0 14px;
+      color: #3d2d50;
+      font-weight: 700;
     }
     .purple-border-bgm {
-      border: 2px solid purple;
-      padding: 10px;
+      border: 2px solid #7b4bbd;
+      padding: 14px 12px;
       margin: 10px auto;
-      width: 80%;
-      max-width: 400px;
-      background-color: #eee;
-      border-radius: 5px;
+      width: 92%;
+      max-width: 460px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 12px;
+      box-shadow: 0 6px 22px rgba(70, 50, 110, 0.12);
     }
     .blue-bold {
       color: blue;
@@ -52,7 +58,13 @@
       margin-top: 5px;
     }
     .volume-control {
-      margin-top: 15px;
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(123, 75, 189, 0.2);
+      display: inline-block;
+      min-width: min(92vw, 280px);
     }
   </style>
 </head>
@@ -86,6 +98,16 @@
   </div>
 
   <script>
+    const bgmMainChannel = new BroadcastChannel("bgm-amami-slideshow");
+
+    function notifyMainSlideshow(hidden) {
+      bgmMainChannel.postMessage({ hideSlideshow: hidden });
+    }
+
+    window.addEventListener("pagehide", function () {
+      notifyMainSlideshow(false);
+    });
+
     // DOM要素の取得（重複宣言を防いで1つのスクリプトに統合）
     const audioPlayer = document.getElementById("audioPlayer");
     const playButton = document.getElementById("playButton");
@@ -111,7 +133,7 @@
       { file: "hp-music/tokunoshima_kouta.aac", title: "徳之島小唄" },
       { file: "hp-music/funaki_koukou_sannensei.aac", title: "高校三年生" },
       { file: "hp-music/furusatoyo-hanareteitemo.mp3", title: "ふるさとよ離れていても" },
-　　　 { file: "hp-music/sinkawa_furusato.aac", title: "ふるさとへ" },
+      { file: "hp-music/sinkawa_furusato.aac", title: "ふるさとへ" },
       { file: "hp-music/wagamichi.mp3", title: "我が道" },
       { file: "hp-music/shima_blues_misawa.aac", title: "島ブルース" }
     ];
@@ -140,6 +162,7 @@
         isPlaying = true;
         playButton.textContent = "一時停止";
         trackTitle.textContent = "曲タイトル: " + playlist[trackIndex].title;
+        notifyMainSlideshow(true);
       }).catch(error => {
         console.error("再生エラー:", error);
       });
@@ -153,6 +176,7 @@
         isPlaying = false;
         pausedTime = audioPlayer.currentTime;
         playButton.textContent = "再生";
+        notifyMainSlideshow(true);
       } else {
         playTrack(currentTrack);
       }
@@ -166,6 +190,7 @@
       playButton.textContent = "再生";
       progressBar.value = 0;
       currentTimeDisplay.textContent = "0:00";
+      notifyMainSlideshow(false);
     });
 
     nextTrackButton.addEventListener("click", () => {
@@ -194,6 +219,7 @@
     });
 
     bgmCloseButton.addEventListener("click", () => {
+      notifyMainSlideshow(false);
       window.close();
     });
 

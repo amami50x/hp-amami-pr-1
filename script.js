@@ -7,6 +7,15 @@ window.addEventListener('popstate', function () {
   }, 100); // レンダリングが完了するのを待つ
 });
 
+function tableCellHasContent(cell) {
+  const text = cell.textContent
+    .replace(/\u00a0/g, ' ')
+    .replace(/\u200b/g, '')
+    .trim();
+  if (text.length > 0) return true;
+  return !!cell.querySelector('img, iframe, video, canvas, svg, picture');
+}
+
 // ポップアップを表示する関数
 function showPopup(popupId) {
   document.getElementById(popupId).style.display = 'block';
@@ -34,13 +43,15 @@ window.onload = function () {
   const cells = document.querySelectorAll('td');
   cells.forEach(cell => {
     cell.addEventListener('click', (event) => {
+      if (!cell.hasAttribute('data-url')) return;
+      if (!tableCellHasContent(cell)) return;
       const url = cell.getAttribute('data-url'); // URLを取得
       if (url && url.trim() !== "") {
         // URLがある場合：ポップアップを出さずにリダイレクト
         sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
         window.location.href = url; // リダイレクト
       } else {
-        // URLがない場合：ポップアップを表示
+        // data-url 指定ありで空の場合のみポップアップ
         event.preventDefault(); // デフォルト動作を防止
         sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
         showPopup();
@@ -193,32 +204,35 @@ audioPlayer.addEventListener('ended', () => {
   currentTrack = (currentTrack + 1) % playlist.length;
   playTrack(currentTrack);
 });
-// セルのクリックイベントを設定
+// 観光テーブル：貼付（準備中）は「空の href / # のリンク」クリック時のみ
 window.onload = () => {
-  const cells = document.querySelectorAll('td');
+  const table = document.getElementById('amami-table');
+  if (!table) return;
 
-  cells.forEach(cell => {
-    cell.addEventListener('click', (event) => {
-      const link = event.target.closest('a'); // クリックされた要素の最も近い祖先の<a>要素を取得
-      if (link) {
-        const href = link.getAttribute('href'); // href属性の値を取得
-        if (href && href !== "" && href !== "#") {
-          // href属性がある場合：リダイレクト
-          sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-          window.location.href = href; // リダイレクト
-        } else {
-          // href属性がない場合：ポップアップを表示
-          event.preventDefault(); // デフォルト動作を防止
-          sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-          showPopup();
-        }
-      } else {
-        // <a>要素がない場合：ポップアップを表示
-        event.preventDefault(); // デフォルト動作を防止
-        sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-        showPopup();
-      }
-    });
+  table.addEventListener('click', (event) => {
+    const cell = event.target.closest('td');
+    if (!cell || !table.contains(cell)) return;
+    if (event.target.closest('audio, video, input, button, select, textarea')) return;
+
+    const link = event.target.closest('a');
+    if (!link || !cell.contains(link)) return;
+
+    const hrefRaw = link.getAttribute('href');
+    const h = (hrefRaw || '').trim();
+    if (/^\s*javascript:/i.test(h)) return;
+
+    const isPlaceholder = hrefRaw === null || h === '' || h === '#';
+    if (isPlaceholder) {
+      if (link.getAttribute('onclick')) return;
+      event.preventDefault();
+      sessionStorage.setItem('scrollPosition', window.scrollY);
+      showPopup();
+      return;
+    }
+
+    event.preventDefault();
+    sessionStorage.setItem('scrollPosition', window.scrollY);
+    window.location.href = hrefRaw;
   });
 };
 
@@ -250,4 +264,17 @@ window.speechSynthesis.onvoiceschanged = () => {
 
 /* ...既存のCSSがある場合はその下に追加... */
 
-console.log('hello');、
+console.log('hello');
+
+// 遷移元のページに戻る関数
+function goBackToSource() {
+  const referrer = document.referrer;
+  
+  if (referrer) {
+    // document.referrer がある場合は、その前ページに遷移
+    window.location.href = referrer;
+  } else {
+    // referrer がない場合は履歴で戻る
+    history.back();
+  }
+}

@@ -1,0 +1,6 @@
+# 1行に1つの「一覧・明細ページ」のURLを書きます（# で始まる行はコメント）。
+# このファイルをコピーして pdf-page-urls.txt などにリネームし、URL を追記してください。
+#
+# 例（東京奄美会 MENU 明細）:
+# https://www.tokyoamamikai.com/menu-meisai-hp/?menu_no=05-01-01
+# https://www.tokyoamamikai.com/menu-meisai-hp/?menu_no=05-01-06

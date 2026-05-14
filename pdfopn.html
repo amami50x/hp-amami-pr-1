@@ -1,52 +1,142 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF表示</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <style>
-        /* PDFコンテナのスタイル */
-        #pdfContainer {
-            width: 100%;
-            height: 100vh;
-            background-color: #f1f1f1;
-            overflow: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>閲覧者へのお願い</title>
+  <style>
+    :root {
+      color-scheme: light;
+    }
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: #f4f8fb;
+      color: #222;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 16px 14px 28px;
+      box-sizing: border-box;
+    }
+    .header {
+      position: sticky;
+      top: 0;
+      background: #f4f8fb;
+      padding-bottom: 10px;
+      z-index: 10;
+    }
+    .back-link {
+      display: inline-block;
+      text-decoration: none;
+      color: #0b4fb5;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: #0e3880;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #d2e1ef;
+      border-radius: 10px;
+      padding: 14px 12px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+    .org {
+      margin: 10px 0 16px;
+      font-weight: 700;
+      color: #1e467f;
+    }
+    h2 {
+      font-size: 1.05rem;
+      margin: 18px 0 8px;
+      color: #153a73;
+      border-left: 4px solid #2f79d6;
+      padding-left: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin: 0 0 10px;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .actions {
+      margin-top: 18px;
+      text-align: center;
+    }
+    .top-link {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #b8cbe2;
+      color: #0e3f87;
+      text-decoration: none;
+      background: #f7fbff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    @media screen and (max-width: 720px) {
+      .container {
+        padding: 12px 10px 20px;
+      }
+      h1 {
+        font-size: 1.15rem;
+      }
+      .card {
+        padding: 12px 10px;
+      }
+      p {
+        font-size: 15px;
+        line-height: 1.75;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- PDFを表示するコンテナ -->
-    <div id="pdfContainer"></div>
+  <main id="top" class="container">
+    <div class="header">
+      <a class="back-link" href="amami.html">← 戻る</a>
+      <h1>閲覧者へのお願い</h1>
+    </div>
 
-    <script>
-        const pdfURL = 'hp-chuijiko.pdf'; // PDFファイルのパス
-        const pdfContainer = document.getElementById('pdfContainer');
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    <section class="card">
+      <p>HPをご覧いただき誠にありがとうございます。</p>
+      <p>東京奄美会は奄美諸島（12市町村）の郷友会の連合会です。奄美諸島の素晴らしさを皆さんに知っていただきたく開設したHPです。下記事項をご理解ご承諾の上ご利用いただきますようお願い申し上げます。なお、ご意見ご要望についてはHP上にコーナーがございますのでよろしくお願いいたします。</p>
+      <p class="org">東京奄美会 文化広報部</p>
 
-        async function renderPDF(url, container) {
-            const pdfDoc = await pdfjsLib.getDocument(url).promise;
-            const page = await pdfDoc.getPage(1); // 1ページ目を取得
-            const viewport = page.getViewport({ scale: 1.5 });
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            container.appendChild(canvas);
+      <h2>情報の最新性について</h2>
+      <p>本ウェブサイトに掲載されている情報は定期的に更新を行っていますが、観光地の営業時間やイベント情報、交通機関の運行状況などは予告なく変更される場合があります。実際の訪問や利用を計画される場合には、必ず各施設や関係機関へ直接確認をお願いいたします。</p>
 
-            await page.render({ canvasContext: context, viewport: viewport }).promise;
-        }
+      <h2>旅行計画に関する注意</h2>
+      <p>掲載された情報を参考にして旅行を計画される際は、現地の状況や天候などを考慮して計画してください。特に交通手段や宿泊施設に関しては予約が必要な場合がありますので、事前に確認と準備を行うようお願いいたします。</p>
 
-        // PDFを描画する関数を呼び出し
-        renderPDF(pdfURL, pdfContainer);
+      <h2>写真やコンテンツの使用に関して</h2>
+      <p>本ウェブサイト内の写真や文章は著作権で保護されています。無断転載や使用はご遠慮ください。ご希望の場合は、お問い合わせフォームよりご連絡ください。</p>
 
-        // **履歴を追加（戻るボタンを有効化）**
-        history.pushState(null, null, location.href);
+      <h2>個人情報・プライバシー保護</h2>
+      <p>本ウェブサイトの利用において収集される個人情報（お問い合わせフォームなど）は適切に管理され、第三者に提供されることはありません。</p>
+      <p>当サイトはCookieやGoogle Analytics等を使用して利用状況を分析する場合があります。詳細は「プライバシーポリシー」をご参照ください。</p>
 
-        // **ブラウザの戻るボタンが押された時に元のページに戻る**
-        window.addEventListener('popstate', () => {
-            location.href = 'amami.html'; // 元の画面に戻る
-        });
-    </script>
+      <h2>情報提供の責任</h2>
+      <p>ユーザーがウェブサイトを通じて共有する情報（コメント、レビューなど）は公共の場で表示されることがありますので、個人を特定できる情報の投稿にはご注意ください。</p>
+
+      <h2>法的責任の明確化（免責事項）</h2>
+      <p>本ウェブサイトの情報を利用した結果に関する損害やトラブルについて、運営側は一切の責任を負いかねます。必ずご自身の判断で旅行や活動を計画してください。</p>
+
+      <div class="actions">
+        <a class="top-link" href="#top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">ページ上部へ戻る</a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

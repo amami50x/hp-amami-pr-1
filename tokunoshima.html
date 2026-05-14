@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>徳之島 — 奄美群島の秘宝</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+--emerald: #00b4a0;
+--deep-teal: #006b6b;
+--ocean-blue: #0077b6;
+--sky: #90e0ef;
+--gold: #f4a623;
+--deep-gold: #c47d04;
+--coral: #e05c5c;
+--forest: #1a5c2a;
+--deep-forest: #0d3318;
+--sand: #f5e6c3;
+--cream: #fdf6e3;
+--ink: #1a1a2e;
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+width: 794px;
+min-height: 1123px;
+margin: 0 auto;
+background: var(–ink);
+font-family: ‘Noto Serif JP’, serif;
+overflow-x: hidden;
+}
+
+.poster {
+width: 794px;
+min-height: 1123px;
+position: relative;
+overflow: hidden;
+background: linear-gradient(170deg,
+#001a3a 0%,
+#003060 15%,
+#004d7a 28%,
+#006b8a 38%,
+#00897b 48%,
+#00695c 58%,
+#1b5e20 70%,
+#0d3318 85%,
+#050f08 100%
+);
+}
+
+/* ─── Sky & Sun ─── */
+.sky-layer {
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 55%;
+background: radial-gradient(ellipse 60% 50% at 62% 20%,
+rgba(255, 200, 80, 0.55) 0%,
+rgba(255, 140, 40, 0.3) 20%,
+rgba(255, 90, 20, 0.1) 40%,
+transparent 65%
+),
+linear-gradient(180deg,
+#001228 0%,
+#002244 10%,
+#003e6e 25%,
+#0066a0 40%,
+#0088b8 55%,
+rgba(0, 160, 180, 0.6) 70%,
+transparent 100%
+);
+}
+
+.sun {
+position: absolute;
+top: 8%;
+right: 22%;
+width: 90px;
+height: 90px;
+border-radius: 50%;
+background: radial-gradient(circle,
+#fff9e6 0%,
+#ffe680 25%,
+#ffcc00 50%,
+#f4a623 70%,
+rgba(244, 120, 20, 0.4) 85%,
+transparent 100%
+);
+box-shadow:
+0 0 40px 20px rgba(255, 200, 60, 0.5),
+0 0 100px 50px rgba(255, 160, 30, 0.3),
+0 0 200px 100px rgba(255, 130, 10, 0.15);
+animation: sunPulse 6s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+0%, 100% { box-shadow: 0 0 40px 20px rgba(255,200,60,.5), 0 0 100px 50px rgba(255,160,30,.3), 0 0 200px 100px rgba(255,130,10,.15); }
+50% { box-shadow: 0 0 60px 30px rgba(255,200,60,.65), 0 0 140px 70px rgba(255,160,30,.4), 0 0 260px 130px rgba(255,130,10,.2); }
+}
+
+/* Sun rays */
+.sun-rays {
+position: absolute;
+top: 8%;
+right: 22%;
+width: 90px;
+height: 90px;
+transform: translate(0, 0);
+animation: raysRotate 30s linear infinite;
+}
+.sun-rays::before, .sun-rays::after {
+content: ‘’;
+position: absolute;
+top: 50%; left: 50%;
+width: 2px;
+height: 500px;
+background: linear-gradient(to bottom, rgba(255,220,80,0.25), transparent);
+transform-origin: top center;
+transform: translate(-50%, 0) rotate(0deg);
+}
+.sun-rays::after { transform: translate(-50%, 0) rotate(45deg); }
+
+@keyframes raysRotate { to { transform: rotate(360deg); } }
+
+/* ─── Clouds ─── */
+.cloud {
+position: absolute;
+border-radius: 50px;
+background: rgba(255, 255, 255, 0.12);
+filter: blur(8px);
+animation: cloudDrift linear infinite;
+}
+.cloud-1 { width: 200px; height: 40px; top: 14%; left: -30px; animation-duration: 40s; }
+.cloud-2 { width: 140px; height: 28px; top: 20%; left: 10%; animation-duration: 55s; animation-delay: -15s; opacity: 0.7; }
+.cloud-3 { width: 260px; height: 50px; top: 9%; right: -50px; animation-duration: 48s; animation-delay: -20s; opacity: 0.6; }
+@keyframes cloudDrift { from { transform: translateX(-120%); } to { transform: translateX(900px); } }
+
+/* ─── Ocean reflection ─── */
+.ocean {
+position: absolute;
+top: 42%;
+left: 0; right: 0;
+height: 28%;
+background: linear-gradient(180deg,
+rgba(0, 170, 180, 0.7) 0%,
+rgba(0, 130, 160, 0.85) 20%,
+rgba(0, 100, 140, 0.9) 50%,
+rgba(0, 80, 120, 0.95) 80%,
+rgba(0, 50, 90, 1) 100%
+);
+overflow: hidden;
+}
+
+.ocean-shimmer {
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 100%;
+background: repeating-linear-gradient(
+0deg,
+transparent,
+transparent 6px,
+rgba(255, 255, 255, 0.04) 6px,
+rgba(255, 255, 255, 0.04) 8px
+);
+}
+
+.sun-reflection {
+position: absolute;
+top: 0;
+right: 18%;
+width: 60px;
+height: 100%;
+background: linear-gradient(180deg,
+rgba(255, 220, 80, 0.5) 0%,
+rgba(255, 180, 40, 0.3) 40%,
+rgba(255, 140, 20, 0.15) 80%,
+transparent 100%
+);
+filter: blur(15px);
+animation: reflectShimmer 4s ease-in-out infinite;
+}
+@keyframes reflectShimmer {
+0%, 100% { transform: scaleX(1); opacity: 0.8; }
+50% { transform: scaleX(1.5); opacity: 1; }
+}
+
+/* ─── Waves ─── */
+.waves-svg {
+position: absolute;
+top: 41%;
+left: 0; right: 0;
+width: 100%;
+}
+
+.wave-line {
+position: absolute;
+left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg,
+transparent 0%,
+rgba(144, 224, 239, 0.5) 20%,
+rgba(200, 240, 255, 0.7) 50%,
+rgba(144, 224, 239, 0.5) 80%,
+transparent 100%
+);
+border-radius: 50%;
+animation: waveDrift ease-in-out infinite;
+}
+.wave-line:nth-child(1) { top: 0; height: 2px; animation-duration: 5s; }
+.wave-line:nth-child(2) { top: 10px; animation-duration: 6.5s; animation-delay: -2s; opacity: 0.6; }
+.wave-line:nth-child(3) { top: 22px; height: 2px; animation-duration: 7s; animation-delay: -1s; opacity: 0.4; }
+@keyframes waveDrift {
+0%, 100% { transform: translateX(-3%); }
+50% { transform: translateX(3%); }
+}
+
+/* ─── Tropical forest silhouette ─── */
+.forest-back {
+position: absolute;
+bottom: 28%;
+left: 0; right: 0;
+height: 38%;
+}
+
+/* Far hills */
+.hills {
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 100%;
+}
+.hills::before {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 80%;
+background: linear-gradient(180deg, transparent 0%, var(–deep-forest) 100%);
+clip-path: polygon(0% 100%, 0% 60%, 5% 45%, 12% 30%, 20% 20%, 30% 12%, 40% 18%, 48% 8%, 55% 15%, 62% 5%, 70% 18%, 78% 10%, 85% 22%, 92% 15%, 100% 30%, 100% 100%);
+}
+.hills::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 65%;
+background: linear-gradient(180deg, var(–forest) 0%, var(–deep-forest) 100%);
+clip-path: polygon(0% 100%, 0% 70%, 8% 55%, 18% 42%, 25% 52%, 35% 38%, 45% 50%, 52% 35%, 60% 48%, 68% 30%, 75% 44%, 83% 32%, 90% 45%, 100% 35%, 100% 100%);
+}
+
+/* Palm trees */
+.palms {
+position: absolute;
+bottom: 0;
+left: 0; right: 0;
+height: 100%;
+}
+
+.palm {
+position: absolute;
+bottom: 0;
+}
+
+.palm-trunk {
+width: 8px;
+background: linear-gradient(to top, #3d2b1f, #5c3d2e, #7a5440);
+border-radius: 4px;
+transform-origin: bottom center;
+position: relative;
+margin: 0 auto;
+}
+
+.palm-leaves {
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+width: 0;
+height: 0;
+}
+
+.leaf {
+position: absolute;
+width: 70px;
+height: 12px;
+background: linear-gradient(90deg, var(–forest) 0%, #2d7a3a 50%, #1a5c2a 100%);
+border-radius: 50% 80% 80% 50%;
+transform-origin: 5% 50%;
+}
+.leaf::after {
+content: ‘’;
+position: absolute;
+top: 50%;
+left: 0; right: 0;
+height: 1px;
+background: rgba(255,255,255,0.15);
+}
+
+/* ─── Foreground jungle ─── */
+.foreground {
+position: absolute;
+bottom: 0;
+left: 0; right: 0;
+height: 32%;
+background: linear-gradient(180deg, var(–deep-forest) 0%, #030b05 100%);
+clip-path: polygon(0% 100%, 0% 35%, 4% 20%, 8% 30%, 12% 15%, 16% 28%, 20% 10%, 24% 22%, 28% 8%, 32% 18%, 36% 5%, 40% 16%, 44% 2%, 48% 14%, 52% 4%, 56% 18%, 60% 6%, 64% 20%, 68% 10%, 72% 25%, 76% 12%, 80% 28%, 84% 15%, 88% 30%, 92% 18%, 96% 32%, 100% 22%, 100% 100%);
+}
+
+.foreground-overlay {
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 20%;
+background: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+/* ─── Tropical birds ─── */
+.bird {
+position: absolute;
+font-size: 0;
+animation: birdFly linear infinite;
+}
+.bird::before, .bird::after {
+content: ‘’;
+position: absolute;
+width: 14px; height: 5px;
+background: rgba(255, 255, 255, 0.7);
+border-radius: 50% 50% 0 0;
+}
+.bird::before { left: 0; transform: rotate(-20deg); }
+.bird::after { left: 12px; transform: rotate(20deg); }
+
+.bird-1 { top: 22%; left: -30px; animation-duration: 18s; animation-delay: 0s; }
+.bird-2 { top: 26%; left: -50px; animation-duration: 22s; animation-delay: -8s; transform: scale(0.7); opacity: 0.8; }
+.bird-3 { top: 19%; left: -20px; animation-duration: 25s; animation-delay: -14s; transform: scale(0.5); opacity: 0.6; }
+@keyframes birdFly { from { transform: translateX(-60px); } to { transform: translateX(850px); } }
+
+/* ─── Bokeh particles ─── */
+.bokeh {
+position: absolute;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(255,220,100,0.6), transparent);
+animation: bokehFloat ease-in-out infinite;
+}
+@keyframes bokehFloat {
+0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+50% { transform: translateY(-12px) scale(1.1); opacity: 0.8; }
+}
+
+/* ─── Text / Typography ─── */
+.text-layer {
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+pointer-events: none;
+}
+
+.top-label {
+margin-top: 28px;
+font-family: ‘Cinzel Decorative’, serif;
+font-size: 10px;
+letter-spacing: 0.5em;
+color: rgba(200, 230, 255, 0.75);
+text-transform: uppercase;
+}
+
+.divider {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-top: 6px;
+color: var(–gold);
+opacity: 0.8;
+}
+.divider-line {
+width: 60px;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold));
+}
+.divider-line.right { background: linear-gradient(90deg, var(–gold), transparent); }
+.divider-dot { width: 4px; height: 4px; background: var(–gold); border-radius: 50%; }
+
+.main-title {
+margin-top: 18px;
+font-family: ‘Shippori Mincho’, serif;
+font-size: 82px;
+font-weight: 800;
+color: transparent;
+background: linear-gradient(180deg,
+#ffffff 0%,
+#e8f4ff 30%,
+#b0d8f0 60%,
+#6ab8d8 100%
+);
+-webkit-background-clip: text;
+background-clip: text;
+letter-spacing: 0.15em;
+line-height: 1;
+text-shadow: none;
+filter: drop-shadow(0 4px 20px rgba(0, 160, 200, 0.5)) drop-shadow(0 0 40px rgba(0, 180, 220, 0.3));
+animation: titleGlow 4s ease-in-out infinite;
+}
+@keyframes titleGlow {
+0%,100% { filter: drop-shadow(0 4px 20px rgba(0,160,200,.5)) drop-shadow(0 0 40px rgba(0,180,220,.3)); }
+50% { filter: drop-shadow(0 4px 30px rgba(0,180,220,.7)) drop-shadow(0 0 60px rgba(0,200,240,.4)); }
+}
+
+.subtitle-en {
+margin-top: 4px;
+font-family: ‘Cinzel Decorative’, serif;
+font-size: 13px;
+letter-spacing: 0.4em;
+color: rgba(180, 220, 240, 0.9);
+text-transform: uppercase;
+}
+
+.tagline {
+margin-top: 14px;
+font-family: ‘Noto Serif JP’, serif;
+font-size: 11px;
+font-weight: 300;
+letter-spacing: 0.35em;
+color: rgba(220, 240, 255, 0.7);
+}
+
+/* Center badge */
+.center-badge {
+position: absolute;
+top: 47%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+background: rgba(0, 20, 40, 0.35);
+border: 1px solid rgba(100, 200, 230, 0.3);
+border-radius: 4px;
+padding: 12px 28px;
+backdrop-filter: blur(4px);
+}
+
+.center-badge p {
+font-family: ‘Noto Serif JP’, serif;
+font-size: 11px;
+letter-spacing: 0.3em;
+color: rgba(200, 230, 250, 0.85);
+line-height: 2;
+font-weight: 300;
+}
+
+/* Bottom info */
+.bottom-info {
+position: absolute;
+bottom: 28px;
+left: 0; right: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 24px;
+}
+
+.info-item {
+text-align: center;
+}
+.info-item .icon {
+font-size: 16px;
+margin-bottom: 4px;
+}
+.info-item .label {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: 7.5px;
+letter-spacing: 0.3em;
+color: rgba(180, 220, 240, 0.8);
+text-transform: uppercase;
+display: block;
+}
+.info-item .value {
+font-family: ‘Noto Serif JP’, serif;
+font-size: 9px;
+color: rgba(220, 240, 255, 0.65);
+letter-spacing: 0.1em;
+display: block;
+}
+
+.info-sep {
+width: 1px;
+height: 32px;
+background: rgba(100, 200, 230, 0.3);
+}
+
+/* Corner ornaments */
+.corner {
+position: absolute;
+width: 40px; height: 40px;
+border-color: rgba(180, 220, 240, 0.4);
+border-style: solid;
+}
+.corner-tl { top: 16px; left: 16px; border-width: 1.5px 0 0 1.5px; }
+.corner-tr { top: 16px; right: 16px; border-width: 1.5px 1.5px 0 0; }
+.corner-bl { bottom: 16px; left: 16px; border-width: 0 0 1.5px 1.5px; }
+.corner-br { bottom: 16px; right: 16px; border-width: 0 1.5px 1.5px 0; }
+
+/* Map badge */
+.map-badge {
+position: absolute;
+top: 48%;
+right: 5%;
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background: rgba(0, 40, 70, 0.6);
+border: 1px solid rgba(100, 200, 230, 0.4);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+backdrop-filter: blur(6px);
+}
+.map-badge .coord {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: 6.5px;
+letter-spacing: 0.1em;
+color: rgba(160, 220, 240, 0.85);
+line-height: 1.8;
+text-align: center;
+}
+
+/* Stamp */
+.stamp {
+position: absolute;
+top: 46%;
+left: 5%;
+width: 76px; height: 76px;
+border-radius: 50%;
+border: 2px solid rgba(244, 166, 35, 0.6);
+display: flex; flex-direction: column;
+align-items: center; justify-content: center;
+text-align: center;
+transform: rotate(-15deg);
+background: rgba(0, 30, 50, 0.4);
+backdrop-filter: blur(4px);
+}
+.stamp p {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: 6px;
+letter-spacing: 0.15em;
+color: rgba(244, 166, 35, 0.85);
+line-height: 1.8;
+text-transform: uppercase;
+}
+
+/* Scan lines overlay for film look */
+.scan-lines {
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+background: repeating-linear-gradient(
+0deg,
+transparent,
+transparent 2px,
+rgba(0, 0, 0, 0.03) 2px,
+rgba(0, 0, 0, 0.03) 4px
+);
+pointer-events: none;
+}
+
+/* Vignette */
+.vignette {
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+background: radial-gradient(ellipse at center,
+transparent 50%,
+rgba(0, 0, 0, 0.55) 100%
+);
+pointer-events: none;
+}
+</style>
+
+</head>
+<body>
+<div class="poster">
+
+<!-- Sky -->
+
+<div class="sky-layer"></div>
+<div class="sun-rays"></div>
+<div class="sun"></div>
+
+<!-- Clouds -->
+
+<div class="cloud cloud-1"></div>
+<div class="cloud cloud-2"></div>
+<div class="cloud cloud-3"></div>
+
+<!-- Birds -->
+
+<div class="bird bird-1"></div>
+<div class="bird bird-2"></div>
+<div class="bird bird-3"></div>
+
+<!-- Ocean -->
+
+<div class="ocean">
+<div class="ocean-shimmer"></div>
+<div class="sun-reflection"></div>
+</div>
+
+<!-- Waves -->
+
+<div class="waves-svg">
+<div class="wave-line"></div>
+<div class="wave-line"></div>
+<div class="wave-line"></div>
+</div>
+
+<!-- Background forest hills -->
+
+<div class="forest-back">
+<div class="hills"></div>
+</div>
+
+<!-- Palms — far left -->
+
+<div class="palm" style="left:3%;bottom:28%">
+<div style="width:8px;height:110px;background:linear-gradient(to top,#3d2b1f,#7a5440);border-radius:4px;transform:rotate(-6deg);margin:0 auto;"></div>
+<div class="palm-leaves" style="bottom:100%;left:50%;transform:translateX(-50%);position:relative;height:0;">
+<div class="leaf" style="transform:rotate(-130deg) translateX(5px);position:absolute;"></div>
+<div class="leaf" style="transform:rotate(-90deg) translateX(5px);position:absolute;"></div>
+<div class="leaf" style="transform:rotate(-50deg) translateX(5px);position:absolute;"></div>
+<div class="leaf" style="transform:rotate(-10deg) translateX(5px);position:absolute;"></div>
+<div class="leaf" style="transform:rotate(30deg) translateX(5px);position:absolute;"></div>
+</div>
+</div>
+
+<!-- Palms — right -->
+
+<div class="palm" style="right:4%;bottom:28%">
+<div style="width:9px;height:130px;background:linear-gradient(to top,#3d2b1f,#7a5440);border-radius:4px;transform:rotate(8deg);margin:0 auto;"></div>
+<div style="position:absolute;bottom:130px;left:50%;transform:translateX(-50%)">
+<div class="leaf" style="transform:rotate(-140deg) translateX(5px);position:absolute;width:80px;"></div>
+<div class="leaf" style="transform:rotate(-100deg) translateX(5px);position:absolute;width:80px;"></div>
+<div class="leaf" style="transform:rotate(-60deg) translateX(5px);position:absolute;width:80px;"></div>
+<div class="leaf" style="transform:rotate(-20deg) translateX(5px);position:absolute;width:80px;"></div>
+<div class="leaf" style="transform:rotate(20deg) translateX(5px);position:absolute;width:80px;"></div>
+<div class="leaf" style="transform:rotate(60deg) translateX(5px);position:absolute;width:80px;"></div>
+</div>
+</div>
+
+<!-- Foreground dense jungle -->
+
+<div class="foreground"></div>
+<div class="foreground-overlay"></div>
+
+<!-- Bokeh -->
+
+<div class="bokeh" style="width:18px;height:18px;top:30%;left:20%;animation-duration:5s;animation-delay:0s;"></div>
+<div class="bokeh" style="width:10px;height:10px;top:35%;left:35%;animation-duration:7s;animation-delay:-2s;opacity:.6;"></div>
+<div class="bokeh" style="width:24px;height:24px;top:25%;right:30%;animation-duration:6s;animation-delay:-3s;opacity:.4;"></div>
+<div class="bokeh" style="width:14px;height:14px;top:40%;right:15%;animation-duration:8s;animation-delay:-5s;opacity:.5;"></div>
+
+<!-- Main text -->
+
+<div class="text-layer">
+<p class="top-label">Amami Islands · Kagoshima · Japan</p>
+<div class="divider">
+<div class="divider-line"></div>
+<div class="divider-dot"></div>
+<div class="divider-dot"></div>
+<div class="divider-dot"></div>
+<div class="divider-line right"></div>
+</div>
+<h1 class="main-title">徳之島</h1>
+<p class="subtitle-en">Tokunoshima</p>
+<p class="tagline">世界自然遺産　— Jewel of the Southern Sea —</p>
+</div>
+
+<!-- Center floating badge -->
+
+<div class="center-badge">
+<p>エメラルドの海　•　亜熱帯の森</p>
+<p>伝統文化　•　黄金の光</p>
+</div>
+
+<!-- Stamp -->
+
+<div class="stamp">
+<p>World<br>Heritage<br>2021</p>
+</div>
+
+<!-- Map badge -->
+
+<div class="map-badge">
+<p class="coord">27°N<br>128°E<br>─<br>奄美群島</p>
+</div>
+
+<!-- Bottom info icons -->
+
+<div class="bottom-info">
+<div class="info-item">
+<div class="icon">🌊</div>
+<span class="label">Ocean</span>
+<span class="value">エメラルドブルー</span>
+</div>
+<div class="info-sep"></div>
+<div class="info-item">
+<div class="icon">🌿</div>
+<span class="label">Nature</span>
+<span class="value">亜熱帯原生林</span>
+</div>
+<div class="info-sep"></div>
+<div class="info-item">
+<div class="icon">🥁</div>
+<span class="label">Culture</span>
+<span class="value">闘牛・島唄</span>
+</div>
+<div class="info-sep"></div>
+<div class="info-item">
+<div class="icon">☀️</div>
+<span class="label">Sunshine</span>
+<span class="value">南の楽園</span>
+</div>
+</div>
+
+<!-- Corner ornaments -->
+
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<!-- Film grain / scan lines -->
+
+<div class="scan-lines"></div>
+<div class="vignette"></div>
+
+</div>
+</body>
+</html>

@@ -88,5 +88,20 @@
             <li>保存先：<span class="file">public_html/tokyo/</span></li>
         </ul>
     </div>
+
+    <div class="menu-section">
+        <h2>5. 5島「関連サイト」リンクの管理（amami.html のポップアップ）</h2>
+        <p>表の各島「関連サイト」ボタンで表示するリンクは、JSON で保持し、管理画面から編集します。</p>
+        <ul>
+            <li>編集画面（<span class="file">island-links-manage.php</span>）は<strong>PHPではパスワードロックしません</strong>。公開ページからはリンクしておらず、運用MENUで URL を共有する前提です。ブロックが必要なときは下記の IP 制限または Basic 認証を使ってください。</li>
+            <li>管理画面URL（本番例）：<span class="file">https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/island-links-manage.php</span> … 運用者は MENU 一覧（運用用）から開くか、上記 URL を直接入力してください。</li>
+            <li>より強く閉じたい場合：<span class="file">island-links-admin-config.php</span> の <code>allowed_admin_ips</code> に管理者の固定 IP のみを列挙するか、<span class="file">island-links-manage.htaccess.example</span> を参考に <strong>Basic 認証</strong>を追加してください。</li>
+            <li>任意：<span class="file">island-links-admin-config.sample.php</span> を <span class="file">island-links-admin-config.php</span> にコピーし、必要なら <code>allowed_admin_ips</code> を書く（ファイルがなくても編集画面は動きます）。</li>
+            <li>保存データ：<span class="file">data/island_related_links.json</span>（Webサーバが書き込める権限が必要）</li>
+            <li>公開API（閲覧用）：<span class="file">island-related-links-api.php</span> … amami.html がここから取得し、失敗時はページ内のフォールバックを使います。</li>
+            <li>編集内容：島ごとに<strong>ポップアップの見出し</strong>（定型はプルダウンから選択、「その他（手入力）」で自由入力）、<strong>表示名・URL</strong>の行一覧。空行は保存時に無視されます。</li>
+            <li>アップロード時は <span class="file">island-links-manage.php</span>・<span class="file">island-links-admin-guard.php</span>・<span class="file">island-related-links-storage.php</span>・<span class="file">island-related-links-api.php</span> など、管理に関わるPHPと <span class="file">data/</span> を揃えること。</li>
+        </ul>
+    </div>
 </body>
 </html>

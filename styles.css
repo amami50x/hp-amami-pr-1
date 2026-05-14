@@ -44,7 +44,8 @@ body {
   /* 上から0pxの位置 */
   z-index: 1000;
   /* 他の要素より前面に配置 */
-
+  overflow: visible;
+  /* 翻訳ウィジェットの iframe が切れないように */
 }
 
 /* モーダルのスタイル */
@@ -324,7 +325,7 @@ button:hover {
   text-align: center;
   font-size: 2em;
   padding: 10px;
-  margin-top: 25px;
+  margin-top: 8px;
   /* 上段との間隔を調整 */
 
 }
@@ -337,6 +338,87 @@ button:hover {
   padding: 10px;
 }
 
+.impact-hero {
+  width: min(980px, 94%);
+  margin: 12px auto 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #9fc5f5;
+  background: linear-gradient(135deg, #f7fbff 0%, #e9f4ff 55%, #dff0ff 100%);
+  box-shadow: 0 6px 20px rgba(0, 54, 128, 0.15);
+}
+
+.impact-hero-lead {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #0b2f63;
+  font-weight: 700;
+}
+
+.impact-hero-sub {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: #123d78;
+}
+
+.impact-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.impact-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #1d63bf;
+  background: #1b5eb8;
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.93rem;
+}
+
+.impact-btn.secondary {
+  background: #fff;
+  color: #1b5eb8 !important;
+}
+
+@media screen and (max-width: 720px) {
+  .title1 {
+    font-size: clamp(16px, 4.8vw, 22px);
+    white-space: nowrap;
+    padding: 8px 4px;
+  }
+
+  .impact-hero {
+    width: 96%;
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin: 10px auto 12px;
+  }
+
+  .impact-hero-lead {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .impact-hero-sub {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .impact-btn {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
 .title3 {
   margin-top: 10px;
   font-size: 25px;
@@ -344,9 +426,9 @@ button:hover {
   background-color: #0000ff;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 0;
+  margin-bottom: 15;
   /* タイトルとテーブルの間を密着 */
-  border-bottom: 2px solid #333;
+  border-bottom: 15px solid #333;
   /*タイトル下に暗線追加*/
   color: rgb(238, 245, 245);
   padding-bottom: 5px;
@@ -408,6 +490,99 @@ td {
 #amami-table {
   border: 3px solid rgb(248, 199, 207);
   /* 戻る際に一時的に目立たせる */
+}
+
+/* 基本情報列：外部百科リンク */
+#amami-table .municipal-basic-info {
+  text-align: center;
+  vertical-align: middle;
+  max-width: 120px;
+}
+
+#amami-table .municipal-basic-info a {
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* 遷移セルを文字リンクではなくボタン表示にする */
+#amami-table .table-link-btn {
+  display: inline-block;
+  min-width: 74px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid #2a61ba;
+  background: linear-gradient(180deg, #3f7ee0 0%, #2b66c3 100%);
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.86em;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+#amami-table .table-link-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+/* クリック済み（再訪問）リンクの見分け用 */
+#amami-table .table-link-btn.used {
+  background: linear-gradient(180deg, #8f98a5 0%, #737c88 100%);
+  border-color: #5f6875;
+}
+
+/* 島見出し行リンク（【喜界島】など）をピンクのボタン表示に */
+#amami-table tr.island-title-row td a {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #c2185b;
+  background: linear-gradient(180deg, #ff77a8 0%, #ef4b89 100%);
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+  line-height: 1.2;
+  box-shadow: 0 1px 4px rgba(120, 20, 60, 0.3);
+}
+
+#amami-table tr.island-title-row td a:hover {
+  filter: brightness(1.05);
+}
+
+@media screen and (max-width: 720px) {
+  #amami-table .table-link-btn {
+    min-width: 66px;
+    padding: 5px 8px;
+    font-size: 0.8em;
+  }
+
+  #amami-table tr.island-title-row td a {
+    padding: 5px 10px;
+    font-size: 0.9em;
+  }
+}
+
+/* 市町村旗：クリックで町歌（埋め込みボタン） */
+#amami-table .municipal-flag-btn {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  vertical-align: middle;
+  line-height: 0;
+  border-radius: 2px;
+}
+
+#amami-table .municipal-flag-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+#amami-table .municipal-flag-btn img {
+  display: block;
+  pointer-events: none;
 }
 
 
@@ -726,7 +901,8 @@ button:hover {
   /* 下線を表示 */
 }
 
-iframe {
+/* PDF 表示用のみ。全 iframe に適用すると Google 翻訳ウィジェットの iframe が肥大化する */
+#pdfFrame {
   width: 90%;
   height: 400px;
   border: 2px solid rgb(128, 128, 128);

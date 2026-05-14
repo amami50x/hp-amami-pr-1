@@ -1,0 +1,13 @@
+hp-amami-pr-1 用（このフォルダを Cursor のワークスペースに開いているとき）
+
+（コピーしてターミナルに貼り付け → Enter）
+
+cmd /c git-backup-github.bat
+
+※ このフォルダに cd 済みなら:
+
+.\git-backup-github.bat
+
+※ メニューは半角 1 / 2 / 3 または全角 １２３ どちらでも可
+
+※ テーマ（tokyo-amamikai）とは別リポジトリです。バックアップはそれぞれのフォルダで実行してください。

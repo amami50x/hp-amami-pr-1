@@ -8,7 +8,19 @@
   <link rel="stylesheet" href="styles.css"> <!-- CSSファイルへのリンク -->
   <script src="script.js"></script>　
   <!-- JSファイルへのリンク -->
-  <title>奄美群島PR</title>
+  <title>奄美群島12市町村への旅行情報</title>
+  <meta name="description" content="奄美群島12市町村を横断した旅行案内です。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・奄美のイメージ画像などをまとめました。東京奄美会公式サイトからもご案内する奄美群島の旅行案内です。">
+  <link rel="canonical" href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html">
+  <meta property="og:title" content="奄美群島12市町村への旅行情報">
+  <meta property="og:description" content="奄美群島12市町村を横断した旅行案内です。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・奄美のイメージ画像などをまとめました。東京奄美会公式サイトからもご案内する奄美群島の旅行案内です。">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/hp-image/title_gazo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"奄美群島12市町村への旅行情報","description":"奄美群島12市町村を横断した旅行案内。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・イメージ画像をまとめました。","url":"https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html","inLanguage":"ja","publisher":{"@type":"Organization","name":"東京奄美会","url":"https://www.tokyoamamikai.com/"}}
+  </script>
   <style>
 /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    削除チェック中 */
@@ -20,37 +32,48 @@
     /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
     
 
-    /* 一段目：3分割テーブル形式 */
+    /* NOTE: 固定ヘッダー。Grid で左・中央（言語）・右（HP終了）を常に残す（table+absolute は右列欠落の原因になり得る） */
     .top-bar {
-      display: table;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      column-gap: 8px;
       width: 100%;
+      box-sizing: border-box;
       background-color: #f0f0f0;
-      border-collapse: collapse;
-      table-layout: fixed;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-top: 0 !important;
+      z-index: 10001;
+      padding: 5px 8px;
     }
-    
+
     .top-cell {
-      display: table-cell;
+      display: block;
       vertical-align: middle;
       text-align: center;
-      padding: 5px;
+      padding: 0;
+      min-width: 0;
     }
 
     .top-left {
-      width: 20%;
+      justify-self: start;
       text-align: left;
     }
 
     .top-center {
-      width: 60%;
+      justify-self: center;
     }
 
     .top-right {
-      width: 20%;
+      justify-self: end;
       text-align: right;
+      white-space: nowrap;
     }
 
-    /* 各BOXの見た目 */
+    /* NOTE: 共通ボタンのUIトークン（角丸・境界線・文字色） */
     .box {
       padding: 4px 8px;
       background: #ddd;
@@ -63,6 +86,259 @@
     /* Google翻訳バーの容器 */
     #google_translate_element {
       display: inline-block;
+    }
+
+    .translate-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 16px;
+    }
+
+    .translate-ui-label {
+      font-size: 12px;
+      font-weight: bold;
+      color: #222;
+      white-space: nowrap;
+      flex-shrink: 0;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* Google ウィジェット用（.box は付けない：背景競合で中身が見えなくなることがある） */
+    .translate-widget-host {
+      display: inline-block;
+      vertical-align: middle;
+      min-width: 0;
+      max-width: none;
+      min-height: 32px;
+      background: #fff;
+      border: 1px solid #666;
+      border-radius: 6px;
+      padding: 3px 5px;
+      box-sizing: border-box;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+
+    #google_translate_element .goog-te-gadget,
+    #google_translate_element .goog-te-gadget-simple {
+      font-family: system-ui, -apple-system, sans-serif !important;
+      color: #111 !important;
+      font-size: 13px !important;
+    }
+
+    .lang-switch-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid #666;
+      border-radius: 6px;
+      padding: 3px 6px;
+      box-sizing: border-box;
+    }
+
+    .lang-switch-label {
+      font-size: 12px;
+      color: #222;
+      white-space: nowrap;
+    }
+
+    #langSwitchSelect {
+      font-size: 12px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      border: 1px solid #999;
+      background: #fff;
+    }
+
+    .top-center-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* RISK: 公式HP導線は誤タップ防止のため高いz-indexと nowrap を維持（他要素が覆うと遷移不能化） */
+    #hpCloseButton {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      position: relative;
+      z-index: 50;
+      white-space: nowrap !important;
+      font-size: clamp(11px, 1.05vw, 14px);
+    }
+
+    #hpEndButton {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      position: relative;
+      z-index: 50;
+      font: inherit;
+      font-size: clamp(11px, 1.05vw, 14px);
+      margin: 0;
+      vertical-align: middle;
+    }
+
+    /* NOTE: HP終了は URL を変えない。白紙ではなく一般的な「終了メッセージ」カードを表示する */
+    #hpEndOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200000;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #hpEndOverlay.hp-end-overlay--visible {
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+
+    .hp-end-overlay-inner {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      padding: 24px 16px;
+      box-sizing: border-box;
+      background: linear-gradient(165deg, #d4eaf7 0%, #eef6fb 50%, #f7fbfd 100%);
+    }
+
+    .hp-end-overlay-card {
+      max-width: 440px;
+      width: 100%;
+      margin: auto;
+      padding: 28px 22px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(15, 55, 95, 0.14);
+      border: 1px solid rgba(11, 79, 181, 0.2);
+      color: #123760;
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    .hp-end-overlay-title {
+      margin: 0 0 14px;
+      font-size: clamp(17px, 4vw, 20px);
+      font-weight: 700;
+      color: #0a3f86;
+    }
+
+    .hp-end-overlay-text {
+      margin: 0 0 12px;
+      font-size: clamp(14px, 3.2vw, 15px);
+    }
+
+    .hp-end-overlay-hint {
+      margin: 0;
+      font-size: clamp(13px, 3vw, 14px);
+      color: #335577;
+    }
+
+    /* 島見出し行：島名の右に「観光概要」（ぐーんと奄美 各島ページ） */
+    .island-title-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .island-overview-link {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.96);
+      color: #0a3f86 !important;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 1px solid rgba(10, 63, 134, 0.35);
+      font-size: 0.92em;
+      white-space: nowrap;
+    }
+
+    .island-overview-link:hover,
+    .island-overview-link:focus {
+      background: #fff;
+      text-decoration: underline;
+    }
+
+    .island-title-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    button.island-related-sites-btn {
+      padding: 4px 10px;
+      margin: 0;
+      background: rgba(255, 255, 255, 0.96);
+      color: #0a3f86;
+      font: inherit;
+      font-size: 0.92em;
+      font-weight: 700;
+      border: 1px solid rgba(10, 63, 134, 0.35);
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    button.island-related-sites-btn:hover,
+    button.island-related-sites-btn:focus {
+      background: #fff;
+      text-decoration: underline;
+    }
+
+    .topbar-label-short {
+      display: none;
+    }
+
+    @media screen and (max-width: 720px) {
+      .translate-wrap {
+        margin-right: 0;
+        gap: 3px;
+        max-width: 100%;
+      }
+
+      .translate-ui-label {
+        font-size: 10px;
+      }
+
+      .translate-widget-host {
+        max-width: none;
+        min-width: 120px;
+        min-height: 30px;
+        padding: 2px 3px;
+      }
+
+      .topbar-label-full {
+        display: none;
+      }
+
+      .topbar-label-short {
+        display: inline;
+      }
+
+      .lang-switch-wrap {
+        padding: 2px 4px;
+        gap: 4px;
+      }
+
+      .lang-switch-label,
+      #langSwitchSelect {
+        font-size: 11px;
+      }
     }
 /* シンプルなスタイル */
 #japaneseCount, #foreignCount {
@@ -93,6 +369,250 @@
     padding: 5px 10px;
     font-size: 1em;
     margin-top: 10px;
+  }
+
+  /* スマホ：左・翻訳・右を1行に収める（ラベル短縮表示） */
+  @media screen and (max-width: 720px) {
+    body {
+      line-height: 1.6;
+    }
+
+    .top-bar {
+      display: flex !important;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      padding: 4px 4px;
+      padding-top: 4px;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: auto;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+      z-index: 10001;
+    }
+
+    .top-bar .top-cell {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: auto !important;
+      max-width: none;
+      flex: 0 0 auto;
+      padding: 0 1px;
+      box-sizing: border-box;
+    }
+
+    .top-bar .top-left {
+      flex: 0 0 auto;
+      text-align: left;
+      position: relative;
+      z-index: 30;
+    }
+
+    .top-bar .top-center {
+      flex: 1 1 auto;
+      min-width: 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-bar .top-right {
+      flex: 0 0 auto;
+      text-align: right;
+      position: relative;
+      z-index: 20;
+    }
+
+    .top-bar .box {
+      font-size: 11px;
+      padding: 4px 6px;
+      box-sizing: border-box;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    .top-center-inner {
+      display: flex !important;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    #google_translate_element {
+      display: inline-block !important;
+      width: auto !important;
+      max-width: none !important;
+      min-width: 120px;
+      margin: 0 auto !important;
+      overflow: visible !important;
+      text-align: center;
+      flex: 0 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    #google_translate_element.translate-widget-host {
+      margin-right: 0 !important;
+    }
+
+    #google_translate_element .goog-te-gadget,
+    #google_translate_element .goog-te-gadget-simple {
+      max-width: 100% !important;
+      margin: 0 auto !important;
+    }
+
+    .title1 {
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: clip;
+      font-size: clamp(14px, 5vw, 22px) !important;
+      letter-spacing: 0;
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+
+    .title2 {
+      font-size: clamp(14px, 5vw, 22px) !important;
+      line-height: 1.2;
+    }
+
+    .title3 {
+      line-height: 1.3;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+  }
+
+  #backToTopBtn {
+    position: fixed;
+    right: 14px;
+    bottom: 62px;
+    z-index: 12000;
+    display: none;
+    padding: 9px 12px;
+    border: 1px solid #0b4fb5;
+    border-radius: 999px;
+    background: rgba(15, 86, 190, 0.92);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  }
+
+  #backToTopBtn:hover {
+    background: rgba(12, 71, 158, 0.95);
+  }
+
+  /* NOTE: 操作マニュアルは固定ボタンで開く（常時占有しない） */
+  #operationManualToggleBtn {
+    position: fixed;
+    right: 14px;
+    bottom: 16px;
+    z-index: 11950;
+    padding: 9px 12px;
+    border: 1px solid #2d67be;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.96);
+    color: #124283;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  }
+
+  #operationManualOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 11980;
+    background: rgba(15, 20, 35, 0.42);
+  }
+
+  #operationManualPanel {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11990;
+    width: min(680px, 93vw);
+    max-height: 72vh;
+    overflow-y: auto;
+    padding: 12px 14px;
+    border: 1px solid #86a9d9;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.99);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    color: #123760;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  #operationManualPanel h3 {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: #0a3f86;
+  }
+
+  #operationManualPanel ol {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  #operationManualPanel li {
+    margin-bottom: 6px;
+  }
+
+  #operationManualCloseBtn {
+    margin-top: 8px;
+    padding: 7px 12px;
+    border: 1px solid #7f9fc7;
+    border-radius: 8px;
+    background: #f4f8ff;
+    color: #123760;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 720px) {
+    #backToTopBtn {
+      right: 10px;
+      bottom: 56px;
+      padding: 8px 11px;
+      font-size: 12px;
+    }
+
+    #operationManualToggleBtn {
+      right: 10px;
+      bottom: 12px;
+      padding: 8px 10px;
+      font-size: 11px;
+    }
+
+    #operationManualPanel {
+      width: 94vw;
+      max-height: 68vh;
+      padding: 8px 10px;
+      font-size: 11px;
+      border-radius: 8px;
+    }
+
+    #operationManualPanel h3 {
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
   }
 
   </style>
@@ -148,6 +668,7 @@
 <body>
   
 
+  <!-- NOTE: 既存端末互換のため unload ハンドラを明示（履歴遷移時の挙動差分吸収） -->
   <script type="text/javascript">
     window.onunload = function(){};
   </script>
@@ -166,29 +687,24 @@
 <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--> 
   <div class="top-bar">
     <div class="top-cell top-left">
-      <button id="hpCloseButton" class="box">HPクローズ</button>
+      <a id="hpCloseButton" class="box" href="https://www.tokyoamamikai.com/" title="新HPの遷移元ページへ戻る" aria-label="東京奄美会公式ホームページへ・遷移元へ戻る" data-fallback-home="https://www.tokyoamamikai.com/" onclick="return window.hpAmamiGoBack ? window.hpAmamiGoBack(event) : true;"><span class="topbar-label-full">東京奄美会公式ホームページへ</span><span class="topbar-label-short" aria-hidden="true">公式HPへ</span></a>
 
-
-      <a href="kison-hp/kison.html" class="box">東京奄美会HPへ</a>
-      
     </div>
     <div class="top-cell top-center">
-      <div id="google_translate_element" class="box">言語切替</div>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <div id="google_translate_element" class="box" style="margin-right: 16px;"></div>
+        <div id="title" style="font-size:20px; font-weight:bold;">言語切替</div>
+      </div>
     </div>
     <div class="top-cell top-right">
-       <!--<a href="pdfopn.html"class="box">閲覧者へのお願い</a>-->
-     <a href="pdfopn.html"class="box">閲覧者へのお願い</a>
+      <button type="button" id="hpEndButton" class="box" aria-label="このホームページを閉じる" onclick="return window.hpAmamiEndPage ? window.hpAmamiEndPage(event) : false;">HP終了</button>
     </div>
   </div>
 
 <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-<!--Google翻訳スクリプト -->
+<!--Google翻訳スクリプト（amamibk0514.html と同様。element.js は https 固定で読み込み） -->
 <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-<!-- 翻訳バーの表示領域 -->
-<!-- 翻訳バー読込 -->
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<!-- 翻訳バー常時表示 -->
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script type="text/javascript">
   function googleTranslateElementInit() {
     console.log("googleTranslateElementInit 呼び出し");
@@ -222,8 +738,183 @@
   });
 </script>
 
+  <button id="operationManualToggleBtn" type="button" aria-label="操作マニュアルを開く">操作マニュアル</button>
+  <div id="operationManualOverlay" aria-hidden="true"></div>
+  <aside id="operationManualPanel" aria-label="操作マニュアル">
+    <h3>操作マニュアル</h3>
+    <ol>
+      <li>画面最上部の「東京奄美会公式ホームページへ」ボタンで、東京奄美会の公式サイト（遷移元に応じて適切なページ）へ移動します。</li>
+      <li>画面最上部の「言語切替」で表示言語を選べます（機械翻訳による案内です）。</li>
+      <li>画面最上部の右端「HP終了」は、別サイトへは自動では移動しません。終了のメッセージを表示して、この奄美群島旅行案内ページの閲覧を終えるためのボタンです。タブを閉じる・戻るはブラウザの操作で行ってください。</li>
+      <li>その下のエリアでは「奄美のイメージ」「観光情報」「ご利用にあたってのお願い」などを開いて読めます。</li>
+      <li>観光情報の表では、<strong>各島の見出し行</strong>に「観光概要」（ぐーんと奄美の各島紹介ページへ）と「<strong>関連サイト</strong>」（この案内ページ内でポップアップのリンク一覧が開きます）があります。<strong>市町村ごとの行</strong>では、観光・グルメ・特産品などのリンクのほか、市町村名（主に公式サイト）、旗の画像（タップで町歌の再生）、Wikipedia などから情報へ進めます。</li>
+      <li>表の最下行付近では「♪ BGM再生」（別タブでBGMプレーヤー）、関東近郊情報、SNSなどの案内があります。</li>
+      <li>右下の「操作マニュアル」で本説明を開き、「TOPへ」でページ先頭へスクロールします。</li>
+    </ol>
+    <button id="operationManualCloseBtn" type="button" aria-label="操作マニュアルを閉じる">閉じる</button>
+  </aside>
+
+  <!-- HP終了：URL は変えず終了メッセージのみ（タブを閉じるのはユーザー操作が一般的） -->
+  <div id="hpEndOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="hpEndOverlayTitle">
+    <div class="hp-end-overlay-inner">
+      <div class="hp-end-overlay-card">
+        <h2 id="hpEndOverlayTitle" class="hp-end-overlay-title">奄美群島旅行案内ページを終了しました。</h2>
+        <p class="hp-end-overlay-text">ご覧いただきありがとうございました。</p>
+        <p class="hp-end-overlay-hint">お手元のブラウザで<strong>タブを閉じる</strong>か、前のページへ戻るときは<strong>「戻る」</strong>をご利用ください。</p>
+      </div>
+    </div>
+  </div>
+
+<!-- NOTE: 公式HP導線: referrer が tokyoamamikai.com の場合は元URLへ、それ以外は fallback へ -->
+<script>
+(function (global) {
+  var hpNavBusy = false;
+  global.hpAmamiGoBack = function (e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    if (hpNavBusy) return false;
+    hpNavBusy = true;
+    var btn = document.getElementById("hpCloseButton");
+    var fallback =
+      (btn && btn.getAttribute("data-fallback-home")) ||
+      (btn && btn.getAttribute("href")) ||
+      "https://www.tokyoamamikai.com/";
+    var here = window.location.href.replace(/#.*$/, "");
+    var ref = document.referrer ? document.referrer.replace(/#.*$/, "") : "";
+    try {
+      var target = fallback;
+      if (ref && ref !== here && /tokyoamamikai\.com/i.test(ref)) {
+        target = ref;
+      }
+      window.location.assign(target);
+    } finally {
+      window.setTimeout(function () {
+        hpNavBusy = false;
+      }, 600);
+    }
+    return false;
+  };
+
+  // NOTE: about:blank への replace は履歴が「公式HP→空白」になり、戻るで公式HPへ行く。URL は変えずオーバーレイで表示のみ終了する。
+  var hpEndBusy = false;
+  global.hpAmamiEndPage = function (e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
+    if (e && e.stopImmediatePropagation) e.stopImmediatePropagation();
+    if (hpEndBusy) return false;
+    hpEndBusy = true;
+    try {
+      var ov = document.getElementById("hpEndOverlay");
+      if (ov) {
+        ov.classList.add("hp-end-overlay--visible");
+        ov.setAttribute("aria-hidden", "false");
+        var ti = document.getElementById("hpEndOverlayTitle");
+        if (ti) {
+          try {
+            ti.setAttribute("tabindex", "-1");
+            ti.focus({ preventScroll: true });
+          } catch (errF) {
+            /* no-op */
+          }
+        }
+      }
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      try {
+        document.querySelectorAll("audio, video").forEach(function (el) {
+          el.pause();
+        });
+      } catch (errA) {
+        /* no-op */
+      }
+    } finally {
+      window.setTimeout(function () {
+        hpEndBusy = false;
+      }, 300);
+    }
+    return false;
+  };
+
+  // NOTE: iOS/Android の click 遅延や競合を避けるため touchend を明示的にバインド
+  function bindHpBackTouch() {
+    var b = document.getElementById("hpCloseButton");
+    if (!b || b.dataset.hpTouchBound === "1") return;
+    b.dataset.hpTouchBound = "1";
+    b.addEventListener(
+      "touchend",
+      function (ev) {
+        ev.preventDefault();
+        global.hpAmamiGoBack(ev);
+      },
+      { passive: false }
+    );
+  }
+  function bindHpEndTouch() {
+    var b = document.getElementById("hpEndButton");
+    if (!b || b.dataset.hpTouchBound === "1") return;
+    b.dataset.hpTouchBound = "1";
+    b.addEventListener(
+      "touchend",
+      function (ev) {
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
+        global.hpAmamiEndPage(ev);
+      },
+      { passive: false }
+    );
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindHpBackTouch);
+    document.addEventListener("DOMContentLoaded", bindHpEndTouch);
+  } else {
+    bindHpBackTouch();
+    bindHpEndTouch();
+  }
+})(window);
+</script>
+
+<!--
+NOTE: 外部リンク・動画運用ルール（保守用）
+1) 外部サイト遷移リンクは原則 target="_blank" rel="noopener noreferrer" を付与する。
+2) テーブルのクリック委譲処理では target="_blank" のリンクを横取りしない。
+3) 島見出し行（island-title-row）のリンクは直接遷移を優先し、翻訳経由の影響を避ける。
+4) 動画リンクは後追い個別対応を避け、初期実装時に上記1)を満たすこと。
+5) 仕様追加時は NOTE:/RISK:/TODO: コメントを更新し、運用ルールとの差分を残すこと。
+RISK: target 未設定の外部リンクはスマホ環境で表示差分（動画非表示等）が再発しやすい。
+TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏れを防止する。
+-->
+
+<!-- NOTE: 固定ヘッダー高さを計測して body padding-top に反映（ResizeObserver で追従） -->
+<script>
+(function () {
+  function syncTopBarBodyPadding() {
+    var bar = document.querySelector(".top-bar");
+    if (!bar) return;
+    var h = Math.ceil(bar.getBoundingClientRect().height);
+    document.body.style.paddingTop = h + "px";
+  }
+  window.syncTopBarBodyPadding = syncTopBarBodyPadding;
+  window.addEventListener("load", function () {
+    syncTopBarBodyPadding();
+    setTimeout(syncTopBarBodyPadding, 400);
+    setTimeout(syncTopBarBodyPadding, 2000);
+  });
+  window.addEventListener("resize", syncTopBarBodyPadding);
+  if (typeof ResizeObserver !== "undefined") {
+    document.addEventListener("DOMContentLoaded", function () {
+      var bar = document.querySelector(".top-bar");
+      if (bar) new ResizeObserver(syncTopBarBodyPadding).observe(bar);
+    });
+  }
+})();
+</script>
+
 <!-- アクセスカウント制御 -->
+<!-- NOTE: アクセスカウントは cookie/UA から言語判定し API へ POST -->
 <script type="text/javascript">
+  const VISIT_COUNT_STATE_KEY = "visitCountStateV2";
+  const COUNTER_ENDPOINT = "https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/access-counter.php";
+
   function getCookie(name) {
     const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
     return match ? decodeURIComponent(match[2]) : null;
@@ -231,7 +922,7 @@
 
   function updateServerCounter(isForeign) {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "access-counter.php", true);
+    xhr.open("POST", COUNTER_ENDPOINT, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
@@ -247,59 +938,107 @@
     xhr.send("isForeign=" + (isForeign ? 1 : 0));
   }
 
-  function detectInitialLanguageAndCount() {
-    if (sessionStorage.getItem("alreadyCounted")) {
-      console.log("セッション中なのでカウントスキップ");
-      return;
-    }
-
-    let isForeign = false;
-    let googtrans = getCookie("googtrans");
-
-    if (googtrans && googtrans.indexOf("/") >= 0) {
-      const parts = googtrans.split("/");
-      const targetLang = parts[2]?.toLowerCase();
-      isForeign = (targetLang && targetLang !== "ja");
-    } else {
-      const lang = (navigator.language || navigator.userLanguage || "ja").toLowerCase();
-      isForeign = !lang.startsWith("ja");
-    }
-
-    updateServerCounter(isForeign);
-    sessionStorage.setItem("alreadyCounted", "true");
+  function fetchCurrentCounter() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", COUNTER_ENDPOINT, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        try {
+          const res = JSON.parse(xhr.responseText);
+          document.querySelector("#japaneseCount span").textContent = res.japaneseCount;
+          document.querySelector("#foreignCount span").textContent = res.foreignCount;
+        } catch (e) {
+          console.error("カウント初期表示のJSONパースエラー:", e);
+        }
+      }
+    };
+    xhr.send();
   }
 
-  function observeTranslationChange() {
+  function getCountState() {
+    return sessionStorage.getItem(VISIT_COUNT_STATE_KEY);
+  }
+
+  function markCountState(state) {
+    sessionStorage.setItem(VISIT_COUNT_STATE_KEY, state);
+  }
+
+  function getCurrentTargetLang() {
+    const googtrans = getCookie("googtrans");
+    if (googtrans && googtrans.indexOf("/") >= 0) {
+      const parts = googtrans.split("/");
+      return (parts[2] || "ja").toLowerCase();
+    }
+    const lang = (navigator.language || navigator.userLanguage || "ja").toLowerCase();
+    return lang.startsWith("ja") ? "ja" : lang;
+  }
+
+  function countJapaneseOnPageHideIfNeeded() {
+    if (getCountState()) return;
+    markCountState("ja");
+    const payload = new URLSearchParams();
+    payload.set("isForeign", "0");
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(COUNTER_ENDPOINT, payload);
+      return;
+    }
+    // sendBeacon 非対応ブラウザ向けフォールバック
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", COUNTER_ENDPOINT, false);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("isForeign=0");
+  }
+
+  function countForeignOnNavigateIfNeeded() {
+    if (getCountState()) return;
+    markCountState("foreign");
+    const payload = new URLSearchParams();
+    payload.set("isForeign", "1");
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(COUNTER_ENDPOINT, payload);
+      return;
+    }
+    // sendBeacon 非対応ブラウザ向けフォールバック
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", COUNTER_ENDPOINT, false);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("isForeign=1");
+  }
+
+  function bindForeignCountObserver() {
     const target = document.body;
-    let lastLang = getCookie("googtrans");
-
+    if (!target) return;
     const observer = new MutationObserver(() => {
-      const currentLang = getCookie("googtrans");
-      if (currentLang && lastLang !== currentLang) {
-        console.log("翻訳が切り替わりました:", lastLang, "→", currentLang);
-        const prev = (lastLang || "/ja/ja").split("/")[2];
-        const curr = currentLang.split("/")[2];
-
-        if (prev === "ja" && curr !== "ja") {
-          console.log("日本語→外国語に翻訳されたので外国語＋1します");
-          updateServerCounter(true);
-        }
-
-        lastLang = currentLang;
+      if (getCountState()) {
+        observer.disconnect();
+        return;
+      }
+      const curr = getCurrentTargetLang();
+      if (curr !== "ja") {
+        markCountState("foreign");
+        updateServerCounter(true);
+        observer.disconnect();
       }
     });
-
     observer.observe(target, { childList: true, subtree: true });
   }
 
+  // NOTE: 1訪問につき「日本語 or 外国語」のどちらか1回のみカウントする
   document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-      detectInitialLanguageAndCount();
-      observeTranslationChange();
-    }, 2000);
+    fetchCurrentCounter();
+    if (getCountState()) return;
+    const curr = getCurrentTargetLang();
+    if (curr !== "ja") {
+      markCountState("foreign");
+      updateServerCounter(true);
+      return;
+    }
+    bindForeignCountObserver();
+    window.addEventListener("pagehide", countJapaneseOnPageHideIfNeeded, { once: true });
   });
 </script>
 
+<!-- NOTE: back-to-top はスクロール量に応じて表示トグル、押下時は smooth scroll -->
 <script>
   
 function openPDF() {
@@ -310,11 +1049,71 @@ function openPDF() {
 }
 </script>
 
+<button id="backToTopBtn" type="button" aria-label="ページトップへ移動">TOPへ</button>
+<script>
+  (function () {
+    var topBtn = document.getElementById("backToTopBtn");
+    if (!topBtn) return;
+
+    function toggleTopBtn() {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      topBtn.style.display = y > 260 ? "inline-block" : "none";
+    }
+
+    topBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", toggleTopBtn, { passive: true });
+    window.addEventListener("load", toggleTopBtn);
+    toggleTopBtn();
+  })();
+</script>
+
+<script>
+  // NOTE: 操作マニュアルは固定ボタンで開閉し、通常閲覧時の占有を避ける
+  (function () {
+    var openBtn = document.getElementById("operationManualToggleBtn");
+    var closeBtn = document.getElementById("operationManualCloseBtn");
+    var panel = document.getElementById("operationManualPanel");
+    var overlay = document.getElementById("operationManualOverlay");
+    if (!openBtn || !closeBtn || !panel || !overlay) return;
+
+    function openManual() {
+      panel.style.display = "block";
+      overlay.style.display = "block";
+    }
+
+    function closeManual() {
+      panel.style.display = "none";
+      overlay.style.display = "none";
+    }
+
+    openBtn.addEventListener("click", openManual);
+    closeBtn.addEventListener("click", closeManual);
+    overlay.addEventListener("click", closeManual);
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape") closeManual();
+    });
+  })();
+</script>
+
+  <!-- NOTE: ヒーローセクションは価値訴求文 + 主要導線CTA -->
   <div class="title1">☆奄美群島の魅力をあなたに！☆ </div>
   <div class="title2">美しい自然と文化</div>
+  <section class="impact-hero" aria-label="奄美群島PRの志">
+    <p class="impact-hero-lead">どなたが見ても「行ってみたい」と感じる、南国・奄美群島の魅力をこのページに集めました。</p>
+    <p class="impact-hero-sub">下部のテーブルでは、これまでにない奄美群島12市町村を横断した旅行案内をご覧いただけます。気になる地域を見つけて、ぜひお気に入りの場所を訪ねてみてください。</p>
+    <p class="impact-hero-sub impact-hero-official">関東地域の奄美関係者の組織「東京奄美会」の案内の一環として本ページを公開しています。活動報告や最新のお知らせは、<a href="https://www.tokyoamamikai.com/" target="_blank" rel="noopener noreferrer">東京奄美会公式サイト</a>をご覧ください。</p>
+    <div class="impact-actions">
+      <a class="impact-btn secondary" href="#amami-images">奄美のイメージを見る</a>
+      <a class="impact-btn" href="#amami-table">奄美群島の観光情報を見る</a>
+      <a class="impact-btn secondary" href="pdfopn.html">ご利用にあたってのお願い</a>
+    </div>
+  </section>
 
   <!-- 奄美を象徴する画像 -->
-  <div>
+  <div id="amami-images">
     <img src="hp-image/title_gazo.jpg" alt="奄美群島の景色" style="width:100%; height:auto;">
   </div>
   <div class="hp-image-container02">
@@ -322,8 +1121,8 @@ function openPDF() {
 
   </div>
 
-  <!-- スライドショー -->
-<div id="slideshow">
+  <!-- NOTE: スライドショーは印象訴求用。JS 側で active クラスを3秒間隔でローテーション -->
+<div id="slideshow" class="slideshow-frame">
   <img src="hp-image/IsenTownInudabuCapeMemorial.jpg" alt="hp-image 1">
   <img src="hp-image/IsenTownBullfight.jpg" alt="hp-image 2">
   <img src="hp-image/UkenVillageArangachi.webp" alt="hp-image 3">
@@ -358,6 +1157,7 @@ function openPDF() {
   </div>
 
   <!-- 黒兎モニュメント -->
+   <!--
   <div class="monument" onclick="playVoice('amami-kurousagi-annai.mp3')">
     <div class="monument-image-wrapper">
       <img src="kurousagi-monument.png" alt="黒兎モニュメント">
@@ -365,8 +1165,10 @@ function openPDF() {
     </div>
     <p class="click-label">私をクリックしてね！</p>
   </div>
+    -->
 
   <!-- 男性モニュメント -->
+   <!--
   <div class="monument" onclick="playVoice('amami-dansei-annai.mp3')">
     <div class="monument-image-wrapper">
       <img src="men-monument.png" alt="男性モニュメント">
@@ -374,14 +1176,15 @@ function openPDF() {
     </div>
     <p class="click-label">私をクリックしてね！</p>
   </div>
+    -->
 </div>
 
  
   <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
         <!--テーブル部分 -->
 　　<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<div class="title3">  </div>
 <div class="title3">奄美群島各地の観光情報一覧</div>
-
 <table id="amami-table" class="styled-table">
   
     <tr>
@@ -394,22 +1197,20 @@ function openPDF() {
       <th style="font-weight: bold;">体験</th>
       <th style="font-weight: bold;">アクセス</th>
       <th style="font-weight: bold;">天気</th>
-      <th style="font-weight: bold;">市町村旗</th>
-      <th style="font-weight: bold;">市町村歌</th>
+      <th style="font-weight: bold;" title="旗をクリックすると市町村歌が再生されます">市町村旗歌</th>
+      <th style="font-weight: bold;">基本情報</th>
     </tr>
     <!--  12市町村 × 13行を追加 -->
-    <tr>
-
-      <td><a href="" style="color: white; font-weight: bold;">【 喜界島 】</a></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="right-border-only"></td>
+    <tr class="island-title-row">
+      <td colspan="11" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+        <div class="island-title-inner">
+          <a href="https://kikaijimanavi.com/" style="color: white; font-weight: bold; text-decoration: underline;">【 喜界島 】</a>
+          <div class="island-title-actions">
+            <a href="https://goontoamami.jp/kikai/" class="island-overview-link" target="_blank" rel="noopener noreferrer" title="ぐーんと奄美：喜界島について">観光概要</a>
+            <button type="button" class="island-related-sites-btn" onclick="showIslandRelatedSites('kikai');" title="喜界島の旅行情報（関連サイト一覧）">関連サイト</button>
+          </div>
+        </div>
+      </td>
     </tr>
 
     <tr>
@@ -422,21 +1223,20 @@ function openPDF() {
       <td id="cell-01-07"><a href="https://kikaijimanavi.com/tourism-and-experience/activity/">体験</a></td>
       <td id="cell-01-08"><a href="https://ritoful.com/archives/41630">経　路</a></td>
       <td id="cell-01-09"><a href="https://tenki.jp/forecast/9/49/1000/46529/">天気</a></td>
-      <td id="cell-01-10"><img src="towninfo/kikai_ki.png" alt="喜界町" style="width: 40px; height: auto;"></td>
+      <td id="cell-01-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「サンゴの島　喜界町」sasori.mp3', event)" title="喜界町の町歌を再生" aria-label="喜界町の町歌を再生"><img src="towninfo/kikai_ki.png" alt="喜界町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-01-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%96%9C%E7%95%8C%E7%94%BA" target="_blank" rel="noopener noreferrer" title="喜界町（Wikipedia）">Wikipedia</a></td>
     </tr>
    
-    <tr>
-
-      <td><a href="" style="color: white; font-weight: bold;">【 奄美大島 】</a></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="right-border-only"></td>
+    <tr class="island-title-row">
+      <td colspan="11" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+        <div class="island-title-inner">
+          <a href="https://www.amami-tourism.org/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 奄美大島 】</a>
+          <div class="island-title-actions">
+            <a href="https://goontoamami.jp/amamiisland/" class="island-overview-link" target="_blank" rel="noopener noreferrer" title="ぐーんと奄美：奄美大島について">観光概要</a>
+            <button type="button" class="island-related-sites-btn" onclick="showIslandRelatedSites('amami');" title="奄美大島の旅行情報（関連サイト一覧）">関連サイト</button>
+          </div>
+        </div>
+      </td>
     </tr>
     <tr>
       <td id="cell-02-01"><a href="https://www.town.tatsugo.lg.jp/" style="color: #ffff00; font-weight: bold;">龍郷町</a></td>
@@ -448,7 +1248,8 @@ function openPDF() {
       <td id="cell-02-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=tatsugocho">体験</a></td>
       <td id="cell-02-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
       <td id="cell-02-09"><a href="https://tenki.jp/forecast/9/49/1000/46527/">天気</a></td>
-      <td id="cell-02-10"><img src="towninfo/tatugo_ki.png" alt="龍郷町" style="width: 40px; height: auto;"></td>
+      <td id="cell-02-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「龍の郷（さと）に光満ちて－龍郷町」sasori.mp3', event)" title="龍郷町の町歌を再生" aria-label="龍郷町の町歌を再生"><img src="towninfo/tatugo_ki.png" alt="龍郷町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-02-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E9%BE%8D%E9%83%B7%E7%94%BA" target="_blank" rel="noopener noreferrer" title="龍郷町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
       <td id="cell-03-01"><a href="https://www.city.amami.lg.jp/" style="color: #ffff00; font-weight: bold;">奄美市</a></td>
@@ -460,7 +1261,8 @@ function openPDF() {
       <td id="cell-03-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=amami-nase">体験</a></td>
       <td id="cell-03-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
       <td id="cell-03-09"><a href="https://tenki.jp/forecast/9/49/1000/46222/">天気</a></td>
-      <td id="cell-03-10"><img src="towninfo/amami_ki.png" alt="奄美市" style="width: 40px; height: auto;"></td>
+      <td id="cell-03-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「結（ゆい）の街-奄美市」sasori.mp3', event)" title="奄美市の市歌を再生" aria-label="奄美市の市歌を再生"><img src="towninfo/amami_ki.png" alt="奄美市" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-03-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%AE%9B%E7%BE%8E%E5%B8%82" target="_blank" rel="noopener noreferrer" title="奄美市（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
       <td id="cell-04-01"><a href="https://www.vill.yamato.lg.jp/" style="color: #ffff00; font-weight: bold;">大和村</a></td>
@@ -472,7 +1274,8 @@ function openPDF() {
       <td id="cell-04-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=yamatoson">体験</a></td>
       <td id="cell-04-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
       <td id="cell-04-09"><a href="https://tenki.jp/forecast/9/49/1000/46523/">天気</a></td>
-      <td id="cell-04-10"><img src="towninfo/yamato_ki.png" alt="大和村" style="width: 40px; height: auto;"></td>
+      <td id="cell-04-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「大和（やまと）の風に吹かれて－大和村」sasori.mp3', event)" title="大和村の村歌を再生" aria-label="大和村の村歌を再生"><img src="towninfo/yamato_ki.png" alt="大和村" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-04-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E6%9D%91" target="_blank" rel="noopener noreferrer" title="大和村（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
       <td id="cell-05-01"><a href="https://www.uken.net/home.html" style="color: #ffff00; font-weight: bold;">宇検村</a></td>
@@ -484,7 +1287,8 @@ function openPDF() {
       <td id="cell-05-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=ukenson">体験</a></td>
       <td id="cell-05-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
       <td id="cell-05-09"><a href="https://tenki.jp/forecast/9/49/1000/46524/">天気</a></td>
-      <td id="cell-05-10"><img src="towninfo/uken_ki.png" alt="宇検村" style="width: 40px; height: auto;"></td>
+      <td id="cell-05-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「焼内の海に生きて－宇検村」sasori.mp3', event)" title="宇検村の村歌を再生" aria-label="宇検村の村歌を再生"><img src="towninfo/uken_ki.png" alt="宇検村" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-05-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%AE%87%E6%A4%9C%E6%9D%91" target="_blank" rel="noopener noreferrer" title="宇検村（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
       <td id="cell-06-01"><a href="https://www.town.setouchi.lg.jp/" style="color: #ffff00; font-weight: bold;">瀬戸内町</a></td>
@@ -496,9 +1300,20 @@ function openPDF() {
       <td id="cell-06-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=setouchicho">体験</a></td>
       <td id="cell-06-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
       <td id="cell-06-09"><a href="https://tenki.jp/forecast/9/49/1000/46524/">天気</a></td>
-      <td id="cell-06-10"><img src="towninfo/setouchi_ki.png" alt="瀬戸内町" style="width: 40px; height: auto;"></td>
+      <td id="cell-06-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「大島海峡に生きて－瀬戸内町」sasori.mp3', event)" title="瀬戸内町の町歌を再生" aria-label="瀬戸内町の町歌を再生"><img src="towninfo/setouchi_ki.png" alt="瀬戸内町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-06-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E7%80%AC%E6%88%B8%E5%86%85%E7%94%BA" target="_blank" rel="noopener noreferrer" title="瀬戸内町（Wikipedia）">Wikipedia</a></td>
     </tr>
-   
+    <tr class="island-title-row">
+      <td colspan="11" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+        <div class="island-title-inner">
+          <a href="http://www.tokunoshima-kanko.com/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 徳之島 】</a>
+          <div class="island-title-actions">
+            <a href="https://goontoamami.jp/tokunoshima/" class="island-overview-link" target="_blank" rel="noopener noreferrer" title="ぐーんと奄美：徳之島について">観光概要</a>
+            <button type="button" class="island-related-sites-btn" onclick="showIslandRelatedSites('tokunoshima');" title="徳之島の旅行情報（関連サイト一覧）">関連サイト</button>
+          </div>
+        </div>
+      </td>
+    </tr>
     <tr>
       <td id="cell-07-01"><a href="https://www.tokunoshima-town.org/" style="color: #ffff00; font-weight: bold;">徳之島町</a></td>
       <td id="cell-07-02"><a href="https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html">観光</a></td>
@@ -509,49 +1324,48 @@ function openPDF() {
       <td id="cell-07-07"><a href="https://activityjapan.com/search/?addressAndKeyword=%E5%BE%B3%E4%B9%8B%E5%B3%B6">体験</a></td>
       <td id="cell-07-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
       <td id="cell-07-09"><a href="https://tenki.jp/forecast/9/49/1000/46530/">天気</a></td>
-      <td id="cell-07-10"><img src="towninfo/tokunosima_ki.jpg" alt="徳之島町" style="width: 40px; height: auto;"></td>
+      <td id="cell-07-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「闘牛の島に生きて－徳之島町」sasori.mp3', event)" title="徳之島町の町歌を再生" aria-label="徳之島町の町歌を再生"><img src="towninfo/tokunosima_ki.jpg" alt="徳之島町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-07-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%BE%B3%E4%B9%8B%E5%B3%B6%E7%94%BA" target="_blank" rel="noopener noreferrer" title="徳之島町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
       <td id="cell-08-01"><a href="https://www.town.amagi.lg.jp/" style="color: #ffff00; font-weight: bold;">天城町</a></td>
       <td id="cell-08-02"><a href="https://www.town.amagi.lg.jp/tourism/?lng=ja">観光</a></td>
       <td id="cell-08-03"><a href="https://www.tripadvisor.jp/Restaurants-g1121607-Amagi_cho_Tokunoshima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html">グルメ</a></td>
       <!--<td id="cell-08-04"><a href="extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.town.amagi.lg.jp/img/staff/Restaurant-Introduction.pdf"></a></td>-->
-      <td id="cell-08-04"><a href=" http://www.tokunoshima-kanko.com/item/">特産品 </a></td>
+      <td id="cell-08-04"><a href="http://www.tokunoshima-kanko.com/item/">特産品</a></td>
       <td id="cell-08-05"><a href="https://bunka.nii.ac.jp/heritages/detail/580336">郷土芸能</a></td>
       <td id="cell-08-06"><a href="http://www.tokunoshima-kanko.com/tourist_spot/yuinoyakata/">歴史文化</a></td>
       <td id="cell-08-07"><a href="http://www.tokunoshima-kanko.com/tourist_spot/yuinoyakata/">体験</a></td>
       <td id="cell-08-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
       <td id="cell-08-09"><a href="https://tenki.jp/forecast/9/49/1000/46531/">天気</a></td>
-      <td id="cell-08-10"><img src="towninfo/amagi_ki.png" alt="天城町" style="width: 40px; height: auto;"></td>
+      <td id="cell-08-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「井之川岳に誓いて－天城町」sasori.mp3', event)" title="天城町の町歌を再生" aria-label="天城町の町歌を再生"><img src="towninfo/amagi_ki.png" alt="天城町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-08-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%A4%A9%E5%9F%8E%E7%94%BA" target="_blank" rel="noopener noreferrer" title="天城町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
       <td id="cell-09-01"><a href="https://www.town.isen.kagoshima.jp/" style="color: #ffff00; font-weight: bold;">伊仙町</a></td>
-      <td id="cell-09-02"><a href="https://www.town.isen.kagoshima.jp/mirai/ijuu.html">観光</a></td>
-      <td id="cell-09-03"><a href="https://www.bing.com/search?q=%E9%A3%9F%E3%81%B9%E3%83%AD%E3%82%B0%E3%80%80%E4%BC%8A%E4%BB%99%E7%
-    74%BA&qs=n&form=QBRE&sp=-1&lq=0&pq=%E9%A3%9F%E3%81%B9%E3%83%AD%E3%82%B0%E3%80%80%E4%BC%8A%E4%BB%99%E7%94%BA&sc=10-8&sk=&cvid=6544F1BE3BC34B03BE97D9E1D6244A79&ghsh=0&ghacc=0&ghpl=">グルメ</a></td>
+      <td id="cell-09-02"><a href="https://www.town.isen.kagoshima.jp/mirai/shisetsu/kanko-taiken/index.html">観光</a></td>
+      <td id="cell-09-03"><a href="https://tabelog.com/kagoshima/C46532/rstLst/">グルメ</a></td>
       <td id="cell-09-04"><a href="https://rito-guide.com/hyakusai/">特産品</a></td>
       <td id="cell-09-05"><a href="https://jmapps.ne.jp/isen/list.html?keywords=&kwd_and_or=and&bunrui=20&f2=&list_type=LLA001&list_count=10&title_query=yes">郷土芸能</a></td>
       <td id="cell-09-06"><a href="https://rekimin.wixsite.com/home">歴史文化</a></td>
-      <td id="cell-09-07"><a href="https://activityjapan.com/search/?addressAndKeyword=%E5%BE%B3%E4%B9%8B%E5%B3%B6">体験</a></td>
+      <td id="cell-09-07"><a href="https://activityjapan.com/search/?addressAndKeyword=%E4%BC%8A%E4%BB%99%E7%94%BA">体験</a></td>
       <td id="cell-09-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
       <td id="cell-09-09"><a href="https://tenki.jp/forecast/9/49/1000/46532/">天気</a></td>
-      <td id="cell-09-10"><img src="towninfo/isen_ki.png" alt="伊仙町" style="width: 40px; height: auto;"></td>
+      <td id="cell-09-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/『伊仙ぬ風（いせんぬかじ）』sasori.mp3', event)" title="伊仙町の町歌を再生" aria-label="伊仙町の町歌を再生"><img src="towninfo/isen_ki.png" alt="伊仙町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-09-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E4%BC%8A%E4%BB%99%E7%94%BA" target="_blank" rel="noopener noreferrer" title="伊仙町（Wikipedia）">Wikipedia</a></td>
     </tr>
  
 
-    <tr>
-
-      <td><a href="" style="color: white; font-weight: bold;">【 沖永良部島 】</a></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="right-border-only"></td>
-      　　　　
+    <tr class="island-title-row">
+      <td colspan="11" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+        <div class="island-title-inner">
+          <a href="https://okinoerabujima.info/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 沖永良部島 】</a>
+          <div class="island-title-actions">
+            <a href="https://goontoamami.jp/okinoerabu/" class="island-overview-link" target="_blank" rel="noopener noreferrer" title="ぐーんと奄美：沖永良部島について">観光概要</a>
+            <button type="button" class="island-related-sites-btn" onclick="showIslandRelatedSites('okinoerabu');" title="沖永良部島の旅行情報（関連サイト一覧）">関連サイト</button>
+          </div>
+        </div>
+      </td>
     </tr>
 
     <tr>
@@ -564,7 +1378,8 @@ function openPDF() {
       <td id="cell-10-07"><a href="https://okinoerabujima.info/activity?utm_source=chatgpt.com">体験</a></td>
       <td id="cell-10-08"><a href="https://rito-guide.com/okierabu-access/">経　路</a></td>
       <td id="cell-10-09"><a href="https://tenki.jp/forecast/9/49/1000/46534/">天気</a></td>
-      <td id="cell-10-10"><img src="towninfo/china_ki.png" alt="知名町" style="width: 40px; height: auto;"></td>
+      <td id="cell-10-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「わがふるさと-知名町」sasori.mp3', event)" title="知名町の町歌を再生" aria-label="知名町の町歌を再生"><img src="towninfo/china_ki.png" alt="知名町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-10-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E7%9F%A5%E5%90%8D%E7%94%BA" target="_blank" rel="noopener noreferrer" title="知名町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
       <td id="cell-11-01"><a href="https://www.town.wadomari.lg.jp/" style="color: #ffff00; font-weight: bold;">和泊町</a></td>
@@ -576,23 +1391,21 @@ function openPDF() {
       <td id="cell-11-07"><a href="https://www.tripadvisor.jp/Attractions-g1121609-Activities-Wadomari_cho_Okinoerabu_jima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html">体験</a></td>
       <td id="cell-11-08"><a href="https://rito-guide.com/okierabu-access/">経　路</a></td>
       <td id="cell-11-09"><a href="https://tenki.jp/forecast/9/49/1000/46533/">天気</a></td>
-      <td id="cell-11-10"><img src="towninfo/wadomari_ki.png" alt="和泊町" style="width: 40px; height: auto;"></td>
+      <td id="cell-11-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「花と潮風の町-和泊」sasori.mp3', event)" title="和泊町の町歌を再生" aria-label="和泊町の町歌を再生"><img src="towninfo/wadomari_ki.png" alt="和泊町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-11-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%92%8C%E6%B3%8A%E7%94%BA" target="_blank" rel="noopener noreferrer" title="和泊町（Wikipedia）">Wikipedia</a></td>
     </tr>
     
 
-    <tr>
-
-      <td><a href="" style="color: white; font-weight: bold;">【 与論島 】</a></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="no-vertical-border"></td>
-      <td class="right-border-only"></td>
-      　　　　
+    <tr class="island-title-row">
+      <td colspan="11" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+        <div class="island-title-inner">
+          <a href="https://www.yorontou.info/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 与論島 】</a>
+          <div class="island-title-actions">
+            <a href="https://goontoamami.jp/yoron/" class="island-overview-link" target="_blank" rel="noopener noreferrer" title="ぐーんと奄美：与論島について">観光概要</a>
+            <button type="button" class="island-related-sites-btn" onclick="showIslandRelatedSites('yoron');" title="与論島の旅行情報（関連サイト一覧）">関連サイト</button>
+          </div>
+        </div>
+      </td>
     </tr>
 
     <tr>
@@ -605,11 +1418,12 @@ function openPDF() {
       <td id="cell-12-07"><a href="https://www.yoron.jp/pages/taiken">体験</a></td>
       <td id="cell-12-08"><a href="https://yoron-iju.com/access/">経　路</a></td>
       <td id="cell-12-09"><a href="https://tenki.jp/forecast/9/49/1000/46535/">天気</a></td>
-      <td id="cell-12-10"><img src="towninfo/yoron_ki.png" alt="与論町" style="width: 40px; height: auto;"></td>
+      <td id="cell-12-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「ふるさと-与論」sasori.mp3', event)" title="与論町の町歌を再生" aria-label="与論町の町歌を再生"><img src="towninfo/yoron_ki.png" alt="与論町" style="width: 40px; height: auto;"></button></td>
+      <td id="cell-12-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E4%B8%8E%E8%AB%96%E7%94%BA" target="_blank" rel="noopener noreferrer" title="与論町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
-      <td id="cell-13-01"><a href="https://www.tokyo-amamikai.com/" style="color: WHITE; font-weight: bold;">東京奄美会</a></td>
-      <td id="cell-13-02"><a href="https://www.tokyo-amamikai.com" style="color: BLUE; font-weight: bold;">ホームページ</a></td>
+      <td id="cell-13-01"><a href="https://www.tokyoamamikai.com/" style="color: WHITE; font-weight: bold;">東京奄美会</a></td>
+      <td id="cell-13-02"></td>
       <td id="cell-13-03"><a href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/kanto-info/index.html">関東近郊情報</a></td>
       
       <td id="cell-13-04">
@@ -627,7 +1441,7 @@ function openPDF() {
           { label: 'Instagram：喜界町', url: 'https://www.instagram.com/kikaicho/' },
           { label: 'X（旧Twitter）：喜界町', url: 'https://x.com/kikaicho' },
           { label: 'Facebook：龍郷町', url: 'https://www.facebook.com/tatsugocho/' },
-          { label: 'Instagram：龍郷町', url: 'https://www.instagram.com/tatsugocho/' },
+          { label: 'Instag市町村ram：龍郷町', url: 'https://www.instagram.com/tatsugocho/' },
           { label: 'X（旧Twitter）：龍郷町', url: 'https://x.com/tatsugocho' },
           { label: 'Facebook：奄美市', url: 'https://www.facebook.com/amami.city/' },
           { label: 'Instagram：奄美市', url: 'https://www.instagram.com/amami_city/' },
@@ -667,7 +1481,7 @@ function openPDF() {
       <td id="cell-13-08" class="no-vertical-border"></td>
       <td id="cell-13-09" class="no-vertical-border"></td>
       <td id="cell-13-10"><a href="https://oceana.ne.jp/blue-economy/environment/113873">世界自然遺産</a></td>
-     
+      <td id="cell-13-11" class="no-vertical-border municipal-basic-info">―</td>
   
   </table>
 
@@ -675,9 +1489,9 @@ function openPDF() {
 <div class="overlay" id="multiOverlay"></div>
 <div class="multi-popup" id="multiPopup">
   <div class="multi-content">
-    <p>SNSリンク一覧</p>
-    <div id="multiLinks" class="multi-links"></div>
     <button onclick="closeMultiPopup()">戻る</button>
+    <p id="multiPopupHeading">SNSリンク一覧</p>
+    <div id="multiLinks" class="multi-links"></div>
   </div>
 </div>
 
@@ -689,29 +1503,6 @@ function openPDF() {
   </div>
 
   <script>
-    // ページ読み込み後に実行
-    window.onload = () => {
-      const cells = document.querySelectorAll('td');
-
-      // セルのクリックイベントを設定
-      cells.forEach(cell => {
-        cell.addEventListener('click', (event) => {
-          const url = cell.getAttribute('data-url'); // URLを取得
-
-          if (url && url.trim() !== "") {
-            // URLがある場合：ポップアップを出さずにリダイレクト
-            sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-            window.location.href = url; // リダイレクト
-          } else {
-            // URLがない場合：ポップアップを表示
-            event.preventDefault(); // デフォルト動作を防止
-            sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-            showPopup();
-          }
-        });
-      });
-    };
-
     // ポップアップを表示する関数
     function showPopup() {
       document.getElementById('overlay').style.display = 'block';
@@ -763,86 +1554,129 @@ function openPDF() {
   <style>
     .slideshow-container {
       max-width: 1000px;
-      /* スライドショー全体の幅を設定 */
-      margin:0 auto;
-      /* 中央揃え */
+      margin: 0 auto;
       position: relative;
-      /* 子要素を絶対配置するために使用 */
       overflow: hidden;
-      /* 画像のはみ出し部分を隠す */
+    }
+
+    /* スライド枠：全体を表示（contain）するための背景・余白 */
+    #slideshow.slideshow-frame,
+    #slideshow {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 14px 16px 18px;
+      border-radius: 14px;
+      background: linear-gradient(165deg, #e8f2ff 0%, #f5e8f8 45%, #fff5eb 100%);
+      border: 1px solid rgba(100, 80, 140, 0.22);
+      box-shadow: 0 6px 20px rgba(40, 30, 60, 0.1);
+    }
+
+    /* 画像は枠内に収まるよう縮小。はみ出しでスクロールしない */
+    #slideshow img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: min(52vh, 480px);
+      object-fit: contain;
+      object-position: center;
+      border-radius: 10px;
+      display: none;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    #slideshow img.active {
+      display: block;
     }
 
     .slide img {
       width: 100%;
-      /* 横幅を親要素にフィット */
-      height: 500px;
-      /* 高さを固定 */
-      object-fit: cover;
-      /* 画像を中央に調整して余白を埋める */
+      max-height: min(52vh, 480px);
+      height: auto;
+      object-fit: contain;
+      object-position: center;
       border-radius: 10px;
-      /* 角を丸くしたい場合 */
-      margin:0 auto;
+      margin: 0 auto;
     }
   </style>
 
   <script>
     // スライドショー
-    
     let slides = document.querySelectorAll("#slideshow img");
     let currentSlide = 0;
 
+    // ページロード後に初期化
+    function initSlideshow() {
+      if (slides.length > 0) {
+        // 最初の画像を表示
+        slides[0].classList.add("active");
+        
+        // 3秒ごとにスライド切り替え
+        setInterval(showNextSlide, 3000);
+      }
+    }
+
     function showNextSlide() {
       slides[currentSlide].classList.remove("active");
-      currentSlide = (currentSlide + 1) % slides.length; // 最後まで行ったら最初に戻る
+      currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add("active");
     }
 
-    setInterval(showNextSlide, 3000); // 3秒ごとにスライド切り替え
-
-<!--　BGMがめん　　-->
-  
+    // DOMが完全に読み込まれたら初期化
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSlideshow);
+    } else {
+      initSlideshow();
+    }
   </script>
 
 
+<!-- スライドショー初期化 -->
 <script>
-    <!--// LocalStorageから日本語と外国語のカウントを取得、または初期化-->
+    // LocalStorageから日本語と外国語のカウントを取得、または初期化
     let japaneseCount = parseInt(localStorage.getItem('japaneseCount')) || 0;
     let foreignCount = parseInt(localStorage.getItem('foreignCount')) || 0;
 
-    <!--// 現在のセッションでカウント済みか確認-->
+    // 現在のセッションでカウント済みか確認
     const hasCounted = sessionStorage.getItem('hasCounted');
 
-    <!--// 履歴の戻る操作を判定 (新しいAPI対応)-->
+    // 履歴の戻る操作を判定 (新しいAPI対応)
     const isBackNavigation = performance.getEntriesByType("navigation")[0].type === "back_forward";
 
-    <!--// カウント条件を満たしているか確認-->
+    // カウント条件を満たしているか確認
     if (!hasCounted && !isBackNavigation) {
-      <!--// セルのタイトル属性を取得-->
+      // セルのタイトル属性を取得
       const cell = document.querySelector('.purple-border');
       if (cell) {
         const cellTitle = cell.getAttribute('title');
 
-        <!--// タイトルが英語かどうかで判定-->
+        // タイトルが英語かどうかで判定
         if (cellTitle && /^[A-Za-z\s]+$/.test(cellTitle)) {
           // 英語なら外国語にカウント
           foreignCount++;
           localStorage.setItem('foreignCount', foreignCount);
         } else {
-          <!-// 英語以外なら日本語にカウント-->
+          // 英語以外なら日本語にカウント
           japaneseCount++;
           localStorage.setItem('japaneseCount', japaneseCount);
         }
 
-        <!-// 現在のセッションでカウント済みフラグを設定-->
+        // 現在のセッションでカウント済みフラグを設定
         sessionStorage.setItem('hasCounted', 'true');
       } else {
         console.error("紫枠の要素が見つかりませんでした。");
       }
     }
 
-    <!--// HTMLにカウントを表示-->
-    document.getElementById('japanese-counter').textContent = japaneseCount;
-    document.getElementById('foreign-counter').textContent = foreignCount;
+    // HTMLにカウントを表示（要素がある場合のみ）
+    const japaneseCounterElem = document.getElementById('japanese-counter');
+    const foreignCounterElem = document.getElementById('foreign-counter');
+    if (japaneseCounterElem) japaneseCounterElem.textContent = japaneseCount;
+    if (foreignCounterElem) foreignCounterElem.textContent = foreignCount;
   </script>
 
 <!-- アクセスカウンター表示：1行にまとめる -->
@@ -852,6 +1686,8 @@ function openPDF() {
   <span id="foreignCount" style="color:blue;">外国語訪問数: <span id="foreignNumber">0</span></span>
 </div>
 
+<!-- NOTE: 旧カウンターロジックは既存 localStorage データとの後方互換のため残置 -->
+<!-- TODO: 新カウンター実装へ完全移行後、このブロックを削除して二重管理を解消する -->
 <script>
   // 訪問数を正しく更新するロジック
   function updateCounter(japaneseCount, foreignCount) {
@@ -863,53 +1699,105 @@ function openPDF() {
   // 初期値を表示       
 </script>
 
+    <!-- NOTE: テーブル導線制御は visited 状態保持(sessionStorage) + 遷移前スクロール位置復元 -->
     <script>
       window.onload = () => {
-        const cells = document.querySelectorAll('td');
+        const table = document.getElementById('amami-table');
+        if (!table) return;
+        const usedLinkKey = 'amami-table-used-links';
+        let usedLinks = {};
+        try {
+          usedLinks = JSON.parse(sessionStorage.getItem(usedLinkKey) || '{}');
+        } catch (e) {
+          usedLinks = {};
+        }
 
-        // セルのクリックイベントを設定
-        cells.forEach(cell => {
-          cell.addEventListener('click', (event) => {
-            const link = event.target.closest('a'); // クリックされた要素の最も近い祖先の<a>要素を取得
-            if (link) {
-              const href = link.getAttribute('href'); // href属性の値を取得
-              if (href && href !== "" && href !== "#") {
-                // href属性がある場合：リダイレクト
-                sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-                window.location.href = href; // リダイレクト
-              } else {
-                // href属性がない場合：ポップアップを表示
-                event.preventDefault(); // デフォルト動作を防止
-                sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-                showPopup();
-              }
-            } else {
-              // <a>要素がない場合：ポップアップを表示
-              event.preventDefault(); // デフォルト動作を防止
-              sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
-              showPopup();
-            }
-          });
+        table.querySelectorAll('td a[href]').forEach((a) => {
+          const row = a.closest('tr');
+          if (row && row.classList.contains('island-title-row')) {
+            // NOTE: 島見出しリンクは外部サイトを直接開く（翻訳経由の影響を受けにくくする）
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            return;
+          }
+          a.classList.add('table-link-btn');
+          const fullHref = a.href;
+          if (usedLinks[fullHref]) {
+            a.classList.add('used');
+          }
+        });
+
+        // テーブルに1本だけ委譲（二重登録しにくい）
+        table.addEventListener('click', (event) => {
+          const cell = event.target.closest('td');
+          if (!cell || !table.contains(cell)) return;
+
+          // 音声・動画・フォーム操作はページ側の挙動に任せる（ここで貼付を出さない）
+          if (event.target.closest('audio, video, input, button, select, textarea')) return;
+
+          const link = event.target.closest('a');
+          if (!link || !cell.contains(link)) return;
+          if (link.target === '_blank') return;
+          const row = link.closest('tr');
+          if (row && row.classList.contains('island-title-row')) return;
+
+          const hrefRaw = link.getAttribute('href');
+          const h = (hrefRaw || '').trim();
+          if (/^\s*javascript:/i.test(h)) return;
+
+          const isPlaceholder = hrefRaw === null || h === '' || h === '#';
+          if (isPlaceholder) {
+            if (link.getAttribute('onclick')) return;
+            event.preventDefault();
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+            showPopup();
+            return;
+          }
+
+          event.preventDefault();
+          try {
+            usedLinks[link.href] = Date.now();
+            sessionStorage.setItem(usedLinkKey, JSON.stringify(usedLinks));
+            link.classList.add('used');
+          } catch (e) {}
+          sessionStorage.setItem('scrollPosition', window.scrollY);
+          window.location.href = hrefRaw;
         });
       };
     </script>
 
-<!--　翻訳関係処理-->
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 <!--  モニュメントの　音声-->
+<!-- NOTE: 複数リンクポップアップはセルから複数遷移先を選択表示 -->
 <script>
   let currentAudio = null;
 
   function playVoice(filename) {
-    // 再生中の音声があれば止める
     if (currentAudio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
     }
-
     currentAudio = new Audio(filename);
-    currentAudio.play();
+    currentAudio.play().catch(function () {});
+  }
+
+  /** 市町村旗クリック用：hp-music フォルダの MP3 を再生（モニュメント音声と同じ出力を共有） */
+  function playMunicipalSong(src, evt) {
+    if (evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+    var url = src
+      .split("/")
+      .map(function (seg) {
+        return encodeURIComponent(seg);
+      })
+      .join("/");
+    currentAudio = new Audio(url);
+    currentAudio.play().catch(function () {});
   }
 </script>
 
@@ -918,22 +1806,133 @@ function openPDF() {
 
 
 <script>
-  function showMultiLinkPopup(links) {
+  (function () {
+    var ISLAND_RELATED_LINKS_FALLBACK = {
+      amami: [
+        { label: "概要", url: "https://www.amami-tourism.org/about/" },
+        { label: "自然", url: "https://www.amami-tourism.org/about/nature/" },
+        { label: "歴史", url: "https://www.amami-tourism.org/about/history/" },
+        { label: "文化", url: "https://www.amami-tourism.org/about/culture/" },
+        { label: "天候", url: "https://www.amami-tourism.org/about/weather/" },
+        { label: "特産物", url: "https://www.amami-tourism.org/about/specialty/" },
+        { label: "奄美へのアクセス", url: "https://www.amami-tourism.org/access/#access" },
+        { label: "島内こうつう手段", url: "https://www.amami-tourism.org/access/#traffic" },
+        { label: "見どころ", url: "https://www.amami-tourism.org/scenic-spots/" },
+        { label: "泊まる", url: "https://www.amami-tourism.org/lodging/" },
+        { label: "食べる", url: "https://www.amami-tourism.org/gourmet/" },
+        { label: "体験する", url: "https://www.amami-tourism.org/experience/" },
+        { label: "お土産", url: "https://www.amami-tourism.org/souvenir/" },
+        { label: "島食", url: "https://www.amami-tourism.org/magazine/magazine-category/gourmet/" }
+      ],
+      kikai: [
+        { label: "概要", url: "https://kikaijimanavi.com/tourism/" },
+        { label: "食事", url: "https://kikaijimanavi.com/meal/" },
+        { label: "宿泊", url: "https://kikaijimanavi.com/lodging/" },
+        { label: "ショップ", url: "https://kikaijimanavi.com/shopping/" },
+        { label: "特産品", url: "https://kikaijimanavi.com/specialtygoods/" },
+        { label: "喜界観光・体験", url: "https://kikaijimanavi.com/tourism-and-experience/" }
+      ],
+      tokunoshima: [
+        { label: "概要", url: "https://www.tokunoshima-kanko.com/about/" },
+        { label: "遊ぶ", url: "https://www.tokunoshima-kanko.com/play/" },
+        { label: "食べる", url: "https://www.tokunoshima-kanko.com/food/" },
+        { label: "泊まる", url: "https://www.tokunoshima-kanko.com/?post_type=shop&s=&shop_cate=stay&area=" },
+        { label: "特産品", url: "https://www.tokunoshima-kanko.com/item/" }
+      ],
+      okinoerabu: [
+        { label: "組織・会員募集", url: "https://okinoerabujima.info/organization/member-recruitment" },
+        { label: "概要", url: "https://okinoerabujima.info/course" },
+        { label: "観光", url: "https://okinoerabujima.info/spot" },
+        { label: "体験", url: "https://okinoerabujima.info/activity" },
+        { label: "グルメ・お土産", url: "https://okinoerabujima.info/pickup/gourmet" },
+        { label: "宿泊", url: "https://okinoerabujima.info/stay" },
+        { label: "交通手段", url: "https://okinoerabujima.info/pickup/access" },
+        { label: "エコラブ", url: "https://okinoerabujima.info/pickup/erabucoco" },
+        { label: "サービス施設", url: "https://okinoerabujima.info/service" },
+        { label: "島図鑑", url: "https://okinoerabujima.info/pickup/erabushima_zukan" },
+        { label: "基礎知識", url: "https://okinoerabujima.info/pickup/beginner" }
+      ],
+      yoron: [
+        { label: "島内交通", url: "https://www.yorontou.info/on-island.html" },
+        { label: "お役立ち情報", url: "https://www.yorontou.info/safe-travel/" },
+        { label: "宿泊", url: "https://www.yorontou.info/spot/genre/stay" },
+        { label: "観光スポット", url: "https://www.yorontou.info/sightseeing/" },
+        { label: "体験", url: "https://www.yorontou.info/spot/genre/experience-facility" },
+        { label: "お土産", url: "https://www.yorontou.info/spot/genre/souvenir-shop" },
+        { label: "マリンアクティビティ", url: "https://www.yorontou.info/spot/genre/marine-activity" },
+        { label: "ダイビングスポット", url: "https://www.yorontou.info/spot/genre/diving-spot" },
+        { label: "史跡・名所・景勝地", url: "https://www.yorontou.info/spot/genre/historic" },
+        { label: "ビーチ", url: "https://www.yorontou.info/spot/genre/beach" },
+        { label: "グルメ", url: "https://www.yorontou.info/gourmet/" }
+      ]
+    };
+
+    var ISLAND_RELATED_TITLES_FALLBACK = {
+      amami: "奄美大島の旅行情報",
+      kikai: "喜界島の旅行情報",
+      tokunoshima: "徳之島の旅行情報",
+      okinoerabu: "沖永良部島の旅行情報",
+      yoron: "与論島の旅行情報"
+    };
+
+    window.__islandRelatedFromServer = null;
+
+    window.showIslandRelatedSites = function (islandKey) {
+      var srv = window.__islandRelatedFromServer;
+      var links =
+        srv && srv.links && srv.links[islandKey] && srv.links[islandKey].length
+          ? srv.links[islandKey]
+          : ISLAND_RELATED_LINKS_FALLBACK[islandKey];
+      var titles =
+        srv && srv.titles && typeof srv.titles === "object"
+          ? srv.titles
+          : ISLAND_RELATED_TITLES_FALLBACK;
+      if (!links || !links.length) return;
+      var title =
+        (titles && titles[islandKey]) ||
+        ISLAND_RELATED_TITLES_FALLBACK[islandKey] ||
+        "関連サイト";
+      showMultiLinkPopup(links, title);
+    };
+
+    fetch("island-related-links-api.php", { credentials: "same-origin" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("api");
+        return r.json();
+      })
+      .then(function (data) {
+        if (data && data.links && typeof data.links === "object") {
+          window.__islandRelatedFromServer = data;
+        }
+      })
+      .catch(function () {});
+  })();
+
+  function showMultiLinkPopup(links, headingText) {
     const container = document.getElementById('multiLinks');
-    container.innerHTML = ''; // リセット
-  
-    links.forEach(link => {
+    container.innerHTML = '';
+
+    links.forEach(function (link) {
       const a = document.createElement('a');
       a.href = link.url;
       a.textContent = link.label;
       a.target = '_blank';
+      a.rel = 'noopener noreferrer';
       container.appendChild(a);
     });
-  
+
+    const heading = document.getElementById('multiPopupHeading');
+    if (heading) {
+      heading.textContent =
+        headingText !== undefined && headingText !== null && headingText !== ''
+          ? headingText
+          : 'SNSリンク一覧';
+    }
+
     document.getElementById('multiOverlay').style.display = 'block';
     document.getElementById('multiPopup').style.display = 'block';
   }
-  
+
   function closeMultiPopup() {
     document.getElementById('multiOverlay').style.display = 'none';
     document.getElementById('multiPopup').style.display = 'none';
@@ -943,24 +1942,30 @@ function openPDF() {
 
 <!--　セルにbgm入れ　遷移で停止しない動き　-->　
 <script>
-  let bgmWindow = null;
-
+  /** BGMは同一ブラウザの「タブ」で開く（サイズ指定なし＝タブバーに並ぶ・Alt+Tabの別ウィンドウにしにくい） */
   function openBGMWindow() {
-      if (!bgmWindow || bgmWindow.closed) {
-          bgmWindow = window.open("bgm-amami.html", "bgmPlayer", "width=400,height=300");
-      } else {
-          bgmWindow.focus();
-      }
+    // NOTE: amami.html 側の配置場所に依存させないため、BGMプレーヤーは絶対URLで開く
+    // （音源ファイルもプレーヤー側の相対パスで参照されるため）
+    const bgmUrl = "https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/bgm-n-amami.html";
+    const w = window.open(bgmUrl, "bgmPlayerTab");
+    if (w) {
+      try {
+        window.focus();
+      } catch (e) {}
+    }
   }
+
+  (function () {
+    const ch = new BroadcastChannel("bgm-amami-slideshow");
+    const slideshow = document.getElementById("slideshow");
+    if (!slideshow) return;
+    ch.onmessage = function (ev) {
+      if (ev.data && typeof ev.data.hideSlideshow === "boolean") {
+        slideshow.style.display = ev.data.hideSlideshow ? "none" : "";
+      }
+    };
+  })();
 </script>
-
-<script>
-  document.getElementById('hpCloseButton').addEventListener('click', function() {
-    window.close();
-  });
-</script>
-
-
 
   </body>
 

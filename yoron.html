@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>与論島 — 天国の島</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Noto+Serif+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+width: 800px;
+height: 1130px;
+overflow: hidden;
+font-family: ‘Noto Serif JP’, serif;
+background: #0a1628;
+}
+
+.poster {
+width: 800px;
+height: 1130px;
+position: relative;
+overflow: hidden;
+background: linear-gradient(
+180deg,
+#0d1f3c 0%,
+#1a3a5c 8%,
+#1e5f8a 18%,
+#1a8fab 28%,
+#0eb8c8 38%,
+#06d4d0 45%,
+#00e5c8 50%,
+#00cda8 55%,
+#00b890 60%,
+#009e78 65%,
+#1a7a5a 72%,
+#1a6040 78%,
+#0f4a2a 84%,
+#0a3520 90%,
+#061e12 100%
+);
+}
+
+/* SKY */
+.sky {
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 45%;
+}
+
+/* SUN / LIGHT BURST */
+.sun {
+position: absolute;
+top: 60px;
+left: 50%;
+transform: translateX(-50%);
+width: 120px;
+height: 120px;
+}
+.sun-core {
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+width: 60px; height: 60px;
+background: radial-gradient(circle, #fff9e0 0%, #ffe066 40%, #ffb020 70%, transparent 100%);
+border-radius: 50%;
+box-shadow: 0 0 40px 20px rgba(255,200,50,0.5), 0 0 80px 40px rgba(255,160,20,0.3);
+animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+0%,100% { transform: translate(-50%,-50%) scale(1); opacity:1; }
+50% { transform: translate(-50%,-50%) scale(1.08); opacity:0.9; }
+}
+.sun-rays {
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%,-50%);
+width: 200px; height: 200px;
+background: conic-gradient(
+from 0deg,
+transparent 0deg, rgba(255,220,80,0.15) 5deg, transparent 10deg,
+transparent 20deg, rgba(255,220,80,0.1) 25deg, transparent 30deg,
+transparent 40deg, rgba(255,220,80,0.15) 45deg, transparent 50deg,
+transparent 60deg, rgba(255,220,80,0.1) 65deg, transparent 70deg,
+transparent 80deg, rgba(255,220,80,0.15) 85deg, transparent 90deg,
+transparent 100deg, rgba(255,220,80,0.1) 105deg, transparent 110deg,
+transparent 120deg, rgba(255,220,80,0.15) 125deg, transparent 130deg,
+transparent 140deg, rgba(255,220,80,0.1) 145deg, transparent 150deg,
+transparent 160deg, rgba(255,220,80,0.15) 165deg, transparent 170deg,
+transparent 180deg, rgba(255,220,80,0.1) 185deg, transparent 190deg,
+transparent 200deg, rgba(255,220,80,0.15) 205deg, transparent 210deg,
+transparent 220deg, rgba(255,220,80,0.1) 225deg, transparent 230deg,
+transparent 240deg, rgba(255,220,80,0.15) 245deg, transparent 250deg,
+transparent 260deg, rgba(255,220,80,0.1) 265deg, transparent 270deg,
+transparent 280deg, rgba(255,220,80,0.15) 285deg, transparent 290deg,
+transparent 300deg, rgba(255,220,80,0.1) 305deg, transparent 310deg,
+transparent 320deg, rgba(255,220,80,0.15) 325deg, transparent 330deg,
+transparent 340deg, rgba(255,220,80,0.1) 345deg, transparent 350deg,
+transparent 360deg
+);
+border-radius: 50%;
+animation: rotate-rays 20s linear infinite;
+}
+@keyframes rotate-rays { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+/* ATMOSPHERIC HAZE */
+.haze {
+position: absolute;
+top: 100px;
+left: -20%;
+width: 140%;
+height: 300px;
+background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,230,120,0.18) 0%, rgba(100,200,240,0.12) 50%, transparent 80%);
+pointer-events: none;
+}
+
+/* CLOUDS */
+.clouds { position: absolute; top: 0; left: 0; right: 0; height: 300px; }
+.cloud {
+position: absolute;
+border-radius: 50%;
+background: rgba(255,255,255,0.85);
+filter: blur(6px);
+}
+.c1 { width:200px; height:50px; top:90px; left:30px; opacity:0.6; }
+.c2 { width:140px; height:38px; top:80px; left:50px; opacity:0.7; filter:blur(4px); }
+.c3 { width:240px; height:55px; top:130px; right:20px; opacity:0.5; }
+.c4 { width:160px; height:42px; top:120px; right:50px; opacity:0.6; filter:blur(5px); }
+.c5 { width:120px; height:32px; top:160px; left:200px; opacity:0.35; }
+
+/* OCEAN LAYERS */
+.ocean-deep {
+position: absolute;
+top: 38%;
+left: 0; right: 0;
+height: 25%;
+background: linear-gradient(180deg,
+rgba(0,180,210,0.95) 0%,
+rgba(0,160,190,0.98) 30%,
+rgba(0,140,170,1) 60%,
+rgba(0,120,150,1) 100%
+);
+}
+
+/* WATER SHIMMER */
+.shimmer {
+position: absolute;
+top: 38%;
+left: 0; right: 0;
+height: 15%;
+overflow: hidden;
+}
+.shimmer-line {
+position: absolute;
+height: 2px;
+background: rgba(255,255,255,0.5);
+border-radius: 2px;
+animation: shimmer-anim linear infinite;
+}
+@keyframes shimmer-anim {
+0% { transform: translateX(-100%) scaleX(0.3); opacity: 0; }
+20% { opacity: 1; }
+80% { opacity: 1; }
+100% { transform: translateX(200%) scaleX(1); opacity: 0; }
+}
+
+/* CORAL REEF underwater hint */
+.reef {
+position: absolute;
+bottom: 0;
+left: 0; right: 0;
+height: 60px;
+background: linear-gradient(180deg, transparent 0%, rgba(0,80,60,0.4) 100%);
+}
+
+/* BEACH */
+.beach {
+position: absolute;
+top: 57%;
+left: 0; right: 0;
+height: 8%;
+background: linear-gradient(180deg,
+#f4dfa0 0%,
+#e8c87a 40%,
+#d4a855 80%,
+#c09040 100%
+);
+border-radius: 60% 60% 0 0 / 30% 30% 0 0;
+box-shadow: 0 -8px 30px rgba(255,200,80,0.3);
+}
+.beach::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 8px;
+background: rgba(255,255,255,0.5);
+filter: blur(4px);
+border-radius: 50%;
+}
+
+/* TROPICAL FOREST */
+.forest {
+position: absolute;
+top: 62%;
+left: 0; right: 0;
+bottom: 0;
+background: linear-gradient(180deg,
+#0f5c30 0%,
+#0a4522 40%,
+#062e16 70%,
+#041a0c 100%
+);
+}
+
+/* PALM TREES */
+.palms { position: absolute; top: 55%; left: 0; right: 0; height: 35%; }
+
+/* INDIVIDUAL PALM */
+.palm {
+position: absolute;
+bottom: 20%;
+}
+.palm-trunk {
+position: absolute;
+bottom: 0;
+width: 8px;
+background: linear-gradient(90deg, #5a3a10, #8a5a20, #5a3a10);
+border-radius: 4px;
+transform-origin: bottom center;
+}
+.palm-head {
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+width: 0; height: 0;
+}
+.palm-frond {
+position: absolute;
+width: 80px;
+height: 14px;
+background: linear-gradient(90deg, #1a6e28, #2d9a3e, #1a6e28);
+border-radius: 0 50% 50% 0;
+transform-origin: 0% 50%;
+}
+
+/* SVG PALM TREES */
+svg.palm-svg {
+position: absolute;
+bottom: 0;
+filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+
+/* HIBISCUS FLOWERS hint */
+.flowers {
+position: absolute;
+bottom: 5%;
+left: 5%;
+width: 120px;
+height: 80px;
+}
+
+/* FOREGROUND TROPICAL LEAVES */
+.leaves-left, .leaves-right {
+position: absolute;
+bottom: 0;
+width: 200px;
+height: 300px;
+}
+.leaves-left { left: -20px; }
+.leaves-right { right: -20px; transform: scaleX(-1); }
+
+/* TEXT OVERLAY */
+.text-overlay {
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+pointer-events: none;
+}
+
+.top-label {
+margin-top: 22px;
+font-family: ‘Cinzel’, serif;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 8px;
+color: rgba(255,240,180,0.9);
+text-shadow: 0 0 20px rgba(255,200,80,0.8);
+text-transform: uppercase;
+}
+
+.main-title-jp {
+margin-top: 220px;
+font-family: ‘Noto Serif JP’, serif;
+font-size: 72px;
+font-weight: 700;
+color: #fff;
+text-shadow:
+0 0 30px rgba(0,220,200,0.8),
+0 0 60px rgba(0,180,160,0.5),
+2px 2px 0 rgba(0,80,60,0.5);
+letter-spacing: 12px;
+line-height: 1;
+animation: glow 4s ease-in-out infinite;
+}
+@keyframes glow {
+0%,100% { text-shadow: 0 0 30px rgba(0,220,200,0.8), 0 0 60px rgba(0,180,160,0.5), 2px 2px 0 rgba(0,80,60,0.5); }
+50% { text-shadow: 0 0 50px rgba(0,240,220,1), 0 0 100px rgba(0,200,180,0.7), 2px 2px 0 rgba(0,80,60,0.5); }
+}
+
+.main-title-en {
+margin-top: 8px;
+font-family: ‘Cinzel’, serif;
+font-size: 22px;
+font-weight: 400;
+color: rgba(255,245,200,0.95);
+letter-spacing: 10px;
+text-shadow: 0 0 20px rgba(255,200,80,0.6);
+}
+
+.divider {
+margin-top: 14px;
+display: flex;
+align-items: center;
+gap: 12px;
+width: 340px;
+}
+.divider-line {
+flex: 1;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(255,220,120,0.8), transparent);
+}
+.divider-diamond {
+width: 8px; height: 8px;
+background: rgba(255,220,120,0.9);
+transform: rotate(45deg);
+box-shadow: 0 0 8px rgba(255,200,80,0.8);
+}
+
+.subtitle {
+margin-top: 12px;
+font-family: ‘Playfair Display’, serif;
+font-style: italic;
+font-size: 17px;
+color: rgba(255,240,200,0.9);
+letter-spacing: 3px;
+text-shadow: 0 0 15px rgba(255,180,60,0.6);
+}
+
+.feature-badges {
+margin-top: 16px;
+display: flex;
+gap: 16px;
+}
+.badge {
+font-family: ‘Cinzel’, serif;
+font-size: 9px;
+letter-spacing: 3px;
+color: rgba(255,240,180,0.8);
+border: 1px solid rgba(255,220,120,0.4);
+padding: 5px 12px;
+border-radius: 20px;
+background: rgba(0,0,0,0.2);
+backdrop-filter: blur(4px);
+text-shadow: 0 0 10px rgba(255,200,80,0.5);
+}
+
+.mid-text {
+margin-top: 280px;
+text-align: center;
+}
+.location-tag {
+font-family: ‘Cinzel’, serif;
+font-size: 10px;
+letter-spacing: 6px;
+color: rgba(255,240,180,0.85);
+text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.bottom-section {
+position: absolute;
+bottom: 0;
+left: 0; right: 0;
+padding: 24px 40px;
+background: linear-gradient(180deg, transparent 0%, rgba(5,20,10,0.92) 40%, rgba(3,12,6,0.98) 100%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;
+}
+
+.bottom-divider {
+width: 80%;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(0,200,160,0.6), transparent);
+}
+
+.tagline {
+font-family: ‘Playfair Display’, serif;
+font-style: italic;
+font-size: 20px;
+color: rgba(180,240,210,0.9);
+letter-spacing: 2px;
+text-align: center;
+text-shadow: 0 0 20px rgba(0,200,160,0.5);
+}
+
+.tagline-jp {
+font-family: ‘Noto Serif JP’, serif;
+font-size: 13px;
+font-weight: 300;
+color: rgba(160,220,190,0.8);
+letter-spacing: 4px;
+text-align: center;
+}
+
+.info-row {
+display: flex;
+gap: 40px;
+margin-top: 4px;
+}
+.info-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 3px;
+}
+.info-icon {
+font-size: 18px;
+filter: drop-shadow(0 0 6px rgba(0,200,160,0.6));
+}
+.info-label {
+font-family: ‘Cinzel’, serif;
+font-size: 8px;
+letter-spacing: 3px;
+color: rgba(140,210,180,0.7);
+}
+
+.bottom-border {
+width: 100%;
+height: 3px;
+background: linear-gradient(90deg, #0a8060, #00e5c0, #06d4a0, #0a8060);
+}
+
+/* FRAME DECORATION */
+.frame {
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+pointer-events: none;
+}
+.frame-corner {
+position: absolute;
+width: 50px; height: 50px;
+border-color: rgba(255,215,100,0.5);
+border-style: solid;
+}
+.fc-tl { top: 15px; left: 15px; border-width: 2px 0 0 2px; }
+.fc-tr { top: 15px; right: 15px; border-width: 2px 2px 0 0; }
+.fc-bl { bottom: 15px; left: 15px; border-width: 0 0 2px 2px; }
+.fc-br { bottom: 15px; right: 15px; border-width: 0 2px 2px 0; }
+
+/* BOKEH PARTICLES */
+.bokeh {
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+pointer-events: none;
+}
+.dot {
+position: absolute;
+border-radius: 50%;
+background: rgba(255,255,255,0.6);
+animation: float linear infinite;
+}
+@keyframes float {
+0% { transform: translateY(0) scale(1); opacity: 0; }
+10% { opacity: 1; }
+90% { opacity: 0.6; }
+100% { transform: translateY(-60px) scale(0.5); opacity: 0; }
+}
+</style>
+
+</head>
+<body>
+<div class="poster">
+
+<!-- SKY ATMOSPHERE -->
+
+<div class="sky"></div>
+<div class="haze"></div>
+
+<!-- CLOUDS -->
+
+<div class="clouds">
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
+<div class="cloud c4"></div>
+<div class="cloud c5"></div>
+</div>
+
+<!-- SUN -->
+
+<div class="sun">
+<div class="sun-rays"></div>
+<div class="sun-core"></div>
+</div>
+
+<!-- OCEAN -->
+
+<div class="ocean-deep"></div>
+
+<!-- SHIMMER LINES on water -->
+
+<div class="shimmer">
+<div class="shimmer-line" style="top:20%;left:0;width:160px;animation-duration:3.2s;animation-delay:0s;"></div>
+<div class="shimmer-line" style="top:35%;left:100px;width:200px;animation-duration:2.8s;animation-delay:0.5s;"></div>
+<div class="shimmer-line" style="top:50%;left:300px;width:140px;animation-duration:3.5s;animation-delay:1s;"></div>
+<div class="shimmer-line" style="top:65%;left:500px;width:180px;animation-duration:2.6s;animation-delay:1.5s;"></div>
+<div class="shimmer-line" style="top:80%;left:200px;width:120px;animation-duration:3s;animation-delay:2s;"></div>
+<div class="shimmer-line" style="top:15%;left:600px;width:160px;animation-duration:4s;animation-delay:0.3s;"></div>
+<div class="shimmer-line" style="top:45%;left:50px;width:220px;animation-duration:3.8s;animation-delay:0.8s;"></div>
+</div>
+
+<!-- BEACH -->
+
+<div class="beach"></div>
+
+<!-- FOREST -->
+
+<div class="forest"></div>
+
+<!-- PALM TREES via SVG -->
+
+<svg class="palm-svg" style="left:-10px; width:240px; height:380px;" viewBox="0 0 240 380">
+<!-- left palm -->
+<path d="M70 380 Q65 300 72 250 Q76 220 68 180" stroke="#6b4010" stroke-width="9" fill="none" stroke-linecap="round"/>
+<!-- fronds -->
+<path d="M68 182 Q30 150 10 130" stroke="#1a6e28" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M68 182 Q50 145 60 115" stroke="#2a8a38" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M68 182 Q90 148 110 135" stroke="#1a7030" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M68 182 Q100 158 120 165" stroke="#228034" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M68 182 Q55 170 40 175" stroke="#1a6028" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M68 182 Q75 168 90 158" stroke="#2d9a3e" stroke-width="5" fill="none" stroke-linecap="round"/>
+<!-- coconuts -->
+<circle cx="72" cy="186" r="7" fill="#8B4513"/>
+<circle cx="66" cy="192" r="6" fill="#7a3c10"/>
+</svg>
+
+<svg class="palm-svg" style="right:0px; width:220px; height:420px;" viewBox="0 0 220 420">
+<!-- right palm leaning left -->
+<path d="M160 420 Q155 340 148 290 Q142 255 150 205" stroke="#5a3008" stroke-width="10" fill="none" stroke-linecap="round"/>
+<!-- fronds -->
+<path d="M150 207 Q180 170 200 148" stroke="#1e7e30" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M150 207 Q165 168 175 140" stroke="#2a9040" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M150 207 Q120 170 100 155" stroke="#1a7028" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M150 207 Q110 185 95 195" stroke="#228034" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M150 207 Q160 190 170 192" stroke="#1e6828" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M150 207 Q138 180 130 168" stroke="#30aa48" stroke-width="5" fill="none" stroke-linecap="round"/>
+<!-- coconuts -->
+<circle cx="147" cy="212" r="7" fill="#8B4513"/>
+<circle cx="153" cy="218" r="6" fill="#7a3c10"/>
+</svg>
+
+<!-- SMALL BACKGROUND PALMS -->
+
+<svg class="palm-svg" style="left:200px; width:120px; height:250px; opacity:0.7;" viewBox="0 0 120 250">
+<path d="M55 250 Q53 200 56 165 Q58 148 54 125" stroke="#4a2808" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M54 127 Q30 100 15 85" stroke="#156020" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M54 127 Q60 98 70 80" stroke="#1e7828" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M54 127 Q75 108 90 105" stroke="#186024" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M54 127 Q40 112 28 115" stroke="#146020" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
+
+<svg class="palm-svg" style="right:140px; width:100px; height:220px; opacity:0.65;" viewBox="0 0 100 220">
+<path d="M50 220 Q48 175 52 148 Q54 133 50 110" stroke="#4a2808" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M50 112 Q25 88 10 74" stroke="#186024" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M50 112 Q65 86 78 74" stroke="#1e7828" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M50 112 Q55 90 60 78" stroke="#166022" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M50 112 Q35 96 25 97" stroke="#1e6a28" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
+
+<!-- BOKEH PARTICLES -->
+
+<div class="bokeh">
+<div class="dot" style="width:4px;height:4px;left:10%;top:75%;animation-duration:8s;animation-delay:0s;"></div>
+<div class="dot" style="width:3px;height:3px;left:20%;top:80%;animation-duration:6s;animation-delay:1s;"></div>
+<div class="dot" style="width:5px;height:5px;left:35%;top:70%;animation-duration:9s;animation-delay:2s;"></div>
+<div class="dot" style="width:3px;height:3px;left:55%;top:85%;animation-duration:7s;animation-delay:0.5s;"></div>
+<div class="dot" style="width:4px;height:4px;left:70%;top:72%;animation-duration:8.5s;animation-delay:1.5s;"></div>
+<div class="dot" style="width:2px;height:2px;left:85%;top:78%;animation-duration:6.5s;animation-delay:3s;"></div>
+<div class="dot" style="width:6px;height:6px;left:45%;top:65%;animation-duration:10s;animation-delay:2.5s;opacity:0.3;"></div>
+<!-- ocean sparkles -->
+<div class="dot" style="width:3px;height:3px;left:15%;top:42%;animation-duration:2s;animation-delay:0s;background:rgba(200,255,240,0.9);"></div>
+<div class="dot" style="width:2px;height:2px;left:40%;top:44%;animation-duration:1.8s;animation-delay:0.3s;background:rgba(200,255,240,0.9);"></div>
+<div class="dot" style="width:3px;height:3px;left:65%;top:41%;animation-duration:2.2s;animation-delay:0.6s;background:rgba(200,255,240,0.9);"></div>
+<div class="dot" style="width:2px;height:2px;left:80%;top:46%;animation-duration:1.5s;animation-delay:1s;background:rgba(200,255,240,0.9);"></div>
+</div>
+
+<!-- FRAME CORNERS -->
+
+<div class="frame">
+<div class="frame-corner fc-tl"></div>
+<div class="frame-corner fc-tr"></div>
+<div class="frame-corner fc-bl"></div>
+<div class="frame-corner fc-br"></div>
+</div>
+
+<!-- TEXT OVERLAY -->
+
+<div class="text-overlay">
+<div class="top-label">Kagoshima · Amami Islands · Japan</div>
+
+```
+<div class="main-title-jp">与論島</div>
+<div class="main-title-en">YORON ISLAND</div>
+
+<div class="divider">
+<div class="divider-line"></div>
+<div class="divider-diamond"></div>
+<div class="divider-line"></div>
+</div>
+
+<div class="subtitle">天国に一番近い島</div>
+
+<div class="feature-badges">
+<div class="badge">🌊 EMERALD SEA</div>
+<div class="badge">🌺 TROPICAL</div>
+<div class="badge">🏖 WHITE SAND</div>
+</div>
+```
+
+</div>
+
+<!-- BOTTOM -->
+
+<div class="bottom-section">
+<div class="bottom-divider"></div>
+<div class="tagline">Where Heaven Meets the Sea</div>
+<div class="tagline-jp">南国の楽園へ、ようこそ</div>
+<div class="info-row">
+<div class="info-item">
+<span class="info-icon">🌊</span>
+<span class="info-label">CORAL REEF</span>
+</div>
+<div class="info-item">
+<span class="info-icon">🌺</span>
+<span class="info-label">HIBISCUS</span>
+</div>
+<div class="info-item">
+<span class="info-icon">🐢</span>
+<span class="info-label">SEA TURTLES</span>
+</div>
+<div class="info-item">
+<span class="info-icon">🎋</span>
+<span class="info-label">CULTURE</span>
+</div>
+<div class="info-item">
+<span class="info-icon">☀️</span>
+<span class="info-label">SUNSHINE</span>
+</div>
+</div>
+<div class="bottom-border"></div>
+</div>
+
+</div>
+</body>
+</html>

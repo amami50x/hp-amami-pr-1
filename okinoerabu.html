@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沖永良部島 — 花と鍾乳洞の楽園</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Noto+Serif+JP:wght@200;300;700&family=Trajan+Pro&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+width: 800px;
+height: 1130px;
+overflow: hidden;
+background: #020d1a;
+}
+
+.poster {
+width: 800px;
+height: 1130px;
+position: relative;
+overflow: hidden;
+background: #020d1a;
+}
+
+/* ===================== BACKGROUND BASE ===================== */
+.bg-gradient {
+position: absolute;
+inset: 0;
+background: linear-gradient(
+175deg,
+#010810 0%,
+#041628 8%,
+#062540 14%,
+#083860 20%,
+#0a5278 26%,
+#0c7090 30%,
+#0e8fa0 34%,
+#10aeb0 38%,
+#06c4b8 42%,
+#04d4b0 46%,
+#02c8a0 50%,
+#04b08a 54%,
+#068870 59%,
+#0a6050 64%,
+#0c4838 70%,
+#0a3028 76%,
+#071c18 82%,
+#041008 90%,
+#020808 100%
+);
+}
+
+/* ===================== STARS ===================== */
+.stars {
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 28%;
+overflow: hidden;
+}
+.star {
+position: absolute;
+border-radius: 50%;
+background: white;
+animation: twinkle ease-in-out infinite;
+}
+@keyframes twinkle {
+0%,100% { opacity: 0.2; transform: scale(1); }
+50% { opacity: 1; transform: scale(1.4); }
+}
+
+/* ===================== MOON ===================== */
+.moon-wrap {
+position: absolute;
+top: 36px;
+right: 110px;
+}
+.moon {
+width: 72px;
+height: 72px;
+border-radius: 50%;
+background: radial-gradient(circle at 38% 42%, #fffbe0 0%, #ffe88a 35%, #ffcc44 60%, #e0a020 85%, #c08010 100%);
+box-shadow:
+0 0 20px 8px rgba(255,220,80,0.35),
+0 0 50px 20px rgba(255,200,60,0.18),
+0 0 100px 40px rgba(255,180,40,0.08);
+animation: moonpulse 5s ease-in-out infinite;
+}
+@keyframes moonpulse {
+0%,100% { box-shadow: 0 0 20px 8px rgba(255,220,80,0.35), 0 0 50px 20px rgba(255,200,60,0.18), 0 0 100px 40px rgba(255,180,40,0.08); }
+50% { box-shadow: 0 0 28px 12px rgba(255,220,80,0.5), 0 0 70px 30px rgba(255,200,60,0.25), 0 0 130px 50px rgba(255,180,40,0.12); }
+}
+/* Moon craters */
+.moon::after {
+content: ‘’;
+position: absolute;
+top: 18px; left: 22px;
+width: 14px; height: 10px;
+border-radius: 50%;
+background: rgba(180,130,20,0.3);
+box-shadow: 20px 20px 0 8px rgba(160,110,10,0.2), -6px 28px 0 5px rgba(180,130,20,0.15);
+}
+.moon-halo {
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%,-50%);
+width: 120px; height: 120px;
+border-radius: 50%;
+border: 1px solid rgba(255,210,80,0.2);
+box-shadow: inset 0 0 20px rgba(255,200,60,0.05);
+}
+
+/* ===================== MILKY WAY / NEBULA ===================== */
+.nebula {
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 42%;
+background:
+radial-gradient(ellipse 60% 30% at 30% 50%, rgba(80,120,200,0.08) 0%, transparent 70%),
+radial-gradient(ellipse 80% 20% at 70% 60%, rgba(120,80,180,0.06) 0%, transparent 70%);
+pointer-events: none;
+}
+
+/* ===================== OCEAN ===================== */
+.ocean {
+position: absolute;
+top: 33%;
+left: 0; right: 0;
+height: 22%;
+}
+.ocean-layer {
+position: absolute;
+inset: 0;
+background: linear-gradient(180deg,
+rgba(15,180,200,0.9) 0%,
+rgba(10,160,175,0.95) 25%,
+rgba(6,140,155,1) 50%,
+rgba(4,110,125,1) 75%,
+rgba(2,80,95,1) 100%
+);
+}
+
+/* Bioluminescent glow on water */
+.bio-glow {
+position: absolute;
+bottom: 0;
+left: -10%;
+width: 120%;
+height: 40%;
+background: radial-gradient(ellipse 70% 100% at 50% 100%, rgba(0,255,200,0.15) 0%, transparent 70%);
+animation: bio 4s ease-in-out infinite;
+}
+@keyframes bio {
+0%,100% { opacity: 0.6; }
+50% { opacity: 1; }
+}
+
+/* Moonlight reflection */
+.moon-reflect {
+position: absolute;
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 120px;
+height: 100%;
+background: linear-gradient(180deg, rgba(255,220,100,0.25) 0%, rgba(255,200,80,0.08) 60%, transparent 100%);
+filter: blur(8px);
+animation: reflect 3s ease-in-out infinite;
+}
+@keyframes reflect {
+0%,100% { width: 100px; opacity: 0.8; }
+50% { width: 140px; opacity: 1; }
+}
+
+/* Water sparkles */
+.water-sparkle {
+position: absolute;
+width: 3px; height: 1px;
+background: rgba(255,255,255,0.8);
+border-radius: 50%;
+animation: sparkle ease-in-out infinite;
+}
+@keyframes sparkle {
+0%,100% { opacity: 0; transform: scaleX(1); }
+50% { opacity: 1; transform: scaleX(3); }
+}
+
+/* ===================== CORAL UNDERWATER HINT ===================== */
+.underwater {
+position: absolute;
+bottom: 0;
+left: 0; right: 0;
+height: 35%;
+overflow: hidden;
+}
+
+/* ===================== BEACH ===================== */
+.beach {
+position: absolute;
+top: 54%;
+left: 0; right: 0;
+height: 7%;
+}
+.beach-sand {
+position: absolute;
+inset: 0;
+background: linear-gradient(180deg,
+#f0d88a 0%,
+#e0c070 30%,
+#caa050 60%,
+#b88038 100%
+);
+border-radius: 55% 55% 0 0 / 25% 25% 0 0;
+}
+.beach-wet {
+position: absolute;
+top: 0; left: 5%; right: 5%;
+height: 30%;
+background: rgba(100,200,180,0.3);
+border-radius: 50%;
+filter: blur(6px);
+}
+
+/* ===================== CLIFF / ROCK FORMATION ===================== */
+.cliffs {
+position: absolute;
+top: 52%;
+left: 0; right: 0;
+height: 15%;
+pointer-events: none;
+}
+
+/* ===================== FOREST ===================== */
+.forest-bg {
+position: absolute;
+top: 60%;
+left: 0; right: 0;
+bottom: 0;
+background: linear-gradient(180deg,
+#094228 0%,
+#062e1c 25%,
+#041c10 55%,
+#020e08 80%,
+#010804 100%
+);
+}
+
+/* ===================== LILY FLOWERS ===================== */
+.lilies {
+position: absolute;
+bottom: 18%;
+left: 0; right: 0;
+height: 20%;
+pointer-events: none;
+}
+
+/* ===================== STALACTITE CAVE SILHOUETTE ===================== */
+.cave {
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 340px;
+height: 200px;
+pointer-events: none;
+}
+
+/* ===================== PALM & TROPICAL TREES ===================== */
+.vegetation { position: absolute; top: 52%; left: 0; right: 0; bottom: 0; }
+
+/* ===================== FRAME ===================== */
+.ornate-frame {
+position: absolute;
+inset: 0;
+pointer-events: none;
+}
+.frame-top, .frame-bottom {
+position: absolute;
+left: 0; right: 0;
+height: 6px;
+}
+.frame-top { top: 0; background: linear-gradient(90deg, transparent, rgba(0,200,160,0.8), rgba(255,215,80,0.6), rgba(0,200,160,0.8), transparent); }
+.frame-bottom { bottom: 0; background: linear-gradient(90deg, transparent, rgba(0,200,160,0.8), rgba(255,215,80,0.6), rgba(0,200,160,0.8), transparent); }
+.frame-left, .frame-right {
+position: absolute;
+top: 0; bottom: 0;
+width: 6px;
+}
+.frame-left { left: 0; background: linear-gradient(180deg, transparent, rgba(0,200,160,0.8), rgba(255,215,80,0.6), rgba(0,200,160,0.8), transparent); }
+.frame-right { right: 0; background: linear-gradient(180deg, transparent, rgba(0,200,160,0.8), rgba(255,215,80,0.6), rgba(0,200,160,0.8), transparent); }
+
+/* ===================== TEXT ===================== */
+.text-layer {
+position: absolute;
+inset: 0;
+pointer-events: none;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.header-badge {
+margin-top: 28px;
+padding: 6px 24px;
+border: 1px solid rgba(0,210,170,0.5);
+border-radius: 30px;
+background: rgba(0,30,20,0.4);
+backdrop-filter: blur(4px);
+font-family: ‘Josefin Sans’, sans-serif;
+font-size: 9.5px;
+font-weight: 300;
+letter-spacing: 7px;
+color: rgba(140,255,220,0.9);
+text-shadow: 0 0 12px rgba(0,220,180,0.7);
+}
+
+.main-jp {
+margin-top: 175px;
+font-family: ‘Noto Serif JP’, serif;
+font-size: 78px;
+font-weight: 200;
+color: transparent;
+background: linear-gradient(180deg, #ffffff 0%, #b8ffe8 40%, #60ffcc 70%, #00e8b0 100%);
+-webkit-background-clip: text;
+background-clip: text;
+letter-spacing: 6px;
+line-height: 1;
+text-shadow: none;
+filter: drop-shadow(0 0 30px rgba(0,230,180,0.7)) drop-shadow(0 0 60px rgba(0,200,160,0.4));
+animation: title-glow 5s ease-in-out infinite;
+}
+@keyframes title-glow {
+0%,100% { filter: drop-shadow(0 0 20px rgba(0,230,180,0.6)) drop-shadow(0 0 50px rgba(0,200,160,0.3)); }
+50% { filter: drop-shadow(0 0 35px rgba(0,255,200,0.9)) drop-shadow(0 0 80px rgba(0,220,180,0.5)); }
+}
+
+.romaji {
+margin-top: 10px;
+font-family: ‘Cormorant Garamond’, serif;
+font-weight: 300;
+font-size: 18px;
+letter-spacing: 14px;
+color: rgba(200,255,240,0.85);
+text-shadow: 0 0 15px rgba(0,200,160,0.6);
+}
+
+.elegant-divider {
+margin-top: 16px;
+position: relative;
+width: 400px;
+height: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+.ediv-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,200,160,0.7), transparent); }
+.ediv-center {
+width: 16px; height: 16px;
+position: relative;
+flex-shrink: 0;
+}
+.ediv-center::before, .ediv-center::after {
+content: ‘’;
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%,-50%) rotate(45deg);
+border: 1px solid rgba(0,220,170,0.7);
+}
+.ediv-center::before { width: 10px; height: 10px; }
+.ediv-center::after { width: 6px; height: 6px; background: rgba(0,220,170,0.5); }
+
+.sub-jp {
+margin-top: 8px;
+font-family: ‘Noto Serif JP’, serif;
+font-size: 14px;
+font-weight: 200;
+color: rgba(180,255,230,0.8);
+letter-spacing: 6px;
+text-shadow: 0 0 12px rgba(0,200,160,0.5);
+}
+
+.feature-row {
+margin-top: 14px;
+display: flex;
+gap: 10px;
+}
+.feat {
+font-family: ‘Josefin Sans’, sans-serif;
+font-size: 8px;
+font-weight: 100;
+letter-spacing: 3px;
+color: rgba(160,255,220,0.75);
+border: 1px solid rgba(0,200,160,0.3);
+padding: 4px 14px;
+background: rgba(0,40,30,0.3);
+border-radius: 2px;
+}
+
+.mid-spacer { flex: 1; }
+
+.bottom-wrap {
+width: 100%;
+padding: 0 50px 30px;
+background: linear-gradient(180deg, transparent 0%, rgba(1,8,5,0.95) 35%, rgba(1,5,3,0.99) 100%);
+}
+
+.bottom-divider-line {
+width: 100%;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(0,180,140,0.6), rgba(255,200,80,0.4), rgba(0,180,140,0.6), transparent);
+margin-bottom: 18px;
+}
+
+.tagline-en {
+font-family: ‘Cormorant Garamond’, serif;
+font-style: italic;
+font-size: 24px;
+font-weight: 300;
+color: rgba(160,255,220,0.9);
+text-align: center;
+letter-spacing: 2px;
+text-shadow: 0 0 20px rgba(0,200,160,0.5);
+display: block;
+margin-bottom: 8px;
+}
+
+.tagline-sub {
+font-family: ‘Noto Serif JP’, serif;
+font-size: 12px;
+font-weight: 200;
+color: rgba(120,220,180,0.7);
+letter-spacing: 5px;
+text-align: center;
+display: block;
+margin-bottom: 16px;
+}
+
+.icon-row {
+display: flex;
+justify-content: center;
+gap: 36px;
+margin-bottom: 10px;
+}
+.icon-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 5px;
+}
+.icon-sym { font-size: 20px; filter: drop-shadow(0 0 6px rgba(0,200,160,0.7)); }
+.icon-lbl {
+font-family: ‘Josefin Sans’, sans-serif;
+font-size: 7.5px;
+font-weight: 100;
+letter-spacing: 2.5px;
+color: rgba(100,200,160,0.7);
+text-align: center;
+}
+
+.bottom-border-glow {
+width: 100%;
+height: 4px;
+background: linear-gradient(90deg, #003828, #00c890, #00ffcc, #00c890, #003828);
+border-radius: 2px;
+box-shadow: 0 0 12px rgba(0,200,160,0.6);
+margin-top: 8px;
+}
+</style>
+
+</head>
+<body>
+<div class="poster">
+
+<!-- BASE GRADIENT -->
+
+<div class="bg-gradient"></div>
+
+<!-- NEBULA -->
+
+<div class="nebula"></div>
+
+<!-- STARS -->
+
+<div class="stars" id="stars"></div>
+
+<!-- MOON -->
+
+<div class="moon-wrap">
+<div class="moon-halo"></div>
+<div class="moon"></div>
+</div>
+
+<!-- OCEAN -->
+
+<div class="ocean">
+<div class="ocean-layer"></div>
+<div class="bio-glow"></div>
+<div class="moon-reflect"></div>
+<!-- water sparkles -->
+<div class="water-sparkle" style="top:30%;left:15%;animation-duration:1.8s;animation-delay:0s;"></div>
+<div class="water-sparkle" style="top:45%;left:28%;animation-duration:2.2s;animation-delay:0.4s;"></div>
+<div class="water-sparkle" style="top:25%;left:42%;animation-duration:1.5s;animation-delay:0.8s;"></div>
+<div class="water-sparkle" style="top:55%;left:58%;animation-duration:2s;animation-delay:1.2s;"></div>
+<div class="water-sparkle" style="top:35%;left:70%;animation-duration:1.7s;animation-delay:0.6s;"></div>
+<div class="water-sparkle" style="top:20%;left:82%;animation-duration:2.4s;animation-delay:1s;"></div>
+<div class="water-sparkle" style="top:60%;left:90%;animation-duration:1.9s;animation-delay:1.5s;"></div>
+</div>
+
+<!-- BEACH -->
+
+<div class="beach">
+<div class="beach-sand"></div>
+<div class="beach-wet"></div>
+</div>
+
+<!-- FOREST BACKGROUND -->
+
+<div class="forest-bg"></div>
+
+<!-- VEGETATION / PALM TREES via SVG -->
+
+<svg style="position:absolute;top:50%;left:-15px;width:260px;height:460px;overflow:visible;" viewBox="0 0 260 460">
+<!-- main tall palm -->
+<path d="M80 460 Q75 380 82 310 Q88 270 80 220 Q74 185 82 150" stroke="#3d2005" stroke-width="11" fill="none" stroke-linecap="round"/>
+<!-- night-lit fronds -->
+<path d="M82 152 Q40 112 8 88" stroke="#0a5020" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M82 152 Q55 108 62 72" stroke="#0e6628" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M82 152 Q115 112 145 100" stroke="#0c5c24" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M82 152 Q125 132 148 145" stroke="#0a5820" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M82 152 Q65 138 46 142" stroke="#0c5420" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M82 152 Q96 136 108 124" stroke="#0e6828" stroke-width="6" fill="none" stroke-linecap="round"/>
+<!-- moonlit edge highlight on fronds -->
+<path d="M82 152 Q40 112 8 88" stroke="rgba(100,255,200,0.15)" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M82 152 Q115 112 145 100" stroke="rgba(100,255,200,0.15)" stroke-width="3" fill="none" stroke-linecap="round"/>
+<!-- coconuts -->
+<circle cx="84" cy="158" r="8" fill="#5c2e08"/>
+<circle cx="78" cy="165" r="7" fill="#4a2406"/>
+<circle cx="88" cy="166" r="6" fill="#523008"/>
+<!-- smaller palm -->
+<path d="M185 460 Q182 400 188 355 Q192 330 186 295" stroke="#3a1e05" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M186 297 Q155 268 138 252" stroke="#0c5820" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M186 297 Q200 265 215 254" stroke="#0e6028" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M186 297 Q195 278 206 275" stroke="#0a5418" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M186 297 Q170 278 160 277" stroke="#0c5820" stroke-width="5" fill="none" stroke-linecap="round"/>
+<!-- fern / tropical shrub silhouette -->
+<path d="M20 460 Q10 420 15 390 Q35 380 30 400 Q50 370 45 390 Q60 365 55 385 Q75 360 68 385 Q80 365 78 385" stroke="#072a12" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
+
+<svg style="position:absolute;top:50%;right:-10px;width:250px;height:440px;overflow:visible;" viewBox="0 0 250 440">
+<!-- right palm leaning outward -->
+<path d="M170 440 Q168 370 162 305 Q158 272 166 235 Q172 205 164 170" stroke="#3d2005" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M164 172 Q200 135 228 115" stroke="#0a5020" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M164 172 Q190 130 196 100" stroke="#0e6028" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M164 172 Q128 135 105 120" stroke="#0c5820" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M164 172 Q120 152 100 162" stroke="#0a5418" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M164 172 Q178 152 188 148" stroke="#0c6020" stroke-width="5" fill="none" stroke-linecap="round"/>
+<!-- moonlit edges -->
+<path d="M164 172 Q200 135 228 115" stroke="rgba(100,255,200,0.12)" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M164 172 Q128 135 105 120" stroke="rgba(100,255,200,0.12)" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="162" cy="178" r="8" fill="#4a2406"/>
+<circle cx="167" cy="185" r="7" fill="#523008"/>
+<!-- shrubs -->
+<path d="M220 440 Q225 395 220 370 Q200 360 205 380 Q188 355 194 372 Q175 350 180 370 Q162 348 168 368" stroke="#062210" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
+
+<!-- CAVE STALACTITES SILHOUETTE -->
+
+<svg style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:380px;height:220px;opacity:0.55;" viewBox="0 0 380 220">
+<!-- cave arch -->
+<path d="M0 220 Q0 120 50 100 Q90 85 130 90 Q160 72 190 68 Q220 72 250 90 Q290 85 330 100 Q380 120 380 220 Z" fill="#010c06"/>
+<!-- stalactites -->
+<path d="M60 90 L55 130 L65 130 Z" fill="#01100a"/>
+<path d="M95 88 L88 148 L102 148 Z" fill="#01100a"/>
+<path d="M130 85 L124 120 L136 120 Z" fill="#01100a"/>
+<path d="M162 78 L157 115 L167 115 Z" fill="#01100a"/>
+<path d="M190 70 L184 108 L196 108 Z" fill="#01100a"/>
+<path d="M218 78 L213 118 L223 118 Z" fill="#01100a"/>
+<path d="M250 85 L245 125 L255 125 Z" fill="#01100a"/>
+<path d="M285 88 L279 145 L291 145 Z" fill="#01100a"/>
+<path d="M318 90 L313 128 L323 128 Z" fill="#01100a"/>
+<!-- Glow inside cave opening -->
+<ellipse cx="190" cy="180" rx="120" ry="50" fill="rgba(0,180,130,0.1)"/>
+</svg>
+
+<!-- LILY FLOWERS SVG -->
+
+<svg style="position:absolute;bottom:14%;left:0;right:0;width:100%;height:180px;overflow:visible;" viewBox="0 0 800 180" preserveAspectRatio="none">
+<!-- multiple white lilies -->
+<!-- Lily 1 -->
+<g transform="translate(80,120)">
+<line x1="0" y1="0" x2="0" y2="60" stroke="#0a4020" stroke-width="2.5"/>
+<path d="M0,-5 C-10,-20 -18,-35 -12,-45 C-6,-55 0,-50 0,-40 C0,-50 6,-55 12,-45 C18,-35 10,-20 0,-5Z" fill="rgba(255,255,255,0.9)" stroke="rgba(200,255,230,0.4)" stroke-width="0.5"/>
+<path d="M0,-5 C-20,-8 -38,-5 -40,5 C-42,15 -30,18 -18,12 C-28,20 -28,34 -18,36 C-8,38 0,28 0,18" fill="rgba(255,255,255,0.85)" stroke="rgba(200,255,230,0.3)" stroke-width="0.5"/>
+<path d="M0,-5 C20,-8 38,-5 40,5 C42,15 30,18 18,12 C28,20 28,34 18,36 C8,38 0,28 0,18" fill="rgba(255,255,255,0.85)" stroke="rgba(200,255,230,0.3)" stroke-width="0.5"/>
+<circle cx="0" cy="10" r="5" fill="rgba(255,220,80,0.8)"/>
+<filter id="lilyGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</g>
+<!-- Lily 2 -->
+<g transform="translate(180,100) rotate(-15)">
+<line x1="0" y1="0" x2="0" y2="70" stroke="#0a4020" stroke-width="2"/>
+<path d="M0,-5 C-10,-20 -16,-32 -10,-42 C-4,-52 0,-47 0,-37 C0,-47 4,-52 10,-42 C16,-32 10,-20 0,-5Z" fill="rgba(255,255,255,0.88)"/>
+<path d="M0,-5 C-18,-7 -34,-4 -36,5 C-38,14 -27,16 -16,11 C-25,18 -25,30 -16,32 C-7,34 0,25 0,15" fill="rgba(255,255,255,0.83)"/>
+<path d="M0,-5 C18,-7 34,-4 36,5 C38,14 27,16 16,11 C25,18 25,30 16,32 C7,34 0,25 0,15" fill="rgba(255,255,255,0.83)"/>
+<circle cx="0" cy="8" r="4" fill="rgba(255,210,60,0.8)"/>
+</g>
+<!-- Lily 3 large center -->
+<g transform="translate(400,80)">
+<line x1="0" y1="0" x2="-10" y2="100" stroke="#0c4a22" stroke-width="3"/>
+<path d="M0,-8 C-14,-28 -24,-48 -16,-62 C-8,-76 0,-68 0,-54 C0,-68 8,-76 16,-62 C24,-48 14,-28 0,-8Z" fill="rgba(255,255,255,0.95)"/>
+<path d="M0,-8 C-26,-12 -50,-7 -52,6 C-54,19 -38,23 -22,16 C-36,26 -36,46 -22,49 C-10,52 0,38 0,24" fill="rgba(255,255,255,0.9)"/>
+<path d="M0,-8 C26,-12 50,-7 52,6 C54,19 38,23 22,16 C36,26 36,46 22,49 C10,52 0,38 0,24" fill="rgba(255,255,255,0.9)"/>
+<circle cx="0" cy="12" r="7" fill="rgba(255,220,80,0.85)"/>
+<circle cx="0" cy="12" r="3" fill="rgba(255,180,40,0.9)"/>
+</g>
+<!-- Lily 4 -->
+<g transform="translate(600,95) rotate(10)">
+<line x1="0" y1="0" x2="5" y2="75" stroke="#0a4020" stroke-width="2.5"/>
+<path d="M0,-6 C-11,-22 -18,-36 -12,-46 C-6,-56 0,-50 0,-40 C0,-50 6,-56 12,-46 C18,-36 11,-22 0,-6Z" fill="rgba(255,255,255,0.9)"/>
+<path d="M0,-6 C-20,-9 -38,-5 -40,5 C-42,15 -30,18 -18,13 C-28,21 -28,35 -18,37 C-8,39 0,29 0,19" fill="rgba(255,255,255,0.85)"/>
+<path d="M0,-6 C20,-9 38,-5 40,5 C42,15 30,18 18,13 C28,21 28,35 18,37 C8,39 0,29 0,19" fill="rgba(255,255,255,0.85)"/>
+<circle cx="0" cy="10" r="5" fill="rgba(255,215,70,0.8)"/>
+</g>
+<!-- Lily 5 -->
+<g transform="translate(720,115) rotate(-8)">
+<line x1="0" y1="0" x2="-5" y2="65" stroke="#094018" stroke-width="2"/>
+<path d="M0,-5 C-9,-18 -14,-30 -9,-38 C-4,-46 0,-42 0,-34 C0,-42 4,-46 9,-38 C14,-30 9,-18 0,-5Z" fill="rgba(255,255,255,0.86)"/>
+<path d="M0,-5 C-17,-7 -32,-4 -33,4 C-34,12 -24,14 -14,10 C-22,16 -22,27 -14,29 C-6,31 0,23 0,14" fill="rgba(255,255,255,0.82)"/>
+<path d="M0,-5 C17,-7 32,-4 33,4 C34,12 24,14 14,10 C22,16 22,27 14,29 C6,31 0,23 0,14" fill="rgba(255,255,255,0.82)"/>
+<circle cx="0" cy="8" r="4" fill="rgba(255,205,60,0.8)"/>
+</g>
+<!-- lily buds -->
+<g transform="translate(300,140)">
+<line x1="0" y1="0" x2="0" y2="40" stroke="#0a4020" stroke-width="1.5"/>
+<path d="M0,0 C-8,-15 -6,-28 0,-30 C6,-28 8,-15 0,0Z" fill="rgba(255,255,255,0.7)"/>
+</g>
+<g transform="translate(500,145)">
+<line x1="0" y1="0" x2="3" y2="35" stroke="#094018" stroke-width="1.5"/>
+<path d="M0,0 C-7,-13 -5,-25 0,-27 C5,-25 7,-13 0,0Z" fill="rgba(255,255,255,0.65)"/>
+</g>
+<!-- leaves -->
+<path d="M70,180 Q100,150 130,160 Q110,175 70,180Z" fill="#0a4020" opacity="0.8"/>
+<path d="M160,180 Q200,148 240,158 Q210,170 160,180Z" fill="#0c4a22" opacity="0.75"/>
+<path d="M350,180 Q400,142 450,155 Q415,168 350,180Z" fill="#0a4020" opacity="0.8"/>
+<path d="M550,180 Q600,146 650,158 Q615,172 550,180Z" fill="#0c4a22" opacity="0.75"/>
+<path d="M680,180 Q720,150 760,162 Q730,174 680,180Z" fill="#094018" opacity="0.7"/>
+</svg>
+
+<!-- FRAME -->
+
+<div class="ornate-frame">
+<div class="frame-top"></div>
+<div class="frame-bottom"></div>
+<div class="frame-left"></div>
+<div class="frame-right"></div>
+</div>
+
+<!-- TEXT -->
+
+<div class="text-layer">
+<div class="header-badge">KAGOSHIMA · AMAMI ISLANDS · JAPAN</div>
+
+```
+<div class="main-jp">沖永良部島</div>
+<div class="romaji">O K I N O E R A B U J I M A</div>
+
+<div class="elegant-divider">
+<div class="ediv-line"></div>
+<div class="ediv-center"></div>
+<div class="ediv-line"></div>
+</div>
+
+<div class="sub-jp">花と鍾乳洞と珊瑚の楽園</div>
+
+<div class="feature-row">
+<div class="feat">🌸 LILY FLOWERS</div>
+<div class="feat">🕌 CAVE WONDERS</div>
+<div class="feat">🪸 CORAL REEF</div>
+</div>
+
+<div class="mid-spacer"></div>
+
+<div class="bottom-wrap">
+<div class="bottom-divider-line"></div>
+<span class="tagline-en">Island of Flowers, Stars &amp; Ancient Caves</span>
+<span class="tagline-sub">南の海に輝く、秘密の楽園へ</span>
+<div class="icon-row">
+<div class="icon-item">
+<span class="icon-sym">🌺</span>
+<span class="icon-lbl">ERABU LILY</span>
+</div>
+<div class="icon-item">
+<span class="icon-sym">🦋</span>
+<span class="icon-lbl">BUTTERFLY</span>
+</div>
+<div class="icon-item">
+<span class="icon-sym">🌊</span>
+<span class="icon-lbl">EMERALD SEA</span>
+</div>
+<div class="icon-item">
+<span class="icon-sym">🪨</span>
+<span class="icon-lbl">STALACTITES</span>
+</div>
+<div class="icon-item">
+<span class="icon-sym">⭐</span>
+<span class="icon-lbl">STARRY SKY</span>
+</div>
+</div>
+<div class="bottom-border-glow"></div>
+</div>
+```
+
+</div>
+
+</div>
+
+<script>
+// Generate stars
+const starsDiv = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+const s = document.createElement('div');
+s.className = 'star';
+const size = Math.random() * 2.5 + 0.8;
+s.style.cssText = `
+width:${size}px; height:${size}px;
+left:${Math.random()*100}%;
+top:${Math.random()*100}%;
+animation-duration:${2+Math.random()*4}s;
+animation-delay:${Math.random()*5}s;
+opacity:${0.3+Math.random()*0.6};
+`;
+starsDiv.appendChild(s);
+}
+</script>
+
+</body>
+</html>

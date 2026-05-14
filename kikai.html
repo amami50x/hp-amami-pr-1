@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喜界島 — 隆起珊瑚礁の島</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700;800&family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:800px; height:1130px; overflow:hidden; background:#1a0800; }
+
+.poster {
+width:800px; height:1130px;
+position:relative; overflow:hidden;
+}
+
+/* ── SKY ── */
+.sky {
+position:absolute;
+inset:0;
+background: linear-gradient(
+180deg,
+#0d0508 0%,
+#1c0a10 5%,
+#2e0d18 9%,
+#4a1020 13%,
+#6e1828 17%,
+#922a1a 21%,
+#b84010 25%,
+#d46010 29%,
+#e88020 33%,
+#f0a030 37%,
+#f5b840 41%,
+#f0c858 45%,
+#e8d478 49%,
+#d4d890 53%,
+#b0d8a8 57%,
+#88c8c0 61%,
+#60b4cc 65%,
+#42a0d0 69%,
+#2e8cc0 73%,
+#1e78b0 78%,
+#0e5c8a 85%,
+#083e60 92%,
+#042030 100%
+);
+}
+
+/* ── SUNRISE LIGHT BURST ── */
+.sun-wrap {
+position:absolute;
+top: 168px;
+left: 50%;
+transform: translateX(-50%);
+width: 1px; height: 1px;
+}
+.sun-corona {
+position:absolute;
+top:50%; left:50%;
+transform:translate(-50%,-50%);
+border-radius:50%;
+animation: coronapulse 4s ease-in-out infinite;
+}
+.corona-1 { width:500px; height:300px; background:radial-gradient(ellipse, rgba(255,200,60,0.18) 0%, transparent 70%); }
+.corona-2 { width:300px; height:200px; background:radial-gradient(ellipse, rgba(255,170,40,0.28) 0%, transparent 65%); }
+.corona-3 { width:160px; height:120px; background:radial-gradient(ellipse, rgba(255,240,120,0.45) 0%, transparent 60%); }
+.sun-disk {
+position:absolute;
+top:50%; left:50%;
+transform:translate(-50%,-50%);
+width:64px; height:64px;
+border-radius:50%;
+background: radial-gradient(circle, #fffce0 0%, #fff4a0 30%, #ffdc50 55%, #ffb820 75%, #ff8800 90%, #e05000 100%);
+box-shadow:
+0 0 0 8px rgba(255,200,60,0.2),
+0 0 0 20px rgba(255,160,40,0.12),
+0 0 0 40px rgba(255,120,20,0.08),
+0 0 60px 30px rgba(255,180,40,0.4),
+0 0 120px 60px rgba(255,140,20,0.2);
+}
+@keyframes coronapulse {
+0%,100% { opacity:1; transform:translate(-50%,-50%) scale(1); }
+50% { opacity:0.85; transform:translate(-50%,-50%) scale(1.06); }
+}
+
+/* Light rays fanning out */
+.rays {
+position:absolute;
+top:50%; left:50%;
+transform:translate(-50%,-50%);
+width:800px; height:800px;
+border-radius:50%;
+background: conic-gradient(
+from 0deg,
+transparent 0deg, rgba(255,200,60,0.07) 3deg, transparent 6deg,
+transparent 14deg, rgba(255,210,80,0.06) 17deg, transparent 20deg,
+transparent 28deg, rgba(255,200,60,0.08) 31deg, transparent 34deg,
+transparent 42deg, rgba(255,210,80,0.05) 45deg, transparent 48deg,
+transparent 56deg, rgba(255,200,60,0.07) 59deg, transparent 62deg,
+transparent 70deg, rgba(255,210,80,0.06) 73deg, transparent 76deg,
+transparent 84deg, rgba(255,200,60,0.07) 87deg, transparent 90deg,
+transparent 98deg, rgba(255,210,80,0.05) 101deg, transparent 104deg,
+transparent 112deg, rgba(255,200,60,0.06) 115deg, transparent 118deg,
+transparent 126deg, rgba(255,210,80,0.07) 129deg, transparent 132deg,
+transparent 140deg, rgba(255,200,60,0.05) 143deg, transparent 146deg,
+transparent 154deg, rgba(255,210,80,0.06) 157deg, transparent 160deg,
+transparent 168deg, rgba(255,200,60,0.07) 171deg, transparent 174deg,
+transparent 182deg, rgba(255,210,80,0.05) 185deg, transparent 188deg,
+transparent 196deg, rgba(255,200,60,0.06) 199deg, transparent 202deg,
+transparent 210deg, rgba(255,210,80,0.07) 213deg, transparent 216deg,
+transparent 224deg, rgba(255,200,60,0.05) 227deg, transparent 230deg,
+transparent 238deg, rgba(255,210,80,0.06) 241deg, transparent 244deg,
+transparent 252deg, rgba(255,200,60,0.07) 255deg, transparent 258deg,
+transparent 266deg, rgba(255,210,80,0.05) 269deg, transparent 272deg,
+transparent 280deg, rgba(255,200,60,0.06) 283deg, transparent 286deg,
+transparent 294deg, rgba(255,210,80,0.07) 297deg, transparent 300deg,
+transparent 308deg, rgba(255,200,60,0.05) 311deg, transparent 314deg,
+transparent 322deg, rgba(255,210,80,0.06) 325deg, transparent 328deg,
+transparent 336deg, rgba(255,200,60,0.07) 339deg, transparent 342deg,
+transparent 350deg, rgba(255,210,80,0.05) 353deg, transparent 356deg,
+transparent 360deg
+);
+animation: ray-rotate 30s linear infinite;
+pointer-events:none;
+}
+@keyframes ray-rotate { from { transform:translate(-50%,-50%) rotate(0deg); } to { transform:translate(-50%,-50%) rotate(360deg); } }
+
+/* ── ATMOSPHERIC HORIZON GLOW ── */
+.horizon-glow {
+position:absolute;
+top: 140px;
+left:-10%; width:120%;
+height:260px;
+background: radial-gradient(ellipse 80% 60% at 50% 50%,
+rgba(255,180,40,0.22) 0%,
+rgba(255,140,20,0.14) 35%,
+rgba(255,100,10,0.07) 60%,
+transparent 80%
+);
+pointer-events:none;
+}
+
+/* ── CLOUDS ── */
+.clouds { position:absolute; top:0; left:0; right:0; height:55%; pointer-events:none; }
+.cloud-band {
+position:absolute;
+height:18px;
+border-radius:50%;
+filter:blur(10px);
+}
+/* warm dawn clouds */
+.cb1 { top:100px; left:5%; width:280px; background:rgba(255,140,60,0.35); }
+.cb2 { top:115px; left:0%; width:200px; background:rgba(255,100,40,0.28); }
+.cb3 { top:92px; left:15%; width:160px; background:rgba(255,200,100,0.25); }
+.cb4 { top:105px; right:8%; width:250px; background:rgba(255,130,50,0.3); }
+.cb5 { top:118px; right:0%; width:190px; background:rgba(255,90,30,0.22); }
+.cb6 { top:88px; right:20%; width:130px; background:rgba(255,190,90,0.2); }
+/* high thin cirrus */
+.cb7 { top:40px; left:10%; width:350px; height:8px; background:rgba(255,220,180,0.15); filter:blur(6px); }
+.cb8 { top:55px; right:5%; width:280px; height:8px; background:rgba(255,200,160,0.12); filter:blur(6px); }
+.cb9 { top:30px; left:30%; width:200px; height:6px; background:rgba(255,230,190,0.1); filter:blur(5px); }
+
+/* ── OCEAN ── */
+.ocean {
+position:absolute;
+top:42%; left:0; right:0;
+height:18%;
+}
+.ocean-body {
+position:absolute; inset:0;
+background:linear-gradient(180deg,
+rgba(255,160,40,0.6) 0%,
+rgba(200,130,30,0.3) 5%,
+rgba(80,170,190,0.9) 12%,
+rgba(40,160,185,0.95) 25%,
+rgba(20,148,175,1) 45%,
+rgba(10,130,155,1) 65%,
+rgba(5,110,135,1) 85%,
+rgba(2,90,115,1) 100%
+);
+}
+/* sunrise reflection column */
+.sun-reflection {
+position:absolute;
+top:0; left:50%;
+transform:translateX(-50%);
+width:180px; height:100%;
+background:linear-gradient(180deg,
+rgba(255,200,60,0.55) 0%,
+rgba(255,170,40,0.35) 20%,
+rgba(255,140,20,0.18) 50%,
+rgba(255,120,10,0.08) 80%,
+transparent 100%
+);
+filter:blur(12px);
+animation:reflectwave 3.5s ease-in-out infinite;
+}
+@keyframes reflectwave {
+0%,100% { width:160px; opacity:0.9; }
+50% { width:200px; opacity:1; }
+}
+/* wave ripples */
+.wave {
+position:absolute;
+left:0; right:0;
+height:3px;
+border-radius:50%;
+background:rgba(255,255,255,0.18);
+filter:blur(1px);
+animation:waveflow linear infinite;
+}
+@keyframes waveflow {
+0% { transform:translateX(-5%) scaleX(0.95); opacity:0; }
+20% { opacity:1; }
+80% { opacity:0.6; }
+100% { transform:translateX(5%) scaleX(1.05); opacity:0; }
+}
+
+/* ── RAISED CORAL REEF PLATEAU (MAIN FEATURE) ── */
+.reef-plateau {
+position:absolute;
+top:57%;
+left:0; right:0;
+height:18%;
+pointer-events:none;
+}
+
+/* ── CORAL CLIFFS ── */
+.coral-cliff-svg {
+position:absolute;
+top:0; left:0;
+width:100%; height:100%;
+}
+
+/* ── SUGARCANE FIELDS ── */
+.fields {
+position:absolute;
+top:68%; left:0; right:0;
+height:16%;
+background:linear-gradient(180deg,
+#4a7a18 0%,
+#3c6412 25%,
+#2e4e0c 55%,
+#1e3208 80%,
+#121e04 100%
+);
+}
+
+/* ── FOREGROUND VEGETATION ── */
+.veg-layer {
+position:absolute;
+top:76%; left:0; right:0; bottom:0;
+background:linear-gradient(180deg,
+#1a3a08 0%,
+#0f2204 30%,
+#070e02 65%,
+#030804 100%
+);
+}
+
+/* ── TRADITIONAL VILLAGE SILHOUETTE ── */
+.village { position:absolute; top:65%; left:0; right:0; height:14%; pointer-events:none; }
+
+/* ── FOREGROUND PLANTS ── */
+.fg-plants { position:absolute; bottom:0; left:0; right:0; height:320px; pointer-events:none; }
+
+/* ── ORNAMENTAL FRAME ── */
+.frame { position:absolute; inset:0; pointer-events:none; }
+.f-top { position:absolute; top:0; left:0; right:0; height:5px;
+background:linear-gradient(90deg,#2a0800,#e06010,#ffb820,#e06010,#2a0800); }
+.f-bottom { position:absolute; bottom:0; left:0; right:0; height:5px;
+background:linear-gradient(90deg,#2a0800,#e06010,#ffb820,#e06010,#2a0800); }
+.f-left { position:absolute; top:0; bottom:0; left:0; width:5px;
+background:linear-gradient(180deg,#2a0800,#e06010,#ffb820,#e06010,#2a0800); }
+.f-right { position:absolute; top:0; bottom:0; right:0; width:5px;
+background:linear-gradient(180deg,#2a0800,#e06010,#ffb820,#e06010,#2a0800); }
+/* corner ornaments */
+.corner {
+position:absolute; width:55px; height:55px;
+border-color:rgba(255,180,40,0.6); border-style:solid;
+}
+.co-tl { top:14px; left:14px; border-width:2px 0 0 2px; }
+.co-tr { top:14px; right:14px; border-width:2px 2px 0 0; }
+.co-bl { bottom:14px; left:14px; border-width:0 0 2px 2px; }
+.co-br { bottom:14px; right:14px; border-width:0 2px 2px 0; }
+/* inner line */
+.inner-border {
+position:absolute;
+inset:20px;
+border:1px solid rgba(255,160,30,0.15);
+pointer-events:none;
+}
+
+/* ── TYPOGRAPHY ── */
+.typography {
+position:absolute; inset:0;
+display:flex; flex-direction:column; align-items:center;
+pointer-events:none;
+}
+
+.prefecture-label {
+margin-top:26px;
+font-family:‘Josefin Sans’,sans-serif;
+font-weight:200;
+font-size:10px;
+letter-spacing:9px;
+color:rgba(255,220,140,0.85);
+text-shadow:0 0 15px rgba(255,160,40,0.7);
+text-transform:uppercase;
+}
+
+/* MAIN TITLE */
+.title-jp {
+margin-top:165px;
+font-family:‘Shippori Mincho’,serif;
+font-size:88px;
+font-weight:800;
+color:transparent;
+background:linear-gradient(180deg,
+#ffffff 0%,
+#fff8d0 20%,
+#ffe890 45%,
+#ffcc40 65%,
+#ff9e10 82%,
+#e06800 100%
+);
+-webkit-background-clip:text;
+background-clip:text;
+letter-spacing:10px;
+line-height:1;
+filter:drop-shadow(0 0 25px rgba(255,160,30,0.8)) drop-shadow(0 4px 8px rgba(100,30,0,0.6));
+animation:titlepulse 5s ease-in-out infinite;
+}
+@keyframes titlepulse {
+0%,100% { filter:drop-shadow(0 0 20px rgba(255,160,30,0.7)) drop-shadow(0 4px 8px rgba(100,30,0,0.6)); }
+50% { filter:drop-shadow(0 0 35px rgba(255,200,60,1)) drop-shadow(0 4px 12px rgba(100,30,0,0.7)); }
+}
+
+.title-en {
+margin-top:8px;
+font-family:‘Cinzel Decorative’,serif;
+font-size:14px;
+font-weight:400;
+letter-spacing:8px;
+color:rgba(255,230,140,0.92);
+text-shadow:0 0 18px rgba(255,160,30,0.7);
+}
+
+/* ORNAMENTAL DIVIDER */
+.div-wrap {
+margin-top:14px;
+display:flex; align-items:center; gap:10px; width:380px;
+}
+.dline { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(255,180,50,0.8),transparent); }
+.dorn {
+width:18px; height:18px; position:relative; flex-shrink:0;
+}
+.dorn::before {
+content:’’; position:absolute; top:50%; left:50%;
+transform:translate(-50%,-50%) rotate(45deg);
+width:10px; height:10px;
+border:1.5px solid rgba(255,180,50,0.8);
+}
+.dorn::after {
+content:’’; position:absolute; top:50%; left:50%;
+transform:translate(-50%,-50%) rotate(45deg);
+width:5px; height:5px;
+background:rgba(255,180,50,0.8);
+box-shadow:0 0 6px rgba(255,160,30,0.8);
+}
+
+.catch-jp {
+margin-top:10px;
+font-family:‘Shippori Mincho’,serif;
+font-size:15px;
+font-weight:400;
+color:rgba(255,230,150,0.88);
+letter-spacing:5px;
+text-shadow:0 0 12px rgba(255,150,30,0.6);
+}
+
+.tags {
+margin-top:14px;
+display:flex; gap:10px;
+}
+.tag {
+font-family:‘Josefin Sans’,sans-serif;
+font-size:8.5px;
+font-weight:200;
+letter-spacing:3px;
+color:rgba(255,210,120,0.8);
+border:1px solid rgba(255,180,50,0.35);
+padding:5px 14px;
+background:rgba(60,20,0,0.35);
+border-radius:1px;
+text-shadow:0 0 8px rgba(255,150,30,0.5);
+}
+
+/* BOTTOM */
+.bottom {
+position:absolute;
+bottom:0; left:0; right:0;
+padding:22px 48px 28px;
+background:linear-gradient(180deg,transparent 0%,rgba(8,4,0,0.92) 35%,rgba(4,2,0,0.98) 100%);
+display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+.b-rule {
+width:82%; height:1px;
+background:linear-gradient(90deg,transparent,rgba(255,160,40,0.65),rgba(255,220,80,0.45),rgba(255,160,40,0.65),transparent);
+}
+.b-tagline {
+font-family:‘EB Garamond’,serif;
+font-style:italic;
+font-size:22px;
+color:rgba(255,210,120,0.92);
+text-align:center;
+letter-spacing:2px;
+text-shadow:0 0 16px rgba(255,150,30,0.5);
+}
+.b-sub {
+font-family:‘Shippori Mincho’,serif;
+font-size:12px;
+font-weight:400;
+color:rgba(220,180,100,0.75);
+letter-spacing:5px;
+text-align:center;
+}
+.b-icons {
+display:flex; gap:34px; margin-top:4px;
+}
+.b-icon { display:flex; flex-direction:column; align-items:center; gap:4px; }
+.b-sym { font-size:19px; filter:drop-shadow(0 0 5px rgba(255,160,30,0.6)); }
+.b-lbl {
+font-family:‘Josefin Sans’,sans-serif;
+font-size:7px;
+font-weight:100;
+letter-spacing:2.5px;
+color:rgba(200,160,80,0.7);
+}
+.b-bar {
+width:100%; height:4px;
+background:linear-gradient(90deg,#200800,#c05010,#ffaa20,#ffcc40,#ffaa20,#c05010,#200800);
+border-radius:2px;
+box-shadow:0 0 10px rgba(255,140,20,0.5);
+}
+</style>
+
+</head>
+<body>
+<div class="poster">
+
+<!-- SKY -->
+
+<div class="sky"></div>
+
+<!-- HORIZON GLOW -->
+
+<div class="horizon-glow"></div>
+
+<!-- SUN WRAP -->
+
+<div class="sun-wrap">
+<div class="sun-corona corona-1"></div>
+<div class="sun-corona corona-2"></div>
+<div class="sun-corona corona-3"></div>
+<div class="rays"></div>
+<div class="sun-disk"></div>
+</div>
+
+<!-- CLOUDS -->
+
+<div class="clouds">
+<div class="cloud-band cb1"></div>
+<div class="cloud-band cb2"></div>
+<div class="cloud-band cb3"></div>
+<div class="cloud-band cb4"></div>
+<div class="cloud-band cb5"></div>
+<div class="cloud-band cb6"></div>
+<div class="cloud-band cb7"></div>
+<div class="cloud-band cb8"></div>
+<div class="cloud-band cb9"></div>
+</div>
+
+<!-- OCEAN -->
+
+<div class="ocean">
+<div class="ocean-body"></div>
+<div class="sun-reflection"></div>
+<div class="wave" style="top:18%;animation-duration:5s;animation-delay:0s;"></div>
+<div class="wave" style="top:36%;animation-duration:6.5s;animation-delay:1s;"></div>
+<div class="wave" style="top:54%;animation-duration:4.8s;animation-delay:2s;"></div>
+<div class="wave" style="top:72%;animation-duration:5.8s;animation-delay:0.5s;"></div>
+<div class="wave" style="top:85%;animation-duration:7s;animation-delay:1.5s;"></div>
+</div>
+
+<!-- RAISED CORAL REEF CLIFF - SVG -->
+
+<svg style="position:absolute;top:54%;left:0;width:100%;height:200px;overflow:visible;" viewBox="0 0 800 200" preserveAspectRatio="none">
+<!-- main cliff plateau - layered coral rock -->
+<!-- back rock layer -->
+<path d="M0,80 Q60,55 120,62 Q180,50 250,58 Q320,45 400,52 Q480,44 560,50 Q630,42 700,48 Q750,45 800,50 L800,200 L0,200 Z" fill="#6a3818"/>
+<!-- coral texture bands -->
+<path d="M0,95 Q80,72 160,80 Q240,65 320,74 Q400,62 480,70 Q560,60 640,66 Q720,56 800,62 L800,200 L0,200 Z" fill="#7e4a22"/>
+<path d="M0,110 Q100,88 200,96 Q300,80 400,88 Q500,76 600,83 Q700,72 800,78 L800,200 L0,200 Z" fill="#8a5428"/>
+<!-- main front face -->
+<path d="M0,128 Q80,108 160,115 Q240,100 320,109 Q400,96 480,106 Q560,94 640,102 Q720,90 800,97 L800,200 L0,200 Z" fill="#966030"/>
+<!-- top surface of raised reef -->
+<path d="M0,128 Q80,108 160,115 Q240,100 320,109 Q400,96 480,106 Q560,94 640,102 Q720,90 800,97 L800,90 Q720,84 640,96 Q560,88 480,100 Q400,90 320,103 Q240,94 160,109 Q80,102 0,122 Z" fill="#a06a34"/>
+<!-- coral rock details / erosion lines -->
+<path d="M0,116 Q60,108 100,112 Q150,105 200,110 Q260,104 310,108" stroke="rgba(180,120,60,0.4)" stroke-width="1.5" fill="none"/>
+<path d="M350,100 Q400,95 450,99 Q510,93 560,97 Q620,91 680,95 Q740,90 800,93" stroke="rgba(180,120,60,0.35)" stroke-width="1.5" fill="none"/>
+<path d="M0,140 Q100,132 180,137 Q280,128 370,135 Q460,126 540,133" stroke="rgba(120,70,30,0.5)" stroke-width="2" fill="none"/>
+<path d="M500,128 Q600,121 700,126 Q760,120 800,124" stroke="rgba(120,70,30,0.45)" stroke-width="2" fill="none"/>
+<!-- rock face crevices -->
+<line x1="85" y1="110" x2="80" y2="200" stroke="rgba(80,40,10,0.4)" stroke-width="2"/>
+<line x1="220" y1="102" x2="215" y2="200" stroke="rgba(80,40,10,0.35)" stroke-width="1.5"/>
+<line x1="395" y1="96" x2="390" y2="200" stroke="rgba(80,40,10,0.3)" stroke-width="2"/>
+<line x1="580" y1="94" x2="576" y2="200" stroke="rgba(80,40,10,0.35)" stroke-width="1.5"/>
+<line x1="730" y1="92" x2="728" y2="200" stroke="rgba(80,40,10,0.3)" stroke-width="1.5"/>
+<!-- coral fossils hint on cliff face -->
+<ellipse cx="150" cy="150" rx="12" ry="8" fill="none" stroke="rgba(200,150,80,0.25)" stroke-width="1.5"/>
+<ellipse cx="350" cy="145" rx="10" ry="7" fill="none" stroke="rgba(200,150,80,0.2)" stroke-width="1.5"/>
+<ellipse cx="580" cy="152" rx="11" ry="7" fill="none" stroke="rgba(200,150,80,0.22)" stroke-width="1.5"/>
+<ellipse cx="700" cy="147" rx="9" ry="6" fill="none" stroke="rgba(200,150,80,0.2)" stroke-width="1.5"/>
+<!-- warm sunrise light on top of cliff -->
+<path d="M0,122 Q80,102 160,109 Q240,94 320,103 Q400,90 480,100 Q560,88 640,96 Q720,84 800,91 L800,128 Q720,122 640,130 Q560,120 480,130 Q400,118 320,127 Q240,116 160,123 Q80,116 0,136 Z" fill="rgba(255,160,40,0.22)"/>
+<!-- shadow base -->
+<path d="M0,175 L800,175 L800,200 L0,200 Z" fill="rgba(0,0,0,0.35)"/>
+</svg>
+
+<!-- FIELDS / LAND -->
+
+<div class="fields"></div>
+<div class="veg-layer"></div>
+
+<!-- TRADITIONAL VILLAGE SILHOUETTE -->
+
+<svg style="position:absolute;top:63%;left:0;width:100%;height:140px;overflow:visible;" viewBox="0 0 800 140">
+<!-- background hills -->
+<path d="M0,100 Q100,75 200,82 Q300,68 400,76 Q500,64 600,72 Q700,60 800,68 L800,140 L0,140 Z" fill="#152a08"/>
+<!-- sugarcane field rows -->
+<path d="M0,115 Q40,105 80,110 Q120,103 160,108 Q200,102 240,107 Q280,101 320,106 Q360,100 400,105 Q440,99 480,104 Q520,98 560,103 Q600,97 640,103 Q680,97 720,102 Q760,97 800,101 L800,140 L0,140 Z" fill="#1e3a0c"/>
+<!-- sugarcane stalks -->
+<g stroke="#2a5010" stroke-width="1.5" opacity="0.7">
+<line x1="20" y1="140" x2="22" y2="105"/>
+<line x1="40" y1="140" x2="38" y2="103"/>
+<line x1="60" y1="140" x2="62" y2="106"/>
+<line x1="80" y1="140" x2="78" y2="104"/>
+<line x1="100" y1="140" x2="102" y2="105"/>
+<line x1="120" y1="140" x2="118" y2="103"/>
+<line x1="140" y1="140" x2="142" y2="106"/>
+<line x1="160" y1="140" x2="158" y2="104"/>
+<line x1="180" y1="140" x2="182" y2="105"/>
+<line x1="200" y1="140" x2="198" y2="102"/>
+<line x1="220" y1="140" x2="222" y2="104"/>
+<line x1="240" y1="140" x2="238" y2="106"/>
+<line x1="260" y1="140" x2="262" y2="103"/>
+<line x1="280" y1="140" x2="278" y2="105"/>
+<line x1="300" y1="140" x2="302" y2="102"/>
+<line x1="320" y1="140" x2="318" y2="104"/>
+<line x1="340" y1="140" x2="342" y2="106"/>
+<line x1="360" y1="140" x2="358" y2="103"/>
+<line x1="380" y1="140" x2="382" y2="105"/>
+<line x1="400" y1="140" x2="398" y2="101"/>
+<line x1="420" y1="140" x2="422" y2="104"/>
+<line x1="440" y1="140" x2="438" y2="106"/>
+<line x1="460" y1="140" x2="462" y2="103"/>
+<line x1="480" y1="140" x2="478" y2="105"/>
+<line x1="500" y1="140" x2="502" y2="102"/>
+<line x1="520" y1="140" x2="518" y2="104"/>
+<line x1="540" y1="140" x2="542" y2="106"/>
+<line x1="560" y1="140" x2="558" y2="103"/>
+<line x1="580" y1="140" x2="582" y2="105"/>
+<line x1="600" y1="140" x2="598" y2="102"/>
+<line x1="620" y1="140" x2="622" y2="104"/>
+<line x1="640" y1="140" x2="638" y2="106"/>
+<line x1="660" y1="140" x2="662" y2="103"/>
+<line x1="680" y1="140" x2="678" y2="105"/>
+<line x1="700" y1="140" x2="702" y2="102"/>
+<line x1="720" y1="140" x2="718" y2="104"/>
+<line x1="740" y1="140" x2="742" y2="106"/>
+<line x1="760" y1="140" x2="758" y2="103"/>
+<line x1="780" y1="140" x2="782" y2="105"/>
+</g>
+<!-- house silhouettes -->
+<g fill="#0a1e06">
+<!-- house 1 -->
+<rect x="55" y="80" width="36" height="22"/>
+<polygon points="46,80 73,62 100,80"/>
+<!-- house 2 -->
+<rect x="130" y="76" width="44" height="26"/>
+<polygon points="120,76 152,55 176,76"/>
+<!-- chimney -->
+<rect x="158" y="60" width="6" height="12"/>
+<!-- house 3 small -->
+<rect x="240" y="82" width="28" height="20"/>
+<polygon points="233,82 254,67 275,82"/>
+<!-- house 4 large -->
+<rect x="500" y="72" width="52" height="30"/>
+<polygon points="490,72 526,48 562,72"/>
+<rect x="538" y="55" width="7" height="14"/>
+<!-- house 5 -->
+<rect x="620" y="78" width="38" height="24"/>
+<polygon points="612,78 639,60 666,78"/>
+<!-- lighthouse / tower hint -->
+<rect x="720" y="58" width="16" height="44"/>
+<polygon points="716,58 728,48 740,58"/>
+<circle cx="728" cy="52" r="5" fill="#ffcc40" opacity="0.6"/>
+</g>
+<!-- warm sunrise tint on cliff top -->
+<rect x="0" y="0" width="800" height="80" fill="rgba(255,140,30,0.06)"/>
+</svg>
+
+<!-- FOREGROUND PLANTS -->
+
+<svg style="position:absolute;bottom:0;left:0;width:100%;height:350px;overflow:visible;" viewBox="0 0 800 350" preserveAspectRatio="none">
+<!-- dark ground -->
+<rect x="0" y="240" width="800" height="110" fill="#060e02"/>
+<!-- LEFT: tropical broad leaves -->
+<g transform="translate(-20,280)">
+<path d="M30,70 Q-10,20 40,-20 Q50,10 30,70Z" fill="#0a2808"/>
+<path d="M30,70 Q80,30 120,-10 Q100,30 30,70Z" fill="#0c3008"/>
+<path d="M30,70 Q-20,50 -30,90 Q0,80 30,70Z" fill="#082206"/>
+<path d="M30,70 Q60,80 80,110 Q50,85 30,70Z" fill="#0a2808"/>
+<line x1="30" y1="70" x2="40" y2="-20" stroke="#061804" stroke-width="1.5"/>
+<line x1="30" y1="70" x2="120" y2="-10" stroke="#061804" stroke-width="1.5"/>
+</g>
+<!-- large monstera-style left -->
+<g transform="translate(0,200)">
+<path d="M60,150 Q20,80 80,20 Q90,60 60,150Z" fill="#0e3410"/>
+<path d="M60,150 Q120,100 160,40 Q130,90 60,150Z" fill="#102e10"/>
+<path d="M80,20 Q60,50 75,80" stroke="#061806" stroke-width="2" fill="none"/>
+<path d="M160,40 Q130,70 120,100" stroke="#061806" stroke-width="2" fill="none"/>
+</g>
+<!-- RIGHT: palm-like leaves -->
+<g transform="translate(720,220)">
+<path d="M30,130 Q90,70 70,10 Q45,50 30,130Z" fill="#0c3008"/>
+<path d="M30,130 Q-20,80 10,20 Q25,60 30,130Z" fill="#0a2806"/>
+<path d="M30,130 Q60,140 90,170 Q55,145 30,130Z" fill="#0e3410"/>
+<line x1="30" y1="130" x2="70" y2="10" stroke="#062006" stroke-width="2"/>
+</g>
+<!-- more right filler -->
+<g transform="translate(660,250)">
+<path d="M40,100 Q100,50 90,0 Q60,40 40,100Z" fill="#0c2e08"/>
+<path d="M40,100 Q0,60 -10,10 Q20,50 40,100Z" fill="#0a2806"/>
+</g>
+<!-- small center foreground grass tufts -->
+<g stroke="#0a2808" stroke-width="2" fill="none">
+<path d="M300,350 Q295,310 300,280"/>
+<path d="M310,350 Q318,308 312,278"/>
+<path d="M320,350 Q314,315 322,285"/>
+<path d="M340,350 Q338,318 346,288"/>
+<path d="M460,350 Q455,312 462,282"/>
+<path d="M472,350 Q480,308 474,278"/>
+<path d="M484,350 Q478,315 486,285"/>
+</g>
+<!-- sunrise warmth tint on foreground -->
+<rect x="0" y="230" width="800" height="30" fill="rgba(255,120,20,0.05)"/>
+</svg>
+
+<!-- FRAME -->
+
+<div class="frame">
+<div class="f-top"></div>
+<div class="f-bottom"></div>
+<div class="f-left"></div>
+<div class="f-right"></div>
+<div class="corner co-tl"></div>
+<div class="corner co-tr"></div>
+<div class="corner co-bl"></div>
+<div class="corner co-br"></div>
+<div class="inner-border"></div>
+</div>
+
+<!-- TYPOGRAPHY -->
+
+<div class="typography">
+<div class="prefecture-label">Kagoshima · Amami Islands · Japan</div>
+
+```
+<div class="title-jp">喜界島</div>
+<div class="title-en">K I K A I J I M A</div>
+
+<div class="div-wrap">
+<div class="dline"></div>
+<div class="dorn"></div>
+<div class="dline"></div>
+</div>
+
+<div class="catch-jp">隆起珊瑚礁が作り出した、大地の奇跡</div>
+
+<div class="tags">
+<div class="tag">🪸 RAISED CORAL</div>
+<div class="tag">🌾 SUGARCANE</div>
+<div class="tag">🌅 SUNRISE</div>
+</div>
+```
+
+</div>
+
+<!-- BOTTOM PANEL -->
+
+<div class="bottom">
+<div class="b-rule"></div>
+<div class="b-tagline">Where the Earth Reaches for the Sky</div>
+<div class="b-sub">珊瑚礁が天高く聳える、太古の島へ</div>
+<div class="b-icons">
+<div class="b-icon"><span class="b-sym">🪸</span><span class="b-lbl">CORAL PLATEAU</span></div>
+<div class="b-icon"><span class="b-sym">🌾</span><span class="b-lbl">SUGARCANE</span></div>
+<div class="b-icon"><span class="b-sym">🦎</span><span class="b-lbl">WILDLIFE</span></div>
+<div class="b-icon"><span class="b-sym">🌅</span><span class="b-lbl">SUNRISE</span></div>
+<div class="b-icon"><span class="b-sym">⛩</span><span class="b-lbl">TRADITION</span></div>
+</div>
+<div class="b-bar"></div>
+</div>
+
+</div>
+</body>
+</html>
