@@ -484,12 +484,69 @@ td:first-child {
 }
 
 td {
-  background-color: rgb;
+  background-color: #e8f4fc;
 }
 
 #amami-table {
   border: 3px solid rgb(248, 199, 207);
   /* 戻る際に一時的に目立たせる */
+}
+
+.amami-table-hint {
+  max-width: 52em;
+  margin: 0 auto 12px;
+  padding: 10px 14px;
+  font-size: 0.95em;
+  line-height: 1.55;
+  text-align: center;
+  color: #123760;
+  background: #fff9e6;
+  border: 1px solid #e6c84a;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* 与論町行・東京奄美会行の下：区切り線を太く */
+#amami-table tr.amami-table-row-thick-bottom td {
+  border-bottom: 4px solid #000099 !important;
+}
+
+#amami-table tr.amami-table-row-thick-bottom--last td {
+  border-bottom: 5px solid #000099 !important;
+}
+
+/* 東京奄美会（市町村ではない） */
+#amami-table td.amami-org-name {
+  background-color: #6b2d5c !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#amami-table td.amami-org-name a.amami-org-name-link {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1.08em !important;
+  line-height: 1.35 !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#amami-table td.amami-org-name a.amami-org-name-link:hover {
+  color: #ffe8f5 !important;
+}
+
+/* 東京奄美会行：セル間の縦線を消し、表の左右外枠だけ残す */
+#amami-table tr.amami-table-footer-row td {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+#amami-table tr.amami-table-footer-row td:first-child {
+  border-left: 1px solid #0000ff !important;
+}
+
+#amami-table tr.amami-table-footer-row td:last-child {
+  border-right: 1px solid #0000ff !important;
 }
 
 /* 基本情報列：外部百科リンク */
@@ -530,6 +587,42 @@ td {
 #amami-table .table-link-btn.used {
   background: linear-gradient(180deg, #8f98a5 0%, #737c88 100%);
   border-color: #5f6875;
+}
+
+/* 市町村名（1列目）：table-link-btn の後に書き、青ボタン化・白文字化を防ぐ */
+#amami-table td.municipal-name {
+  background-color: #003399 !important;
+  text-align: center;
+  vertical-align: middle;
+  min-width: 5.5em;
+}
+
+#amami-table td.municipal-name a.municipal-name-link {
+  display: inline !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  color: #ffff00 !important;
+  font-weight: 800 !important;
+  font-size: 1.08em !important;
+  line-height: 1.35 !important;
+  text-decoration: none !important;
+  text-shadow: 0 0 2px #000, 0 1px 3px rgba(0, 0, 0, 0.85);
+}
+
+#amami-table td.municipal-name a.municipal-name-link:hover {
+  color: #fff566 !important;
+  filter: none;
+  transform: none;
+}
+
+#amami-table td.municipal-name a.municipal-name-link.used {
+  color: #cce0ff !important;
+  background: none !important;
+  border: none !important;
 }
 
 /* 島見出し行リンク（【喜界島】など）をピンクのボタン表示に */

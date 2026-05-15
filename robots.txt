@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# 本番以外のHTML（サーバに置いている場合のみ効く）
+Disallow: /hp-amami-pr-1/amami_checked.html
+Disallow: /hp-amami-pr-1/amami-upd.html
+Disallow: /hp-amami-pr-1/amami0419.html
+Disallow: /hp-amami-pr-1/amamibk
+
+Sitemap: https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/sitemap.xml

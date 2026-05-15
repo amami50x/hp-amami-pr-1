@@ -18,10 +18,22 @@ try:
     ftp.cwd('www/hp-amami-pr-1')
     print("正しいサーバーフォルダに移動しました。")
 
-    # amami.htmlをアップロード
-    with open('amami.html', 'rb') as f:
-        ftp.storbinary('STOR amami.html', f)
-        print("amami.html をアップロードしました！")
+    # 本番反映に必要なファイル（amami.html だけでは styles.css の変更が届かない）
+    upload_files = [
+        'amami.html',
+        'index.html',
+        'styles.css',
+        'script.js',
+        'robots.txt',
+        'sitemap.xml',
+    ]
+    for name in upload_files:
+        if not os.path.isfile(name):
+            print(f"スキップ（ファイルなし）: {name}")
+            continue
+        with open(name, 'rb') as f:
+            ftp.storbinary(f'STOR {name}', f)
+        print(f"{name} をアップロードしました。")
 
     ftp.quit()
     print("FTPセッションを終了しました。")

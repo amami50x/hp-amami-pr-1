@@ -44,6 +44,9 @@ def process_html_with_highlight(input_file, output_file):
         soup = BeautifulSoup(f, "lxml")
 
     for td in soup.find_all("td"):
+        if "municipal-name" in (td.get("class") or []):
+            continue
+
         link = td.find("a")
 
         if link and link.get("href"):

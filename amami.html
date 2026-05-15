@@ -5,21 +5,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css"> <!-- CSSファイルへのリンク -->
+  <link rel="stylesheet" href="styles.css?v=20260519"> <!-- CSS（更新時は ?v= の日付も上げる） -->
   <script src="script.js"></script>　
   <!-- JSファイルへのリンク -->
-  <title>奄美群島12市町村への旅行情報</title>
-  <meta name="description" content="奄美群島12市町村を横断した旅行案内です。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・奄美のイメージ画像などをまとめました。東京奄美会公式サイトからもご案内する奄美群島の旅行案内です。">
+  <title>奄美・奄美群島の観光｜12市町村の旅行情報（奄美会）</title>
+  <meta name="description" content="奄美・奄美群島への観光を考えている方へ。喜界島・奄美大島・徳之島・与論島など12市町村の観光・グルメ・アクセス・天気へのリンクを一覧でご案内。奄美会がまとめた、奄美群島の旅の入り口ページです。">
   <link rel="canonical" href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html">
-  <meta property="og:title" content="奄美群島12市町村への旅行情報">
-  <meta property="og:description" content="奄美群島12市町村を横断した旅行案内です。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・奄美のイメージ画像などをまとめました。東京奄美会公式サイトからもご案内する奄美群島の旅行案内です。">
+  <meta property="og:title" content="奄美・奄美群島の観光｜12市町村の旅行情報（奄美会）">
+  <meta property="og:description" content="奄美・奄美群島への観光を考えている方へ。12市町村の観光・グルメ・アクセス情報を一覧でご案内する奄美会の旅行情報ページです。">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:image" content="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/hp-image/title_gazo.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"奄美群島12市町村への旅行情報","description":"奄美群島12市町村を横断した旅行案内。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・イメージ画像をまとめました。","url":"https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html","inLanguage":"ja","publisher":{"@type":"Organization","name":"東京奄美会","url":"https://www.tokyoamamikai.com/"}}
+  {"@context":"https://schema.org","@type":"WebPage","name":"奄美・奄美群島の観光｜12市町村の旅行情報","description":"奄美・奄美群島への観光案内。12市町村の観光・グルメ・アクセス情報へのリンク一覧。","url":"https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html","inLanguage":"ja","about":{"@type":"TouristDestination","name":"奄美群島","description":"鹿児島県南部の奄美群島の観光"},"publisher":{"@type":"Organization","name":"東京奄美会","alternateName":"奄美会","url":"https://www.tokyoamamikai.com/"}}
   </script>
   <style>
 /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -29,6 +29,80 @@
       margin: 0;
       font-family: sans-serif;
     }
+
+    /* 市町村名（styles.css 未更新のサーバーでも表示されるよう HTML 内にも記載） */
+    #amami-table td.municipal-name {
+      background-color: #003399 !important;
+      text-align: center;
+      vertical-align: middle;
+      min-width: 5.5em;
+    }
+    #amami-table td.municipal-name a.municipal-name-link {
+      display: inline !important;
+      padding: 0 !important;
+      min-width: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background: none !important;
+      box-shadow: none !important;
+      color: #ffff00 !important;
+      font-weight: 800 !important;
+      font-size: 1.08em !important;
+      line-height: 1.35 !important;
+      text-decoration: none !important;
+      text-shadow: 0 0 2px #000, 0 1px 3px rgba(0, 0, 0, 0.85);
+    }
+    #amami-table td.municipal-name a.municipal-name-link:hover {
+      color: #fff566 !important;
+      text-decoration: none !important;
+      filter: none;
+      transform: none;
+    }
+
+    .amami-table-hint {
+      max-width: 52em;
+      margin: 0 auto 12px;
+      padding: 10px 14px;
+      font-size: 0.95em;
+      line-height: 1.55;
+      text-align: center;
+      color: #123760;
+      background: #fff9e6;
+      border: 1px solid #e6c84a;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    #amami-table tr.amami-table-row-thick-bottom td {
+      border-bottom: 4px solid #000099 !important;
+    }
+    #amami-table tr.amami-table-row-thick-bottom--last td {
+      border-bottom: 5px solid #000099 !important;
+    }
+
+    #amami-table td.amami-org-name {
+      background-color: #6b2d5c !important;
+      text-align: center;
+      vertical-align: middle;
+    }
+    #amami-table td.amami-org-name a.amami-org-name-link {
+      color: #ffffff !important;
+      font-weight: 800 !important;
+      font-size: 1.08em !important;
+      text-decoration: none !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    #amami-table tr.amami-table-footer-row td {
+      border-left: none !important;
+      border-right: none !important;
+    }
+    #amami-table tr.amami-table-footer-row td:first-child {
+      border-left: 1px solid #0000ff !important;
+    }
+    #amami-table tr.amami-table-footer-row td:last-child {
+      border-right: 1px solid #0000ff !important;
+    }
+
     /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
     
 
@@ -1099,10 +1173,10 @@ function openPDF() {
 </script>
 
   <!-- NOTE: ヒーローセクションは価値訴求文 + 主要導線CTA -->
-  <div class="title1">☆奄美群島の魅力をあなたに！☆ </div>
-  <div class="title2">美しい自然と文化</div>
-  <section class="impact-hero" aria-label="奄美群島PRの志">
-    <p class="impact-hero-lead">どなたが見ても「行ってみたい」と感じる、南国・奄美群島の魅力をこのページに集めました。</p>
+  <h1 class="title1">奄美・奄美群島の観光案内</h1>
+  <div class="title2">美しい自然と文化 — 12市町村の旅行情報</div>
+  <section class="impact-hero" aria-label="奄美群島の観光案内">
+    <p class="impact-hero-lead">「奄美」「奄美群島」「奄美 観光」でお探しの方へ。どなたが見ても「行ってみたい」と感じる、南国・奄美の魅力をこのページに集めました。</p>
     <p class="impact-hero-sub">下部のテーブルでは、これまでにない奄美群島12市町村を横断した旅行案内をご覧いただけます。気になる地域を見つけて、ぜひお気に入りの場所を訪ねてみてください。</p>
     <p class="impact-hero-sub impact-hero-official">関東地域の奄美関係者の組織「東京奄美会」の案内の一環として本ページを公開しています。活動報告や最新のお知らせは、<a href="https://www.tokyoamamikai.com/" target="_blank" rel="noopener noreferrer">東京奄美会公式サイト</a>をご覧ください。</p>
     <div class="impact-actions">
@@ -1185,6 +1259,7 @@ function openPDF() {
 　　<!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
 <div class="title3">  </div>
 <div class="title3">奄美群島各地の観光情報一覧</div>
+<p class="amami-table-hint">※ 下の表では、<strong>文字</strong>・<strong>ボタン</strong>・<strong>旗の絵</strong>など表示がある箇所をクリックすると、各サイトの情報をご覧いただけます。（下線がない項目もリンクです）</p>
 <table id="amami-table" class="styled-table">
   
     <tr>
@@ -1214,7 +1289,7 @@ function openPDF() {
     </tr>
 
     <tr>
-      <td id="cell-01-01"><a href="https://www.town.kikai.lg.jp/densan/home.html" style="color: #ffff00; font-weight: bold;">喜界町</a></td>
+      <td id="cell-01-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.kikai.lg.jp/densan/home.html">喜界町</a></td>
       <td id="cell-01-02"><a href="https://www.bing.com/search?q=%E5%96%9C%E7%95%8C%E5%B3%B6%E3%81%AE%E8%A6%B3%E5%85%89%E5%9C%B0&cvid=23cfe06f7a8249429440637f1fc2dc88&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhA0gEJMTU4ODJqMGo0qAIAsAIA&FORM=ANAB01&ucpdpc=UCPD&PC=U531">観光</a></td>
       <td id="cell-01-03"><a href="https://www.town.kikai.lg.jp/kankou/kanko-iju/tokusanhin/kyodoryori1.html">グルメ</a></td>
       <td id="cell-01-04"><a href="https://www.town.kikai.lg.jp/kankou/kanko-iju/tokusanhin/tokusanhin.html">特産品</a></td>
@@ -1239,7 +1314,7 @@ function openPDF() {
       </td>
     </tr>
     <tr>
-      <td id="cell-02-01"><a href="https://www.town.tatsugo.lg.jp/" style="color: #ffff00; font-weight: bold;">龍郷町</a></td>
+      <td id="cell-02-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.tatsugo.lg.jp/">龍郷町</a></td>
       <td id="cell-02-02"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/kanko/index.html">観光</a></td>
       <td id="cell-02-03"><a href="https://www.jalan.net/gourmet/cit_465270000/?msockid=1bb6f84e15506cea3ad9ecbe14346d26">グルメ</a></td>
       <td id="cell-02-04"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/event-bunka/tokusanhin/index.html">特産品</a></td>
@@ -1252,7 +1327,7 @@ function openPDF() {
       <td id="cell-02-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E9%BE%8D%E9%83%B7%E7%94%BA" target="_blank" rel="noopener noreferrer" title="龍郷町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
-      <td id="cell-03-01"><a href="https://www.city.amami.lg.jp/" style="color: #ffff00; font-weight: bold;">奄美市</a></td>
+      <td id="cell-03-01" class="municipal-name"><a class="municipal-name-link" href="https://www.city.amami.lg.jp/">奄美市</a></td>
       <td id="cell-03-02"><a href="https://www.city.amami.lg.jp/kanko/kanko/index.html">観光</a></td>
       <td id="cell-03-03"><a href="https://tabelog.com/kagoshima/C46222/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
       <td id="cell-03-04"><a href="https://www.city.amami.lg.jp/kanko/tokusan/index.html">特産品</a></td>
@@ -1265,7 +1340,7 @@ function openPDF() {
       <td id="cell-03-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%AE%9B%E7%BE%8E%E5%B8%82" target="_blank" rel="noopener noreferrer" title="奄美市（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
-      <td id="cell-04-01"><a href="https://www.vill.yamato.lg.jp/" style="color: #ffff00; font-weight: bold;">大和村</a></td>
+      <td id="cell-04-01" class="municipal-name"><a class="municipal-name-link" href="https://www.vill.yamato.lg.jp/">大和村</a></td>
       <td id="cell-04-02"><a href="https://www.vill.yamato.lg.jp/kikaku/kanko/spot.html">観光</a></td>
       <td id="cell-04-03"><a href="https://tabelog.com/kagoshima/C46523/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
       <td id="cell-04-04"><a href="https://www.vill.yamato.lg.jp/kikaku/shisetsu/kankoannaijo/002.html">特産品</a></td>
@@ -1278,7 +1353,7 @@ function openPDF() {
       <td id="cell-04-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E6%9D%91" target="_blank" rel="noopener noreferrer" title="大和村（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
-      <td id="cell-05-01"><a href="https://www.uken.net/home.html" style="color: #ffff00; font-weight: bold;">宇検村</a></td>
+      <td id="cell-05-01" class="municipal-name"><a class="municipal-name-link" href="https://www.uken.net/home.html">宇検村</a></td>
       <td id="cell-05-02"><a href="https://www.uken.net/kouhoutoukei/kanko/index.html">観光</a></td>
       <td id="cell-05-03"><a href="https://tabelog.com/kagoshima/C46524/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
       <td id="cell-05-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46045.html">特産品</a></td>
@@ -1290,19 +1365,22 @@ function openPDF() {
       <td id="cell-05-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「焼内の海に生きて－宇検村」sasori.mp3', event)" title="宇検村の村歌を再生" aria-label="宇検村の村歌を再生"><img src="towninfo/uken_ki.png" alt="宇検村" style="width: 40px; height: auto;"></button></td>
       <td id="cell-05-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%AE%87%E6%A4%9C%E6%9D%91" target="_blank" rel="noopener noreferrer" title="宇検村（Wikipedia）">Wikipedia</a></td>
     </tr>
+    
     <tr>
-      <td id="cell-06-01"><a href="https://www.town.setouchi.lg.jp/" style="color: #ffff00; font-weight: bold;">瀬戸内町</a></td>
-      <td id="cell-06-02"><a href="https://www.uken.net/kouhoutoukei/kanko/index.html">観光</a></td>
-      <td id="cell-06-03"><a href="https://tabelog.com/kagoshima/C46524/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-06-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46045.html">特産品</a></td>
-      <td id="cell-06-05"><a href="https://www.youtube.com/watch?v=N8TCDw2rUyoh">郷土芸能</a></td>
-      <td id="cell-06-06"><a href="https://www.uken.net/bunkashinkou/kyoiku-bunka/bunkazai/murashite/ukenson.html">歴史文化</a></td>
+      <td id="cell-06-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.setouchi.lg.jp/">瀬戸内町</a></td>
+      <td id="cell-06-02"><a href="https://www.setouchi-welcome.com/see">観光</a></td>
+      <td id="cell-06-03"><a href="https://tabelog.com/kagoshima/C46525/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
+      <td id="cell-06-04"><a href="https://www.setouchi-welcome.com/see">特産品</a></td>
+      <td id="cell-06-05"><a href="https://www.town.setouchi.lg.jp/tosyokan/kan/bunka/minzokugeno/index.html">郷土芸能</a></td>
+      <td id="cell-06-06"><a href="https://www.town.setouchi.lg.jp/kan/bunka/index.html">歴史文化</a></td>
       <td id="cell-06-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=setouchicho">体験</a></td>
       <td id="cell-06-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
-      <td id="cell-06-09"><a href="https://tenki.jp/forecast/9/49/1000/46524/">天気</a></td>
+      <td id="cell-06-09"><a href="https://tenki.jp/forecast/9/49/1000/46525/">天気</a></td>
       <td id="cell-06-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「大島海峡に生きて－瀬戸内町」sasori.mp3', event)" title="瀬戸内町の町歌を再生" aria-label="瀬戸内町の町歌を再生"><img src="towninfo/setouchi_ki.png" alt="瀬戸内町" style="width: 40px; height: auto;"></button></td>
       <td id="cell-06-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E7%80%AC%E6%88%B8%E5%86%85%E7%94%BA" target="_blank" rel="noopener noreferrer" title="瀬戸内町（Wikipedia）">Wikipedia</a></td>
+    
     </tr>
+       
     <tr class="island-title-row">
       <td colspan="11" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
         <div class="island-title-inner">
@@ -1315,7 +1393,7 @@ function openPDF() {
       </td>
     </tr>
     <tr>
-      <td id="cell-07-01"><a href="https://www.tokunoshima-town.org/" style="color: #ffff00; font-weight: bold;">徳之島町</a></td>
+      <td id="cell-07-01" class="municipal-name"><a class="municipal-name-link" href="https://www.tokunoshima-town.org/">徳之島町</a></td>
       <td id="cell-07-02"><a href="https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html">観光</a></td>
       <td id="cell-07-03"><a href="https://tabelog.com/kagoshima/C46530/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
       <td id="cell-07-04"><a href="https://www.tokunoshima-town.org/kanko/tokusan/index.html">特産品</a></td>
@@ -1328,7 +1406,7 @@ function openPDF() {
       <td id="cell-07-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%BE%B3%E4%B9%8B%E5%B3%B6%E7%94%BA" target="_blank" rel="noopener noreferrer" title="徳之島町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
-      <td id="cell-08-01"><a href="https://www.town.amagi.lg.jp/" style="color: #ffff00; font-weight: bold;">天城町</a></td>
+      <td id="cell-08-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.amagi.lg.jp/">天城町</a></td>
       <td id="cell-08-02"><a href="https://www.town.amagi.lg.jp/tourism/?lng=ja">観光</a></td>
       <td id="cell-08-03"><a href="https://www.tripadvisor.jp/Restaurants-g1121607-Amagi_cho_Tokunoshima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html">グルメ</a></td>
       <!--<td id="cell-08-04"><a href="extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.town.amagi.lg.jp/img/staff/Restaurant-Introduction.pdf"></a></td>-->
@@ -1342,7 +1420,7 @@ function openPDF() {
       <td id="cell-08-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%A4%A9%E5%9F%8E%E7%94%BA" target="_blank" rel="noopener noreferrer" title="天城町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
-      <td id="cell-09-01"><a href="https://www.town.isen.kagoshima.jp/" style="color: #ffff00; font-weight: bold;">伊仙町</a></td>
+      <td id="cell-09-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.isen.kagoshima.jp/">伊仙町</a></td>
       <td id="cell-09-02"><a href="https://www.town.isen.kagoshima.jp/mirai/shisetsu/kanko-taiken/index.html">観光</a></td>
       <td id="cell-09-03"><a href="https://tabelog.com/kagoshima/C46532/rstLst/">グルメ</a></td>
       <td id="cell-09-04"><a href="https://rito-guide.com/hyakusai/">特産品</a></td>
@@ -1369,7 +1447,7 @@ function openPDF() {
     </tr>
 
     <tr>
-      <td id="cell-10-01"><a href="https://www.town.china.lg.jp/" style="color: #ffff00; font-weight: bold;">知名町</a></td>
+      <td id="cell-10-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.china.lg.jp/">知名町</a></td>
       <td id="cell-10-02"><a href="https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html">観光</a></td>
       <td id="cell-10-03"><a href="https://tabelog.com/kagoshima/C46534/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
       <td id="cell-10-04"><a href="https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html">特産品</a></td>
@@ -1382,7 +1460,7 @@ function openPDF() {
       <td id="cell-10-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E7%9F%A5%E5%90%8D%E7%94%BA" target="_blank" rel="noopener noreferrer" title="知名町（Wikipedia）">Wikipedia</a></td>
     </tr>
     <tr>
-      <td id="cell-11-01"><a href="https://www.town.wadomari.lg.jp/" style="color: #ffff00; font-weight: bold;">和泊町</a></td>
+      <td id="cell-11-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.wadomari.lg.jp/">和泊町</a></td>
       <td id="cell-11-02"><a href="https://okinoerabujima.info/">観光</a></td>
       <td id="cell-11-03"><a href="https://tabelog.com/kagoshima/C46533/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
       <td id="cell-11-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46044.html">特産品</a></td>
@@ -1408,8 +1486,8 @@ function openPDF() {
       </td>
     </tr>
 
-    <tr>
-      <td id="cell-12-01"><a href="https://www.yoron.jp/default.html" style="color: #ffff00; font-weight: bold;">与論町</a></td>
+    <tr class="amami-table-row-thick-bottom">
+      <td id="cell-12-01" class="municipal-name"><a class="municipal-name-link" href="https://www.yoron.jp/default.html">与論町</a></td>
       <td id="cell-12-02"><a href="https://www.yorontou.info/">観光</a></td>
       <td id="cell-12-03"><a href="https://tabelog.com/kagoshima/C46535/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
       <td id="cell-12-04"><a href="https://www.yorontou.info/specialty.html">特産品</a></td>
@@ -1421,18 +1499,15 @@ function openPDF() {
       <td id="cell-12-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「ふるさと-与論」sasori.mp3', event)" title="与論町の町歌を再生" aria-label="与論町の町歌を再生"><img src="towninfo/yoron_ki.png" alt="与論町" style="width: 40px; height: auto;"></button></td>
       <td id="cell-12-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E4%B8%8E%E8%AB%96%E7%94%BA" target="_blank" rel="noopener noreferrer" title="与論町（Wikipedia）">Wikipedia</a></td>
     </tr>
-    <tr>
-      <td id="cell-13-01"><a href="https://www.tokyoamamikai.com/" style="color: WHITE; font-weight: bold;">東京奄美会</a></td>
-      <td id="cell-13-02"></td>
-      <td id="cell-13-03"><a href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/kanto-info/index.html">関東近郊情報</a></td>
-      
-      <td id="cell-13-04">
-        <a href="#" onclick="event.preventDefault(); openBGMWindow();" 
+    <tr class="amami-table-row-thick-bottom amami-table-row-thick-bottom--last amami-table-footer-row">
+      <td id="cell-13-01" class="amami-org-name"><a class="amami-org-name-link" href="https://www.tokyoamamikai.com/">東京奄美会</a></td>
+      <td id="cell-13-02" class="amami-table-footer-cell"></td>
+      <td id="cell-13-03" class="amami-table-footer-cell"></td>
+      <td id="cell-13-04" class="amami-table-footer-cell">
+        <a href="#" onclick="event.preventDefault(); openBGMWindow();"
            style="color: blue; font-weight: bold;">♪ BGM再生</a>
-    </td>
-    
-      
-      <td id="cell-13-05">
+      </td>
+      <td id="cell-13-05" class="amami-table-footer-cell">
         <a href="javascript:void(0)" onclick="showMultiLinkPopup([
           { label: 'X（旧Twitter）：東京奄美会', url: 'https://x.com/PiiZmi' },
           { label: 'Facebook：東京奄美会', url: 'https://www.facebook.com/profile.php?id=61575154336855' },
@@ -1474,15 +1549,15 @@ function openPDF() {
           { label: 'Instagram：与論町', url: 'https://www.instagram.com/yoroncho/' },
           { label: 'X（旧Twitter）：与論町', url: 'https://x.com/yoroncho' }
         ])">【S N S 一覧】</a>
-      
-  
-      <td id="cell-13-06" class="no-vertical-border"></td>
-      <td id="cell-13-07" class="no-vertical-border"></td>
-      <td id="cell-13-08" class="no-vertical-border"></td>
-      <td id="cell-13-09" class="no-vertical-border"></td>
-      <td id="cell-13-10"><a href="https://oceana.ne.jp/blue-economy/environment/113873">世界自然遺産</a></td>
-      <td id="cell-13-11" class="no-vertical-border municipal-basic-info">―</td>
-  
+      </td>
+      <td id="cell-13-06" class="amami-table-footer-cell"></td>
+      <td id="cell-13-07" class="amami-table-footer-cell"></td>
+      <td id="cell-13-08" class="amami-table-footer-cell"></td>
+      <td id="cell-13-09" class="amami-table-footer-cell"></td>
+      <td id="cell-13-10" class="amami-table-footer-cell"><a href="https://oceana.ne.jp/blue-economy/environment/113873">世界自然遺産</a></td>
+      <td id="cell-13-11" class="amami-table-footer-cell municipal-basic-info">―</td>
+    </tr>
+
   </table>
 
  <!-- 複数URL用のポップアップ -->
@@ -1713,6 +1788,13 @@ function openPDF() {
         }
 
         table.querySelectorAll('td a[href]').forEach((a) => {
+          const cell = a.closest('td');
+          if (a.classList.contains('municipal-name-link') || a.classList.contains('amami-org-name-link')) {
+            return;
+          }
+          if (cell && (cell.classList.contains('municipal-name') || cell.classList.contains('amami-org-name'))) {
+            return;
+          }
           const row = a.closest('tr');
           if (row && row.classList.contains('island-title-row')) {
             // NOTE: 島見出しリンクは外部サイトを直接開く（翻訳経由の影響を受けにくくする）
