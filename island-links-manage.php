@@ -1,7 +1,7 @@
 <?php
 /**
  * 5島「関連サイト」管理画面
- * amami.html と同じディレクトリに置く（admin/ フォルダは不要）
+ * index.html と同じディレクトリに置く（admin/ フォルダは不要）
  *
  * 認証（合言葉・パスワード）は行わない。公開経路の遮断は運用MENU・FTP・サーバ側設定で行う。
  * 任意：island-links-admin-config.php の allowed_admin_ips で接続元IPを制限できる。
@@ -155,7 +155,7 @@ header('Content-Type: text/html; charset=UTF-8');
       <div class="toolbar">
         <button type="submit" class="btn btn-primary">すべて保存</button>
         <a class="btn btn-secondary" href="island-related-links-api.php" target="_blank" rel="noopener">JSONを確認</a>
-        <a class="btn btn-secondary" href="amami.html">amami.html を開く</a>
+        <a class="btn btn-secondary" href="index.html">index.html を開く</a>
       </div>
     </form>
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * 5島「関連サイト」データの公開API（amami.html から fetch）
+ * 5島「関連サイト」データの公開API（index.html から fetch）
  */
 require_once __DIR__ . '/island-related-links-storage.php';
 

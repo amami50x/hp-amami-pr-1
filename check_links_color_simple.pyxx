@@ -31,4 +31,4 @@ def process_html_with_highlight(input_file, output_file):
     print(f"完了：{output_file} を作成しました")
 
 # 実行
-process_html_with_highlight("amami.html", "amami_checked_new.html")
+process_html_with_highlight("index.html", "amami_checked_new.html")

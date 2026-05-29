@@ -1,8 +1,52 @@
+// 右側表示状態なら右端までスクロールする関数
+function scrollTableRightIfNeeded() {
+  if (!isRightSide) return;
+  var table = document.getElementById('amami-table');
+  if (table) {
+    var wrap = table.parentElement;
+    if (wrap && wrap.scrollWidth > wrap.clientWidth) {
+      wrap.scrollLeft = wrap.scrollWidth - wrap.clientWidth;
+    }
+  }
+  // --- 横スクロール位置の復元（sessionStorage優先） ---
+  try {
+    var savedScroll = sessionStorage.getItem('amami-table-scrollLeft');
+    if (savedScroll !== null && wrap) {
+      wrap.scrollLeft = parseInt(savedScroll, 10);
+    }
+  } catch (e) {}
+}
+
+// ページロード・履歴復元時にも右端へ
+window.addEventListener('DOMContentLoaded', scrollTableRightIfNeeded);
+window.addEventListener('load', scrollTableRightIfNeeded);
+window.addEventListener('pageshow', scrollTableRightIfNeeded);
+// 右側表示状態をグローバルで保持（localStorageで永続化）
+var isRightSide = false;
+try {
+  if (localStorage.getItem('amamiTableIsRightSide') === '1') {
+    isRightSide = true;
+  }
+} catch(e) {}
 window.addEventListener('popstate', function () {
   setTimeout(function () {
     const table = document.getElementById('amami-table');
     if (table) {
       table.scrollIntoView({ behavior: 'smooth' });
+    }
+    // 右側表示状態なら右端までスクロール
+    if (isRightSide) {
+      var wrap = table.parentElement;
+      if (wrap && wrap.scrollWidth > wrap.clientWidth) {
+        wrap.scrollLeft = wrap.scrollWidth - wrap.clientWidth;
+      }
+      // --- 横スクロール位置の復元（sessionStorage優先） ---
+      try {
+        var savedScroll = sessionStorage.getItem('amami-table-scrollLeft');
+        if (savedScroll !== null && wrap) {
+          wrap.scrollLeft = parseInt(savedScroll, 10);
+        }
+      } catch (e) {}
     }
   }, 100); // レンダリングが完了するのを待つ
 });
@@ -39,7 +83,7 @@ window.onload = function () {
     })
     .catch(error => console.error('Error fetching data:', error));
 
-  // セルのクリックイベントを設定
+    // セルのクリックイベントを設定 (変更前)
   const cells = document.querySelectorAll('td');
   cells.forEach(cell => {
     cell.addEventListener('click', (event) => {
@@ -49,15 +93,50 @@ window.onload = function () {
       if (url && url.trim() !== "") {
         // URLがある場合：ポップアップを出さずにリダイレクト
         sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
+          // 横スクロール位置も保存
+          try {
+            var table = document.getElementById('amami-table');
+            if (table && table.parentElement) {
+              sessionStorage.setItem('amami-table-scrollLeft', table.parentElement.scrollLeft);
+            }
+          } catch (e) {}
         window.location.href = url; // リダイレクト
       } else {
         // data-url 指定ありで空の場合のみポップアップ
         event.preventDefault(); // デフォルト動作を防止
         sessionStorage.setItem('scrollPosition', window.scrollY); // スクロール位置を保存
+          // 横スクロール位置も保存
+          try {
+            var table = document.getElementById('amami-table');
+            if (table && table.parentElement) {
+              sessionStorage.setItem('amami-table-scrollLeft', table.parentElement.scrollLeft);
+            }
+          } catch (e) {}
         showPopup();
       }
     });
   });
+  
+    var btnPanLeft  = document.getElementById('amami-table-pan-left');
+    var btnPanRight = document.getElementById('amami-table-pan-right');
+    if (btnPanLeft) {
+      btnPanLeft.addEventListener('click', function () {
+        smoothScrollTo(0);
+        isRightSide = false;
+        try { localStorage.setItem('amamiTableIsRightSide', '0'); } catch(e) {}
+      });
+    }
+    if (btnPanRight) {
+      btnPanRight.addEventListener('click', function () {
+        var max = Math.max(0, wrap.scrollWidth - wrap.clientWidth);
+        smoothScrollTo(max);
+        isRightSide = true;
+        try { localStorage.setItem('amamiTableIsRightSide', '1'); } catch(e) {}
+      });
+    }
+  
+    // セルクリックや履歴戻りでも右側表示は維持（ボタンで解除するまで）
+    // 既存のセルクリックやリンククリックの処理には影響しない
 };
 
 // ポップアップを表示
@@ -100,27 +179,9 @@ slides[currentSlide].classList.add("active");
 setInterval(showNextSlide, 3000);
 
 
-// LocalStorageから日本語と外国語のカウントを取得、または初期化
-let japaneseCount = parseInt(localStorage.getItem('japaneseCount')) || 0;
-let foreignCount = parseInt(localStorage.getItem('foreignCount')) || 0;
-
-// ブラウザの言語を取得
-const userLanguage = navigator.language || navigator.userLanguage;
-
-// 言語が日本語の場合
-if (userLanguage === 'ja' || userLanguage.startsWith('ja')) {
-  japaneseCount++;
-  localStorage.setItem('japaneseCount', japaneseCount);
-} else {
-  // 言語が外国語の場合
-  foreignCount++;
-  localStorage.setItem('foreignCount', foreignCount);
-}
-
-// HTMLにカウントを表示
-document.getElementById('japanese-counter').textContent = japaneseCount;
-document.getElementById('foreign-counter').textContent = foreignCount;
 // Removed invalid HTML and redundant code
+
+// 旧カウントロジック完全削除済み
 const playlist = [
   "hp-music/furusato_kitahara.mp3",
   "hp-music/shima_blues.mp3",
@@ -226,15 +287,36 @@ window.onload = () => {
       if (link.getAttribute('onclick')) return;
       event.preventDefault();
       sessionStorage.setItem('scrollPosition', window.scrollY);
+      // 横スクロール位置も保存
+      try {
+        if (table.parentElement) {
+          sessionStorage.setItem('amami-table-scrollLeft', table.parentElement.scrollLeft);
+        }
+      } catch (e) {}
       showPopup();
       return;
     }
 
     event.preventDefault();
     sessionStorage.setItem('scrollPosition', window.scrollY);
+    // 横スクロール位置も保存
+    try {
+      if (table.parentElement) {
+        sessionStorage.setItem('amami-table-scrollLeft', table.parentElement.scrollLeft);
+      }
+    } catch (e) {}
     window.location.href = hrefRaw;
   });
 };
+// ページ離脱時にも横スクロール位置を保存
+window.addEventListener('beforeunload', function () {
+  try {
+    var table = document.getElementById('amami-table');
+    if (table && table.parentElement) {
+      sessionStorage.setItem('amami-table-scrollLeft', table.parentElement.scrollLeft);
+    }
+  } catch (e) {}
+});
 
 //　VOICEの改善
 

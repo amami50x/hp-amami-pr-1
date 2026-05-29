@@ -74,4 +74,4 @@ def process_html_with_highlight(input_file, output_file):
     print(f"✅ {output_file} の作成が完了しました")
 
 # **実行**
-process_html_with_highlight("amami.html", "amami_checked.html")
+process_html_with_highlight("index.html", "amami_checked.html")

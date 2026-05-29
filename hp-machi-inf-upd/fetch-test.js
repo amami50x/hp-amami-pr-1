@@ -1,7 +1,7 @@
 async function extractTableData() {
     try {
         console.log("fetch() を開始...");
-        const response = await fetch("amami.html");
+        const response = await fetch("../index.html");
 
         if (!response.ok) {
             throw new Error(`HTTPエラー: ${response.status}`);

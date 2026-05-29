@@ -31,21 +31,29 @@ body {
   display: inline-block;
 }
 
-/* 一段目：3分割テーブル形式 */
+/* 翻訳ウィジェットの iframe や絶対配置要素が切れないように、
+   ページ全体のオーバーフローを許容する（旧バージョンは .top-bar の中に
+   ネストして書かれており、CSS ネスト非対応のブラウザで .top-bar の
+   後続プロパティ（position: fixed など）が無効化される不具合があった）。 */
+html, body {
+  overflow: visible !important;
+}
+
+/* 一段目：3分割テーブル形式
+   翻訳バー (.amami-translate-bar) を画面最上部に分離したため、
+   .top-bar はその直下（--amami-translate-bar-h 分だけ下）に固定する。 */
 .top-bar {
-  display: table;
+  display: grid;
   width: 100%;
   background-color: #33b5ecdb;
   border-collapse: collapse;
   table-layout: fixed;
   position: fixed;
-  /* 画面の最上部に固定 */
-  top: 0;
-  /* 上から0pxの位置 */
-  z-index: 1000;
-  /* 他の要素より前面に配置 */
+  top: var(--amami-translate-bar-h, 32px);
+  left: 0;
+  right: 0;
+  z-index: 300001;
   overflow: visible;
-  /* 翻訳ウィジェットの iframe が切れないように */
 }
 
 /* モーダルのスタイル */

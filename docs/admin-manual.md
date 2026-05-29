@@ -20,11 +20,11 @@
 
 | 種別 | 主なパス・入口 | 備考 |
 |------|----------------|------|
-| トップ・島ページ | `amami.html`、各市町用 `*.html`、`hp-machi-inf-upd/amami.html` など | 本番で使うファイルを変更したら Git にコミットし、FTP で反映 |
+| トップ・島ページ | `index.html`、各市町用 `*.html` など | 本番で使うファイルを変更したら Git にコミットし、FTP で反映 |
 | 管理メニュー（索引） | `kanri.html` | ローカルで開いて作業手順・URL を確認 |
 | 共通スタイル・スクリプト | ルート `styles.css`、`script.js`（ほかフォルダに同名がある場合は**本番が参照している方**を正とする） | 変更後はキャッシュを考慮して再読み込みで確認 |
 | 5島「関連サイト」管理 UI | `island-links-manage.php` | **PHP によるパスワードロックなし**。URL の周知範囲とサーバ側制限で守る |
-| 関連リンク 公開 API | `island-related-links-api.php` | `amami.html` 側が取得に使用。失敗時はページ内フォールバック |
+| 関連リンク 公開 API | `island-related-links-api.php` | `index.html` 側が取得に使用。失敗時はページ内フォールバック |
 | 関連リンク 保存処理 | `island-related-links-storage.php` | JSON 読み書き |
 | IP 制限など | `island-links-admin-guard.php` | 設定は `island-links-admin-config.php` |
 | 設定（任意・ローカル/本番のみ） | `island-links-admin-config.php`（`island-links-admin-config.sample.php` からコピー） | `allowed_admin_ips` で接続元を絞れる。無い場合も管理画面は動作 |
@@ -73,12 +73,12 @@
 
 ### 概要
 
-- `amami.html` のポップアップ用データは JSON で保持され、**`island-links-manage.php`** から編集する。
+- `index.html` のポップアップ用データは JSON で保持され、**`island-links-manage.php`** から編集する。
 - 閲覧用に **`island-related-links-api.php`** が使われる。
 
 ### 初回・本番配置
 
-1. `island-links-manage.php`、`island-links-admin-guard.php`、`island-related-links-storage.php`、`island-related-links-api.php` を、**`amami.html` と同じディレクトリ階層**に揃える（`island-links-manage.php` 先頭コメント参照）。
+1. `island-links-manage.php`、`island-links-admin-guard.php`、`island-related-links-storage.php`、`island-related-links-api.php` を、**`index.html` と同じディレクトリ階層**に揃える（`island-links-manage.php` 先頭コメント参照）。
 2. `data/` ディレクトリを置き、`island_related_links.json` がサーバから書き込める権限にする。
 3. 任意: `island-links-admin-config.sample.php` を `island-links-admin-config.php` にコピーし、`allowed_admin_ips` に管理者の固定 IP を列挙する（空なら制限なし）。
 
@@ -89,7 +89,7 @@
 
 ### 成功の確認
 
-- 管理画面で保存後、本番の `amami.html` を開き、該当島の「関連サイト」ポップアップに反映されていること。
+- 管理画面で保存後、本番の `index.html` を開き、該当島の「関連サイト」ポップアップに反映されていること。
 - `data/island_related_links.json` の更新日時が変わっていること（サーバ上で確認）。
 
 ---

@@ -2425,8 +2425,19 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       <td id="cell-13-14" class="amami-table-footer-cell">―</td>
     </tr>
 
+  <tbody>
+    <!-- 例: 右側の一部セルに extra-cell クラスを付与（既存セルのclassに追加してもOK） -->
+    <!-- 実際のデータ行は省略。下記は例示。 -->
+    <tr>
+      <td>市町村1</td>
+      <td>市町村2</td>
+      <td>市町村3</td>
+      <td class="extra-cell">市町村4</td>
+      <td class="extra-cell">市町村5</td>
+      <td class="extra-cell">市町村6</td>
+    </tr>
+    <!-- ...既存の他の行... -->
   </tbody>
-  </table>
 </div>
 <!-- /.amami-table-wrap -->
 

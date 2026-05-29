@@ -143,9 +143,9 @@
         <!--
         async function extractTableData() {
             try {
-                const response = await fetch("amami.html");
+                const response = await fetch("../index.html");
                 if (!response.ok) {
-                    throw new Error('amami.html の取得に失敗しました。レスポンスステータス: ' + response.status);
+                    throw new Error('index.html の取得に失敗しました。レスポンスステータス: ' + response.status);
                 }
                 const htmlText = await response.text();
                 const parser = new DOMParser();

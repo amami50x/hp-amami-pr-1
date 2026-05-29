@@ -91,4 +91,4 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
 
 # **処理開始（`amami_click.html` を作成）**
-update_cell_status("amami.html", "amami_click.html")
+update_cell_status("index.html", "amami_click.html")

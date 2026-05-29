@@ -1,0 +1,114 @@
+{
+  "generatedAt": "2026-05-20T18:14:33",
+  "source": "index.html",
+  "checked": 120,
+  "brokenCount": 0,
+  "broken": {},
+  "innerBrokenCount": 8,
+  "innerBroken": {
+    "https://www.tokunoshima-town.org/": {
+      "label": "徳之島町",
+      "cell": "cell-07-01",
+      "innerCheckedCount": 5,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.tokunoshima-town.org/ketai/index.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    },
+    "https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html": {
+      "label": "観光",
+      "cell": "cell-07-02",
+      "innerCheckedCount": 1,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    },
+    "https://www.tokunoshima-town.org/kanko/tokusan/index.html": {
+      "label": "特産品",
+      "cell": "cell-07-04",
+      "innerCheckedCount": 5,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.tokunoshima-town.org/ketai/index.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    },
+    "https://www.tokunoshima-town.org/shakaikyoikuka/kanko/rekishi/geno.html": {
+      "label": "郷土芸能",
+      "cell": "cell-07-05",
+      "innerCheckedCount": 5,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.tokunoshima-town.org/ketai/index.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    },
+    "https://www.tokunoshima-town.org/kanko/rekishi/index.html": {
+      "label": "歴史文化",
+      "cell": "cell-07-06",
+      "innerCheckedCount": 5,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.tokunoshima-town.org/ketai/index.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    },
+    "https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html": {
+      "label": "観光",
+      "cell": "cell-10-02",
+      "innerCheckedCount": 1,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    },
+    "https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html": {
+      "label": "特産品",
+      "cell": "cell-10-04",
+      "innerCheckedCount": 1,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    },
+    "https://www.town.china.lg.jp/shougai/kurasu/kosodate-kyoiku/shogaigakushu/denshogeno/denshogeno.html": {
+      "label": "郷土芸能",
+      "cell": "cell-10-05",
+      "innerCheckedCount": 1,
+      "innerBrokenCount": 1,
+      "innerBrokenLinks": [
+        {
+          "url": "https://www.town.china.lg.jp/shougai/kurasu/kosodate-kyoiku/shogaigakushu/denshogeno/denshogeno.html",
+          "status": 404,
+          "reason": "HTTP 404"
+        }
+      ]
+    }
+  }
+}

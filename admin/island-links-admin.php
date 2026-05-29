@@ -154,7 +154,7 @@ header('Content-Type: text/html; charset=UTF-8');
       <div class="toolbar">
         <button type="submit" class="btn btn-primary">すべて保存</button>
         <a class="btn btn-secondary" href="../island-related-links-api.php" target="_blank" rel="noopener">JSONを確認</a>
-        <a class="btn btn-secondary" href="../amami.html">amami.html を開く</a>
+        <a class="btn btn-secondary" href="../index.html">index.html を開く</a>
       </div>
     </form>
 

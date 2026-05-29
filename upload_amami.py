@@ -18,9 +18,8 @@ try:
     ftp.cwd('www/hp-amami-pr-1')
     print("正しいサーバーフォルダに移動しました。")
 
-    # 本番反映に必要なファイル（amami.html だけでは styles.css の変更が届かない）
+    # 本番反映に必要なファイル（トップは index.html のみ）
     upload_files = [
-        'amami.html',
         'index.html',
         'styles.css',
         'script.js',

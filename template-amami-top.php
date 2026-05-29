@@ -2,7 +2,7 @@
 /**
  * Template Name: 東京奄美会トップ（奄美観光導線）
  *
- * 言語切替は amami.html と同一の Google 翻訳ウィジェット（element.js + SIMPLE レイアウト）です。
+ * 言語切替は index.html と同一の Google 翻訳ウィジェット（element.js + SIMPLE レイアウト）です。
  * 子テーマまたはテーマフォルダに置き、固定ページで本テンプレートを選択してください。
  */
 if (!defined('ABSPATH')) {
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 
-<!-- amami.html と同一: Google 翻訳（言語切替） -->
+<!-- index.html と同一: Google 翻訳（言語切替） -->
 <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 10px; background: #f0f0f0; margin-bottom: 1em;">
 	<div id="google_translate_element" class="box" style="margin-right: 16px;"></div>
 	<div id="title" style="font-size:20px; font-weight:bold;">言語切替</div>
@@ -66,7 +66,7 @@ get_header();
 				<div class="amami-travel-info-links" style="margin-top:1.25em;padding:1em 1.1em;border:1px solid #9fc5f5;border-radius:12px;background:linear-gradient(135deg,#f7fbff 0%,#e9f4ff 55%,#dff0ff 100%);max-width:42rem;">
 					<p style="margin:0 0 0.75em;line-height:1.75;color:#123d78;">奄美群島12市町村の観光・公式リンクなどを一覧した案内ページです。</p>
 					<p style="margin:0;line-height:1.75;">
-						<a href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/amami.html" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1b5eb8;">奄美群島12市町村への旅行情報を見る</a>
+						<a href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/index.html?return=<?php echo rawurlencode( home_url( '/' ) ); ?>" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1b5eb8;">奄美群島12市町村への旅行情報を見る</a>
 					</p>
 				</div>
 			</div>

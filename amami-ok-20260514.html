@@ -1534,20 +1534,8 @@ function openPDF() {
       event.preventDefault(); // デフォルトのリンク動作を防ぐ
 
       // メール作成画面をポップアップウィンドウで開く
-      let mailWindow = window.open(
-        "https://mail.google.com/mail/?view=cm&fs=1&to=tokyo.amamikai5550@gmail.com&su=%E3%81%94%E6%84%8F%E8%A6%8B%E3%83%BB%E3%81%94%E8%A6%81%E6%9C%9B",
-        "",
-        "width=800,height=600"
-      );
-
-      // メッセージを表示
-      const statusMessage = document.getElementById('statusMessage');
-      statusMessage.style.display = 'block';
-
-      // ポップアップウィンドウが開かれたら元のページをリロード
-      if (mailWindow) {
-        location.reload();
-      }
+      // ご意見・ご要望フォームへ遷移
+      window.location.href = 'feedback-form.html';
     });
   </script>
 
