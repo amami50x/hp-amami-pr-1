@@ -183,7 +183,7 @@
        テーブル「縮小／拡大ボタン」「上部スクロールバー」関連
        目的:
         - 14 列に増えてテーブルが画面幅を超えるケースで、
-          (1) ボタンで表示倍率を切替（小・標準・大）
+          (1) ボタンで表示倍率を切替（小・標準）
           (2) テーブル下端まで行かなくても上端でも横スクロール可能にする
           (3) 標準時に列幅・余白を詰めて、できるだけ多くの列を画面内に収める
        実装:
@@ -191,8 +191,8 @@
         - 上部スクロールバーは空の inner だけ持つコンテナ。JS で
           inner の幅をテーブル幅に追従させ、本体の overflow-x:auto と
           スクロール位置を双方向同期する
-        - 縮小／標準／拡大は #amami-table の class 切替で実現
-          （amami-table-zoom-small / -normal / -large）
+        - 縮小／標準は #amami-table の class 切替で実現
+          （amami-table-zoom-small / -normal）
        ========================================================= */
 
     /* sticky ヘッダー領域（ツールバー + 上部スクロールバー）。
@@ -225,9 +225,16 @@
     }
     /* テーブル本体に直接ジャンプされた場合の保険（旧 href="#amami-table" 互換）。
        テーブル冒頭が固定トップバー＋sticky ヘッダーの下に隠れないよう
-       両者の合計高さぶんジャンプ位置を下にオフセットする。 */
+       両者の合計高さぶんジャンプ位置を下にオフセットする。
+
+       併せて 14 列を常に 1 画面に収めるため、テーブル幅を 100% に固定し、
+       table-layout: fixed で列幅を均等配分する。
+       セル内テキストは前述の white-space: normal / word-break: keep-all により
+       狭い列でも自動的に折り返される（例：「イベントカレンダー」→ 2 行）。 */
     #amami-table {
       scroll-margin-top: calc(var(--amami-sticky-top, 0px) + var(--amami-sticky-header-h, 0px) + 6px);
+      table-layout: fixed;
+      width: 100%;
     }
 
     /* ツールバー */
@@ -271,16 +278,6 @@
       font-size: 12px;
       color: #4d6a8a;
     }
-    /* ツールバー内のグループ区切り（| の縦棒）。テーブル左右ジャンプボタン群と
-       表示サイズ群を視覚的に区切る。 */
-    .amami-table-toolbar-divider {
-      display: inline-block;
-      margin: 0 4px;
-      color: #6c8bb1;
-      font-weight: 400;
-      user-select: none;
-    }
-
     /* 上部に常時表示するプロキシ横スクロールバー */
     .amami-table-topscroll {
       width: 100%;
@@ -305,9 +302,15 @@
     #amami-table th {
       white-space: nowrap;
     }
+    /* 右端の追加情報セル（Wikipedia／イベントカレンダー／移住・定住／ふるさと納税）は
+       元々 nowrap で 1 行表示にしていたため列幅が広くなり、14 列が画面に収まらない原因だった。
+       折り返しを許可して、長い項目名を 2 行に分けて列を細くする。
+       日本語は keep-all で単語の途中で切らないようにする。 */
     #amami-table td.municipal-additional-info,
     #amami-table td.municipal-basic-info {
-      white-space: nowrap;
+      white-space: normal;
+      word-break: keep-all;
+      line-height: 1.2;
     }
 
     /* === クリック数バッジ（管理者がパスワード入力したときのみ表示） ===
@@ -358,10 +361,16 @@
     /* ヘッダー行（市町村名・観光・グルメ…）はテーブル本来の自然な位置で表示。
        sticky を当てると、ツールバー直下に固定された結果として、
        【喜界島】の下に貼り付いて喜界町を覆ってしまう挙動が起こったため解除した。
-       横スクロールの「市町村名」列固定だけは別ルール（左端 sticky）で残す。 */
+       横スクロールの「市町村名」列固定だけは別ルール（左端 sticky）で残す。
+       長い項目名（「イベントカレンダー」「ふるさと納税」「市町村旗歌」など）は
+       自動で 2〜3 行に折り返し、列幅を細くして 14 列を 1 画面に収めやすくする。 */
     #amami-table thead th {
       background-color: rgb(128, 0, 128);
       color: #ffffff;
+      white-space: normal;       /* 折り返しを許可（既定の nowrap を上書き） */
+      word-break: keep-all;      /* 日本語の単語を不自然に途中で切らない */
+      line-height: 1.2;          /* 2 行になったときに行間を詰めて高さを抑える */
+      vertical-align: middle;
     }
     /* ヘッダー行の「市町村名」th：横スクロール時の左端固定（縦は固定しない） */
     #amami-table thead th:first-child {
@@ -393,14 +402,6 @@
       height: auto !important;
     }
 
-    #amami-table.amami-table-zoom-large {
-      font-size: 15px;
-    }
-    #amami-table.amami-table-zoom-large th,
-    #amami-table.amami-table-zoom-large td {
-      padding: 8px 10px;
-    }
-
     /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
     
 
@@ -417,9 +418,6 @@
     .municipal-flag-btn,
     .amami-table-zoom-small,
     .amami-table-zoom-normal,
-    .amami-table-zoom-large,
-    .amami-table-pan-left,
-    .amami-table-pan-right,
     #backToTopBtn,
     #operationManualToggleBtn,
     #operationManualCloseBtn,
@@ -2084,18 +2082,11 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
      これによりテーブルの下の方（伊仙町、和泊町、知名町、与論町など）を見ているときも
      縮小／拡大ボタンと横スクロールバーがいつでも操作可能になる。 -->
 <div class="amami-table-sticky-header">
-  <!-- 縮小／標準／拡大ボタン＋表の左右ジャンプボタン（クライアントの localStorage に状態を保持）。
-       横スクロールは下端のスクロールバー＋この L/R ボタンで操作するため、
-       「上部の横スクロールバー」は廃止した（テーブル一行目の項目名を覆い隠す問題があったため）。 -->
+  <!-- 縮小／標準ボタン（クライアントの localStorage に状態を保持）。 -->
   <div class="amami-table-toolbar" role="toolbar" aria-label="奄美群島観光情報テーブル 表示設定">
     <span class="amami-table-toolbar-label">表示サイズ:</span>
     <button type="button" id="amami-table-zoom-small"  title="縮小: 文字を小さくして全列を見やすく">－ 縮小</button>
     <button type="button" id="amami-table-zoom-normal" title="標準サイズに戻す" class="is-active">標準</button>
-    <button type="button" id="amami-table-zoom-large"  title="拡大: 文字を大きく">＋ 拡大</button>
-    <span class="amami-table-toolbar-divider" aria-hidden="true">|</span>
-    <span class="amami-table-toolbar-label">表の表示:</span>
-    <button type="button" id="amami-table-pan-right" title="表の右側（市町村旗歌〜ふるさと納税）を表示">右側隠れたセル表示 →</button>
-    <button type="button" id="amami-table-pan-left"  title="表の左側（市町村名〜天気）に戻す">← 元に戻す</button>
   </div>
 </div>
 
@@ -2487,23 +2478,21 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     try { new ResizeObserver(syncStickyHeaderHeight).observe(sticky); } catch (e) {}
   }
 
-  /* --- 縮小／標準／拡大ボタン --- */
+  /* --- 縮小／標準ボタン --- */
   var STORAGE_KEY = 'amami-table-zoom';
   var classes = {
     small:  'amami-table-zoom-small',
-    normal: 'amami-table-zoom-normal',
-    large:  'amami-table-zoom-large'
+    normal: 'amami-table-zoom-normal'
   };
   var buttons = {
     small:  document.getElementById('amami-table-zoom-small'),
-    normal: document.getElementById('amami-table-zoom-normal'),
-    large:  document.getElementById('amami-table-zoom-large')
+    normal: document.getElementById('amami-table-zoom-normal')
   };
 
   function applyZoom(level) {
     if (!classes[level]) level = 'normal';
     /* 既存の zoom クラスを除去してから付け直す */
-    table.classList.remove(classes.small, classes.normal, classes.large);
+    table.classList.remove(classes.small, classes.normal);
     table.classList.add(classes[level]);
     /* ボタンの選択状態 */
     Object.keys(buttons).forEach(function (k) {
@@ -2518,40 +2507,12 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   var saved = 'normal';
   try {
     var v = localStorage.getItem(STORAGE_KEY);
-    if (v === 'small' || v === 'normal' || v === 'large') saved = v;
+    if (v === 'small' || v === 'normal') saved = v;
   } catch (e) {}
   applyZoom(saved);
 
   if (buttons.small)  buttons.small .addEventListener('click', function () { applyZoom('small');  });
   if (buttons.normal) buttons.normal.addEventListener('click', function () { applyZoom('normal'); });
-  if (buttons.large)  buttons.large .addEventListener('click', function () { applyZoom('large');  });
-
-  /* --- 「L 左側」「R 右側」ボタンで左右にジャンプ ---
-     L: scrollLeft = 0           （表の左端: 市町村名〜天気が見える）
-     R: scrollLeft = 最大値       （表の右端: 旗歌〜ふるさと納税が見える）
-     市町村名列は position: sticky で常に左に張り付くので、R 押下後も
-     どの市町村の行か判別できる。 */
-  function smoothScrollTo(left) {
-    /* behavior: 'smooth' が効かない古い Safari ではジャンプにフォールバック */
-    try {
-      wrap.scrollTo({ left: left, behavior: 'smooth' });
-    } catch (e) {
-      wrap.scrollLeft = left;
-    }
-  }
-  var btnPanLeft  = document.getElementById('amami-table-pan-left');
-  var btnPanRight = document.getElementById('amami-table-pan-right');
-  if (btnPanLeft) {
-    btnPanLeft.addEventListener('click', function () {
-      smoothScrollTo(0);
-    });
-  }
-  if (btnPanRight) {
-    btnPanRight.addEventListener('click', function () {
-      var max = Math.max(0, wrap.scrollWidth - wrap.clientWidth);
-      smoothScrollTo(max);
-    });
-  }
 
   /* =========================================================
      セルクリック計測 ＋ 管理者向けバッジ表示
