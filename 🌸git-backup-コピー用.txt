@@ -3,6 +3,9 @@ hp-amami-pr-1 用（このフォルダを Cursor のワークスペースに開�
 （コピーしてターミナルに貼り付け → Enter）
 🌸　cmd /c git-backup-github.bat
 
+🌸履歴を見る
+git log --oneline
+
 ※ このフォルダに cd 済みなら:
 
 .\git-backup-github.bat
@@ -36,8 +39,7 @@ git diff index.html
 やりたいこと
 コマンド
 
-🌸履歴を見る
-git log --oneline
+
 
 🌸前回に全部戻す
 git reset --hard HEAD~1
