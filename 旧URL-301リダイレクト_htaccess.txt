@@ -1,0 +1,34 @@
+# ============================================================
+# 【旧URL → 新URL 301リダイレクト】設定ファイル
+# ------------------------------------------------------------
+# ★設置場所：旧サーバー（violetfoal2.sakura.ne.jp）の
+#            /hp-amami-pr-1/ フォルダ直下に「.htaccess」という名前で置く
+#
+# ★アップロード手順：
+#   1. このファイルを FileZilla で旧サーバーの
+#      violetfoal2.sakura.ne.jp の hp-amami-pr-1/ にアップロード
+#   2. アップロード後、ファイル名を「.htaccess」に変更（リネーム）
+#      ※元から .htaccess がある場合は、中身をこの内容に置き換える
+#
+# ★目的：
+#   - 旧URLに来た訪問者を自動で新URL（tokyoamamikai.com）へ転送（404防止）
+#   - 「恒久移転(301)」をGoogleに伝え、検索評価を新URLへ引き継ぐ
+#
+# ★注意：このファイルは「旧フォルダ専用」です。
+#         新フォルダ（tokyoamamikai.com）の .htaccess とは別物なので
+#         新フォルダには絶対に置かないでください（無限ループ防止）。
+# ============================================================
+
+# mp3 の配信設定（旧フォルダにファイルが残っていても正しく扱う）
+AddType audio/mpeg .mp3
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /hp-amami-pr-1/
+
+# すべてのアクセスを、新URLの同じパスへ 301（恒久）転送する。
+# 例) /hp-amami-pr-1/index.html?return=...
+#   → https://www.tokyoamamikai.com/hp-amami-pr-1/index.html?return=...
+# [QSA] により ?return= などのクエリ文字列はそのまま引き継がれる。
+RewriteRule ^(.*)$ https://www.tokyoamamikai.com/hp-amami-pr-1/$1 [R=301,L,QSA]
+</IfModule>

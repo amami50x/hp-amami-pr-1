@@ -7,4 +7,4 @@ Disallow: /hp-amami-pr-1/amami-upd.html
 Disallow: /hp-amami-pr-1/amami0419.html
 Disallow: /hp-amami-pr-1/amamibk
 
-Sitemap: https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/sitemap.xml
+Sitemap: https://www.tokyoamamikai.com/hp-amami-pr-1/sitemap.xml

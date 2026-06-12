@@ -1,25 +1,32 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css?v=20260518"> <!-- CSS（更新時は ?v= の日付も上げる） -->
-  <script src="script.js"></script>　
+  <link rel="stylesheet" href="styles.css?v=20260604b"> <!-- CSS（更新時は ?v= の日付も上げる） -->
+  <script src="script.js"></script>
   <!-- JSファイルへのリンク -->
-  <title>東京奄美会公式ホームページ「奄美群島12市町村観光情報」</title>
-  <meta name="description" content="奄美群島12市町村を横断した旅行案内です。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・奄美のイメージ画像などをまとめました。東京奄美会公式サイトからもご案内する奄美群島の旅行案内です。">
-  <link rel="canonical" href="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/index.html">
+  <!-- 【◆01】ページ基本情報・SEO：タイトル/説明/キーワード/canonical/OGP/構造化データ。
+       変更ヒント：検索結果に出る文言や正規URL(canonical)・OGP画像はここで調整。 -->
+  <title>奄美12市町村観光情報 | 東京奄美会公式ホームページ</title>
+  <meta name="description" content="奄美12市町村を横断した旅行案内です。奄美大島、徳之島、沖永良部島、与論島、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町などの観光リンクや案内を、東京奄美会の公式ページとしてまとめています。">
+  <meta name="keywords" content="奄美,奄美大島,東京奄美会,関西奄美会,奄美市,与論,沖永良部,徳之島,伊仙,天城,奄美会,瀬戸内,龍郷,大和,喜界,宇検,奄美航路,南国,旅,旅行">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://www.tokyoamamikai.com/hp-amami-pr-1/index.html">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/index.html">
-  <meta property="og:title" content="奄美群島12市町村への旅行情報">
-  <meta property="og:description" content="奄美群島12市町村を横断した旅行案内です。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・奄美のイメージ画像などをまとめました。東京奄美会公式サイトからもご案内する奄美群島の旅行案内です。">
+  <meta property="og:url" content="https://www.tokyoamamikai.com/hp-amami-pr-1/index.html">
+  <meta property="og:title" content="奄美12市町村観光情報 | 東京奄美会">
+  <meta property="og:description" content="奄美12市町村を横断した旅行案内です。奄美大島、徳之島、沖永良部島、与論島、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町などの観光リンクや案内をまとめています。">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:image" content="https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/hp-image/title_gazo.jpg">
+  <meta property="og:image" content="https://www.tokyoamamikai.com/hp-amami-pr-1/hp-image/amami-fukei.jpg?v=20260602-2">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.tokyoamamikai.com/hp-amami-pr-1/hp-image/amami-fukei.jpg?v=20260602-2">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"奄美群島12市町村への旅行情報","description":"奄美群島12市町村を横断した旅行案内。各市町村・各島の公式や観光リンク、ぐーんと奄美の観光概要、地図・イメージ画像をまとめました。","url":"https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/index.html","inLanguage":"ja","publisher":{"@type":"Organization","name":"東京奄美会","url":"https://www.tokyoamamikai.com/"}}
+  {"@context":"https://schema.org","@type":"WebPage","name":"奄美12市町村観光情報","description":"奄美12市町村を横断した旅行案内。奄美大島、徳之島、沖永良部島、与論島、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町などの公式や観光リンク、ぐーんと奄美の観光概要、地図・イメージ画像をまとめました。","url":"https://www.tokyoamamikai.com/hp-amami-pr-1/index.html","inLanguage":"ja","publisher":{"@type":"Organization","name":"東京奄美会","url":"https://www.tokyoamamikai.com/"}}
   </script>
+  <!-- 【◆02】全体デザインCSS（メイン）：色・文字サイズ・表・ポップアップ・スマホ表示など。
+       変更ヒント：見た目の大半はここ。表やボタンの色・余白を変えたいときに編集。 -->
   <style>
   /* NOTE: Google翻訳ウィジェットは「コンパクトだが操作可能」を狙う。
      以前は #google_translate_element * { width:80px !important } を全子孫に当てていたため、
@@ -69,13 +76,109 @@
     line-height: 1.2 !important;
     text-align: center !important;
   }
-  /* スマホや狭い画面ではさらに幅を狭く */
+  /* =========================================================
+     スマホ（横幅 720px 以下）：14 列を必ず 1 画面に収める＝横スクロールをなくす。
+     見出しも本文も縦書きにして各列を細くし、ボタン装飾を解除して最小幅を外す。
+     ※ この @media の中だけの指定なので PC（721px 以上）には一切影響しない。
+     ========================================================= */
   @media screen and (max-width: 720px) {
-    #amami-table th {
-      min-width: 40px !important;
-      max-width: 70px !important;
-      font-size: 11px !important;
-      padding: 2px 3px !important;
+    /* 横スクロールを禁止し、テーブルを画面幅に固定して列を均等配分 */
+    .amami-table-wrap {
+      overflow-x: hidden !important;
+    }
+    #amami-table {
+      table-layout: fixed !important;
+      width: 100% !important;
+    }
+    /* 全セル：最小幅を外し、余白・文字を詰める */
+    #amami-table th,
+    #amami-table td {
+      min-width: 0 !important;
+      max-width: none !important;
+      padding: 3px 1px !important;
+      font-size: 10px !important;
+      overflow: hidden;
+    }
+    /* 見出し＋本文セル（1列目の市町村名も含む）を縦書きに。
+       colspan の島見出し帯だけは除外（全幅バナーは横書きのまま）。 */
+    #amami-table thead th,
+    #amami-table tbody td:not([colspan]) {
+      writing-mode: vertical-rl !important;
+      -webkit-text-orientation: upright !important;
+      text-orientation: upright !important;
+      white-space: nowrap !important;
+      word-break: keep-all !important;
+      text-align: center !important;
+      vertical-align: middle !important;
+      letter-spacing: 0.04em !important;
+      line-height: 1.05 !important;
+    }
+    /* 市町村名（1列目）の文字（黄色リンク）も縦書きで全文表示し、切れないように */
+    #amami-table td.municipal-name,
+    #amami-table td.municipal-name a.municipal-name-link {
+      writing-mode: vertical-rl !important;
+      -webkit-text-orientation: upright !important;
+      text-orientation: upright !important;
+      white-space: nowrap !important;
+      line-height: 1.1 !important;
+    }
+    /* リンクのボタン装飾（pill）を解除して、細い縦書きテキストにする。
+       ※ 島見出し帯（colspan の全幅バナー）のリンクは対象外（横書きのまま）。 */
+    #amami-table tbody tr:not(.island-title-row) .table-link-btn,
+    #amami-table tbody tr:not(.island-title-row) .municipal-basic-info a,
+    #amami-table tbody tr:not(.island-title-row) .municipal-additional-info a,
+    #amami-table tbody tr:not(.island-title-row) td a,
+    #amami-table tbody tr:not(.island-title-row) .amami-popup-trigger,
+    #amami-table tbody tr:not(.island-title-row) .amami-popup-trigger .amami-popup-label {
+      display: inline !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      padding: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background: none !important;
+      box-shadow: none !important;
+      color: #0b3a78 !important;
+      font-size: 1em !important;
+      font-weight: 700 !important;
+      white-space: nowrap !important;
+      writing-mode: inherit !important;
+      text-orientation: inherit !important;
+      transform: none !important;
+    }
+    /* クリック済みリンクは灰色で見分け */
+    #amami-table .table-link-btn.used,
+    #amami-table tbody td a.used {
+      color: #888 !important;
+    }
+    /* 1 列目（市町村名）は横書きのまま、幅だけ詰める（行ラベルとして読みやすく） */
+    #amami-table td.municipal-name {
+      min-width: 0 !important;
+    }
+    /* 旗の画像を縮小して細い列に収める */
+    #amami-table .municipal-flag-btn img {
+      width: auto !important;
+      max-width: 16px !important;
+      height: auto !important;
+      max-height: 70px !important;
+    }
+    /* ② リンク切れ／URL無しの「赤枠・グレー枠」はスマホの密集表示では邪魔なので非表示
+       （PC では従来どおり表示。管理者はPCで確認する想定）。 */
+    #amami-table td.cell-broken-url,
+    #amami-table td.cell-no-url {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    /* ③ フッター行（東京奄美会の行：濃い背景）の文字・リンクは白で見やすく。
+       「奄美群島広域事務組合」などが黒く沈まないようにする。 */
+    #amami-table tr.amami-table-footer-row td,
+    #amami-table tr.amami-table-footer-row td a,
+    #amami-table tr.amami-table-footer-row td .amami-popup-trigger,
+    #amami-table tr.amami-table-footer-row td .amami-popup-trigger .amami-popup-label,
+    #amami-table td.kouiki-cell,
+    #amami-table td.kouiki-cell .amami-popup-trigger,
+    #amami-table td.kouiki-cell .amami-popup-label {
+      color: #ffffff !important;
     }
   }
 /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -138,7 +241,7 @@
     }
 
     #amami-table td.amami-org-name {
-      background-color: #6b2d5c !important;
+      background-color: #6d4c41 !important;
       text-align: center;
       vertical-align: middle;
     }
@@ -149,15 +252,43 @@
       text-decoration: none !important;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     }
-    #amami-table tr.amami-table-footer-row td {
-      border-left: none !important;
-      border-right: none !important;
+    /* 最終行（東京奄美会の行）: 背景を濃い青にし、セル間の縦線を表示。
+       東京奄美会セル（紫）と奄美群島広域事務組合セル（金）は専用ルールが優先され、そのまま。 */
+    #amami-table tr.amami-table-footer-row td.amami-table-footer-cell {
+      background-color: #002277 !important;
+      color: #ffffff !important;
+      border-left: 1px solid #99b3ff !important;
+      border-right: 1px solid #99b3ff !important;
+    }
+    #amami-table tr.amami-table-footer-row td.amami-table-footer-cell a {
+      color: #ffffff !important;
     }
     #amami-table tr.amami-table-footer-row td:first-child {
       border-left: 1px solid #0000ff !important;
     }
     #amami-table tr.amami-table-footer-row td:last-child {
       border-right: 1px solid #0000ff !important;
+    }
+    /* 奄美群島広域事務組合セル（東京奄美会の次の次）— 背景色で目立たせる */
+    #amami-table td#cell-13-03.kouiki-cell {
+      background-color: #6d4c41 !important;
+      text-align: center;
+      vertical-align: middle;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    #amami-table td#cell-13-03.kouiki-cell .amami-popup-trigger {
+      color: #ffffff;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      max-width: 100%;
+      white-space: normal;
+    }
+    #amami-table td#cell-13-03.kouiki-cell .amami-popup-label {
+      white-space: normal;
+      word-break: break-all;   /* 「奄美群島広域事務組合」を折り返して全文表示 */
     }
 
     /* NOTE: リンク状態の可視化（link-status.json と JS で動的付与）
@@ -166,14 +297,16 @@
        装飾セル（市町村名・組織名・島見出し）は対象外（JS 側で除外）。
        NOTE: テーブル内リンクは styles.css の .table-link-btn で青ボタン化されるため、
              セル背景は見えにくい。outline でセル外周に枠線を描画して目立たせる。 */
-    table td.cell-broken-url,
-    #amami-table td.cell-broken-url {
+    /* ★ 赤枠・グレー枠は「管理者のみ」表示する（.amami-admin が付くときだけ）。
+       一般ユーザーには付与されないため、リンク切れ枠は一切見えない。 */
+    .amami-admin table td.cell-broken-url,
+    .amami-admin #amami-table td.cell-broken-url {
       outline: 3px solid #d32f2f !important;
       outline-offset: -3px !important;
       box-shadow: inset 0 0 0 3px #d32f2f !important;
     }
-    table td.cell-no-url,
-    #amami-table td.cell-no-url {
+    .amami-admin table td.cell-no-url,
+    .amami-admin #amami-table td.cell-no-url {
       outline: 3px solid #9e9e9e !important;
       outline-offset: -3px !important;
       box-shadow: inset 0 0 0 3px #9e9e9e !important;
@@ -346,6 +479,18 @@
       border-left: 1px solid rgba(255, 255, 255, 0.5);
       color: #ffefc1;
     }
+    /* 島見出し行用：横幅いっぱい（colspan）のため td 右上だと内容から離れて
+       見切れる。「関連サイト」ボタンを基準（position:relative）にして、その
+       右上角にバッジを重ねる（通常セルと同じ見え方にする）。 */
+    #amami-table .amami-badge-anchor {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    #amami-table .amami-badge-anchor .amami-click-badge {
+      top: -7px;
+      right: -7px;
+    }
     /* === 最初の列「市町村名」を横スクロール時にも常に画面左端に固定する ===
        横にスクロールしても 12 市町村名が常に見えるよう、各行の先頭セルを
        position: sticky; left: 0 で固定する。
@@ -400,6 +545,136 @@
       max-height: 28px;
       width: auto !important;
       height: auto !important;
+    }
+
+    /* =========================================================
+       複数リンクのポップアップ
+       同一セル内に <a> が 2 つ以上あるセルだけ、JS が自動で
+       「カテゴリ名 ▾」のトリガーに畳み込み、クリックで一覧を
+       ポップアップ表示する。元の <a> は link-status 判定用に
+       非表示で DOM に残す（.amami-popup-source）。
+       ========================================================= */
+    #amami-table td .amami-popup-source {
+      display: none;
+    }
+    .amami-popup-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      color: #1b5eb8;
+      text-decoration: none;
+      padding: 0;
+      line-height: 1.3;
+      max-width: 100%;
+    }
+    .amami-popup-trigger:hover,
+    .amami-popup-trigger:focus-visible {
+      color: #800080;
+    }
+    .amami-popup-trigger .amami-popup-label {
+      white-space: normal;
+      word-break: keep-all;
+    }
+    .amami-popup-trigger .amami-popup-caret {
+      font-size: 0.78em;
+      text-decoration: none;
+      transition: transform 0.15s ease;
+    }
+    .amami-popup-trigger[aria-expanded="true"] .amami-popup-caret {
+      transform: rotate(180deg);
+    }
+
+    .amami-popup-menu {
+      position: fixed;
+      z-index: 10051;
+      box-sizing: border-box;
+      width: max-content;
+      max-width: min(400px, calc(100vw - 16px));
+      min-width: 220px;
+      max-height: 62vh;
+      overflow-y: auto;
+      background: #002277;
+      border: 1px solid #99b3ff;
+      border-radius: 12px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      padding: 8px;
+      -webkit-overflow-scrolling: touch;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      text-align: left;
+    }
+    .amami-popup-menu.is-open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .amami-popup-menu .amami-popup-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      padding: 4px 10px 8px;
+      border-bottom: 1px solid #4a63b8;
+      margin-bottom: 5px;
+    }
+    .amami-popup-menu .amami-popup-back {
+      flex: 0 0 auto;
+      cursor: pointer;
+      border: 1px solid #99b3ff;
+      background: #1a3a99;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+    .amami-popup-menu .amami-popup-back:hover,
+    .amami-popup-menu .amami-popup-back:focus-visible {
+      background: #2a4ec0;
+    }
+    .amami-popup-menu a {
+      display: block;
+      position: relative;
+      padding: 9px 11px 9px 30px;  /* 左に🌸マーク分の余白 */
+      border-radius: 7px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.45;
+      white-space: normal;        /* 長い名称は折り返して全文表示 */
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+    .amami-popup-menu a::before {
+      content: "\1F338";          /* 🌸（リンクの目印・折り返しても左上に固定） */
+      position: absolute;
+      left: 9px;
+      top: 9px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .amami-popup-menu a + a {
+      margin-top: 2px;
+    }
+    .amami-popup-menu a:hover,
+    .amami-popup-menu a:focus-visible {
+      background: #1a3a99;
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .amami-popup-menu,
+      .amami-popup-trigger .amami-popup-caret {
+        transition: none;
+      }
     }
 
     /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
@@ -1089,6 +1364,7 @@
 
   </style>
 
+<!-- 【◆03】BGMプレーヤーの見た目CSS：BGM枠・ボタン・再生バーのデザイン。 -->
 <style>
   .bgm-container {
       font-family: sans-serif;
@@ -1139,6 +1415,39 @@
 
 <body>
 
+  <!-- ============================================================
+       【◆目次】このページ（index.html）の処理ブロック一覧
+       各処理の先頭に【◆番号】コメントを付けています。検索で「◆番号」を
+       探すと、その処理に飛べます。
+         ◆01 ページ基本情報・SEO（title/description/canonical/OGP/構造化データ）
+         ◆02 全体デザインCSS（メイン）
+         ◆03 BGMプレーヤーの見た目CSS
+         ◆04 右下フローティング操作パネル（最上部へ／画面説明）
+         ◆05 言語Cookie消去（新規表示は日本語から開始）
+         ◆06 Google翻訳ウィジェット初期化・言語切替
+         ◆07 公式HPへ戻る／ページ終了の導線
+         ◆08 トップバー高さ調整（body余白）
+         ◆09 訪問者カウント（access-counter.php 連携）
+         ◆10 操作マニュアルの開閉
+         ◆11 ヒーローセクション（価値訴求＋CTAボタン）
+         ◆12 スライドショー画像（HTML）
+         ◆13 観光情報テーブル（本体・市町村リンク）
+         ◆14 テーブル表示制御（横スクロール同期・拡大縮小・セルクリック集計）
+         ◆15 「準備中」ポップアップ
+         ◆16 ご意見・ご要望リンクの自動生成
+         ◆17 スライドショーCSS
+         ◆18 スライドショー制御（停止／再開）
+         ◆19 表リンクのボタン化・同一タブ統一（decorateAmamiTableLinks）
+         ◆20 リンク切れの可視化（link-status.json）
+         ◆21 モニュメント音声・町歌再生
+         ◆22 リンク一覧.txt の読み込み・解析（AmamiLinks）
+         ◆23 島の関連サイト／SNS ポップアップ
+         ◆24 戻り時のポップアップ再表示・スクロール位置復元
+         ◆25 BGM起動・スライド連動（BroadcastChannel）
+         ◆26 サイトフッターCSS
+         ◆27 複数リンクのポップアップ（セル畳み込み）＋リンク差し込み
+       ============================================================ -->
+
   <!-- 画面右下のフローティング操作パネル
        - 薄いピンクで囲み、葉や写真などページ背景と明確に区別する。
        - 内部の 2 つのボタンは同じ幅にそろえ、外国語で長くなった場合は
@@ -1148,6 +1457,7 @@
     <button id="backToTopBtn" type="button" aria-label="ページの先頭へ戻る">ページ最上部へ</button>
     <button id="operationManualToggleBtn" type="button" aria-label="この画面の説明を開く">この画面の説明</button>
   </div>
+  <!-- 【◆04】右下フローティング操作パネル：スクロール量に応じて「最上部へ」「画面説明」を表示/非表示。 -->
   <script>
     // NOTE: ボタン直下で即時登録し、後段スクリプトのエラーで止まらないようにする。
     //  スクロール位置に応じてフローティングパネルを表示/非表示する。
@@ -1161,6 +1471,10 @@
       var fabPanel = document.getElementById("amamiFabPanel");
       if (!topBtn || !fabPanel) return;
 
+      /* この処理の中の関数（◆04-n）
+         ◆04-1 isFeedbackInView   : ご意見欄が画面内に見えているか判定
+         ◆04-2 isTableBlockingFab : 表が表示中か判定（表示中はパネルを隠す）
+         ◆04-3 toggleFabPanel     : スクロール位置に応じてパネルを表示/非表示 */
       function isFeedbackInView() {
         var feedback = document.querySelector(".feedback");
         if (!feedback) return false;
@@ -1205,10 +1519,8 @@
     })();
   </script>
 
-  <!-- NOTE: 既存端末互換のため unload ハンドラを明示（履歴遷移時の挙動差分吸収） -->
-  <script type="text/javascript">
-    window.onunload = function(){};
-  </script>
+  <!-- NOTE: unload ハンドラは bfcache（戻る/進むの瞬間復元）を無効化するため設定しない。
+       ← で戻ったときにテーブルを再描画せず一瞬で復元するための対応。 -->
   
 
 <!-- PDF表示用のモーダル -->
@@ -1277,9 +1589,20 @@
       outline: 2px solid #1f3a64;
       outline-offset: 1px;
     }
-    /* Google翻訳のデフォルトUI（SIMPLEレイアウトのボタン）は隠して
-       自前プルダウンに置き換える。 */
-    #google_translate_element { display: none !important; }
+    /* Google翻訳のデフォルトUI（SIMPLEレイアウトのボタン）は見せず、
+       自前プルダウンに置き換える。
+       display:none にするとスマホ環境で内部 select.goog-te-combo が生成・反応しない
+       ことがあるため、DOM上は動作可能なまま画面外に退避する。 */
+    #google_translate_element {
+      position: absolute !important;
+      left: -9999px !important;
+      top: 0 !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
     /* Google翻訳の「翻訳されました」上部バー（言語名が日本語だけ）は使わず、
        自前の日英併記プルダウンだけを表示する。
        NOTE: Google は標準バーを body 直下の .skiptranslate として挿入するが、
@@ -1322,8 +1645,11 @@
      Google翻訳は前回選択した言語を Cookie "googtrans" に保存して再翻訳するため、
      element.js を読み込む前にここで Cookie を消去する。F5（再読み込み）と
      ブラウザの戻る/進むの場合は現在の言語を維持するため消去しない。 -->
+<!-- 【◆05】言語Cookie消去：通常の新規表示では必ず日本語から始めるため googtrans Cookie を消す（F5・戻る/進むは維持）。 -->
 <script type="text/javascript">
 (function () {
+  /* この処理の中の関数（◆05-n）
+     ◆05-1 isReloadOrHistoryNav : F5や戻る/進みかを判定（言語を維持するかの判断に使用） */
   function isReloadOrHistoryNav() {
     try {
       var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
@@ -1353,7 +1679,16 @@
 })();
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- 【◆06】Google翻訳ウィジェット初期化・言語切替：多言語表示の制御。 -->
 <script type="text/javascript">
+  /* この処理の中の関数（◆06-n）
+     ◆06-1 googleTranslateElementInit : 翻訳ウィジェットを生成
+     ◆06-2 retryGoogleTranslateInit   : 読み込み失敗時に再試行
+     ◆06-3 findGoogleSelect           : 翻訳の言語選択メニューを探す
+     ◆06-4 setGoogtransCookie / clearGoogtransCookie : 翻訳Cookieの設定/消去
+     ◆06-5 dispatchGoogleChange        : 言語変更イベントを発火
+     ◆06-6 applyLanguage               : 指定言語へ切り替え
+     ◆06-7 syncInitialFromCookie       : 初期表示をCookieに同期 */
   function googleTranslateElementInit() {
     console.log("googleTranslateElementInit 呼び出し");
     new google.translate.TranslateElement({
@@ -1407,29 +1742,78 @@
       return document.querySelector('select.goog-te-combo');
     }
 
-    /* 自前プルダウン変更 → Google翻訳発火 */
-    customSel.addEventListener('change', function () {
-      var target = customSel.value;
-      if (target && target !== 'ja' && typeof window.handleSwitchToForeign === 'function') {
+    function setGoogtransCookie(target) {
+      var host = location.hostname.replace(/^www\./, '');
+      var v = '/ja/' + target;
+      document.cookie = 'googtrans=' + v + '; path=/;';
+      document.cookie = 'googtrans=' + v + '; path=/; domain=.' + host;
+    }
+
+    function clearGoogtransCookie() {
+      var host = location.hostname;
+      var rootHost = host.replace(/^www\./, '');
+      var paths = ['/', '/hp-amami-pr-1/', location.pathname];
+      var domains = ['', host, '.' + host, '.' + rootHost];
+      var expired = '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      for (var i = 0; i < paths.length; i++) {
+        for (var j = 0; j < domains.length; j++) {
+          var c = 'googtrans=' + expired + '; path=' + paths[i];
+          if (domains[j]) c += '; domain=' + domains[j];
+          document.cookie = c;
+        }
+      }
+    }
+
+    function dispatchGoogleChange(googleSel) {
+      try {
+        googleSel.dispatchEvent(new Event('change', { bubbles: true }));
+      } catch (e1) {
+        try {
+          var ev = document.createEvent('HTMLEvents');
+          ev.initEvent('change', true, true);
+          googleSel.dispatchEvent(ev);
+        } catch (e2) {}
+      }
+    }
+
+    function applyLanguage(target, retryCount) {
+      if (!target) return;
+      if (target === 'ja') {
+        clearGoogtransCookie();
+        location.reload();
+        return;
+      }
+
+      if (typeof window.handleSwitchToForeign === 'function') {
         // Google翻訳のDOM変化検知を待たず、外国語を選んだ瞬間に確実に補正する。
         window.handleSwitchToForeign();
       }
+
       var googleSel = findGoogleSelect();
       if (!googleSel) {
+        retryCount = retryCount || 0;
+        if (retryCount < 20) {
+          setTimeout(function () {
+            applyLanguage(target, retryCount + 1);
+          }, 250);
+          return;
+        }
         // まだ Google 翻訳が初期化されていない場合の保険:
         // cookie で言語を指定してリロード（Google翻訳の標準仕様）。
-        if (target) {
-          var host = location.hostname.replace(/^www\./, '');
-          var v = '/ja/' + target;
-          document.cookie = 'googtrans=' + v + '; path=/;';
-          document.cookie = 'googtrans=' + v + '; path=/; domain=.' + host;
-          location.reload();
-        }
+        setGoogtransCookie(target);
+        location.reload();
         return;
       }
+
       googleSel.value = target;
-      // Google翻訳は change イベントで翻訳を実行する
-      googleSel.dispatchEvent(new Event('change'));
+      // Google翻訳は change イベントで翻訳を実行する。スマホ向けに bubbles 付きで発火する。
+      dispatchGoogleChange(googleSel);
+    }
+
+    /* 自前プルダウン変更 → Google翻訳発火 */
+    customSel.addEventListener('change', function () {
+      var target = customSel.value;
+      applyLanguage(target, 0);
     });
 
     /* ページ表示時、すでに翻訳済みなら自前プルダウンの選択状態を合わせる。
@@ -1477,11 +1861,22 @@
     </div>
   </div>
 
+<!-- 【◆07】公式HPへ戻る／ページ終了の導線：上部「公式HPへ」ボタンの戻り先制御や終了表示。
+     変更ヒント：戻り先の許可ホストは isAllowedReturnHost、戻り処理は hpAmamiGoBack。 -->
 <!-- NOTE: 公式HP導線: ?return= または referrer で戻る。フル読み込みで最新表示（bfcache 回避用パラメータ付与） -->
 <script>
 (function (global) {
   var hpNavBusy = false;
 
+  /* この処理の中の関数（◆07-n）
+     ◆07-1 normalizeUrl            : URLの#以降を除去
+     ◆07-2 isAllowedReturnHost / isAllowedReturnUrl : 戻り先として許可するホスト判定
+     ◆07-3 isFeedbackFormUrl / isReturnedFromFeedbackForm : フォーム関連の判定
+     ◆07-4 urlForFreshNavigation   : 最新表示用のパラメータ付与
+     ◆07-5 canUseHistoryBackTo     : 履歴で戻れるか判定
+     ◆07-6 getReturnFromQuery / getReturnFromReferrer : 戻り先URLの取得
+     ◆07-7 hpAmamiGoBack（global）  : 「公式HPへ戻る」本体
+     ◆07-8 bindHpBackTouch / bindHpEndTouch : ボタンのタッチ操作対応 */
   function normalizeUrl(url) {
     return (url || "").replace(/#.*$/, "");
   }
@@ -1531,10 +1926,22 @@
    * 以前は ?_amami_back=時刻 を付けてキャッシュを破棄していたが、
    * 戻り遷移が毎回 WordPress 再生成（数秒〜十数秒）になり遅い。
    * WP 側はファイルキャッシュ＋訪問数差し替えで最新性を担保しているため、
-   * ここでは URL をそのまま返してブラウザ／サーバーキャッシュを最大活用する。
+   * キャッシュ破棄パラメータは付けない。
+   *
+   * 旅行HPを最初から開いた状態で「東京奄美会公式ホームページへ」を押した場合は、
+   * WP TOP 側で「戻り」ではなく新規入りとしてカウントする。
+   * その判定用に from_tourism_entry=1 だけ付与する。
    */
   function urlForFreshNavigation(url) {
-    return url;
+    try {
+      var u = new URL(url, window.location.href);
+      u.searchParams.set("from_tourism_entry", "1");
+      return u.toString();
+    } catch (e) {
+      if (typeof url !== "string") return url;
+      if (url.indexOf("from_tourism_entry=") !== -1) return url;
+      return url + (url.indexOf("?") === -1 ? "?" : "&") + "from_tourism_entry=1";
+    }
   }
 
   /**
@@ -1729,20 +2136,25 @@
 </script>
 
 <!--
-NOTE: 外部リンク・動画運用ルール（保守用）
-1) 外部サイト遷移リンクは原則 target="_blank" rel="noopener noreferrer" を付与する。
-2) テーブルのクリック委譲処理では target="_blank" のリンクを横取りしない。
-3) 島見出し行（island-title-row）のリンクは直接遷移を優先し、翻訳経由の影響を避ける。
-4) 動画リンクは後追い個別対応を避け、初期実装時に上記1)を満たすこと。
-5) 仕様追加時は NOTE:/RISK:/TODO: コメントを更新し、運用ルールとの差分を残すこと。
-RISK: target 未設定の外部リンクはスマホ環境で表示差分（動画非表示等）が再発しやすい。
-TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏れを防止する。
+NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方針確定
+1) テーブル内のリンクは原則「同じタブ」で開く（遷移先を見た後、ブラウザの←戻るで必ず
+   テーブルに戻れるよう一元化。「タブを閉じる」操作を不要にするため）。
+   利用者が別タブで開きたいときは Ctrl+クリック / マウス中ボタンで選べる（ブラウザ標準）。
+2) 実装は decorateAmamiTableLinks() が #amami-table 内の <a> から target/rel を除去して統一する
+   （HTML 側にハードコードされた target="_blank" も実行時に除去される）。
+   ※ onclick で動く機能リンク（BGM再生など）は対象外。
+3) ポップアップ（セル内複数リンク・関連サイト・SNS）も既定で同じタブ。
+   リンク一覧.txt で「別タブ=true」を明示したものだけ新しいタブで開く。
+4) 訪問済みリンクのハイライト(.used)はクリック時に記録する。
 -->
 
+<!-- 【◆08】トップバー高さ調整：固定トップバー分の余白を本文に確保（重なり防止）。 -->
 <!-- NOTE: 翻訳バー + 固定トップバーの合計高さを計測して body padding-top に反映
          （ResizeObserver で Google Translate のロード後の高さ変化にも追従） -->
 <script>
 (function () {
+  /* この処理の中の関数（◆08-n）
+     ◆08-1 syncTopBarBodyPadding : 翻訳バー＋固定トップバーの高さ分だけ本文に余白を確保 */
   function syncTopBarBodyPadding() {
     var translateBar = document.querySelector(".amami-translate-bar");
     var topBar = document.querySelector(".top-bar");
@@ -1784,6 +2196,8 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
 })();
 </script>
 
+<!-- 【◆09】訪問者カウント：access-counter.php と連携し日本語/外国語の訪問数を加算・表示。
+     変更ヒント：送信先は COUNTER_ENDPOINT（相対 access-counter.php）。集計仕様は下記。 -->
 <!-- =================================================================
      訪問回数カウント（仕様）
        1) ページを通常表示したら毎回 日本語 +1。
@@ -1794,10 +2208,17 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
        カウント保存と現在値の取得は access-counter.php に一本化。
      ================================================================= -->
 <script type="text/javascript">
-  const COUNTER_ENDPOINT = "https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/access-counter.php";
+  const COUNTER_ENDPOINT = "access-counter.php";
   var amamiPrVisitCountStatus = null; // null | 'ja' | 'foreign'（このページ表示中だけ使用）
 
   // ----- 言語判定（既存ロジック互換） -----
+  /* この処理の中の関数（◆09-n）
+     ◆09-1 amamiPrIsForeignLang      : 外国語表示かどうか判定
+     ◆09-2 applyCounterDisplay       : 画面のカウント表示を更新
+     ◆09-3 counterPost               : サーバーへ加算を送信（POST）
+     ◆09-4 counterGet                : 現在のカウントを取得（GET）
+     ◆09-5 amamiPrIsNoCountNavigation : F5・戻る/進む等の非カウント判定
+     ◆09-6 handleSwitchToForeign     : 外国語切替時に 日本語-1 / 外国語+1 */
   function amamiPrIsForeignLang() {
     try {
       var htmlTag = document.documentElement;
@@ -1955,6 +2376,7 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   });
 </script>
 
+<!-- 【◆10】操作マニュアルの開閉：「この画面の説明」パネルの表示/非表示。 -->
 <script>
   // NOTE: 操作マニュアルは固定ボタンで開閉し、通常閲覧時の占有を避ける
   (function () {
@@ -1964,6 +2386,9 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     var overlay = document.getElementById("operationManualOverlay");
     if (!openBtn || !closeBtn || !panel || !overlay) return;
 
+    /* この処理の中の関数（◆10-n）
+       ◆10-1 openManual  : 「この画面の説明」パネルを開く
+       ◆10-2 closeManual : 説明パネルを閉じる */
     function openManual() {
       panel.style.display = "block";
       overlay.style.display = "block";
@@ -1983,11 +2408,14 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   })();
 </script>
 
+  <!-- 【◆11】ヒーローセクション：キャッチコピーと主要ボタン（画像へ／観光情報へ／お願い）。
+       変更ヒント：トップの紹介文やボタンの文言・リンク先はここ。 -->
   <!-- NOTE: ヒーローセクションは価値訴求文 + 主要導線CTA -->
   <div class="title1">☆奄美群島の魅力をあなたに！☆ </div>
   <div class="title2">美しい自然と文化</div>
   <section class="impact-hero" aria-label="奄美群島PRの志">
     <p class="impact-hero-lead">どなたが見ても「行ってみたい」と感じる、南国・奄美群島の魅力をこのページに集めました。</p>
+    <p class="impact-hero-sub">このページは、奄美大島・徳之島・沖永良部島・与論島をはじめ、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町の観光情報をまとめた東京奄美会の案内ページです。奄美航路や南国の旅、島めぐりの入口としてご覧ください。</p>
     <p class="impact-hero-sub">下部のテーブルでは、これまでにない奄美群島12市町村を横断した旅行案内をご覧いただけます。気になる地域を見つけて、ぜひお気に入りの場所を訪ねてみてください。</p>
     <p class="impact-hero-sub impact-hero-official">関東地域の奄美関係者の組織「東京奄美会」の案内の一環として本ページを公開しています。活動報告や最新のお知らせは、<a href="https://www.tokyoamamikai.com/" target="_blank" rel="noopener noreferrer">東京奄美会公式サイト</a>をご覧ください。</p>
     <div class="impact-actions">
@@ -1999,13 +2427,15 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
 
   <!-- 奄美を象徴する画像 -->
   <div id="amami-images">
-    <img src="hp-image/title_gazo.jpg" alt="奄美群島の景色" style="width:100%; height:auto;">
+    <img src="hp-image/amami-fukei.jpg" alt="奄美群島の景色" style="width:100%; height:auto;">
   </div>
   <div class="hp-image-container02">
-    <img src="hp-image/title_map.png" alt="奄美群島地図.png" style="width:100%; height:auto;">
+    <img src="hp-image/title_map.jpg" alt="奄美群島地図.png" style="width:100%; height:auto;">
 
   </div>
 
+  <!-- 【◆12】スライドショー画像（HTML）：表示する画像はここに <img> で追加・削除する。
+       変更ヒント：画像の差し替え・追加はこの並び。切替の動きは◆18。見た目は◆17。 -->
   <!-- NOTE: スライドショーは印象訴求用。JS 側で active クラスを3秒間隔でローテーション -->
 <div id="slideshow" class="slideshow-frame">
   <img src="hp-image/IsenTownInudabuCapeMemorial.jpg" alt="hp-image 1">
@@ -2024,6 +2454,11 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   <img src="hp-image/WadomariTownKasashi.jpg" alt="hp-image 16">
   <img src="hp-image/kinsakubaru.jpg" alt="hp-image 17">
   <img src="hp-image/manguro-bU.jpg" alt="hp-image 18">
+  <!-- スライド画像はここまで -->
+  <div id="slideshow-controls" class="slideshow-controls">
+    <button type="button" id="slideStopBtn" class="slide-ctrl-btn">■ 停止</button>
+    <button type="button" id="slideResumeBtn" class="slide-ctrl-btn" disabled>▶ 再開</button>
+  </div>
   
 
 
@@ -2072,6 +2507,9 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
 <!-- 「奄美群島の観光情報を見る」ボタンのジャンプ先。
      このタイトルが画面上端（固定トップバーの直下）に表示されるよう
      CSS の scroll-margin-top を効かせる。 -->
+<!-- 【◆13】観光情報テーブル（本体）：奄美群島12市町村と各島の行。各セルの<a>に
+     リンク一覧.txt（◆22）からURLが差し込まれる。市町村名・島見出しの行構成はここ。
+     変更ヒント：リンクのURLは index.html ではなく「リンク一覧.txt」を編集する。 -->
 <div id="amami-table-section" class="title3">奄美群島各地の観光情報一覧</div>
 <p class="amami-table-hint">※ 下の表では、<strong>文字</strong>・<strong>ボタン</strong>・<strong>旗の絵</strong>など表示がある箇所をクリックすると、各サイトの情報をご覧いただけます。（下線がない項目もリンクです）</p>
 <!-- 表は 14 列まで増えており狭い画面で横にあふれる。
@@ -2117,7 +2555,7 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   <tbody>
     <!--  12市町村 × 13行を追加 -->
     <tr class="island-title-row">
-      <td colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+      <td id="cell-island-kikai" colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
         <div class="island-title-inner">
           <a href="https://kikaijimanavi.com/" style="color: white; font-weight: bold; text-decoration: underline;">【 喜界島 】</a>
           <div class="island-title-actions">
@@ -2129,24 +2567,24 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     </tr>
 
     <tr>
-      <td id="cell-01-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.kikai.lg.jp/densan/home.html">喜界町</a></td>
-      <td id="cell-01-02"><a href="https://www.bing.com/search?q=%E5%96%9C%E7%95%8C%E5%B3%B6%E3%81%AE%E8%A6%B3%E5%85%89%E5%9C%B0&cvid=23cfe06f7a8249429440637f1fc2dc88&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhA0gEJMTU4ODJqMGo0qAIAsAIA&FORM=ANAB01&ucpdpc=UCPD&PC=U531">観光</a></td>
-      <td id="cell-01-03"><a href="https://www.town.kikai.lg.jp/kankou/kanko-iju/tokusanhin/kyodoryori1.html">グルメ</a></td>
-      <td id="cell-01-04"><a href="https://www.town.kikai.lg.jp/kankou/kanko-iju/tokusanhin/tokusanhin.html">特産品</a></td>
-      <td id="cell-01-05"><a href="https://amamipark.com/islandinfo/kikai/dento/index.html">郷土芸能</a></td>
-      <td id="cell-01-06"><a href="https://kikaijimanavi.com/history-culture/">歴史文化</a></td>
-      <td id="cell-01-07"><a href="https://kikaijimanavi.com/tourism-and-experience/activity/">体験</a></td>
-      <td id="cell-01-08"><a href="https://ritoful.com/archives/41630">経　路</a></td>
-      <td id="cell-01-09"><a href="https://tenki.jp/forecast/9/49/1000/46529/">天気</a></td>
+      <td id="cell-01-01" class="municipal-name"><a class="municipal-name-link">喜界町</a></td>
+      <td id="cell-01-02"><a>観光</a></td>
+      <td id="cell-01-03"><a>グルメ</a></td>
+      <td id="cell-01-04"><a>特産品</a></td>
+      <td id="cell-01-05"><a>郷土芸能</a></td>
+      <td id="cell-01-06"><a>歴史文化</a></td>
+      <td id="cell-01-07"><a>体験</a></td>
+      <td id="cell-01-08"><a>経　路</a></td>
+      <td id="cell-01-09"><a>天気</a></td>
       <td id="cell-01-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「サンゴの島　喜界町」sasori.mp3', event)" title="喜界町の町歌を再生" aria-label="喜界町の町歌を再生"><img src="towninfo/kikai_ki.png" alt="喜界町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-01-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%96%9C%E7%95%8C%E7%94%BA" target="_blank" rel="noopener noreferrer" title="喜界町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-01-12" class="municipal-additional-info"><a href="https://www.town.kikai.lg.jp/koho/shimagoyomi.html" title="喜界町 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-01-13" class="municipal-additional-info"><a href="https://www.town.kikai.lg.jp/densan/kanko-iju/ijuteju/index.html" title="喜界町 定住・移住">定住・移住</a></td>
-      <td id="cell-01-14" class="municipal-additional-info"><a href="https://furusato-kikai.jp/" title="喜界町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-01-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="喜界町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-01-12" class="municipal-additional-info"><a title="喜界町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-01-13" class="municipal-additional-info"><a title="喜界町 定住・移住">定住・移住</a></td>
+      <td id="cell-01-14" class="municipal-additional-info"><a title="喜界町 ふるさと納税">ふるさと納税</a></td>
     </tr>
    
     <tr class="island-title-row">
-      <td colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+      <td id="cell-island-amami" colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
         <div class="island-title-inner">
           <a href="https://www.amami-tourism.org/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 奄美大島 】</a>
           <div class="island-title-actions">
@@ -2157,90 +2595,90 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       </td>
     </tr>
     <tr>
-      <td id="cell-02-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.tatsugo.lg.jp/">龍郷町</a></td>
-      <td id="cell-02-02"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/kanko/index.html">観光</a></td>
-      <td id="cell-02-03"><a href="https://www.jalan.net/gourmet/cit_465270000/?msockid=1bb6f84e15506cea3ad9ecbe14346d26">グルメ</a></td>
-      <td id="cell-02-04"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/event-bunka/tokusanhin/index.html">特産品</a></td>
-      <td id="cell-02-05"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/event-bunka/index.html">郷土芸能</a></td>
-      <td id="cell-02-06"><a href="https://www.town.tatsugo.lg.jp/kikakukanko/event-bunka/rekishi-bunka/index.html">歴史文化</a></td>
-      <td id="cell-02-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=tatsugocho">体験</a></td>
-      <td id="cell-02-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
-      <td id="cell-02-09"><a href="https://tenki.jp/forecast/9/49/1000/46527/">天気</a></td>
+      <td id="cell-02-01" class="municipal-name"><a class="municipal-name-link">龍郷町</a></td>
+      <td id="cell-02-02"><a>観光</a></td>
+      <td id="cell-02-03"><a>グルメ</a></td>
+      <td id="cell-02-04"><a>特産品</a></td>
+      <td id="cell-02-05"><a>郷土芸能</a></td>
+      <td id="cell-02-06"><a>歴史文化</a></td>
+      <td id="cell-02-07"><a>体験</a></td>
+      <td id="cell-02-08"><a>経　路</a></td>
+      <td id="cell-02-09"><a>天気</a></td>
       <td id="cell-02-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「龍の郷（さと）に光満ちて－龍郷町」sasori.mp3', event)" title="龍郷町の町歌を再生" aria-label="龍郷町の町歌を再生"><img src="towninfo/tatugo_ki.png" alt="龍郷町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-02-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E9%BE%8D%E9%83%B7%E7%94%BA" target="_blank" rel="noopener noreferrer" title="龍郷町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-02-12" class="municipal-additional-info"><a href="https://www.town.tatsugo.lg.jp/cgi-bin/event_cal_multi/calendar.cgi" title="龍郷町 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-02-13" class="municipal-additional-info"><a href="https://tatsugo-iju.com/" title="龍郷町 移住・定住">移住・定住</a></td>
-      <td id="cell-02-14" class="municipal-additional-info"><a href="https://www.furusato-tax.jp/city/info/46527?utm_source=bing&utm_medium=ppc&utm_campaign=pmax_microsoft_newdormant&utm_content=&utm_term=b_www.furusato-tax.jp&cq_src=bing_ads&cq_cmp=pmax_microsoft_newdormant&cq_con=dormant&cq_term=www.furusato-tax.jp&cq_med=&cq_net=o&cq_plt=bp&msclkid=c8613c8c606a13306e4b569bae3ac30d" title="龍郷町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-02-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="龍郷町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-02-12" class="municipal-additional-info"><a title="龍郷町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-02-13" class="municipal-additional-info"><a title="龍郷町 移住・定住">移住・定住</a></td>
+      <td id="cell-02-14" class="municipal-additional-info"><a title="龍郷町 ふるさと納税">ふるさと納税</a></td>
     </tr>
     <tr>
-      <td id="cell-03-01" class="municipal-name"><a class="municipal-name-link" href="https://www.city.amami.lg.jp/">奄美市</a></td>
-      <td id="cell-03-02"><a href="https://www.city.amami.lg.jp/kanko/kanko/index.html">観光</a></td>
-      <td id="cell-03-03"><a href="https://tabelog.com/kagoshima/C46222/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-03-04"><a href="https://www.city.amami.lg.jp/kanko/tokusan/index.html">特産品</a></td>
-      <td id="cell-03-05"><a href="https://www.city.amami.lg.jp/kyoiku/bunka/index.html">郷土芸能</a></td>
-      <td id="cell-03-06"><a href="https://www.city.amami.lg.jp/kyoiku/bunka/index.html">歴史文化</a></td>
-      <td id="cell-03-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=amami-nase">体験</a></td>
-      <td id="cell-03-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
-      <td id="cell-03-09"><a href="https://tenki.jp/forecast/9/49/1000/46222/">天気</a></td>
+      <td id="cell-03-01" class="municipal-name"><a class="municipal-name-link">奄美市</a></td>
+      <td id="cell-03-02"><a>観光</a></td>
+      <td id="cell-03-03"><a>グルメ</a></td>
+      <td id="cell-03-04"><a>特産品</a></td>
+      <td id="cell-03-05"><a>郷土芸能</a></td>
+      <td id="cell-03-06"><a>歴史文化</a></td>
+      <td id="cell-03-07"><a>体験</a></td>
+      <td id="cell-03-08"><a>経　路</a></td>
+      <td id="cell-03-09"><a>天気</a></td>
       <td id="cell-03-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「結（ゆい）の街-奄美市」sasori.mp3', event)" title="奄美市の市歌を再生" aria-label="奄美市の市歌を再生"><img src="towninfo/amami_ki.png" alt="奄美市" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-03-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%AE%9B%E7%BE%8E%E5%B8%82" target="_blank" rel="noopener noreferrer" title="奄美市（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-03-12" class="municipal-additional-info"><a href="https://www.city.amami.lg.jp/kikaku/koho/schedule.html" title="奄美市 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-03-13" class="municipal-additional-info"><a href="https://www.city.amami.lg.jp/pjsenryaku/ui-turn/slowlife/index.html" title="奄美市 移住・定住">移住・定住</a></td>
-      <td id="cell-03-14" class="municipal-additional-info"><a href="https://www.city.amami.lg.jp/pjsenryaku/furusato.html" title="奄美市 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-03-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="奄美市（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-03-12" class="municipal-additional-info"><a title="奄美市 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-03-13" class="municipal-additional-info"><a title="奄美市 移住・定住">移住・定住</a></td>
+      <td id="cell-03-14" class="municipal-additional-info"><a title="奄美市 ふるさと納税">ふるさと納税</a></td>
     </tr>
     <tr>
-      <td id="cell-04-01" class="municipal-name"><a class="municipal-name-link" href="https://www.vill.yamato.lg.jp/">大和村</a></td>
-      <td id="cell-04-02"><a href="https://www.vill.yamato.lg.jp/kikaku/kanko/spot.html">観光</a></td>
-      <td id="cell-04-03"><a href="https://tabelog.com/kagoshima/C46523/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-04-04"><a href="https://www.vill.yamato.lg.jp/kikaku/shisetsu/kankoannaijo/002.html">特産品</a></td>
-      <td id="cell-04-05"><a href="https://www.vill.yamato.lg.jp/kikaku/kanko/dentogyoji.html">郷土芸能</a></td>
-      <td id="cell-04-06"><a href="https://www.vill.yamato.lg.jp/kikaku/kanko/kankokosu/roman-tanbou.html">歴史文化</a></td>
-      <td id="cell-04-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=yamatoson">体験</a></td>
-      <td id="cell-04-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
-      <td id="cell-04-09"><a href="https://tenki.jp/forecast/9/49/1000/46523/">天気</a></td>
+      <td id="cell-04-01" class="municipal-name"><a class="municipal-name-link">大和村</a></td>
+      <td id="cell-04-02"><a>観光</a></td>
+      <td id="cell-04-03"><a>グルメ</a></td>
+      <td id="cell-04-04"><a>特産品</a></td>
+      <td id="cell-04-05"><a>郷土芸能</a></td>
+      <td id="cell-04-06"><a>歴史文化</a></td>
+      <td id="cell-04-07"><a>体験</a></td>
+      <td id="cell-04-08"><a>経　路</a></td>
+      <td id="cell-04-09"><a>天気</a></td>
       <td id="cell-04-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「大和（やまと）の風に吹かれて－大和村」sasori.mp3', event)" title="大和村の村歌を再生" aria-label="大和村の村歌を再生"><img src="towninfo/yamato_ki.png" alt="大和村" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-04-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E6%9D%91" target="_blank" rel="noopener noreferrer" title="大和村（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-04-12" class="municipal-additional-info"><a href="https://www.vill.yamato.lg.jp/cgi-bin/event_cal_multi/calendar.cgi?type=2&year=2026&month=5" title="イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-04-13" class="municipal-additional-info"><a href="https://www.vill.yamato.lg.jp/hpkanri/kurashi/iju/index.html" title="大和村 移住・定住">移住・定住</a></td>
-      <td id="cell-04-14" class="municipal-additional-info"><a href="https://www.vill.yamato.lg.jp/kikaku/sonse/furusatonoze/houhou.html" title="ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-04-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="大和村（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-04-12" class="municipal-additional-info"><a title="イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-04-13" class="municipal-additional-info"><a title="大和村 移住・定住">移住・定住</a></td>
+      <td id="cell-04-14" class="municipal-additional-info"><a title="ふるさと納税">ふるさと納税</a></td>
     </tr>
     <tr>
-      <td id="cell-05-01" class="municipal-name"><a class="municipal-name-link" href="https://www.uken.net/home.html">宇検村</a></td>
-      <td id="cell-05-02"><a href="https://www.uken.net/kouhoutoukei/kanko/index.html">観光</a></td>
-      <td id="cell-05-03"><a href="https://tabelog.com/kagoshima/C46524/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-05-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46045.html">特産品</a></td>
-      <td id="cell-05-05"><a href="https://www.youtube.com/watch?v=N8TCDw2rUyoh">郷土芸能</a></td>
-      <td id="cell-05-06"><a href="https://www.uken.net/bunkashinkou/kyoiku-bunka/bunkazai/murashite/ukenson.html">歴史文化</a></td>
-      <td id="cell-05-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=ukenson">体験</a></td>
-      <td id="cell-05-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
-      <td id="cell-05-09"><a href="https://tenki.jp/forecast/9/49/1000/46524/">天気</a></td>
+      <td id="cell-05-01" class="municipal-name"><a class="municipal-name-link">宇検村</a></td>
+      <td id="cell-05-02"><a>観光</a></td>
+      <td id="cell-05-03"><a>グルメ</a></td>
+      <td id="cell-05-04"><a>特産品</a></td>
+      <td id="cell-05-05"><a>郷土芸能</a></td>
+      <td id="cell-05-06"><a>歴史文化</a></td>
+      <td id="cell-05-07"><a>体験</a></td>
+      <td id="cell-05-08"><a>経　路</a></td>
+      <td id="cell-05-09"><a>天気</a></td>
       <td id="cell-05-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「焼内の海に生きて－宇検村」sasori.mp3', event)" title="宇検村の村歌を再生" aria-label="宇検村の村歌を再生"><img src="towninfo/uken_ki.png" alt="宇検村" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-05-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%AE%87%E6%A4%9C%E6%9D%91" target="_blank" rel="noopener noreferrer" title="宇検村（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-05-12" class="municipal-additional-info"> <a href="https://www.uken.net/cgi-bin/event_cal_multi/calendar.cgi " target="_blank">イベントカレンダー</a></td>
-      <td id="cell-05-13" class="municipal-additional-info"><a href="https://www.kagoshima-iju.jp/inquiry/ " target="_blank">移住・定住</a></td>
-      <td id="cell-05-14" class="municipal-additional-info"> <a href="https://www.uken.net/kikakuchousei/muranogaiyo/furusato/murazukuri/kifukin.html /" target="_blank">ふるさと納税</a></td>
+      <td id="cell-05-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="宇検村（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-05-12" class="municipal-additional-info"> <a target="_blank">イベントカレンダー</a></td>
+      <td id="cell-05-13" class="municipal-additional-info"><a target="_blank">移住・定住</a></td>
+      <td id="cell-05-14" class="municipal-additional-info"> <a target="_blank">ふるさと納税</a></td>
     </tr>
     
     <tr>
-      <td id="cell-06-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.setouchi.lg.jp/">瀬戸内町</a></td>
-      <td id="cell-06-02"><a href="https://www.setouchi-welcome.com/see">観光</a></td>
-      <td id="cell-06-03"><a href="https://tabelog.com/kagoshima/C46525/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-06-04"><a href="https://www.setouchi-welcome.com/see">特産品</a></td>
-      <td id="cell-06-05"><a href="https://www.town.setouchi.lg.jp/tosyokan/kan/bunka/minzokugeno/index.html">郷土芸能</a></td>
-      <td id="cell-06-06"><a href="https://www.town.setouchi.lg.jp/kan/bunka/index.html">歴史文化</a></td>
-      <td id="cell-06-07"><a href="https://www.amami-tourism.org/experience/?area%5B%5D=setouchicho">体験</a></td>
-      <td id="cell-06-08"><a href="https://www.navitime.co.jp/drive/">経　路</a></td>
-      <td id="cell-06-09"><a href="https://tenki.jp/forecast/9/49/1000/46525/">天気</a></td>
+      <td id="cell-06-01" class="municipal-name"><a class="municipal-name-link">瀬戸内町</a></td>
+      <td id="cell-06-02"><a>観光</a></td>
+      <td id="cell-06-03"><a>グルメ</a></td>
+      <td id="cell-06-04"><a>特産品</a></td>
+      <td id="cell-06-05"><a>郷土芸能</a></td>
+      <td id="cell-06-06"><a>歴史文化</a></td>
+      <td id="cell-06-07"><a>体験</a></td>
+      <td id="cell-06-08"><a>経　路</a></td>
+      <td id="cell-06-09"><a>天気</a></td>
       <td id="cell-06-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「大島海峡に生きて－瀬戸内町」sasori.mp3', event)" title="瀬戸内町の町歌を再生" aria-label="瀬戸内町の町歌を再生"><img src="towninfo/setouchi_ki.png" alt="瀬戸内町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-06-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E7%80%AC%E6%88%B8%E5%86%85%E7%94%BA" target="_blank" rel="noopener noreferrer" title="瀬戸内町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-06-12" class="municipal-additional-info"><a href="https://www.town.setouchi.lg.jp/cgi-bin/event_cal/calendar.cgi" title="瀬戸内町 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-06-13" class="municipal-additional-info"><a href="https://www.town.setouchi.lg.jp/kan/iju/index.html" title="瀬戸内町 移住・定住">移住・定住</a></td>
-      <td id="cell-06-14" class="municipal-additional-info"><a href="https://www.town.setouchi.lg.jp/shinkou/cho/chosei/kifu/furusato.html" title="瀬戸内町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-06-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="瀬戸内町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-06-12" class="municipal-additional-info"><a title="瀬戸内町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-06-13" class="municipal-additional-info"><a title="瀬戸内町 移住・定住">移住・定住</a></td>
+      <td id="cell-06-14" class="municipal-additional-info"><a title="瀬戸内町 ふるさと納税">ふるさと納税</a></td>
     
     </tr>
 
     <tr class="island-title-row">
-      <td colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+      <td id="cell-island-tokunoshima" colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
         <div class="island-title-inner">
           <a href="http://www.tokunoshima-kanko.com/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 徳之島 】</a>
           <div class="island-title-actions">
@@ -2251,59 +2689,59 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       </td>
     </tr>
     <tr>
-      <td id="cell-07-01" class="municipal-name"><a class="municipal-name-link" href="https://www.tokunoshima-town.org/">徳之島町</a></td>
-      <td id="cell-07-02"><a href="https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html">観光</a></td>
-      <td id="cell-07-03"><a href="https://tabelog.com/kagoshima/C46530/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-07-04"><a href="https://www.tokunoshima-town.org/kanko/tokusan/index.html">特産品</a></td>
-      <td id="cell-07-05"><a href="https://www.tokunoshima-town.org/shakaikyoikuka/kanko/rekishi/geno.html">郷土芸能</a></td>
-      <td id="cell-07-06"><a href="https://www.tokunoshima-town.org/kanko/rekishi/index.html">歴史文化</a></td>
-      <td id="cell-07-07"><a href="https://activityjapan.com/search/?addressAndKeyword=%E5%BE%B3%E4%B9%8B%E5%B3%B6">体験</a></td>
-      <td id="cell-07-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
-      <td id="cell-07-09"><a href="https://tenki.jp/forecast/9/49/1000/46530/">天気</a></td>
+      <td id="cell-07-01" class="municipal-name"><a class="municipal-name-link">徳之島町</a></td>
+      <td id="cell-07-02"><a>観光</a></td>
+      <td id="cell-07-03"><a>グルメ</a></td>
+      <td id="cell-07-04"><a>特産品</a></td>
+      <td id="cell-07-05"><a>郷土芸能</a></td>
+      <td id="cell-07-06"><a>歴史文化</a></td>
+      <td id="cell-07-07"><a>体験</a></td>
+      <td id="cell-07-08"><a>経　路</a></td>
+      <td id="cell-07-09"><a>天気</a></td>
       <td id="cell-07-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「闘牛の島に生きて－徳之島町」sasori.mp3', event)" title="徳之島町の町歌を再生" aria-label="徳之島町の町歌を再生"><img src="towninfo/tokunosima_ki.jpg" alt="徳之島町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-07-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%BE%B3%E4%B9%8B%E5%B3%B6%E7%94%BA" target="_blank" rel="noopener noreferrer" title="徳之島町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-07-12" class="municipal-additional-info"><a href="https://www.tokunoshima-town.org/cgi-bin/event_cal_multi/calendar.cgi" title="徳之島町 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-07-13" class="municipal-additional-info"><a href="https://www.tokunoshima-town.org/kikakuka/kurashi/uiturn/ijushien.html" title="徳之島町 移住・定住">移住:・定住</a></td>
-      <td id="cell-07-14" class="municipal-additional-info"><a href="https://www.tokunoshima-town.org/chose/furusato/index.html" title="徳之島町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-07-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="徳之島町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-07-12" class="municipal-additional-info"><a title="徳之島町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-07-13" class="municipal-additional-info"><a title="徳之島町 移住・定住">移住:・定住</a></td>
+      <td id="cell-07-14" class="municipal-additional-info"><a title="徳之島町 ふるさと納税">ふるさと納税</a></td>
     </tr>
     <tr>
-      <td id="cell-08-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.amagi.lg.jp/">天城町</a></td>
-      <td id="cell-08-02"><a href="https://www.town.amagi.lg.jp/tourism/?lng=ja">観光</a></td>
-      <td id="cell-08-03"><a href="https://www.tripadvisor.jp/Restaurants-g1121607-Amagi_cho_Tokunoshima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html">グルメ</a></td>
-      <!--<td id="cell-08-04"><a href="extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.town.amagi.lg.jp/img/staff/Restaurant-Introduction.pdf"></a></td>-->
-      <td id="cell-08-04"><a href="http://www.tokunoshima-kanko.com/item/">特産品</a></td>
-      <td id="cell-08-05"><a href="https://bunka.nii.ac.jp/heritages/detail/580336">郷土芸能</a></td>
-      <td id="cell-08-06"><a href="http://www.tokunoshima-kanko.com/tourist_spot/yuinoyakata/">歴史文化</a></td>
-      <td id="cell-08-07"><a href="http://www.tokunoshima-kanko.com/tourist_spot/yuinoyakata/">体験</a></td>
-      <td id="cell-08-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
-      <td id="cell-08-09"><a href="https://tenki.jp/forecast/9/49/1000/46531/">天気</a></td>
+      <td id="cell-08-01" class="municipal-name"><a class="municipal-name-link">天城町</a></td>
+      <td id="cell-08-02"><a>観光</a></td>
+      <td id="cell-08-03"><a>グルメ</a></td>
+      <!--<td id="cell-08-04"><a></a></td>-->
+      <td id="cell-08-04"><a>特産品</a></td>
+      <td id="cell-08-05"><a>郷土芸能</a></td>
+      <td id="cell-08-06"><a>歴史文化</a></td>
+      <td id="cell-08-07"><a>体験</a></td>
+      <td id="cell-08-08"><a>経　路</a></td>
+      <td id="cell-08-09"><a>天気</a></td>
       <td id="cell-08-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「井之川岳に誓いて－天城町」sasori.mp3', event)" title="天城町の町歌を再生" aria-label="天城町の町歌を再生"><img src="towninfo/amagi_ki.png" alt="天城町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-08-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%A4%A9%E5%9F%8E%E7%94%BA" target="_blank" rel="noopener noreferrer" title="天城町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-08-12" class="municipal-additional-info"><a href="https://www.town.amagi.lg.jp/calendar/" title="天城町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-08-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="天城町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-08-12" class="municipal-additional-info"><a title="天城町 イベントカレンダー">イベントカレンダー</a></td>
       
-      <td id="cell-08-13" class="municipal-additional-info"><a href="https://www.town.amagi.lg.jp/amapagos/" title="天城町 移住・定住">移住・定住</a></td>
-      <td id="cell-08-14" class="municipal-additional-info"><a href="https://www.furusato-tax.jp/city/info/46531" title="天城町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-08-13" class="municipal-additional-info"><a title="天城町 移住・定住">移住・定住</a></td>
+      <td id="cell-08-14" class="municipal-additional-info"><a title="天城町 ふるさと納税">ふるさと納税</a></td>
     </tr>
     <tr>
-      <td id="cell-09-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.isen.kagoshima.jp/">伊仙町</a></td>
-      <td id="cell-09-02"><a href="https://www.town.isen.kagoshima.jp/mirai/shisetsu/kanko-taiken/index.html">観光</a></td>
-      <td id="cell-09-03"><a href="https://tabelog.com/kagoshima/C46532/rstLst/">グルメ</a></td>
-      <td id="cell-09-04"><a href="https://rito-guide.com/hyakusai/">特産品</a></td>
-      <td id="cell-09-05"><a href="https://jmapps.ne.jp/isen/list.html?keywords=&kwd_and_or=and&bunrui=20&f2=&list_type=LLA001&list_count=10&title_query=yes">郷土芸能</a></td>
-      <td id="cell-09-06"><a href="https://rekimin.wixsite.com/home">歴史文化</a></td>
-      <td id="cell-09-07"><a href="https://activityjapan.com/search/?addressAndKeyword=%E4%BC%8A%E4%BB%99%E7%94%BA">体験</a></td>
-      <td id="cell-09-08"><a href="https://rito-guide.com/tokunosima/">経　路</a></td>
-      <td id="cell-09-09"><a href="https://tenki.jp/forecast/9/49/1000/46532/">天気</a></td>
+      <td id="cell-09-01" class="municipal-name"><a class="municipal-name-link">伊仙町</a></td>
+      <td id="cell-09-02"><a>観光</a></td>
+      <td id="cell-09-03"><a>グルメ</a></td>
+      <td id="cell-09-04"><a>特産品</a></td>
+      <td id="cell-09-05"><a>郷土芸能</a></td>
+      <td id="cell-09-06"><a>歴史文化</a></td>
+      <td id="cell-09-07"><a>体験</a></td>
+      <td id="cell-09-08"><a>経　路</a></td>
+      <td id="cell-09-09"><a>天気</a></td>
       <td id="cell-09-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/『伊仙ぬ風（いせんぬかじ）』sasori.mp3', event)" title="伊仙町の町歌を再生" aria-label="伊仙町の町歌を再生"><img src="towninfo/isen_ki.png" alt="伊仙町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-09-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E4%BC%8A%E4%BB%99%E7%94%BA" target="_blank" rel="noopener noreferrer" title="伊仙町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-09-12" class="municipal-additional-info"><a href="https://www.town.isen.kagoshima.jp/cgi-bin/event_cal_multi/calendar.cgi" title="伊仙町 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-09-13" class="municipal-additional-info"><a href="https://www.town.isen.kagoshima.jp/mirai/search-idx/ijuteju.html" title="伊仙町 移住・定住">移住・定住</a></td>
-      <td id="cell-09-14" class="municipal-additional-info"><a href="https://www.furusato-isen.jp/" title="伊仙町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-09-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="伊仙町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-09-12" class="municipal-additional-info"><a title="伊仙町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-09-13" class="municipal-additional-info"><a title="伊仙町 移住・定住">移住・定住</a></td>
+      <td id="cell-09-14" class="municipal-additional-info"><a title="伊仙町 ふるさと納税">ふるさと納税</a></td>
     </tr>
  
 
     <tr class="island-title-row">
-      <td colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+      <td id="cell-island-okinoerabu" colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
         <div class="island-title-inner">
           <a href="https://okinoerabujima.info/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 沖永良部島 】</a>
           <div class="island-title-actions">
@@ -2315,41 +2753,41 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     </tr>
 
     <tr>
-      <td id="cell-10-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.china.lg.jp/">知名町</a></td>
-      <td id="cell-10-02"><a href="https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html">観光</a></td>
-      <td id="cell-10-03"><a href="https://tabelog.com/kagoshima/C46534/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-10-04"><a href="https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html">特産品</a></td>
-      <td id="cell-10-05"><a href="https://www.town.china.lg.jp/shougai/kurasu/kosodate-kyoiku/shogaigakushu/denshogeno/denshogeno.html">郷土芸能</a></td>
-      <td id="cell-10-06"><a href="https://www.bing.com/images/search?q=%e7%9f%a5%e5%90%8d%e7%94%ba+%e6%ad%b4%e5%8f%b2&qpvt=%e7%9f%a5%e5%90%8d%e7%94%ba%e3%80%80%e6%ad%b4%e5%8f%b2&form=IGRE&first=1">歴史文化</a></td>
-      <td id="cell-10-07"><a href="https://okinoerabujima.info/activity?utm_source=chatgpt.com">体験</a></td>
-      <td id="cell-10-08"><a href="https://rito-guide.com/okierabu-access/">経　路</a></td>
-      <td id="cell-10-09"><a href="https://tenki.jp/forecast/9/49/1000/46534/">天気</a></td>
+      <td id="cell-10-01" class="municipal-name"><a class="municipal-name-link">知名町</a></td>
+      <td id="cell-10-02"><a>観光</a></td>
+      <td id="cell-10-03"><a>グルメ</a></td>
+      <td id="cell-10-04"><a>特産品</a></td>
+      <td id="cell-10-05"><a>郷土芸能</a></td>
+      <td id="cell-10-06"><a>歴史文化</a></td>
+      <td id="cell-10-07"><a>体験</a></td>
+      <td id="cell-10-08"><a>経　路</a></td>
+      <td id="cell-10-09"><a>天気</a></td>
       <td id="cell-10-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「わがふるさと-知名町」sasori.mp3', event)" title="知名町の町歌を再生" aria-label="知名町の町歌を再生"><img src="towninfo/china_ki.png" alt="知名町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-10-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E7%9F%A5%E5%90%8D%E7%94%BA" target="_blank" rel="noopener noreferrer" title="知名町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-10-12" class="municipal-additional-info"><a href="https://www.town.china.lg.jp/calendar.html" title="知名町 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-10-13" class="municipal-additional-info"><a href="https://www.town.china.lg.jp/kurashi/iju/index.html " title="知名町 移住・定住">移住・定住</a></td>
-      <td id="cell-10-14" class="municipal-additional-info"><a href="https://www.town.china.lg.jp/chosei/furusato-nozei/index.html" title="知名町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-10-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="知名町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-10-12" class="municipal-additional-info"><a title="知名町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-10-13" class="municipal-additional-info"><a title="知名町 移住・定住">移住・定住</a></td>
+      <td id="cell-10-14" class="municipal-additional-info"><a title="知名町 ふるさと納税">ふるさと納税</a></td>
     </tr>
     <tr>
-      <td id="cell-11-01" class="municipal-name"><a class="municipal-name-link" href="https://www.town.wadomari.lg.jp/">和泊町</a></td>
-      <td id="cell-11-02"><a href="https://okinoerabujima.info/">観光</a></td>
-      <td id="cell-11-03"><a href="https://tabelog.com/kagoshima/C46533/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-11-04"><a href="https://www.takusan.net/link/furusato/kagoshima/46044.html">特産品</a></td>
-      <td id="cell-11-05"><a href="https://www.bing.com/images/search?q=%e5%92%8c%e6%b3%8a%e7%94%ba+%e9%83%b7%e5%9c%9f%e8%8a%b8%e8%83%bd&qpvt=%e5%92%8c%e6%b3%8a%e7%94%ba%e3%80%80%e9%83%b7%e5%9c%9f%e8%8a%b8%e8%83%bd&form=IGRE&first=1">郷土芸能</a></td>
-      <td id="cell-11-06"><a href="https://www.bing.com/images/search?q=%e5%92%8c%e6%b3%8a%e7%94%ba+%e6%ad%b4%e5%8f%b2+%e6%96%87%e5%8c%96&qpvt=%e5%92%8c%e6%b3%8a%e7%94%ba+%e6%ad%b4%e5%8f%b2+%e6%96%87%e5%8c%96&form=IGRE&first=1">歴史文化</a></td>
-      <td id="cell-11-07"><a href="https://www.tripadvisor.jp/Attractions-g1121609-Activities-Wadomari_cho_Okinoerabu_jima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html">体験</a></td>
-      <td id="cell-11-08"><a href="https://rito-guide.com/okierabu-access/">経　路</a></td>
-      <td id="cell-11-09"><a href="https://tenki.jp/forecast/9/49/1000/46533/">天気</a></td>
+      <td id="cell-11-01" class="municipal-name"><a class="municipal-name-link">和泊町</a></td>
+      <td id="cell-11-02"><a>観光</a></td>
+      <td id="cell-11-03"><a>グルメ</a></td>
+      <td id="cell-11-04"><a>特産品</a></td>
+      <td id="cell-11-05"><a>郷土芸能</a></td>
+      <td id="cell-11-06"><a>歴史文化</a></td>
+      <td id="cell-11-07"><a>体験</a></td>
+      <td id="cell-11-08"><a>経　路</a></td>
+      <td id="cell-11-09"><a>天気</a></td>
       <td id="cell-11-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「花と潮風の町-和泊」sasori.mp3', event)" title="和泊町の町歌を再生" aria-label="和泊町の町歌を再生"><img src="towninfo/wadomari_ki.png" alt="和泊町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-11-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E5%92%8C%E6%B3%8A%E7%94%BA" target="_blank" rel="noopener noreferrer" title="和泊町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-11-12" class="municipal-additional-info"><a href="https://www.town.wadomari.lg.jp/cgi-bin/event_cal_multi/calendar.cgi" title="イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-11-13" class="municipal-additional-info"><a href="https://kurasu-wadomari.info/" title="和泊町 移住・定住">移住・定住</a></td>
-      <td id="cell-11-14" class="municipal-additional-info"><a href="https://wadofuru.studio.site" title="和泊町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-11-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="和泊町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-11-12" class="municipal-additional-info"><a title="イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-11-13" class="municipal-additional-info"><a title="和泊町 移住・定住">移住・定住</a></td>
+      <td id="cell-11-14" class="municipal-additional-info"><a title="和泊町 ふるさと納税">ふるさと納税</a></td>
     </tr>
     
 
     <tr class="island-title-row">
-      <td colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
+      <td id="cell-island-yoron" colspan="14" style="background: #6ec3f7; text-align: left; padding: 4px 8px; font-size: 1.1em;">
         <div class="island-title-inner">
           <a href="https://www.yorontou.info/" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">【 与論島 】</a>
           <div class="island-title-actions">
@@ -2361,82 +2799,42 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     </tr>
 
     <tr class="amami-table-row-thick-bottom">
-      <td id="cell-12-01" class="municipal-name"><a class="municipal-name-link" href="https://www.yoron.jp/default.html">与論町</a></td>
-      <td id="cell-12-02"><a href="https://www.yorontou.info/">観光</a></td>
-      <td id="cell-12-03"><a href="https://tabelog.com/kagoshima/C46535/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65">グルメ</a></td>
-      <td id="cell-12-04"><a href="https://www.yorontou.info/specialty.html">特産品</a></td>
-      <td id="cell-12-05"><a href="https://www.kagojinjacho.or.jp/tanbou/1653/">郷土芸能</a></td>
-      <td id="cell-12-06"><a href="https://www.yoron.jp/list00178.html">歴史文化</a></td>
-      <td id="cell-12-07"><a href="https://www.yorontou.info/experience/">体験</a></td>
-      <td id="cell-12-08"><a href="https://yoron-iju.com/access/">経　路</a></td>
-　　　　<td id="cell-12-09"><a href="https://tenki.jp/forecast/9/49/1000/46535/">天気</a></td>
+      <td id="cell-12-01" class="municipal-name"><a class="municipal-name-link">与論町</a></td>
+      <td id="cell-12-02"><a>観光</a></td>
+      <td id="cell-12-03"><a>グルメ</a></td>
+      <td id="cell-12-04"><a>特産品</a></td>
+      <td id="cell-12-05"><a>郷土芸能</a></td>
+      <td id="cell-12-06"><a>歴史文化</a></td>
+      <td id="cell-12-07"><a>体験</a></td>
+      <td id="cell-12-08"><a>経　路</a></td>
+　　　　<td id="cell-12-09"><a>天気</a></td>
       <td id="cell-12-10"><button type="button" class="municipal-flag-btn" onclick="playMunicipalSong('hp-music/「ふるさと-与論」sasori.mp3', event)" title="与論町の町歌を再生" aria-label="与論町の町歌を再生"><img src="towninfo/yoron_ki.png" alt="与論町" style="width: 40px; height: auto;"></button></td>
-      <td id="cell-12-11" class="municipal-basic-info"><a href="https://ja.wikipedia.org/wiki/%E4%B8%8E%E8%AB%96%E7%94%BA" target="_blank" rel="noopener noreferrer" title="与論町（Wikipedia）">Wikipedia</a></td>
-      <td id="cell-12-12" class="municipal-additional-info"><a href="https://www.yorontou.info/event.html " title="与論町 イベントカレンダー">イベントカレンダー</a></td>
-      <td id="cell-12-13" class="municipal-additional-info"><a href="https://www.yoron.jp/list00192.html " title="与論町 移住・定住">移住・定住</a></td>
-      <td id="cell-12-14" class="municipal-additional-info"><a href="https://www.yoron.jp/list00208.html  " title="与論町 ふるさと納税">ふるさと納税</a></td>
+      <td id="cell-12-11" class="municipal-basic-info"><a target="_blank" rel="noopener noreferrer" title="与論町（Wikipedia）">Wikipedia</a></td>
+      <td id="cell-12-12" class="municipal-additional-info"><a title="与論町 イベントカレンダー">イベントカレンダー</a></td>
+      <td id="cell-12-13" class="municipal-additional-info"><a title="与論町 移住・定住">移住・定住</a></td>
+      <td id="cell-12-14" class="municipal-additional-info"><a title="与論町 ふるさと納税">ふるさと納税</a></td>
       
      
     <tr class="amami-table-row-thick-bottom amami-table-row-thick-bottom--last amami-table-footer-row">
-      <td id="cell-13-01" class="amami-org-name"><a class="amami-org-name-link" href="https://www.tokyoamamikai.com/">東京奄美会</a></td>
+      <td id="cell-13-01" class="amami-org-name"><a class="amami-org-name-link">東京奄美会</a></td>
       <td id="cell-13-02" class="amami-table-footer-cell"></td>
-      <td id="cell-13-03" class="amami-table-footer-cell"></td>
-      <td id="cell-13-04" class="amami-table-footer-cell">
-        <a href="#" onclick="event.preventDefault(); openBGMWindow();"
+      <td id="cell-13-03" class="amami-table-footer-cell kouiki-cell" data-popup-label="奄美群島広域事務組合">奄美群島広域事務組合</td>
+      <td id="cell-13-04" class="amami-table-footer-cell"></td>
+      <td id="cell-13-05" class="amami-table-footer-cell"></td>
+      <td id="cell-13-06" class="amami-table-footer-cell">
+        <a href="#" data-amami-count-url="action:bgm-window" data-amami-count-label="BGM再生" onclick="event.preventDefault(); openBGMWindow();"
            style="color: blue; font-weight: bold;">♪ BGM再生</a>
       </td>
-      <td id="cell-13-05" class="amami-table-footer-cell">
-        <a href="javascript:void(0)" onclick="showMultiLinkPopup([
-          { label: 'X（旧Twitter）：東京奄美会', url: 'https://x.com/PiiZmi' },
-          { label: 'Facebook：東京奄美会', url: 'https://www.facebook.com/profile.php?id=61575154336855' },
-          { label: 'Instagram：東京奄美会', url: 'https://www.instagram.com/accounts/edit/' },
-          { label: 'Facebook：喜界町', url: 'https://www.facebook.com/kikaicho/' },
-          { label: 'Instagram：喜界町', url: 'https://www.instagram.com/kikaicho/' },
-          { label: 'X（旧Twitter）：喜界町', url: 'https://x.com/kikaicho' },
-          { label: 'Facebook：龍郷町', url: 'https://www.facebook.com/tatsugocho/' },
-          { label: 'Instag市町村ram：龍郷町', url: 'https://www.instagram.com/tatsugocho/' },
-          { label: 'X（旧Twitter）：龍郷町', url: 'https://x.com/tatsugocho' },
-          { label: 'Facebook：奄美市', url: 'https://www.facebook.com/amami.city/' },
-          { label: 'Instagram：奄美市', url: 'https://www.instagram.com/amami_city/' },
-          { label: 'X（旧Twitter）：奄美市', url: 'https://x.com/amami_city' },
-          { label: 'Facebook：大和村', url: 'https://www.facebook.com/yamatomura/' },
-          { label: 'Instagram：大和村', url: 'https://www.instagram.com/yamatomura/' },
-          { label: 'X（旧Twitter）：大和村', url: 'https://x.com/yamatomura' },
-          { label: 'Facebook：宇検村', url: 'https://www.facebook.com/ukenmura/' },
-          { label: 'Instagram：宇検村', url: 'https://www.instagram.com/ukenmura/' },
-          { label: 'X（旧Twitter）：宇検村', url: 'https://x.com/ukenmura' },
-          { label: 'Facebook：瀬戸内町', url: 'https://www.facebook.com/setouchicho/' },
-          { label: 'Instagram：瀬戸内町', url: 'https://www.instagram.com/setouchicho/' },
-          { label: 'X（旧Twitter）：瀬戸内町', url: 'https://x.com/setouchicho' },
-          { label: 'Facebook：徳之島町', url: 'https://www.facebook.com/tokunoshimacho/' },
-          { label: 'Instagram：徳之島町', url: 'https://www.instagram.com/tokunoshimacho/' },
-          { label: 'X（旧Twitter）：徳之島町', url: 'https://x.com/tokunoshimacho' },
-          { label: 'Facebook：伊仙町', url: 'https://www.facebook.com/isencho/' },
-          { label: 'Instagram：伊仙町', url: 'https://www.instagram.com/isencho/' },
-          { label: 'X（旧Twitter）：伊仙町', url: 'https://x.com/isencho' },
-          { label: 'Facebook：天城町', url: 'https://www.facebook.com/amagicho/' },
-          { label: 'Instagram：天城町', url: 'https://www.instagram.com/amagicho/' },
-          { label: 'X（旧Twitter）：天城町', url: 'https://x.com/amagicho' },
-          { label: 'Facebook：和泊町', url: 'https://www.facebook.com/wadomari/' },
-          { label: 'Instagram：和泊町', url: 'https://www.instagram.com/wadomari/' },
-          { label: 'X（旧Twitter）：和泊町', url: 'https://x.com/wadomari' },
-          { label: 'Facebook：知名町', url: 'https://www.facebook.com/chinacho/' },
-          { label: 'Instagram：知名町', url: 'https://www.instagram.com/chinacho/' },
-          { label: 'X（旧Twitter）：知名町', url: 'https://x.com/chinacho' },
-          { label: 'Facebook：与論町', url: 'https://www.facebook.com/yoroncho/' },
-          { label: 'Instagram：与論町', url: 'https://www.instagram.com/yoroncho/' },
-          { label: 'X（旧Twitter）：与論町', url: 'https://x.com/yoroncho' }
-        ])">【S N S 一覧】</a>
+      <td id="cell-13-07" class="amami-table-footer-cell">
+        <a href="javascript:void(0)" class="footer-sns-list-link" onclick="showFooterSnsList()">【S N S 一覧】</a>
       </td>
-      <td id="cell-13-06" class="amami-table-footer-cell"></td>
-      <td id="cell-13-07" class="amami-table-footer-cell"></td>
       <td id="cell-13-08" class="amami-table-footer-cell"></td>
       <td id="cell-13-09" class="amami-table-footer-cell"></td>
-      <td id="cell-13-10" class="amami-table-footer-cell"><a href="https://www.pref.kagoshima.jp/ad13/kurashi-kankyo/kankyo/amami/amami-isan.html?utm_source=copilot.com">世界自然遺産</a></td>
-      <td id="cell-13-11" class="amami-table-footer-cell municipal-basic-info">―</td>
-      <td id="cell-13-12" class="amami-table-footer-cell">―</td>
-      <td id="cell-13-13" class="amami-table-footer-cell">―</td>
-      <td id="cell-13-14" class="amami-table-footer-cell">―</td>
+      <td id="cell-13-10" class="amami-table-footer-cell"><a>世界自然遺産</a></td>
+      <td id="cell-13-11" class="amami-table-footer-cell municipal-basic-info"></td>
+      <td id="cell-13-12" class="amami-table-footer-cell"></td>
+      <td id="cell-13-13" class="amami-table-footer-cell"></td>
+      <td id="cell-13-14" class="amami-table-footer-cell"></td>
     </tr>
 
   </tbody>
@@ -2444,6 +2842,7 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
 </div>
 <!-- /.amami-table-wrap -->
 
+<!-- 【◆14】テーブル表示制御：上部スクロールバー同期・縮小/標準/拡大の切替・セルクリック集計（バッジ）。 -->
 <script>
 /* =========================================================
    テーブル表示制御:
@@ -2462,6 +2861,14 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
          これにより #amami-table の scroll-margin-top が常に正確になり、
          「奄美群島の観光情報を見る」ボタンで飛んだとき、テーブル冒頭
          （市町村名ヘッダー＋喜界島セクション）が隠れない。 --- */
+  /* この処理の中の関数（◆14-n）
+     ◆14-1 syncStickyHeaderHeight : 固定ヘッダーの高さを調整
+     ◆14-2 applyZoom              : 縮小／標準／拡大の切替
+     ◆14-3 findCellId             : クリックされたセルのIDを特定
+     ◆14-4 isForeignLang          : 外国語表示か判定
+     ◆14-5 postClick              : セルクリックをサーバー集計へ送信
+     ◆14-6 getAdminPw             : 管理者用パスワード取得（バッジ表示用）
+     ◆14-7 renderBadges / loadAndRenderBadges : クリック数バッジの表示 */
   function syncStickyHeaderHeight() {
     if (!sticky) return;
     var h = Math.ceil(sticky.getBoundingClientRect().height);
@@ -2546,11 +2953,14 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   }
 
   // --- POST でカウント送信（sendBeacon 優先、bfcache 阻害なし） ---
-  function postClick(cellId) {
-    if (!cellId) return;
+  // cellId（所属セル）と url/action（遷移先または内部機能）を 1 件として送る。
+  function postClick(cellId, url, label) {
+    if (!cellId || !url) return;
     var data = new URLSearchParams();
     data.set('cell', cellId);
     data.set('lang', isForeignLang() ? 'foreign' : 'ja');
+    data.set('url', url);
+    if (label) data.set('label', label);
     try {
       if (navigator && typeof navigator.sendBeacon === 'function') {
         var blob = new Blob([data.toString()], { type: 'application/x-www-form-urlencoded;charset=UTF-8' });
@@ -2562,16 +2972,71 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     } catch (e) {}
   }
 
-  // --- テーブル内のクリックを委譲で捕捉 ---
+  // 実際に遷移する URL を持つリンクかどうか（# / javascript: / 空は対象外）。
+  function isRealNavHref(href) {
+    if (!href) return false;
+    var h = ('' + href).trim();
+    if (h === '' || h.charAt(0) === '#') return false;
+    if (/^javascript:/i.test(h)) return false;
+    return true;
+  }
+
+  // クリックされたリンクの「所属セル」を決める。
+  //   1) ポップアップ内リンクは生成時に data-amami-cell を持つ（◆27/◆23）
+  //   2) 通常リンクは最寄りの td[id^="cell-"]
+  function resolveCellId(a) {
+    var explicit = a.getAttribute && a.getAttribute('data-amami-cell');
+    if (explicit) return explicit;
+    var td = a.closest && a.closest('td[id^="cell-"]');
+    return td ? td.id : null;
+  }
+
+  // ポップアップ生成側（◆27/◆23）から所属セルを刻めるように関数を公開。
+  window.amamiTagPopupLink = function (a, cellId) {
+    if (a && cellId) {
+      try { a.setAttribute('data-amami-cell', cellId); } catch (e) {}
+    }
+  };
+
+  // --- 集計の中心: ページ全体で「実リンクへの遷移クリック」を 1 件として数える ---
+  // BGMなどの内部機能は data-amami-count-url に action:... を持たせて数える。
+  // ポップアップは document.body 直下に生成されるため、document に委譲して
+  // テーブル内リンクもポップアップ内リンクも同じ仕組みで拾う。
+  // 「ポップアップを開くだけ」のトリガー（<button>）や # / javascript: リンクは
+  // 実 URL を持たないので自動的に対象外になる。
+  document.addEventListener('click', function (ev) {
+    var t = ev.target;
+    // 1) 内部機能（BGM再生・町歌再生など）: data-amami-count-url を持つ要素（a でも button でも）
+    var counter = t.closest && t.closest('[data-amami-count-url]');
+    if (counter) {
+      var actionUrl = counter.getAttribute('data-amami-count-url');
+      var actionCellId = resolveCellId(counter);
+      if (actionCellId && actionUrl) {
+        postClick(actionCellId, actionUrl, counter.getAttribute('data-amami-count-label') || (counter.textContent || '').trim());
+      }
+      return;
+    }
+    // 2) 通常の遷移リンク
+    var a = t.closest && t.closest('a[href]');
+    if (!a) return;
+    if (!isRealNavHref(a.getAttribute('href'))) return;
+    var cellId = resolveCellId(a);
+    if (cellId) postClick(cellId, a.href);
+  }, true);
+
+  // 市町村旗ボタン（10列目＝町歌再生）を集計対象にする。
+  // onclick の mp3 パスを使ってURL代わりのキーにし、市町村ごとに別カウントする。
   if (table) {
-    table.addEventListener('click', function (ev) {
-      var t = ev.target;
-      // a / button / img 内のクリックを集める
-      var actionable = t.closest && t.closest('a, button, .municipal-flag-btn');
-      if (!actionable) return;
-      var cellId = findCellId(actionable);
-      if (cellId) postClick(cellId);
-    }, true);
+    Array.prototype.forEach.call(table.querySelectorAll('.municipal-flag-btn'), function (btn) {
+      if (btn.getAttribute('data-amami-count-url')) return;
+      var oc = btn.getAttribute('onclick') || '';
+      var m = oc.match(/playMunicipalSong\(\s*['"]([^'"]+)['"]/);
+      var song = m ? m[1] : '';
+      var img = btn.querySelector('img');
+      var town = (img && img.getAttribute('alt')) ? img.getAttribute('alt') : '';
+      btn.setAttribute('data-amami-count-url', 'action:song:' + (song || town || 'unknown'));
+      btn.setAttribute('data-amami-count-label', (town ? town + ' ' : '') + '町歌');
+    });
   }
 
   /* =========================================================
@@ -2591,26 +3056,110 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     try { return sessionStorage.getItem(ADMIN_PW_KEY) || ''; } catch (e) { return ''; }
   }
 
+  // 管理者（?admin=… を入力した人）だけ、赤枠・グレー枠などの
+  // 管理用の可視化を有効にする。一般ユーザーには付与しないので表示されない。
+  try {
+    if (getAdminPw()) document.documentElement.classList.add('amami-admin');
+  } catch (e) {}
+
+  function makeClickBadge(ja, fo, label) {
+    var badge = document.createElement('span');
+    badge.className = 'amami-click-badge';
+    ja = ja || 0;
+    fo = fo || 0;
+    badge.title = (label ? label + '\n' : '') +
+      '日本語: ' + ja + ' / 外国語: ' + fo + ' / 合計: ' + (ja + fo);
+    badge.innerHTML = ja + '<span class="badge-foreign">' + fo + '</span>';
+    return badge;
+  }
+
+  function placeBadgeOn(el, badge) {
+    if (!el || !el.parentNode) return;
+    // 旗ボタン（町歌）は画像のため inline-flex で包むと位置がずれて「画面が動く」。
+    // セル（td は position:relative）の右上に絶対配置して、レイアウトを変えない。
+    if (el.classList && el.classList.contains('municipal-flag-btn')) {
+      var flagTd = el.closest ? el.closest('td') : null;
+      if (flagTd) { flagTd.appendChild(badge); return; }
+    }
+    var parent = el.parentNode;
+    var anchor;
+    if (parent.classList && parent.classList.contains('amami-badge-anchor')) {
+      anchor = parent;
+    } else {
+      anchor = document.createElement('span');
+      anchor.className = 'amami-badge-anchor';
+      parent.insertBefore(anchor, el);
+      anchor.appendChild(el);
+    }
+    anchor.appendChild(badge);
+  }
+
+  function normalizeCountUrl(url) {
+    if (!url) return '';
+    try { return new URL(url, window.location.href).href; } catch (e) { return String(url); }
+  }
+
   function renderBadges(cells) {
-    // 既存バッジを除去
-    var oldBadges = table.querySelectorAll('.amami-click-badge');
+    // 既存バッジを除去。ラップ要素は残し、次回描画でも再利用する。
+    var oldBadges = document.querySelectorAll('#amami-table .amami-click-badge');
     for (var i = 0; i < oldBadges.length; i++) oldBadges[i].parentNode.removeChild(oldBadges[i]);
 
     Object.keys(cells).forEach(function (cellId) {
       var td = document.getElementById(cellId);
       if (!td) return;
       var rec = cells[cellId];
-      if (!rec) return;
-      var ja = rec.ja || 0;
-      var fo = rec.foreign || 0;
-      var total = rec.total || (ja + fo);
-      if (total === 0) return;
-      var badge = document.createElement('span');
-      badge.className = 'amami-click-badge';
-      badge.title = '日本語累計: ' + ja + ' / 外国語累計: ' + fo + ' / 合計: ' + total;
-      // 並べて表示（左: 日本語累計 / 右: 外国語累計）
-      badge.innerHTML = ja + '<span class="badge-foreign">' + fo + '</span>';
-      td.appendChild(badge);
+      if (!rec || !rec.urls || typeof rec.urls !== 'object') return;
+
+      var urls = rec.urls;
+      var shown = {};
+
+      // 通常リンク・島見出しリンク（【与論島】・観光概要）・内部機能ボタン
+      // （BGM再生・町歌再生）など、クリック対象ごとに右上へ URL 別カウントを出す。
+      var clickables = td.querySelectorAll('a[href], [data-amami-count-url]');
+      Array.prototype.forEach.call(clickables, function (el) {
+        if (el.closest && el.closest('.amami-popup-source')) return;
+        var key = el.getAttribute('data-amami-count-url');
+        if (key) {
+          if (key.indexOf('action:') !== 0) key = normalizeCountUrl(key);
+        } else if (el.tagName === 'A') {
+          key = normalizeCountUrl(el.href);
+        } else {
+          return;
+        }
+        var r = urls[key];
+        if (!r) return;
+        var ja = r.ja || 0;
+        var fo = r.foreign || 0;
+        if (ja + fo === 0) return;
+        shown[key] = true;
+        placeBadgeOn(el, makeClickBadge(ja, fo, r.label || key));
+      });
+
+      // ポップアップ一覧から選ばれたURLなど、画面上に個別リンクが無い分は
+      // 開くボタン（関連サイト / SNS一覧 / 畳み込みトリガー）に合算して表示する。
+      var restJa = 0;
+      var restFo = 0;
+      var restTip = '';
+      Object.keys(urls).forEach(function (u) {
+        if (shown[u]) return;
+        var r = urls[u] || {};
+        var ja = r.ja || 0;
+        var fo = r.foreign || 0;
+        if (ja + fo === 0) return;
+        restJa += ja;
+        restFo += fo;
+        restTip += (restTip ? '\n' : '') + (r.label || u) + ': ' + (ja + fo);
+      });
+
+      if (restJa + restFo > 0) {
+        var opener = td.querySelector('.island-related-sites-btn, .footer-sns-list-link, .amami-popup-trigger');
+        var badge = makeClickBadge(restJa, restFo, restTip || '一覧経由');
+        if (opener) {
+          placeBadgeOn(opener, badge);
+        } else {
+          td.appendChild(badge);
+        }
+      }
     });
   }
 
@@ -2633,7 +3182,19 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     xhr.send();
   }
 
+  // ポップアップ化などでセル構造が変わった後にもバッジを貼り直せるようにする。
+  window.amamiLoadAndRenderClickBadges = loadAndRenderBadges;
   loadAndRenderBadges();
+
+  // クリックで遷移→戻る／タブ再表示のたびに最新の集計を取り直す。
+  // これにより、島見出し行（【与論島】・観光概要・関連サイト）や
+  // 今後追加されるセルでも、戻ってきた時点で増えた件数が表示に反映される。
+  window.addEventListener('pageshow', function () {
+    loadAndRenderBadges();
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) loadAndRenderBadges();
+  });
   // 縮小／拡大ボタンで再描画は不要（バッジは td に追従）
 })();
 </script>
@@ -2662,7 +3223,11 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     <button onclick="closePopup()">戻り</button>
   </div>
 
+  <!-- 【◆15】「準備中」ポップアップ：未公開項目クリック時の簡易メッセージ表示。 -->
   <script>
+    /* この処理の中の関数（◆15-n）
+       ◆15-1 showPopup  : 「準備中」ポップアップを表示
+       ◆15-2 closePopup : 閉じてスクロール位置を復元 */
     // ポップアップを表示する関数
     function showPopup() {
       document.getElementById('overlay').style.display = 'block';
@@ -2686,14 +3251,39 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       <!-- NOTE: 新HPの共通フィードバックフォームを利用。
                  type/from で識別、title で件名、return でフォーム送信後の戻り先を制御。
                  ここでは「奄美群島旅行案内ページ」用に値を設定している。 -->
-      <a href="https://www.tokyoamamikai.com/wp-content/themes/tokyo-amamikai/feedback-form.html?type=amamikai&from=travel&title=%E5%A5%84%E7%BE%8E%E7%BE%A4%E5%B3%B6%E6%97%85%E8%A1%8C%E6%A1%88%E5%86%85%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6&return=https%3A%2F%2Fvioletfoal2.sakura.ne.jp%2Fhp-amami-pr-1%2Findex.html%3Ffrom_feedback%3D1" class="feedback-link" target="_blank" rel="noopener noreferrer">ご意見・ご要望</a>
+      <a id="amamiFeedbackLink" href="https://www.tokyoamamikai.com/wp-content/themes/tokyo-amamikai/feedback-form.html?type=amamikai&from=travel&title=%E5%A5%84%E7%BE%8E%E7%BE%A4%E5%B3%B6%E6%97%85%E8%A1%8C%E6%A1%88%E5%86%85%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" class="feedback-link" target="_blank" rel="noopener noreferrer">ご意見・ご要望</a>
     </h3>
     <p style="font-size:0.95em; color:#666;">ご意見・ご要望フォームが新しいタブで開きます。</p>
   </div>
+  <!-- 【◆16】ご意見・ご要望リンクの自動生成：配置環境（local/test/本番）に合わせてフォームURLと戻り先を設定。 -->
+  <script>
+  (function () {
+    var link = document.getElementById("amamiFeedbackLink");
+    if (!link) return;
+    try {
+      var current = new URL(window.location.href);
+      current.hash = "";
+      current.searchParams.set("from_feedback", "1");
 
+      // WPテーマ内に配置した場合は同じ環境（local / test / production）のフォームへ。
+      // 現行の violetfoal2 配置では従来どおり公式HP側の共通フォームを利用する。
+      var inWpTheme = /\/wp-content\/themes\/tokyo-amamikai\/hp-amami-pr-1\//i.test(window.location.pathname);
+      var formUrl = inWpTheme
+        ? new URL("../feedback-form.html", window.location.href)
+        : new URL("https://www.tokyoamamikai.com/wp-content/themes/tokyo-amamikai/feedback-form.html");
+      formUrl.searchParams.set("type", "amamikai");
+      formUrl.searchParams.set("from", "travel");
+      formUrl.searchParams.set("title", "奄美群島旅行案内ページについて");
+      formUrl.searchParams.set("return", current.toString());
+      link.href = formUrl.toString();
+    } catch (e) {}
+  })();
+  </script>
+
+  <!-- 【◆17】スライドショーCSS：表示枠の大きさ・画像の表示方法・停止/再開ボタンの見た目。 -->
   <style>
     .slideshow-container {
-      max-width: 1000px;
+      max-width: 1500px;
       margin: 0 auto;
       position: relative;
       overflow: hidden;
@@ -2704,7 +3294,7 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     #slideshow {
       position: relative;
       width: 100%;
-      max-width: 1000px;
+      max-width: 1500px;
       margin: 0 auto;
       overflow: hidden;
       box-sizing: border-box;
@@ -2720,7 +3310,7 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       width: 100%;
       max-width: 100%;
       height: auto;
-      max-height: min(52vh, 480px);
+      max-height: min(85vh, 820px);
       object-fit: contain;
       object-position: center;
       border-radius: 10px;
@@ -2733,9 +3323,44 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       display: block;
     }
 
+    /* スライドショー操作ボタン（停止 / 再開） */
+    .slideshow-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .slide-ctrl-btn {
+      appearance: none;
+      border: 1px solid rgba(40, 30, 60, 0.25);
+      background: rgba(255, 255, 255, 0.85);
+      color: #333;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(40, 30, 60, 0.12);
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .slide-ctrl-btn:hover:not(:disabled) {
+      background: #fff;
+    }
+
+    .slide-ctrl-btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .slide-ctrl-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
     .slide img {
       width: 100%;
-      max-height: min(52vh, 480px);
+      max-height: min(85vh, 820px);
       height: auto;
       object-fit: contain;
       object-position: center;
@@ -2744,20 +3369,54 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     }
   </style>
 
+  <!-- 【◆18】スライドショー制御：画像の自動切替（停止／再開ボタン対応）。
+       変更ヒント：切替速度は SLIDE_INTERVAL（ミリ秒）。 -->
   <script>
     // スライドショー
     let slides = document.querySelectorAll("#slideshow img");
     let currentSlide = 0;
+    let slideTimer = null;
+    const SLIDE_INTERVAL = 5000; // スライド切り替え間隔（ミリ秒）
+
+    /* この処理の中の関数（◆18-n）
+       ◆18-1 startSlideshow    : 自動切替を開始
+       ◆18-2 stopSlideshow     : 自動切替を停止
+       ◆18-3 updateSlideButtons : 停止/再開ボタンの状態更新
+       ◆18-4 initSlideshow     : 初期化
+       ◆18-5 showNextSlide     : 次の画像へ進める */
+    function startSlideshow() {
+      if (slideTimer || slides.length === 0) return;
+      slideTimer = setInterval(showNextSlide, SLIDE_INTERVAL);
+      updateSlideButtons(true);
+    }
+
+    function stopSlideshow() {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
+      updateSlideButtons(false);
+    }
+
+    function updateSlideButtons(running) {
+      const stopBtn = document.getElementById("slideStopBtn");
+      const resumeBtn = document.getElementById("slideResumeBtn");
+      if (stopBtn) stopBtn.disabled = !running;
+      if (resumeBtn) resumeBtn.disabled = running;
+    }
 
     // ページロード後に初期化
     function initSlideshow() {
       if (slides.length > 0) {
         // 最初の画像を表示
         slides[0].classList.add("active");
-        
-        // 3秒ごとにスライド切り替え
-        setInterval(showNextSlide, 3000);
+        startSlideshow();
       }
+
+      const stopBtn = document.getElementById("slideStopBtn");
+      const resumeBtn = document.getElementById("slideResumeBtn");
+      if (stopBtn) stopBtn.addEventListener("click", stopSlideshow);
+      if (resumeBtn) resumeBtn.addEventListener("click", startSlideshow);
     }
 
     function showNextSlide() {
@@ -2775,68 +3434,21 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   </script>
 
 
-<!-- スライドショー初期化 -->
-<script>
-    // LocalStorageから日本語と外国語のカウントを取得、または初期化
-    let japaneseCount = parseInt(localStorage.getItem('japaneseCount')) || 0;
-    let foreignCount = parseInt(localStorage.getItem('foreignCount')) || 0;
+<!-- NOTE: 訪問者カウントは上部の access-counter.php 連携スクリプトに一本化しました。
+     （ログイン時に日本語+1 / 外国語切替時に日本語-1・外国語+1 を1回だけ）
+     以前ここにあった localStorage 版の旧ロジックと未使用の updateCounter は、
+     二重管理・誤カウントの原因になっていたため削除しています。 -->
 
-    // 現在のセッションでカウント済みか確認
-    const hasCounted = sessionStorage.getItem('hasCounted');
-
-    // 履歴の戻る操作を判定 (新しいAPI対応)
-    const isBackNavigation = performance.getEntriesByType("navigation")[0].type === "back_forward";
-
-    // カウント条件を満たしているか確認
-    if (!hasCounted && !isBackNavigation) {
-      // セルのタイトル属性を取得
-      const cell = document.querySelector('.purple-border');
-      if (cell) {
-        const cellTitle = cell.getAttribute('title');
-
-        // タイトルが英語かどうかで判定
-        if (cellTitle && /^[A-Za-z\s]+$/.test(cellTitle)) {
-          // 英語なら外国語にカウント
-          foreignCount++;
-          localStorage.setItem('foreignCount', foreignCount);
-        } else {
-          // 英語以外なら日本語にカウント
-          japaneseCount++;
-          localStorage.setItem('japaneseCount', japaneseCount);
-        }
-
-        // 現在のセッションでカウント済みフラグを設定
-        sessionStorage.setItem('hasCounted', 'true');
-      } else {
-        console.error("紫枠の要素が見つかりませんでした。");
-      }
-    }
-
-    // HTMLにカウントを表示（要素がある場合のみ）
-    const japaneseCounterElem = document.getElementById('japanese-counter');
-    const foreignCounterElem = document.getElementById('foreign-counter');
-    if (japaneseCounterElem) japaneseCounterElem.textContent = japaneseCount;
-    if (foreignCounterElem) foreignCounterElem.textContent = foreignCount;
-  </script>
-
-<!-- アクセスカウンター表示：テーブル下線のさらに下・極めて控えめなデザイン -->
-
-<!-- NOTE: 旧カウンターロジックは既存 localStorage データとの後方互換のため残置 -->
-<!-- TODO: 新カウンター実装へ完全移行後、このブロックを削除して二重管理を解消する -->
-<script>
-  // 訪問数を正しく更新するロジック
-  function updateCounter(japaneseCount, foreignCount) {
-    // 1行表示用の要素に数値を反映
-    document.getElementById("japaneseNumber").textContent = japaneseCount;
-    document.getElementById("foreignNumber").textContent = foreignCount;
-  }
-
-  // 初期値を表示       
-</script>
-
+    <!-- 【◆19】表リンクのボタン化・同一タブ統一：表内の<a>を青ボタン化し、原則同じタブで開くよう統一。
+         変更ヒント：別タブで開きたいリンクは「リンク一覧.txt」で 別タブ=true を指定。 -->
     <!-- NOTE: テーブル導線制御は visited 状態保持(sessionStorage) + 遷移前スクロール位置復元 -->
     <script>
-      window.onload = () => {
+      // NOTE: リンクは リンク一覧.txt から JS で後から差し込まれるため、
+      //       href が揃ったタイミングで何度でも呼べるよう関数化している。
+      /* この処理の中の関数（◆19-n）
+         ◆19-1 decorateAmamiTableLinks : 表内の<a>を青ボタン化し、原則同じタブで開くよう統一
+                （別タブにしたいリンクは リンク一覧.txt で 別タブ=true を指定） */
+      window.decorateAmamiTableLinks = function () {
         const table = document.getElementById('amami-table');
         if (!table) return;
         const usedLinkKey = 'amami-table-used-links';
@@ -2849,6 +3461,14 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
 
         table.querySelectorAll('td a[href]').forEach((a) => {
           const cell = a.closest('td');
+          // 方針: テーブルのリンクはすべて「同じタブ」で開く（遷移先を見た後、←戻るで
+          //       必ずテーブルに戻れるよう一元化。タブを閉じる操作を不要にする）。
+          //       別タブで開きたいときは Ctrl+クリック / マウス中ボタンで利用者が選べる。
+          //       onclick で動く機能リンク（BGM再生など）は触らない。
+          if (!a.getAttribute('onclick')) {
+            a.removeAttribute('target');
+            a.removeAttribute('rel');
+          }
           if (a.classList.contains('municipal-name-link') || a.classList.contains('amami-org-name-link')) {
             return;
           }
@@ -2857,9 +3477,6 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
           }
           const row = a.closest('tr');
           if (row && row.classList.contains('island-title-row')) {
-            // NOTE: 島見出しリンクは外部サイトを直接開く（翻訳経由の影響を受けにくくする）
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
             return;
           }
           a.classList.add('table-link-btn');
@@ -2868,6 +3485,20 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
             a.classList.add('used');
           }
         });
+      };
+
+      window.onload = () => {
+        const table = document.getElementById('amami-table');
+        if (!table) return;
+        const usedLinkKey = 'amami-table-used-links';
+        let usedLinks = {};
+        try {
+          usedLinks = JSON.parse(sessionStorage.getItem(usedLinkKey) || '{}');
+        } catch (e) {
+          usedLinks = {};
+        }
+
+        window.decorateAmamiTableLinks();
 
         // テーブルに1本だけ委譲（二重登録しにくい）
         table.addEventListener('click', (event) => {
@@ -2879,9 +3510,6 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
 
           const link = event.target.closest('a');
           if (!link || !cell.contains(link)) return;
-          if (link.target === '_blank') return;
-          const row = link.closest('tr');
-          if (row && row.classList.contains('island-title-row')) return;
 
           const hrefRaw = link.getAttribute('href');
           const h = (hrefRaw || '').trim();
@@ -2896,12 +3524,21 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
             return;
           }
 
-          event.preventDefault();
+          // 実リンク：訪問済みハイライトを記録（別タブで開く場合も残す）
           try {
             usedLinks[link.href] = Date.now();
             sessionStorage.setItem(usedLinkKey, JSON.stringify(usedLinks));
             link.classList.add('used');
           } catch (e) {}
+
+          // 別タブ指定・島見出しはネイティブに新しいタブで開く（preventDefault しない）
+          const row = link.closest('tr');
+          if (link.target === '_blank' || (row && row.classList.contains('island-title-row'))) {
+            return;
+          }
+
+          // それ以外は同じタブで遷移
+          event.preventDefault();
           sessionStorage.setItem('scrollPosition', window.scrollY);
           window.location.href = hrefRaw;
         });
@@ -2915,10 +3552,18 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
              → 該当セルに "cell-broken-url" を付与（薄い赤）
          装飾セル（.municipal-name / .amami-org-name / .island-title-row 内）は対象外。
          RISK: file:// で開くと fetch がブロックされる環境がある。サーバー配信なら問題なし。 -->
+    <!-- 【◆20】リンク切れの可視化：link-status.json を読み、つながらないリンクのセルを薄い赤で表示。 -->
     <script>
       (function () {
         var EXCLUDED_TD_CLASSES = ["municipal-name", "amami-org-name"];
 
+        /* この処理の中の関数（◆20-n）
+           ◆20-1 isExcludedCell          : 装飾セル（市町村名など）を対象外に
+           ◆20-2 isPlaceholderHref       : URL未設定（仮）かどうか判定
+           ◆20-3 hasMeaningfulOnclick    : 機能リンク（onclick等）かどうか判定
+           ◆20-4 markCellsAndIndexAnchors : セルへ状態を付与し索引を作成
+           ◆20-5 applyBrokenStatus       : 切れリンクのセルを薄い赤で表示
+           ◆20-6 init                    : 初期化（リンク差し込み後に再実行可能） */
         function isExcludedCell(td) {
           if (!td) return true;
           for (var i = 0; i < EXCLUDED_TD_CLASSES.length; i++) {
@@ -3035,6 +3680,9 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
             });
         }
 
+        // NOTE: リンクが リンク一覧.txt から後差しされるため、差し込み後に再実行できるよう公開
+        window.refreshAmamiLinkStatus = init;
+
         if (document.readyState === "loading") {
           document.addEventListener("DOMContentLoaded", init);
         } else {
@@ -3043,6 +3691,7 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       })();
     </script>
 
+<!-- 【◆21】モニュメント音声・町歌再生：日本語は音声ファイル、他言語はブラウザ読み上げ。旗クリックで町歌再生。 -->
 <!--  モニュメントの　音声-->
 <!-- NOTE: 複数リンクポップアップはセルから複数遷移先を選択表示 -->
 <script>
@@ -3119,6 +3768,11 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   };
 
   // 現在の表示言語を判定して MONUMENT_MESSAGES のキーを返す
+  /* この処理の中の関数（◆21-n）
+     ◆21-1 detectCurrentLangKey : 現在の表示言語を判定
+     ◆21-2 speakText           : ブラウザ読み上げ（日本語以外）
+     ◆21-3 playVoice           : 日本語の音声ファイルを再生
+     ◆21-4 playMunicipalSong   : 旗クリックで町歌を再生 */
   function detectCurrentLangKey() {
     try {
       var html = document.documentElement;
@@ -3222,6 +3876,120 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
 </div>
 
 
+<!-- 【◆22】リンク一覧.txt の読み込み・解析：表の全リンクの「唯一の正」を読み込む中心処理。
+     変更ヒント：リンクの追加・修正・削除は「リンク一覧.txt」を編集（index.html は触らない）。 -->
+<script>
+  /* =========================================================
+     リンク一覧の読み込み（管理者編集用）
+     - 第一候補: リンク一覧.txt（「名前 = URL」形式・記号不要のやさしい形式）
+     - 予備    : extra-links.json（旧JSON形式。txt が無い/読めない場合のみ）
+     返り値: { links:{cellId:[{名前,URL}...]}, islands:{key:[...]}, sns:[...] }
+     ========================================================= */
+  window.AmamiLinks = (function () {
+    var ISLAND_NAME_TO_KEY = {
+      "奄美大島": "amami", "喜界島": "kikai", "徳之島": "tokunoshima",
+      "沖永良部島": "okinoerabu", "与論島": "yoron",
+      "amami": "amami", "kikai": "kikai", "tokunoshima": "tokunoshima",
+      "okinoerabu": "okinoerabu", "yoron": "yoron"
+    };
+
+    /* この処理の中の関数（◆22-n）
+       ◆22-1 parseLinkText : リンク一覧.txt（名前=URL形式）を解析
+       ◆22-2 fromJson / hasData : 旧JSON形式の取り込み・有無判定
+       ◆22-3 loadJson      : extra-links.json を読込（予備）
+       ◆22-4 load          : txt を優先して読み込む本体 */
+    function parseLinkText(text) {
+      var result = { links: {}, islands: {}, sns: [] };
+      var lines = String(text).split(/\r?\n/);
+      var current = null; // 現在のセクションの配列
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].replace(/\u3000/g, " ").trim(); // 全角スペースは半角扱い
+        if (!line) continue;
+        if (line.charAt(0) === "#" || line.charAt(0) === "\uFF03") continue; // # コメント
+        // セクション見出し  [ ... ]（全角 ［ ］ も可）
+        var head = line.match(/^[\[\uFF3B]\s*(.+?)\s*[\]\uFF3D]\s*$/);
+        if (head) {
+          var key = head[1].trim();
+          if (/^(sns|\uFF53\uFF4E\uFF53)$/i.test(key)) {
+            current = result.sns;
+          } else {
+            var im = key.match(/^(?:\u5CF6|island)\s*[:\uFF1A\-\uFF0D]\s*(.+)$/i);
+            if (im) {
+              var ik = ISLAND_NAME_TO_KEY[im[1].trim()] || im[1].trim();
+              result.islands[ik] = result.islands[ik] || [];
+              current = result.islands[ik];
+            } else {
+              // セルID（cell-XX-YY など）
+              result.links[key] = result.links[key] || [];
+              current = result.links[key];
+            }
+          }
+          continue;
+        }
+        // 通常行：名前 ＝ URL（最初の = / ＝ で分割）
+        if (!current) continue;
+        var idx = line.search(/[=\uFF1D]/);
+        var name, url;
+        if (idx >= 0) {
+          name = line.slice(0, idx).trim();
+          url = line.slice(idx + 1).trim();
+        } else {
+          name = "";
+          url = line.trim();
+        }
+        if (!url) continue;
+        current.push({ "名前": name, "URL": url });
+      }
+      return result;
+    }
+
+    function fromJson(d) {
+      if (!d || typeof d !== "object") return null;
+      return {
+        links: d.links || {},
+        islands: d.islands || {},
+        sns: Array.isArray(d.sns) ? d.sns : []
+      };
+    }
+    function hasData(o) {
+      return !!o && (
+        Object.keys(o.links || {}).length ||
+        Object.keys(o.islands || {}).length ||
+        (o.sns && o.sns.length)
+      );
+    }
+    function loadJson() {
+      return fetch("extra-links.json", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(fromJson)
+        .catch(function () { return null; });
+    }
+
+    var promise = null;
+    function load() {
+      if (promise) return promise;
+      promise = fetch(encodeURI("リンク一覧.txt") + "?v=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.text() : ""; })
+        .then(function (t) {
+          var parsed = t && t.trim() ? parseLinkText(t) : null;
+          if (hasData(parsed)) return parsed;
+          return loadJson().then(function (j) {
+            return hasData(j) ? j : (parsed || { links: {}, islands: {}, sns: [] });
+          });
+        })
+        .catch(function () {
+          return loadJson().then(function (j) {
+            return j || { links: {}, islands: {}, sns: [] };
+          });
+        });
+      return promise;
+    }
+
+    return { load: load, parse: parseLinkText };
+  })();
+</script>
+
+<!-- 【◆23】島の関連サイト／SNS ポップアップ：各島「関連サイト」ボタンとフッター「SNS一覧」の一覧表示。 -->
 <script>
   (function () {
     var ISLAND_RELATED_LINKS_FALLBACK = {
@@ -3293,23 +4061,123 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     };
 
     window.__islandRelatedFromServer = null;
+    window.__islandRelatedFromExtra = null; // extra-links.json の islands セクション
+    window.__snsFromExtra = null;           // extra-links.json の sns セクション
+
+    // 最終行（東京奄美会）の「SNS一覧」直書きフォールバック
+    var SNS_LIST_FALLBACK = [
+      { label: "X（旧Twitter）：東京奄美会", url: "https://x.com/PiiZmi" },
+      { label: "Facebook：東京奄美会", url: "https://www.facebook.com/profile.php?id=61575154336855" },
+      { label: "Instagram：東京奄美会", url: "https://www.instagram.com/accounts/edit/" },
+      { label: "Facebook：喜界町", url: "https://www.facebook.com/kikaicho/" },
+      { label: "Instagram：喜界町", url: "https://www.instagram.com/kikaicho/" },
+      { label: "X（旧Twitter）：喜界町", url: "https://x.com/kikaicho" },
+      { label: "Facebook：龍郷町", url: "https://www.facebook.com/tatsugocho/" },
+      { label: "Instagram：龍郷町", url: "https://www.instagram.com/tatsugocho/" },
+      { label: "X（旧Twitter）：龍郷町", url: "https://x.com/tatsugocho" },
+      { label: "Facebook：奄美市", url: "https://www.facebook.com/amami.city/" },
+      { label: "Instagram：奄美市", url: "https://www.instagram.com/amami_city/" },
+      { label: "X（旧Twitter）：奄美市", url: "https://x.com/amami_city" },
+      { label: "Facebook：大和村", url: "https://www.facebook.com/yamatomura/" },
+      { label: "Instagram：大和村", url: "https://www.instagram.com/yamatomura/" },
+      { label: "X（旧Twitter）：大和村", url: "https://x.com/yamatomura" },
+      { label: "Facebook：宇検村", url: "https://www.facebook.com/ukenmura/" },
+      { label: "Instagram：宇検村", url: "https://www.instagram.com/ukenmura/" },
+      { label: "X（旧Twitter）：宇検村", url: "https://x.com/ukenmura" },
+      { label: "Facebook：瀬戸内町", url: "https://www.facebook.com/setouchicho/" },
+      { label: "Instagram：瀬戸内町", url: "https://www.instagram.com/setouchicho/" },
+      { label: "X（旧Twitter）：瀬戸内町", url: "https://x.com/setouchicho" },
+      { label: "Facebook：徳之島町", url: "https://www.facebook.com/tokunoshimacho/" },
+      { label: "Instagram：徳之島町", url: "https://www.instagram.com/tokunoshimacho/" },
+      { label: "X（旧Twitter）：徳之島町", url: "https://x.com/tokunoshimacho" },
+      { label: "Facebook：伊仙町", url: "https://www.facebook.com/isencho/" },
+      { label: "Instagram：伊仙町", url: "https://www.instagram.com/isencho/" },
+      { label: "X（旧Twitter）：伊仙町", url: "https://x.com/isencho" },
+      { label: "Facebook：天城町", url: "https://www.facebook.com/amagicho/" },
+      { label: "Instagram：天城町", url: "https://www.instagram.com/amagicho/" },
+      { label: "X（旧Twitter）：天城町", url: "https://x.com/amagicho" },
+      { label: "Facebook：和泊町", url: "https://www.facebook.com/wadomari/" },
+      { label: "Instagram：和泊町", url: "https://www.instagram.com/wadomari/" },
+      { label: "X（旧Twitter）：和泊町", url: "https://x.com/wadomari" },
+      { label: "Facebook：知名町", url: "https://www.facebook.com/chinacho/" },
+      { label: "Instagram：知名町", url: "https://www.instagram.com/chinacho/" },
+      { label: "X（旧Twitter）：知名町", url: "https://x.com/chinacho" },
+      { label: "Facebook：与論町", url: "https://www.facebook.com/yoroncho/" },
+      { label: "Instagram：与論町", url: "https://www.instagram.com/yoroncho/" },
+      { label: "X（旧Twitter）：与論町", url: "https://x.com/yoroncho" }
+    ];
+
+    // extra-links.json（名前/URL 形式）を、関連サイト用の {label,url} 形式に変換
+    /* この処理の中の関数（◆23-n）
+       ◆23-1 normalizeExtraIslandList : 島リストの整形
+       ◆23-2 showIslandRelatedSites   : 島の「関連サイト」一覧を表示
+       ◆23-3 showFooterSnsList        : フッターの「SNS一覧」を表示
+       ◆23-4 showMultiLinkPopup       : 複数リンクのモーダルを表示
+       ◆23-5 closeMultiPopup          : モーダルを閉じる */
+    function normalizeExtraIslandList(list) {
+      var out = [];
+      if (!Array.isArray(list)) return out;
+      list.forEach(function (it) {
+        if (!it) return;
+        var url = it.URL || it.url || it["ＵＲＬ"];
+        if (!url) return;
+        url = String(url);
+        var label = it["名前"] || it.name || it.label || it["表示名"];
+        if (!label) {
+          try {
+            label = new URL(url, window.location.href).host.replace(/^www\./i, "");
+          } catch (e) {
+            label = url;
+          }
+        }
+        out.push({ label: String(label), url: url });
+      });
+      return out;
+    }
 
     window.showIslandRelatedSites = function (islandKey) {
-      var srv = window.__islandRelatedFromServer;
-      var links =
-        srv && srv.links && srv.links[islandKey] && srv.links[islandKey].length
-          ? srv.links[islandKey]
-          : ISLAND_RELATED_LINKS_FALLBACK[islandKey];
+      // 優先順位: extra-links.json の islands ＞ サーバー ＞ 直書きフォールバック
+      var links = null;
+      var ex = window.__islandRelatedFromExtra;
+      if (ex && ex[islandKey]) {
+        var normalized = normalizeExtraIslandList(ex[islandKey]);
+        if (normalized.length) links = normalized;
+      }
+      if (!links || !links.length) {
+        var srv = window.__islandRelatedFromServer;
+        links =
+          srv && srv.links && srv.links[islandKey] && srv.links[islandKey].length
+            ? srv.links[islandKey]
+            : ISLAND_RELATED_LINKS_FALLBACK[islandKey];
+      }
+      var srv2 = window.__islandRelatedFromServer;
       var titles =
-        srv && srv.titles && typeof srv.titles === "object"
-          ? srv.titles
+        srv2 && srv2.titles && typeof srv2.titles === "object"
+          ? srv2.titles
           : ISLAND_RELATED_TITLES_FALLBACK;
       if (!links || !links.length) return;
       var title =
         (titles && titles[islandKey]) ||
         ISLAND_RELATED_TITLES_FALLBACK[islandKey] ||
         "関連サイト";
-      showMultiLinkPopup(links, title);
+      // どのポップアップを開いているか記録（←戻りで再表示するため）
+      window.__amamiOpenPopup = { type: "island", key: islandKey };
+      showMultiLinkPopup(links, title, "cell-island-" + islandKey);
+    };
+
+    // 最終行（東京奄美会）の「SNS一覧」: extra-links.json の sns ＞ 直書きフォールバック
+    window.showFooterSnsList = function () {
+      var links = null;
+      var ex = window.__snsFromExtra;
+      if (ex && ex.length) {
+        var normalized = normalizeExtraIslandList(ex);
+        if (normalized.length) links = normalized;
+      }
+      if (!links || !links.length) links = SNS_LIST_FALLBACK;
+      if (!links || !links.length) return;
+      // どのポップアップを開いているか記録（←戻りで再表示するため）
+      window.__amamiOpenPopup = { type: "sns" };
+      showMultiLinkPopup(links, "SNS一覧", "cell-13-07");
     };
 
     fetch("island-related-links-api.php", { credentials: "same-origin" })
@@ -3323,9 +4191,22 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
         }
       })
       .catch(function () {});
+
+    if (window.AmamiLinks && typeof window.AmamiLinks.load === "function") {
+      window.AmamiLinks.load()
+        .then(function (d) {
+          if (d && d.islands && typeof d.islands === "object") {
+            window.__islandRelatedFromExtra = d.islands;
+          }
+          if (d && Array.isArray(d.sns)) {
+            window.__snsFromExtra = d.sns;
+          }
+        })
+        .catch(function () {});
+    }
   })();
 
-  function showMultiLinkPopup(links, headingText) {
+  function showMultiLinkPopup(links, headingText, sourceCellId) {
     const container = document.getElementById('multiLinks');
     container.innerHTML = '';
 
@@ -3333,8 +4214,11 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
       const a = document.createElement('a');
       a.href = link.url;
       a.textContent = link.label;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
+      // 同じタブで開く（←戻りで元のテーブルに戻れるように一元化）
+      // 所属セルを刻んでおく。集計は ◆14 の統一クリックハンドラが url 付きで行う。
+      if (sourceCellId && typeof window.amamiTagPopupLink === 'function') {
+        window.amamiTagPopupLink(a, sourceCellId);
+      }
       container.appendChild(a);
     });
 
@@ -3353,17 +4237,153 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   function closeMultiPopup() {
     document.getElementById('multiOverlay').style.display = 'none';
     document.getElementById('multiPopup').style.display = 'none';
+    if (window.__amamiOpenPopup &&
+        (window.__amamiOpenPopup.type === 'island' || window.__amamiOpenPopup.type === 'sns')) {
+      window.__amamiOpenPopup = null;
+    }
   }
+
+  /* 【◆24】戻り時のポップアップ再表示・スクロール位置復元：←で戻った時に元の位置・開いていたポップアップを復元。 */
+  /* =========================================================
+     ポップアップからの遷移時、←戻りでポップアップを再表示する
+     - リンク一覧などのポップアップを開いた状態で外部リンクへ遷移すると、
+       ブラウザの←戻りで「ポップアップが開いた状態」に復元する。
+     - 復元後はポップアップの「戻る」ボタン（モーダル）や外側クリック（セル）で
+       テーブルへ戻れる。
+     ========================================================= */
+  (function () {
+    var KEY = 'amamiReopenPopup';
+    var SKEY = 'amamiScrollY';
+
+    // NOTE: スクロール復元は自前で行う（manual）。
+    //   ・ブラウザ任せ(auto)はテーブルの高さ確定前に復元するため、結果的に
+    //     テーブル下部などズレた位置に着地することがあった。
+    //   ・そこで離脱時に保存した「正確な座標」へ固定する。
+    //   ・復元は読み込みのできるだけ早い段階（このスクリプト実行時）で行い、
+    //     さらに rAF で数フレーム位置を保持して、ちらつき・揺れの両方を抑える。
+    if ('scrollRestoration' in history) {
+      try { history.scrollRestoration = 'manual'; } catch (e) {}
+    }
+
+    // 復元すべき遷移か（戻る/進む・再読み込み）。初回アクセス(navigate)では
+    // 前回セッションの古い位置へ飛ばさないよう復元しない。
+    /* この処理の中の関数（◆24-n）
+       ◆24-1 isRestoreNav    : 戻る/進む・再読み込みかを判定
+       ◆24-2 saveScroll      : スクロール位置を保存
+       ◆24-3 restoreScroll   : 位置を復元し数フレーム固定（揺れ防止）
+       ◆24-4 reopen          : 開いていたポップアップを再表示
+       ◆24-5 restoreIfNeeded : 保存状態から復元 */
+    function isRestoreNav() {
+      try {
+        var nav = (performance.getEntriesByType &&
+                   performance.getEntriesByType('navigation')[0]) || null;
+        if (nav && nav.type) return nav.type === 'back_forward' || nav.type === 'reload';
+        if (performance.navigation) {
+          return performance.navigation.type === 1 || performance.navigation.type === 2;
+        }
+      } catch (e) {}
+      return false;
+    }
+    var RESTORE_NAV = isRestoreNav();
+
+    function saveScroll() {
+      try {
+        sessionStorage.setItem(SKEY, String(Math.round(window.pageYOffset || window.scrollY || 0)));
+      } catch (e) {}
+    }
+
+    // ポップアップを開いたまま離脱したら、その状態とスクロール位置を保存
+    window.addEventListener('pagehide', function () {
+      try {
+        if (window.__amamiOpenPopup) {
+          sessionStorage.setItem(KEY, JSON.stringify(window.__amamiOpenPopup));
+        }
+      } catch (e) {}
+      saveScroll();
+    });
+
+    // 離脱時に保存した「正確な座標」へ復元し、非同期レイアウト確定まで固定する。
+    // 即時に1回 + rAF で数フレーム保持。ユーザーが自分でスクロール/操作したら即解除。
+    var scrolling = false;
+    function restoreScroll() {
+      if (!RESTORE_NAV || scrolling) return;
+      var y = 0;
+      try { y = parseInt(sessionStorage.getItem(SKEY) || '0', 10) || 0; } catch (e) {}
+      if (y <= 0) return;
+      scrolling = true;
+      window.scrollTo(0, y); // できるだけ早く正しい位置へ
+      var start = Date.now();
+      var stopped = false;
+      function stop() { stopped = true; }
+      ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (ev) {
+        window.addEventListener(ev, stop, { passive: true, once: true });
+      });
+      function pin() {
+        if (stopped) return;
+        if (Math.abs((window.pageYOffset || 0) - y) > 1) window.scrollTo(0, y);
+        if (Date.now() - start < 700) requestAnimationFrame(pin);
+      }
+      requestAnimationFrame(pin);
+    }
+
+    // このスクリプト実行時点（読み込みの早い段階・テーブルは解析済み）で即復元。
+    restoreScroll();
+
+    function reopen(ctx, attempt) {
+      if (!ctx) return;
+      attempt = attempt || 0;
+      if (ctx.type === 'island' && typeof window.showIslandRelatedSites === 'function') {
+        window.showIslandRelatedSites(ctx.key);
+      } else if (ctx.type === 'sns' && typeof window.showFooterSnsList === 'function') {
+        window.showFooterSnsList();
+      } else if (ctx.type === 'cell' && ctx.cellId) {
+        var td = document.getElementById(ctx.cellId);
+        var trigger = td && td.querySelector('.amami-popup-trigger');
+        if (trigger) {
+          // bfキャッシュ復帰で既に開いている場合はトグルで閉じないようにする
+          if (trigger.getAttribute('aria-expanded') !== 'true') trigger.click();
+        } else if (attempt < 20) {
+          // トリガー生成（リンク差し込み後）を待って再試行
+          setTimeout(function () { reopen(ctx, attempt + 1); }, 150);
+        }
+      }
+    }
+
+    function restoreIfNeeded() {
+      var ctx = null;
+      try { ctx = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) { ctx = null; }
+      if (!ctx) return;
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
+      // セルのドロップはトリガー生成後、モーダルはデータ読込後に出すため少し待つ
+      setTimeout(function () { reopen(ctx, 0); }, ctx.type === 'cell' ? 250 : 350);
+    }
+
+    // pageshow で復元。
+    // bfcache 復帰（event.persisted）の場合はスクロール位置もポップアップも
+    // ブラウザが DOM ごと瞬時に復元しているため、こちらの再復元は不要（二重表示防止）。
+    window.addEventListener('pageshow', function (e) {
+      if (e && e.persisted) {
+        try { sessionStorage.removeItem(KEY); } catch (err) {}
+        return;
+      }
+      restoreScroll();
+      restoreIfNeeded();
+    });
+  })();
   </script>
  <!-- ボタンで別ウィンドウからBGM起動 -->
 
+<!-- 【◆25】BGM起動・スライド連動：BGMを同じフォルダーの bgm-n-amami.html で開く。スライド表示の連動も管理。 -->
 <!--　セルにbgm入れ　遷移で停止しない動き　-->　
 <script>
   /** BGMは同一ブラウザの「タブ」で開く（サイズ指定なし＝タブバーに並ぶ・Alt+Tabの別ウィンドウにしにくい） */
+  /* この処理の中の関数（◆25-n）
+     ◆25-1 openBGMWindow              : BGMページを同じブラウザのタブで開く
+     ◆25-2 openChannel / closeChannel : スライド連動チャンネルの開閉（戻る瞬間復元=bfcache対応） */
   function openBGMWindow() {
-    // NOTE: index.html 側の配置場所に依存させないため、BGMプレーヤーは絶対URLで開く
-    // （音源ファイルもプレーヤー側の相対パスで参照されるため）
-    const bgmUrl = "https://violetfoal2.sakura.ne.jp/hp-amami-pr-1/bgm-n-amami.html";
+    // NOTE: index.html と同じフォルダーの BGM プレーヤーを開く。
+    // local / test / production の配置先に合わせて自動的に同じ環境を参照する。
+    const bgmUrl = "bgm-n-amami.html";
     const w = window.open(bgmUrl, "bgmPlayerTab");
     if (w) {
       try {
@@ -3373,14 +4393,30 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
   }
 
   (function () {
-    const ch = new BroadcastChannel("bgm-amami-slideshow");
     const slideshow = document.getElementById("slideshow");
-    if (!slideshow) return;
-    ch.onmessage = function (ev) {
-      if (ev.data && typeof ev.data.hideSlideshow === "boolean") {
-        slideshow.style.display = ev.data.hideSlideshow ? "none" : "";
-      }
-    };
+    if (!slideshow || typeof BroadcastChannel === "undefined") return;
+    // NOTE: 開きっぱなしの BroadcastChannel は bfcache を無効化する。
+    // 離脱直前に閉じ、戻ってきたら開き直すことで ← の瞬間復元を保つ。
+    var ch = null;
+    function openChannel() {
+      if (ch) return;
+      try {
+        ch = new BroadcastChannel("bgm-amami-slideshow");
+        ch.onmessage = function (ev) {
+          if (ev.data && typeof ev.data.hideSlideshow === "boolean") {
+            slideshow.style.display = ev.data.hideSlideshow ? "none" : "";
+          }
+        };
+      } catch (e) { ch = null; }
+    }
+    function closeChannel() {
+      if (!ch) return;
+      try { ch.close(); } catch (e) {}
+      ch = null;
+    }
+    openChannel();
+    window.addEventListener("pagehide", closeChannel);
+    window.addEventListener("pageshow", openChannel);
   })();
 </script>
 
@@ -3389,6 +4425,7 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     <span class="amami-pr-site-footer__brand">東京奄美会</span><br>
     <span class="amami-pr-site-footer__copyright">© 2026 Tokyo Amami Association. All Rights Reserved.</span>
   </footer>
+  <!-- 【◆26】サイトフッターCSS：最下部の「東京奄美会／コピーライト」帯のデザイン。 -->
   <style>
     .amami-pr-site-footer {
       width: 100%;
@@ -3410,5 +4447,371 @@ TODO: 将来的に外部リンク生成を共通関数化し、属性付与漏�
     }
   </style>
 
+  <!-- =========================================================
+       複数リンクのポップアップ
+       セル（td[id^="cell-"]）内に有効な <a> が 2 つ以上あると、
+       「カテゴリ名 ▾」のトリガーへ自動で畳み込み、クリックで
+       一覧をポップアップ表示する。リンクが 1 つ以下のセルは従来表示。
+       ・カテゴリ名は列ヘッダー（観光・移住・定住 等）から自動取得
+         （td に data-popup-label があればそれを優先）
+       ・クリック集計は従来どおりセル単位（トリガーは <button> なので
+         既存のテーブル内クリック委譲がそのまま 1 セル＝1 件として計上）
+       ・ポップアップは body 直下に固定配置するため、テーブルの
+         横スクロール枠で見切れない
+       ========================================================= -->
+  <!-- 【◆27】複数リンクのポップアップ＋リンク差し込み：1セルに2件以上リンクがあると「項目名▾」に畳み込み、
+       リンク一覧.txt から各セルへURLを差し込む中心処理（◆22で読み込んだデータを表へ反映）。 -->
+  <script>
+  (function () {
+    "use strict";
+    var table = document.getElementById("amami-table");
+    if (!table) return;
+
+    var PLACEHOLDER = /^\s*(#.*|javascript:\s*void\(0\);?|)\s*$/i;
+    /* この処理の中の関数（◆27-n）
+       ◆27-1 isPlaceholder / columnLabel : 仮URLの判定・列見出しの取得
+       ◆27-2 ensureMenu / closeMenu / positionMenu / openMenu : ドロップダウンの生成・配置・開閉
+       ◆27-3 buildCell                  : 2件以上のセルを「項目名▾」に畳み込み
+       ◆27-4 extraUrl / extraName / isBuiltinMarker / hostLabel : リンク項目の補助
+       ◆27-5 makeExtraAnchor / applyToExistingAnchor : リンク要素の生成・既存への反映
+       ◆27-6 injectExtraLinks           : リンク一覧の内容を各セルへ差し込み
+       ◆27-7 buildAll / attachHandlers / init / done : 全体組み立てと初期化 */
+    function isPlaceholder(href) {
+      return !href || PLACEHOLDER.test(href);
+    }
+
+    function columnLabel(td) {
+      var custom = td.getAttribute("data-popup-label");
+      if (custom) return custom.trim();
+      var thead = table.tHead;
+      if (thead && thead.rows[0] && typeof td.cellIndex === "number") {
+        var th = thead.rows[0].cells[td.cellIndex];
+        if (th) return (th.textContent || "").trim();
+      }
+      return "リンク";
+    }
+
+    var menu = null;
+    var activeTrigger = null;
+
+    function ensureMenu() {
+      if (menu) return menu;
+      menu = document.createElement("div");
+      menu.className = "amami-popup-menu";
+      menu.setAttribute("role", "menu");
+      menu.style.display = "none";
+      document.body.appendChild(menu);
+      return menu;
+    }
+
+    function closeMenu() {
+      if (!menu) return;
+      menu.classList.remove("is-open");
+      menu.style.display = "none";
+      if (activeTrigger) activeTrigger.setAttribute("aria-expanded", "false");
+      activeTrigger = null;
+      if (window.__amamiOpenPopup && window.__amamiOpenPopup.type === "cell") {
+        window.__amamiOpenPopup = null;
+      }
+    }
+
+    function positionMenu(trigger) {
+      var r = trigger.getBoundingClientRect();
+      menu.style.display = "block";
+      menu.style.visibility = "hidden";
+      menu.style.left = "0px";
+      menu.style.top = "0px";
+      var mw = menu.offsetWidth;
+      var mh = menu.offsetHeight;
+      var vw = document.documentElement.clientWidth;
+      var vh = document.documentElement.clientHeight;
+      var left = r.left;
+      if (left + mw > vw - 8) left = vw - mw - 8;
+      if (left < 8) left = 8;
+      var top = r.bottom + 4;
+      if (top + mh > vh - 8) {
+        var above = r.top - 4 - mh;
+        top = above >= 8 ? above : Math.max(8, vh - mh - 8);
+      }
+      menu.style.left = Math.round(left) + "px";
+      menu.style.top = Math.round(top) + "px";
+      menu.style.visibility = "visible";
+    }
+
+    function openMenu(trigger, td, label) {
+      ensureMenu();
+      if (activeTrigger === trigger) { closeMenu(); return; }
+      closeMenu();
+
+      menu.innerHTML = "";
+      var head = document.createElement("div");
+      head.className = "amami-popup-head";
+      var headLabel = document.createElement("span");
+      headLabel.className = "amami-popup-head-label";
+      headLabel.textContent = label;
+      head.appendChild(headLabel);
+      var backBtn = document.createElement("button");
+      backBtn.type = "button";
+      backBtn.className = "amami-popup-back";
+      backBtn.textContent = "戻る";
+      backBtn.setAttribute("aria-label", "テーブルへ戻る");
+      backBtn.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        closeMenu();
+      });
+      head.appendChild(backBtn);
+      menu.appendChild(head);
+
+      var anchors = td.querySelectorAll(".amami-popup-source a[href]");
+      Array.prototype.forEach.call(anchors, function (src) {
+        var href = src.getAttribute("href");
+        if (isPlaceholder(href)) return;
+        var a = document.createElement("a");
+        a.setAttribute("href", href);
+        a.setAttribute("role", "menuitem");
+        var tgt = src.getAttribute("target");
+        if (tgt) a.setAttribute("target", tgt);
+        var rel = src.getAttribute("rel");
+        if (rel) a.setAttribute("rel", rel);
+        var ttl = src.getAttribute("title");
+        if (ttl) a.setAttribute("title", ttl);
+        a.textContent = (src.textContent || "").trim() || href;
+        // 所属セル(td.id)を刻んでおく。実際の集計は ◆14 の統一クリックハンドラが
+        // 「遷移先URL付き」で 1 件として行う（ポップアップを開く操作は数えない）。
+        if (typeof window.amamiTagPopupLink === "function") window.amamiTagPopupLink(a, td.id);
+        menu.appendChild(a);
+      });
+
+      activeTrigger = trigger;
+      // どのポップアップを開いているか記録（←戻りで再表示するため）
+      window.__amamiOpenPopup = { type: "cell", cellId: td.id, label: label };
+      trigger.setAttribute("aria-expanded", "true");
+      positionMenu(trigger);
+      requestAnimationFrame(function () {
+        if (activeTrigger === trigger) menu.classList.add("is-open");
+      });
+      var first = menu.querySelector("a[href]");
+      if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+    }
+
+    function buildCell(td) {
+      // 島見出し行（id="cell-island-..." を集計バッジ用に付与済み）は
+      // ポップアップ化の対象外にする（島名＋観光概要リンクを畳み込まない）。
+      if (td.closest && td.closest(".island-title-row")) return;
+      var realAnchors = Array.prototype.filter.call(
+        td.querySelectorAll("a[href]"),
+        function (a) { return !isPlaceholder(a.getAttribute("href")); }
+      );
+      if (realAnchors.length < 2) return;
+
+      var label = columnLabel(td);
+
+      var source = document.createElement("span");
+      source.className = "amami-popup-source";
+      var badges = Array.prototype.slice.call(td.querySelectorAll(".amami-click-badge"));
+      while (td.firstChild) source.appendChild(td.firstChild);
+
+      var trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "amami-popup-trigger";
+      trigger.setAttribute("aria-haspopup", "true");
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.setAttribute("title", label + "（" + realAnchors.length + "件）");
+      trigger.innerHTML =
+        '<span class="amami-popup-label"></span>' +
+        '<span class="amami-popup-caret" aria-hidden="true">\u25BE</span>';
+      trigger.querySelector(".amami-popup-label").textContent = label;
+
+      trigger.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        openMenu(trigger, td, label);
+      });
+
+      td.appendChild(trigger);
+      td.appendChild(source);
+      badges.forEach(function (badge) {
+        if (badge.parentNode) badge.parentNode.removeChild(badge);
+        td.appendChild(badge);
+      });
+    }
+
+    /* extra-links.json で指定された追加リンクをセルへ差し込む。
+       管理者は index.html を触らず、このJSONだけ編集すればよい。
+       JSON が無い / 壊れている場合は何も差し込まず、本体表示は維持。 */
+    // JSON の項目から URL / 名前 / 目印 を取り出す（英語キー・日本語キー両対応）
+    function extraUrl(it) {
+      if (!it) return "";
+      var u = it.url || it.URL || it["ＵＲＬ"] || "";
+      return u ? String(u) : "";
+    }
+    function extraName(it) {
+      if (!it) return "";
+      var n = it.name || it["名前"] || it["表示名"] || "";
+      return n ? String(n) : "";
+    }
+    function isBuiltinMarker(it) {
+      return !!it && (it.builtin === true || it["もとのリンク"] === true);
+    }
+
+    // 名前が無いときに使う見やすいラベル（URL のドメイン名。例: www.example.com/… → example.com）
+    function hostLabel(url) {
+      try {
+        var u = new URL(url, window.location.href);
+        return u.host.replace(/^www\./i, "") || url;
+      } catch (e) {
+        return url;
+      }
+    }
+
+    function makeExtraAnchor(item) {
+      var url = extraUrl(item);
+      var a = document.createElement("a");
+      a.setAttribute("href", url);
+      // 既定は「同じタブ」で開く（←戻るでテーブルに戻れるように一元化）。
+      // リンク一覧.txt で「別タブ=true」を明示したものだけ新しいタブで開く。
+      if (item.newtab === true || item["別タブ"] === true) {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener noreferrer");
+      }
+      var rawName = extraName(item);
+      var name = rawName || hostLabel(url);            // 名前が無ければドメイン名で代用
+      a.setAttribute("title", item.title ? String(item.title) : (rawName ? name : url));
+      a.textContent = name;
+      return a;
+    }
+
+    // 既存の <a> をそのまま使い回して URL・表示名だけ更新（色/クラス/別タブ設定を保持）
+    function applyToExistingAnchor(a, item) {
+      var url = extraUrl(item);
+      a.setAttribute("href", url);
+      var rawName = extraName(item);
+      if (rawName) {
+        // 空白の違いだけ（例: 「経　路」と「経 路」）なら元の表示をそのまま残す
+        var norm = function (s) { return String(s).replace(/\s+/g, ""); };
+        if (norm(a.textContent) !== norm(rawName)) {
+          a.textContent = rawName;
+        }
+      } else if (!a.textContent) {
+        a.textContent = hostLabel(url);
+      }
+      // 「別タブ」を明示したときだけ変更（無指定なら元のまま）
+      if (item.newtab === false || item["別タブ"] === false) {
+        a.removeAttribute("target");
+        a.removeAttribute("rel");
+      } else if (item.newtab === true || item["別タブ"] === true) {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener noreferrer");
+      }
+    }
+
+    function injectExtraLinks(map) {
+      if (!map || typeof map !== "object") return;
+      Object.keys(map).forEach(function (cellId) {
+        if (cellId.charAt(0) === "_") return; // 説明用フィールドは無視
+        var td = document.getElementById(cellId);
+        if (!td) return;
+        var list = map[cellId];
+        if (!Array.isArray(list) || list.length === 0) return;
+
+        // href の有無に関わらず、セル内の <a>（プレースホルダ含む）をすべて対象にする
+        var originals = Array.prototype.slice.call(td.querySelectorAll("a"));
+        var realItems = list.filter(function (it) {
+          return it && !isBuiltinMarker(it) && extraUrl(it);
+        });
+        var hasBuiltin = list.some(isBuiltinMarker);
+
+        // 単独リンク：既存の <a> を使い回して見た目を完全に保持する
+        if (realItems.length === 1 && !hasBuiltin) {
+          if (originals.length) {
+            applyToExistingAnchor(originals[0], realItems[0]);
+            for (var i = 1; i < originals.length; i++) {
+              if (originals[i].parentNode) originals[i].parentNode.removeChild(originals[i]);
+            }
+          } else {
+            td.appendChild(makeExtraAnchor(realItems[0]));
+          }
+          return;
+        }
+
+        // 複数リンク：ポップアップ化のため、元を外して作り直す
+        originals.forEach(function (a) { if (a.parentNode) a.parentNode.removeChild(a); });
+        var usedBuiltin = false;
+        list.forEach(function (it) {
+          if (!it) return;
+          if (isBuiltinMarker(it)) {
+            if (!usedBuiltin) {
+              originals.forEach(function (a) { td.appendChild(a); });
+              usedBuiltin = true;
+            }
+            return;
+          }
+          if (!extraUrl(it)) return;
+          td.appendChild(makeExtraAnchor(it));
+        });
+      });
+    }
+
+    function buildAll() {
+      var cells = table.querySelectorAll('td[id^="cell-"]');
+      Array.prototype.forEach.call(cells, buildCell);
+    }
+
+    function attachHandlers() {
+      document.addEventListener("click", function (ev) {
+        if (!activeTrigger) return;
+        if (menu && menu.contains(ev.target)) return;
+        if (ev.target.closest && ev.target.closest(".amami-popup-trigger")) return;
+        closeMenu();
+      }, true);
+      document.addEventListener("keydown", function (ev) {
+        if (ev.key === "Escape" || ev.keyCode === 27) {
+          var t = activeTrigger;
+          closeMenu();
+          if (t) { try { t.focus(); } catch (e) {} }
+        }
+      });
+      window.addEventListener("resize", closeMenu);
+      window.addEventListener("scroll", closeMenu, true);
+    }
+
+    function init() {
+      attachHandlers();
+      var loaded = false;
+      function done() {
+        if (loaded) return;
+        loaded = true;
+        buildAll();
+        // リンク一覧.txt から href を差し込んだ後に、青ボタン化とリンク状態判定を再実行する
+        try { if (typeof window.decorateAmamiTableLinks === "function") window.decorateAmamiTableLinks(); } catch (e) {}
+        try { if (typeof window.refreshAmamiLinkStatus === "function") window.refreshAmamiLinkStatus(); } catch (e) {}
+        try { if (typeof window.amamiLoadAndRenderClickBadges === "function") window.amamiLoadAndRenderClickBadges(); } catch (e) {}
+      }
+      try {
+        window.AmamiLinks.load()
+          .then(function (data) {
+            if (data && data.links) injectExtraLinks(data.links);
+          })
+          .catch(function () { /* 無い/読めない場合は無視 */ })
+          .then(done);
+      } catch (e) {
+        done();
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+
   </body>
 </html>
+
+
+
+
+
+

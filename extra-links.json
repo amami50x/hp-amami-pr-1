@@ -1,0 +1,163 @@
+{
+  "_readme": "編集方法は同じフォルダの『追加リンクの編集ガイド.txt』を見てください。このファイルに書いたものが、そのセル／島の全リンクになります（元のリンクも出したいときは、ここに書きます）。",
+
+
+  "links": {
+
+
+
+    "cell-01-13": [
+
+       {
+        "名前": "喜界町 移住・定住（公式）",
+        "URL":  "https://www.town.kikai.lg.jp/densan/kanko-iju/ijuteju/index.html"
+      }
+
+    ],
+
+    "cell-13-03": [
+
+      {
+        "名前": "奄美群島移住支援・U.Iターン総合サイト「ねりやかなや」丨奄美大島・徳之島・沖永良部島・喜界島・与論島のIターン・Uターン情報満載",
+        "URL":  "https://www.neriyakanaya.jp/"
+      },
+
+      {
+        "名前": "奄美群島広域事務組合（公式トップ）",
+        "URL":  "https://www.amami.or.jp/"
+      },
+
+      {
+        "名前": "組織概要",
+        "URL":  "https://www.amami.or.jp/aboutus/"
+      },
+
+      {
+        "名前": "奄美群島成長戦略ビジョン",
+        "URL":  "https://www.amami.or.jp/vision/"
+      }
+
+    ]
+
+
+
+  },
+
+
+  "islands": {
+
+
+
+    "amami": [
+      { "名前": "概要",             "URL": "https://www.amami-tourism.org/about/" },
+      { "名前": "自然",             "URL": "https://www.amami-tourism.org/about/nature/" },
+      { "名前": "歴史",             "URL": "https://www.amami-tourism.org/about/history/" },
+      { "名前": "文化",             "URL": "https://www.amami-tourism.org/about/culture/" },
+      { "名前": "天候",             "URL": "https://www.amami-tourism.org/about/weather/" },
+      { "名前": "特産物",           "URL": "https://www.amami-tourism.org/about/specialty/" },
+      { "名前": "奄美へのアクセス", "URL": "https://www.amami-tourism.org/access/#access" },
+      { "名前": "島内こうつう手段", "URL": "https://www.amami-tourism.org/access/#traffic" },
+      { "名前": "見どころ",         "URL": "https://www.amami-tourism.org/scenic-spots/" },
+      { "名前": "泊まる",           "URL": "https://www.amami-tourism.org/lodging/" },
+      { "名前": "食べる",           "URL": "https://www.amami-tourism.org/gourmet/" },
+      { "名前": "体験する",         "URL": "https://www.amami-tourism.org/experience/" },
+      { "名前": "お土産",           "URL": "https://www.amami-tourism.org/souvenir/" },
+      { "名前": "島食",             "URL": "https://www.amami-tourism.org/magazine/magazine-category/gourmet/" }
+    ],
+
+
+    "kikai": [
+      { "名前": "概要",         "URL": "https://kikaijimanavi.com/tourism/" },
+      { "名前": "食事",         "URL": "https://kikaijimanavi.com/meal/" },
+      { "名前": "宿泊",         "URL": "https://kikaijimanavi.com/lodging/" },
+      { "名前": "ショップ",     "URL": "https://kikaijimanavi.com/shopping/" },
+      { "名前": "特産品",       "URL": "https://kikaijimanavi.com/specialtygoods/" },
+      { "名前": "喜界観光・体験", "URL": "https://kikaijimanavi.com/tourism-and-experience/" }
+    ],
+
+
+    "tokunoshima": [
+      { "名前": "概要",   "URL": "https://www.tokunoshima-kanko.com/about/" },
+      { "名前": "遊ぶ",   "URL": "https://www.tokunoshima-kanko.com/play/" },
+      { "名前": "食べる", "URL": "https://www.tokunoshima-kanko.com/food/" },
+      { "名前": "泊まる", "URL": "https://www.tokunoshima-kanko.com/?post_type=shop&s=&shop_cate=stay&area=" },
+      { "名前": "特産品", "URL": "https://www.tokunoshima-kanko.com/item/" }
+    ],
+
+
+    "okinoerabu": [
+      { "名前": "組織・会員募集",   "URL": "https://okinoerabujima.info/organization/member-recruitment" },
+      { "名前": "概要",             "URL": "https://okinoerabujima.info/course" },
+      { "名前": "観光",             "URL": "https://okinoerabujima.info/spot" },
+      { "名前": "体験",             "URL": "https://okinoerabujima.info/activity" },
+      { "名前": "グルメ・お土産",   "URL": "https://okinoerabujima.info/pickup/gourmet" },
+      { "名前": "宿泊",             "URL": "https://okinoerabujima.info/stay" },
+      { "名前": "交通手段",         "URL": "https://okinoerabujima.info/pickup/access" },
+      { "名前": "エコラブ",         "URL": "https://okinoerabujima.info/pickup/erabucoco" },
+      { "名前": "サービス施設",     "URL": "https://okinoerabujima.info/service" },
+      { "名前": "島図鑑",           "URL": "https://okinoerabujima.info/pickup/erabushima_zukan" },
+      { "名前": "基礎知識",         "URL": "https://okinoerabujima.info/pickup/beginner" }
+    ],
+
+
+    "yoron": [
+      { "名前": "島内交通",           "URL": "https://www.yorontou.info/on-island.html" },
+      { "名前": "お役立ち情報",       "URL": "https://www.yorontou.info/safe-travel/" },
+      { "名前": "宿泊",               "URL": "https://www.yorontou.info/spot/genre/stay" },
+      { "名前": "観光スポット",       "URL": "https://www.yorontou.info/sightseeing/" },
+      { "名前": "体験",               "URL": "https://www.yorontou.info/spot/genre/experience-facility" },
+      { "名前": "お土産",             "URL": "https://www.yorontou.info/spot/genre/souvenir-shop" },
+      { "名前": "マリンアクティビティ", "URL": "https://www.yorontou.info/spot/genre/marine-activity" },
+      { "名前": "ダイビングスポット", "URL": "https://www.yorontou.info/spot/genre/diving-spot" },
+      { "名前": "史跡・名所・景勝地", "URL": "https://www.yorontou.info/spot/genre/historic" },
+      { "名前": "ビーチ",             "URL": "https://www.yorontou.info/spot/genre/beach" },
+      { "名前": "グルメ",             "URL": "https://www.yorontou.info/gourmet/" }
+    ]
+
+
+
+  },
+
+
+  "sns": [
+    { "名前": "X（旧Twitter）：東京奄美会", "URL": "https://x.com/PiiZmi" },
+    { "名前": "Facebook：東京奄美会",      "URL": "https://www.facebook.com/profile.php?id=61575154336855" },
+    { "名前": "Instagram：東京奄美会",     "URL": "https://www.instagram.com/accounts/edit/" },
+    { "名前": "Facebook：喜界町",  "URL": "https://www.facebook.com/kikaicho/" },
+    { "名前": "Instagram：喜界町", "URL": "https://www.instagram.com/kikaicho/" },
+    { "名前": "X（旧Twitter）：喜界町", "URL": "https://x.com/kikaicho" },
+    { "名前": "Facebook：龍郷町",  "URL": "https://www.facebook.com/tatsugocho/" },
+    { "名前": "Instagram：龍郷町", "URL": "https://www.instagram.com/tatsugocho/" },
+    { "名前": "X（旧Twitter）：龍郷町", "URL": "https://x.com/tatsugocho" },
+    { "名前": "Facebook：奄美市",  "URL": "https://www.facebook.com/amami.city/" },
+    { "名前": "Instagram：奄美市", "URL": "https://www.instagram.com/amami_city/" },
+    { "名前": "X（旧Twitter）：奄美市", "URL": "https://x.com/amami_city" },
+    { "名前": "Facebook：大和村",  "URL": "https://www.facebook.com/yamatomura/" },
+    { "名前": "Instagram：大和村", "URL": "https://www.instagram.com/yamatomura/" },
+    { "名前": "X（旧Twitter）：大和村", "URL": "https://x.com/yamatomura" },
+    { "名前": "Facebook：宇検村",  "URL": "https://www.facebook.com/ukenmura/" },
+    { "名前": "Instagram：宇検村", "URL": "https://www.instagram.com/ukenmura/" },
+    { "名前": "X（旧Twitter）：宇検村", "URL": "https://x.com/ukenmura" },
+    { "名前": "Facebook：瀬戸内町",  "URL": "https://www.facebook.com/setouchicho/" },
+    { "名前": "Instagram：瀬戸内町", "URL": "https://www.instagram.com/setouchicho/" },
+    { "名前": "X（旧Twitter）：瀬戸内町", "URL": "https://x.com/setouchicho" },
+    { "名前": "Facebook：徳之島町",  "URL": "https://www.facebook.com/tokunoshimacho/" },
+    { "名前": "Instagram：徳之島町", "URL": "https://www.instagram.com/tokunoshimacho/" },
+    { "名前": "X（旧Twitter）：徳之島町", "URL": "https://x.com/tokunoshimacho" },
+    { "名前": "Facebook：伊仙町",  "URL": "https://www.facebook.com/isencho/" },
+    { "名前": "Instagram：伊仙町", "URL": "https://www.instagram.com/isencho/" },
+    { "名前": "X（旧Twitter）：伊仙町", "URL": "https://x.com/isencho" },
+    { "名前": "Facebook：天城町",  "URL": "https://www.facebook.com/amagicho/" },
+    { "名前": "Instagram：天城町", "URL": "https://www.instagram.com/amagicho/" },
+    { "名前": "X（旧Twitter）：天城町", "URL": "https://x.com/amagicho" },
+    { "名前": "Facebook：和泊町",  "URL": "https://www.facebook.com/wadomari/" },
+    { "名前": "Instagram：和泊町", "URL": "https://www.instagram.com/wadomari/" },
+    { "名前": "X（旧Twitter）：和泊町", "URL": "https://x.com/wadomari" },
+    { "名前": "Facebook：知名町",  "URL": "https://www.facebook.com/chinacho/" },
+    { "名前": "Instagram：知名町", "URL": "https://www.instagram.com/chinacho/" },
+    { "名前": "X（旧Twitter）：知名町", "URL": "https://x.com/chinacho" },
+    { "名前": "Facebook：与論町",  "URL": "https://www.facebook.com/yoroncho/" },
+    { "名前": "Instagram：与論町", "URL": "https://www.instagram.com/yoroncho/" },
+    { "名前": "X（旧Twitter）：与論町", "URL": "https://x.com/yoroncho" }
+  ]
+}

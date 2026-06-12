@@ -1,0 +1,209 @@
+{
+    "titles": {
+        "amami": "奄美大島の旅行情報",
+        "kikai": "喜界島の旅行情報",
+        "tokunoshima": "徳之島の旅行情報",
+        "okinoerabu": "沖永良部島の旅行情報",
+        "yoron": "与論島の旅行情報"
+    },
+    "links": {
+        "amami": [
+            {
+                "label": "概要",
+                "url": "https:\/\/www.amami-tourism.org\/about\/"
+            },
+            {
+                "label": "自然",
+                "url": "https:\/\/www.amami-tourism.org\/about\/nature\/"
+            },
+            {
+                "label": "歴史",
+                "url": "https:\/\/www.amami-tourism.org\/about\/history\/"
+            },
+            {
+                "label": "文化",
+                "url": "https:\/\/www.amami-tourism.org\/about\/culture\/"
+            },
+            {
+                "label": "天候",
+                "url": "https:\/\/www.amami-tourism.org\/about\/weather\/"
+            },
+            {
+                "label": "特産物",
+                "url": "https:\/\/www.amami-tourism.org\/about\/specialty\/"
+            },
+            {
+                "label": "奄美へのアクセス",
+                "url": "https:\/\/www.amami-tourism.org\/access\/#access"
+            },
+            {
+                "label": "島内こうつう手段",
+                "url": "https:\/\/www.amami-tourism.org\/access\/#traffic"
+            },
+            {
+                "label": "見どころ",
+                "url": "https:\/\/www.amami-tourism.org\/scenic-spots\/"
+            },
+            {
+                "label": "泊まる",
+                "url": "https:\/\/www.amami-tourism.org\/lodging\/"
+            },
+            {
+                "label": "食べる",
+                "url": "https:\/\/www.amami-tourism.org\/gourmet\/"
+            },
+            {
+                "label": "体験する",
+                "url": "https:\/\/www.amami-tourism.org\/experience\/"
+            },
+            {
+                "label": "お土産",
+                "url": "https:\/\/www.amami-tourism.org\/souvenir\/"
+            },
+            {
+                "label": "島食",
+                "url": "https:\/\/www.amami-tourism.org\/magazine\/magazine-category\/gourmet\/"
+            }
+        ],
+        "kikai": [
+            {
+                "label": "概要",
+                "url": "https:\/\/kikaijimanavi.com\/tourism\/"
+            },
+            {
+                "label": "食事",
+                "url": "https:\/\/kikaijimanavi.com\/meal\/"
+            },
+            {
+                "label": "宿泊",
+                "url": "https:\/\/kikaijimanavi.com\/lodging\/"
+            },
+            {
+                "label": "ショップ",
+                "url": "https:\/\/kikaijimanavi.com\/shopping\/"
+            },
+            {
+                "label": "特産品",
+                "url": "https:\/\/kikaijimanavi.com\/specialtygoods\/"
+            },
+            {
+                "label": "喜界観光・体験",
+                "url": "https:\/\/kikaijimanavi.com\/tourism-and-experience\/"
+            }
+        ],
+        "tokunoshima": [
+            {
+                "label": "概要",
+                "url": "https:\/\/www.tokunoshima-kanko.com\/about\/"
+            },
+            {
+                "label": "遊ぶ",
+                "url": "https:\/\/www.tokunoshima-kanko.com\/play\/"
+            },
+            {
+                "label": "食べる",
+                "url": "https:\/\/www.tokunoshima-kanko.com\/food\/"
+            },
+            {
+                "label": "泊まる",
+                "url": "https:\/\/www.tokunoshima-kanko.com\/?post_type=shop&s=&shop_cate=stay&area="
+            },
+            {
+                "label": "特産品",
+                "url": "https:\/\/www.tokunoshima-kanko.com\/item\/"
+            }
+        ],
+        "okinoerabu": [
+            {
+                "label": "組織・会員募集",
+                "url": "https:\/\/okinoerabujima.info\/organization\/member-recruitment"
+            },
+            {
+                "label": "概要",
+                "url": "https:\/\/okinoerabujima.info\/course"
+            },
+            {
+                "label": "観光",
+                "url": "https:\/\/okinoerabujima.info\/spot"
+            },
+            {
+                "label": "体験",
+                "url": "https:\/\/okinoerabujima.info\/activity"
+            },
+            {
+                "label": "グルメ・お土産",
+                "url": "https:\/\/okinoerabujima.info\/pickup\/gourmet"
+            },
+            {
+                "label": "宿泊",
+                "url": "https:\/\/okinoerabujima.info\/stay"
+            },
+            {
+                "label": "交通手段",
+                "url": "https:\/\/okinoerabujima.info\/pickup\/access"
+            },
+            {
+                "label": "エコラブ",
+                "url": "https:\/\/okinoerabujima.info\/pickup\/erabucoco"
+            },
+            {
+                "label": "サービス施設",
+                "url": "https:\/\/okinoerabujima.info\/service"
+            },
+            {
+                "label": "島図鑑",
+                "url": "https:\/\/okinoerabujima.info\/pickup\/erabushima_zukan"
+            },
+            {
+                "label": "基礎知識",
+                "url": "https:\/\/okinoerabujima.info\/pickup\/beginner"
+            }
+        ],
+        "yoron": [
+            {
+                "label": "島内交通",
+                "url": "https:\/\/www.yorontou.info\/on-island.html"
+            },
+            {
+                "label": "お役立ち情報",
+                "url": "https:\/\/www.yorontou.info\/safe-travel\/"
+            },
+            {
+                "label": "宿泊",
+                "url": "https:\/\/www.yorontou.info\/spot\/genre\/stay"
+            },
+            {
+                "label": "観光スポット",
+                "url": "https:\/\/www.yorontou.info\/sightseeing\/"
+            },
+            {
+                "label": "体験",
+                "url": "https:\/\/www.yorontou.info\/spot\/genre\/experience-facility"
+            },
+            {
+                "label": "お土産",
+                "url": "https:\/\/www.yorontou.info\/spot\/genre\/souvenir-shop"
+            },
+            {
+                "label": "マリンアクティビティ",
+                "url": "https:\/\/www.yorontou.info\/spot\/genre\/marine-activity"
+            },
+            {
+                "label": "ダイビングスポット",
+                "url": "https:\/\/www.yorontou.info\/spot\/genre\/diving-spot"
+            },
+            {
+                "label": "史跡・名所・景勝地",
+                "url": "https:\/\/www.yorontou.info\/spot\/genre\/historic"
+            },
+            {
+                "label": "ビーチ",
+                "url": "https:\/\/www.yorontou.info\/spot\/genre\/beach"
+            },
+            {
+                "label": "グルメ",
+                "url": "https:\/\/www.yorontou.info\/gourmet\/"
+            }
+        ]
+    }
+}

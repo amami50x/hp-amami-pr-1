@@ -1257,7 +1257,7 @@ a {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
+  z-index: 10050; /* 固定トップバーより前面 */
 }
 
 /* 従来の準備中ポップアップ */
@@ -1272,27 +1272,55 @@ a {
 .multi-popup {
   display: none;
   position: fixed;
-  top: 5%;
+  /* 翻訳バー＋トップバーの下に表示（上部が隠れないよう下げる） */
+  top: calc(var(--amami-translate-bar-h, 32px) + 58px + 14px);
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
   max-width: 400px;
   /* 複数URL用の最大横幅 */
-  max-height: 90%;
-  background: rgb(241, 184, 225);
-  border: 2px solid #444;
+  max-height: calc(100vh - var(--amami-translate-bar-h, 32px) - 58px - 28px);
+  background: #002277;
+  border: 1px solid #99b3ff;
   padding: 0;
-  z-index: 1001;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+  z-index: 10051; /* 固定トップバーより前面 */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
   overflow: hidden;
+  text-align: left;
 }
 
 .multi-content {
-  padding: 20px;
+  padding: 12px;
   overflow-y: auto;
   max-height: 75vh;
   /* ビューポートの高さに応じて制限（最大75%） */
+}
+
+.multi-content button {
+  display: inline-block;
+  margin: 0 0 8px 0;
+  padding: 4px 14px;
+  border: 0;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #002277;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.multi-content button:hover,
+.multi-content button:focus-visible {
+  background: #d6e2ff;
+}
+
+#multiPopupHeading {
+  margin: 4px 4px 8px;
+  padding: 4px 6px 8px;
+  border-bottom: 1px solid #4a63b8;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 /* スクロールバーのスタイル */
@@ -1311,7 +1339,31 @@ a {
 
 .multi-links a {
   display: block;
-  margin: 8px 0;
-  color: #0066cc;
+  position: relative;
+  margin: 2px 0;
+  padding: 9px 11px 9px 30px;
+  border-radius: 7px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.multi-links a::before {
+  content: "\1F338";
+  position: absolute;
+  left: 9px;
+  top: 9px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.multi-links a:hover,
+.multi-links a:focus-visible {
+  background: #1a3a99;
+  color: #ffffff;
   text-decoration: underline;
 }
