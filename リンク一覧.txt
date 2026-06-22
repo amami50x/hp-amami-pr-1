@@ -132,7 +132,7 @@ Wikipedia = https://ja.wikipedia.org/wiki/%E9%BE%8D%E9%83%B7%E7%94%BA
 天気 = https://tenki.jp/forecast/9/49/1000/46222/
 
 [cell-03-11]
-Wikipedia = https://ja.wikipedia.org/wiki/%E5%AE%9B%E7%BE%8E%E5%B8%82
+Wikipedia = https://ja.wikipedia.org/wiki/%E5%A5%84%E7%BE%8E%E5%B8%82
 
 [cell-03-12]
 イベントカレンダー = https://www.city.amami.lg.jp/kikaku/koho/schedule.html
@@ -223,7 +223,7 @@ Wikipedia = https://ja.wikipedia.org/wiki/%E5%AE%87%E6%A4%9C%E6%9D%91
 移住・定住 = https://www.kagoshima-iju.jp/inquiry/
 
 [cell-05-14]
-ふるさと納税 = https://www.uken.net/kikakuchousei/muranogaiyo/furusato/murazukuri/kifukin.html /
+ふるさと納税 = https://www.uken.net/kikakuchousei/muranogaiyo/furusato/murazukuri/kifukin.html
 
 # ―― 06 瀬戸内町 ――
 
@@ -272,7 +272,7 @@ Wikipedia = https://ja.wikipedia.org/wiki/%E7%80%AC%E6%88%B8%E5%86%85%E7%94%BA
 徳之島町 = https://www.tokunoshima-town.org/
 
 [cell-07-02]
-観光 = https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html
+観光 =  https://www.tokunoshima-town.org/kanko/
 
 [cell-07-03]
 グルメ = https://tabelog.com/kagoshima/C46530/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65
@@ -394,16 +394,16 @@ Wikipedia = https://ja.wikipedia.org/wiki/%E4%BC%8A%E4%BB%99%E7%94%BA
 知名町 = https://www.town.china.lg.jp/
 
 [cell-10-02]
-観光 = https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html
+観光 = https://www.town.china.lg.jp/kanko/index.html
 
 [cell-10-03]
 グルメ = https://tabelog.com/kagoshima/C46534/rstLst/?msockid=3d96fa7710e66bc21044eec4119e6a65
 
 [cell-10-04]
-特産品 = https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html
+特産品 = http://tina.kashoren.or.jp/tokusan/
 
 [cell-10-05]
-郷土芸能 = https://www.town.china.lg.jp/shougai/kurasu/kosodate-kyoiku/shogaigakushu/denshogeno/denshogeno.html
+郷土芸能 = https://www.town.china.lg.jp/soshiki/1017/6/714.html
 
 [cell-10-06]
 歴史文化 = https://www.bing.com/images/search?q=%e7%9f%a5%e5%90%8d%e7%94%ba+%e6%ad%b4%e5%8f%b2&qpvt=%e7%9f%a5%e5%90%8d%e7%94%ba%e3%80%80%e6%ad%b4%e5%8f%b2&form=IGRE&first=1

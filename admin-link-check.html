@@ -157,6 +157,7 @@
   #statusBox .counts .red { color: var(--danger); }
   #statusBox .counts .blue { color: var(--inner); }
   #statusBox .counts .ok { color: var(--ok); }
+  #statusBox .counts .muted { color: #7a8aa0; }
   #progressIframe {
     margin-top: 14px;
     width: 100%;
@@ -169,6 +170,87 @@
   #progressIframe.is-visible {
     display: block;
   }
+  #brokenListBox {
+    margin-top: 18px;
+    display: none;
+  }
+  #brokenListBox.is-visible {
+    display: block;
+  }
+  #brokenListBox h2 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    color: var(--danger);
+  }
+  .broken-note {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: #335577;
+  }
+  #brokenTableWrap {
+    overflow-x: auto;
+  }
+  table.broken-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: #fff;
+  }
+  table.broken-table th,
+  table.broken-table td {
+    border: 1px solid #d9e2ef;
+    padding: 7px 9px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.broken-table th {
+    background: #fbe9e9;
+    color: #8a1f1f;
+    white-space: nowrap;
+  }
+  table.broken-table.warn-table th {
+    background: #e7f0fb;
+    color: #14457f;
+  }
+  table.broken-table.skip-table th {
+    background: #eef1f5;
+    color: #5a6b80;
+  }
+  table.broken-table.skip-table .col-status {
+    color: #7a8aa0;
+    font-weight: 600;
+  }
+  table.broken-table tbody tr:nth-child(even) {
+    background: #f7faff;
+  }
+  table.broken-table .col-status {
+    white-space: nowrap;
+    font-weight: 700;
+    color: var(--danger);
+  }
+  table.broken-table .col-status.warn {
+    color: var(--inner);
+  }
+  table.broken-table .url-cell a {
+    color: var(--primary-dark);
+    word-break: break-all;
+  }
+  table.broken-table .edit-where {
+    font-weight: 700;
+  }
+  .broken-empty {
+    padding: 12px 14px;
+    background: #eaf7ee;
+    border: 1px solid #b7e0c4;
+    border-radius: 10px;
+    color: var(--ok);
+    font-size: 14px;
+  }
+  .warning-heading {
+    margin: 16px 0 6px;
+    font-size: 14px;
+    color: var(--inner);
+  }
   footer {
     margin-top: 22px;
     font-size: 12px;
@@ -180,16 +262,23 @@
 <div class="wrap">
   <h1>テーブル内リンク チェック（管理者用）</h1>
   <p class="lead">
-    トップページ <code>index.html</code> の表に並ぶリンクの生死を確認できます。
-    通常のページ閲覧では、このチェック結果は表示されません。
+    表に登録されている全URL（表の直リンク・各セルのポップアップ・5島の関連サイト）の
+    生死を確認できます。<strong>遷移先ページの中のリンクまでは確認しません</strong>
+    （市町村から受け取った登録URLまでが対象）。通常のページ閲覧では、このチェック結果は表示されません。
+  </p>
+  <p class="lead" style="background:#eef5ff;border:1px solid #bcd3f3;border-radius:8px;padding:8px 10px;">
+    チェックの実行は<strong>パソコン上で</strong>行います（サーバーでは件数が多く時間切れ＝502になります）。<br>
+    <strong>① パソコンで <code>no-up-リンクチェック実行.bat</code> をダブルクリック</strong> →
+    <strong>② できた <code>link-status.json</code> をアップロード</strong> →
+    <strong>③ <code>admin-link-check.html</code> を開き直す／再読み込み</strong>、で最新結果が下に表示されます。
   </p>
 
   <div class="actions">
     <button id="btnRun" type="button" class="btn">
-      ① リンクチェックを実行
+      ① 最新の結果を読み込む（再表示）
     </button>
     <a id="btnView" class="btn secondary" href="index.html?admin=1" target="_blank" rel="noopener">
-      ② 結果を表示（赤枠・青枠で確認）
+      任意：HP表を赤枠で確認
     </a>
     <a class="btn secondary" href="index.html" target="_blank" rel="noopener">
       参考：通常表示（結果なし）
@@ -206,19 +295,52 @@
   </div>
 
   <div class="legend">
-    <div class="legend-item"><span class="swatch red"></span>赤枠：直URLが到達不能</div>
-    <div class="legend-item"><span class="swatch blue"></span>青枠：遷移先に切れリンク有</div>
-    <div class="legend-item"><span class="swatch gray"></span>グレー枠：URLが未設定</div>
+    <div class="legend-item"><span class="swatch red"></span>赤：登録URLが切れている（要対応）</div>
+    <div class="legend-item"><span class="swatch blue"></span>青：ブラウザで要確認（SNS等の誤検知が多い）</div>
+    <div class="legend-item"><span class="swatch gray"></span>グレー枠：URLが未設定（空のセル）</div>
+  </div>
+
+  <div id="brokenListBox">
+    <h2 id="brokenTitle">リンク切れ一覧</h2>
+    <p id="brokenNote" class="broken-note"></p>
+    <div id="brokenTableWrap"></div>
   </div>
 
   <div class="note">
-    <strong>使い方：</strong><br>
-    1.「リンクチェックを実行」を押すと、サーバー側で <code>link-status-check.php</code> が動き、
-    <code>link-status.json</code> が更新されます。<br>
-    2.「結果を表示」をクリックすると、別タブで <code>index.html?admin=1</code> が開き、
-    異常セルだけ赤枠・青枠で表示されます。各セル右下の「詳細」ボタンで原因URLを確認できます。<br>
-    3. ローカル環境で実行する場合は、PowerShell で
-    <code>python link-status-check.py</code> を実行してから「結果を表示」を押してください。
+    <strong>使い方（管理者向け・手順）</strong>
+
+    <p style="margin:8px 0 4px;"><strong>■ チェックして直すまでの流れ</strong></p>
+    <ol style="margin:0; padding-left:1.3em;">
+      <li><strong>パソコンで <code>no-up-リンクチェック実行.bat</code> をダブルクリック</strong>します
+        （約十数秒で <code>link-status.json</code> が作られます）。</li>
+      <li>できた <code>link-status.json</code> を<strong>FileZillaでアップロード</strong>します。</li>
+      <li><code>admin-link-check.html</code> を開き、<strong>「① 最新の結果を読み込む」</strong>を押す
+        （または再読み込み）。下の
+        <strong>「リンク切れ一覧」</strong>に、〈原因／表示名／場所（セル）／URL／編集する場所〉付きで並びます。
+        <strong>要対応は赤、ブラウザ確認は青</strong>で表示されます。</li>
+      <li>一覧の<strong>各URLをクリックしてブラウザで開き、本当に切れているか必ず確認</strong>します。
+        ※<strong>青（ブラウザ確認）</strong>はTripAdvisor・SNSなど自動アクセスだけ拒否されやすいURLです。
+        ブラウザで普通に開ける場合は<strong>消さずに残して</strong>ください。</li>
+      <li>本当に切れていたもの（主に<strong>赤＝要対応</strong>）だけ、<strong>「編集する場所」</strong>に従って
+        パソコン上で手作業で直し、再アップロードします。
+        <ul style="margin:4px 0; padding-left:1.2em;">
+          <li><code>リンク一覧.txt</code> … パソコンで該当行を修正／削除してアップロード</li>
+          <li>島の関連サイト … 関連サイトの管理画面で該当リンクを修正／削除</li>
+          <li><code>index.html</code>（表に直接記入）… 表の該当セルを直接修正／削除</li>
+        </ul>
+      </li>
+      <li>直したら<strong>もう一度 1.〜3.</strong>を行い、その行が一覧から消えたか確認します。</li>
+    </ol>
+
+    <p style="margin:10px 0 4px;"><strong>■ 補足</strong></p>
+    <ul style="margin:0; padding-left:1.3em;">
+      <li>チェックの実行は<strong>パソコン上だけ</strong>で行います。サーバーでは件数が多く時間切れ（502）になるため、
+        サーバーでは実行しません（結果ファイルを置いて表示するだけ）。</li>
+      <li><strong>「任意：HP表を赤枠で確認」</strong>を押すと別タブで <code>index.html?admin=1</code> が開き、
+        切れている登録URLのセルが<strong>赤枠</strong>、URL未設定のセルが<strong>グレー枠</strong>で表示されます
+        （一般のお客様の画面には枠は出ません）。</li>
+      <li>自動削除はしません。<strong>確認のうえ手作業で直す</strong>運用です（正常なリンクを誤って消さないため）。</li>
+    </ul>
   </div>
 
   <footer>
@@ -235,6 +357,26 @@
   var statusMsg = document.getElementById("statusMsg");
   var countsRow = document.getElementById("countsRow");
   var progressIframe = document.getElementById("progressIframe");
+  var brokenListBox = document.getElementById("brokenListBox");
+  var brokenNote = document.getElementById("brokenNote");
+  var brokenTableWrap = document.getElementById("brokenTableWrap");
+
+  // 5島の関連サイトセル（cell-island-xxx）の読みやすい名前
+  var ISLAND_NAMES = {
+    "amami": "奄美大島",
+    "kikai": "喜界島",
+    "tokunoshima": "徳之島",
+    "okinoerabu": "沖永良部島",
+    "yoron": "与論島"
+  };
+
+  // source（URLの出どころ）→ 編集する場所の案内
+  var SOURCE_LABELS = {
+    "list": "リンク一覧.txt（パソコンで編集してアップロード）",
+    "json": "extra-links.json（予備データ）",
+    "island": "島の関連サイト（関連サイト管理画面）",
+    "table": "index.html（表に直接記入）"
+  };
 
   function show() {
     statusBox.classList.add("is-visible");
@@ -244,6 +386,20 @@
     progressIframe.src = "about:blank";
   }
 
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  // セルID（cell-01-02 / cell-island-amami など）を読みやすい表記に
+  function cellLabel(cell) {
+    if (!cell) return "—";
+    var m = /^cell-island-(.+)$/.exec(cell);
+    if (m) return (ISLAND_NAMES[m[1]] || m[1]) + "（関連サイト）";
+    return cell;
+  }
+
   function renderSummary(data) {
     if (!data) {
       countsRow.innerHTML = '<span>結果データが取得できませんでした。</span>';
@@ -251,18 +407,90 @@
     }
     var checked = data.checked || 0;
     var broken = data.brokenCount || 0;
-    var inner = data.innerBrokenCount || 0;
-    var ok = Math.max(0, checked - broken - inner);
-    countsRow.innerHTML =
+    var warning = data.warningCount || 0;
+    var skipped = data.skippedCount || 0;
+    var ok = Math.max(0, checked - broken - warning);
+    var html =
       '<span class="ok">正常 <strong>' + ok + '</strong></span>' +
-      '<span class="red">赤枠（到達不能） <strong>' + broken + '</strong></span>' +
-      '<span class="blue">青枠（遷移先に問題） <strong>' + inner + '</strong></span>' +
+      '<span class="red">要対応 <strong>' + broken + '</strong></span>';
+    if (warning > 0) {
+      html += '<span class="blue">ブラウザ確認 <strong>' + warning + '</strong></span>';
+    }
+    html +=
+      '<span class="muted">参考(SNS等) <strong>' + skipped + '</strong></span>' +
       '<span>チェック総数 <strong>' + checked + '</strong></span>';
+    countsRow.innerHTML = html;
     if (data.generatedAt) {
       statusMsg.textContent = "最終チェック: " + data.generatedAt;
     } else {
       statusMsg.textContent = "";
     }
+  }
+
+  // リンク切れ一覧を表で描画する（URL・場所・原因・編集先）
+  function renderBrokenList(data) {
+    brokenListBox.classList.add("is-visible");
+    var broken = (data && data.broken) || {};
+    var warnings = (data && data.warnings) || {};
+    var skipped = (data && data.skipped) || {};
+    var hrefs = Object.keys(broken);
+    var warningHrefs = Object.keys(warnings);
+    var skippedHrefs = Object.keys(skipped);
+
+    brokenNote.innerHTML =
+      "<strong>要対応（赤）</strong>は、登録URLの文字間違い・404など、修正/削除候補です。" +
+      "<strong>参考（グレー）</strong>はSNS・TripAdvisorなど自動チェックに向かないURLで、" +
+      "必要なときだけブラウザで開いて確認します（普段は気にしなくてOK）。";
+
+    function buildRows(items, isWarning) {
+      return Object.keys(items).map(function (href) {
+        var info = items[href] || {};
+      var url = info.url || href;
+      var status = info.status ? ("HTTP " + info.status) : "";
+      var reason = info.reason || status || "不明";
+      var where = SOURCE_LABELS[info.source] || "（場所不明・index.html?admin=1 で赤枠を確認）";
+      return (
+        "<tr>" +
+          '<td class="col-status' + (isWarning ? " warn" : "") + '">' + escapeHtml(reason) + "</td>" +
+          "<td>" + escapeHtml(info.label || "（表示名なし）") + "</td>" +
+          "<td>" + escapeHtml(cellLabel(info.cell)) + "</td>" +
+          '<td class="url-cell"><a href="' + escapeHtml(url) +
+            '" target="_blank" rel="noopener">' + escapeHtml(url) + "</a></td>" +
+          '<td class="edit-where">' + escapeHtml(where) + "</td>" +
+        "</tr>"
+      );
+      }).join("");
+    }
+
+    var html = "";
+    if (hrefs.length > 0) {
+      html += '<h3 class="warning-heading" style="color:#d32f2f;">要対応（登録URLの修正/削除候補）</h3>';
+      html +=
+      '<table class="broken-table"><thead><tr>' +
+        "<th>原因</th><th>表示名</th><th>場所（セル）</th><th>URL（クリックで確認）</th><th>編集する場所</th>" +
+        "</tr></thead><tbody>" + buildRows(broken, false) + "</tbody></table>";
+    } else {
+      html +=
+        '<div class="broken-empty">要対応のリンク切れはありません。登録URLはすべて正常です。</div>';
+    }
+    if (warningHrefs.length > 0) {
+      html += '<h3 class="warning-heading">ブラウザ確認（機械判定ではNG・自動削除しない）</h3>';
+      html +=
+        '<table class="broken-table warn-table"><thead><tr>' +
+          "<th>原因</th><th>表示名</th><th>場所（セル）</th><th>URL（クリックで確認）</th><th>編集する場所</th>" +
+        "</tr></thead><tbody>" + buildRows(warnings, true) + "</tbody></table>";
+    }
+    if (skippedHrefs.length > 0) {
+      html += '<h3 class="warning-heading" style="color:#7a8aa0;">参考：SNS等（自動チェック対象外・' +
+        skippedHrefs.length + '件）</h3>';
+      html += '<p class="broken-note" style="margin-top:0;">SNS・TripAdvisorはBOTを拒否するため自動判定できません。' +
+        '必要なときだけ下のURLをクリックして、ブラウザで開けるか確認してください。</p>';
+      html +=
+        '<table class="broken-table skip-table"><thead><tr>' +
+          "<th>区分</th><th>表示名</th><th>場所（セル）</th><th>URL（クリックで確認）</th><th>編集する場所</th>" +
+        "</tr></thead><tbody>" + buildRows(skipped, false) + "</tbody></table>";
+    }
+    brokenTableWrap.innerHTML = html;
   }
 
   function fetchSummary() {
@@ -277,7 +505,10 @@
     show();
     statusTitle.textContent = "現在の結果サマリー";
     fetchSummary()
-      .then(renderSummary)
+      .then(function (data) {
+        renderSummary(data);
+        renderBrokenList(data);
+      })
       .catch(function (err) {
         countsRow.innerHTML = "";
         statusMsg.textContent = "サマリー読み込みに失敗: " + (err && err.message ? err.message : err);
@@ -286,40 +517,29 @@
 
   function runCheck() {
     show();
-    statusTitle.textContent = "リンクチェックを実行しています…";
-    countsRow.innerHTML = '<span>実行中（数十秒～数分かかります）…</span>';
+    hideProgressIframe();
+    statusTitle.textContent = "最新の結果を読み込んでいます…";
+    countsRow.innerHTML = '<span>読み込み中…</span>';
     statusMsg.textContent = "";
     btnRun.disabled = true;
 
-    // PHP 版 (さくらサーバーなど) を呼び出す。
-    // 失敗した場合（ローカルで PHP 未設定など）はその旨を表示する。
-    progressIframe.classList.add("is-visible");
-    progressIframe.src = "link-status-check.php?_t=" + Date.now();
-
-    var done = false;
-    progressIframe.onload = function () {
-      if (done) return;
-      done = true;
-      btnRun.disabled = false;
-      statusTitle.textContent = "実行が終了しました";
-      // 実行後の最新サマリーを取得
-      fetchSummary().then(renderSummary).catch(function (err) {
+    // サーバーでは実行しない（502対策）。アップロード済みの link-status.json を読み直すだけ。
+    fetchSummary()
+      .then(function (data) {
+        btnRun.disabled = false;
+        statusTitle.textContent = "現在の結果サマリー";
+        renderSummary(data);
+        renderBrokenList(data);
+      })
+      .catch(function (err) {
+        btnRun.disabled = false;
+        statusTitle.textContent = "読み込みに失敗しました";
+        countsRow.innerHTML = "";
         statusMsg.textContent =
-          "実行は完了しましたが、結果サマリーの取得に失敗しました: " +
+          "link-status.json を読み込めませんでした: " +
           (err && err.message ? err.message : err) +
-          "（ローカル環境なら PowerShell で `python link-status-check.py` を実行してください）";
+          "（パソコンで no-up-リンクチェック実行.bat を実行し、できた link-status.json をアップロードしてください）";
       });
-    };
-    // タイムアウト的にフォールバック（PHPが応答しないなど）
-    setTimeout(function () {
-      if (done) return;
-      done = true;
-      btnRun.disabled = false;
-      statusTitle.textContent = "応答待ち超過";
-      statusMsg.textContent =
-        "サーバーからの応答が遅いか、PHP が無い環境の可能性があります。" +
-        "ローカルの場合は PowerShell で `python link-status-check.py` を実行してから「結果を表示」を押してください。";
-    }, 5 * 60 * 1000);
   }
 
   btnRun.addEventListener("click", runCheck);

@@ -4,26 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 初回クリック直後の白画面防止：外部CSSより先に1枚画像を見せる -->
+  <style id="amami-critical-first-paint">
+    html, body { margin: 0; background: #061828; }
+    #amami-instant-splash {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; flex-direction: column; align-items: stretch;
+      background: linear-gradient(180deg, #041c3a 0%, #0a3d6e 100%);
+      overflow: hidden;
+    }
+    #amami-instant-splash img {
+      display: block; width: 100%;
+      height: min(72vh, 520px); object-fit: cover;
+      opacity: 1;
+    }
+    #amami-instant-splash__msg {
+      margin: 0; padding: 14px 16px 18px;
+      text-align: center; color: #fff;
+      font: 600 15px/1.55 system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+      letter-spacing: 0.04em;
+    }
+    #amami-instant-splash.is-done {
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+  </style>
   <link rel="stylesheet" href="styles.css?v=20260604b"> <!-- CSS（更新時は ?v= の日付も上げる） -->
-  <script src="script.js"></script>
+  <link rel="preload" as="image" href="hp-image/amami-fukei.jpg">
+  <script src="script.js" defer></script>
   <!-- JSファイルへのリンク -->
   <!-- 【◆01】ページ基本情報・SEO：タイトル/説明/キーワード/canonical/OGP/構造化データ。
        変更ヒント：検索結果に出る文言や正規URL(canonical)・OGP画像はここで調整。 -->
-  <title>奄美12市町村観光情報 | 東京奄美会公式ホームページ</title>
-  <meta name="description" content="奄美12市町村を横断した旅行案内です。奄美大島、徳之島、沖永良部島、与論島、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町などの観光リンクや案内を、東京奄美会の公式ページとしてまとめています。">
-  <meta name="keywords" content="奄美,奄美大島,東京奄美会,関西奄美会,奄美市,与論,沖永良部,徳之島,伊仙,天城,奄美会,瀬戸内,龍郷,大和,喜界,宇検,奄美航路,南国,旅,旅行">
+  <title>奄美群島観光情報（12市町村情報）</title>
+  <meta name="description" content="奄美群島12市町村の観光・グルメ・特産・イベント情報を一括で探せる旅行案内です。奄美大島、喜界島、徳之島、沖永良部島、与論島の各市町村公式・観光サイトへのリンクをまとめています。">
+  <meta name="keywords" content="奄美群島,奄美,奄美大島,観光,旅行,12市町村,与論,沖永良部,徳之島,喜界,奄美市,龍郷,大和,宇検,瀬戸内,天城,伊仙,世界自然遺産,南国,旅">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://www.tokyoamamikai.com/hp-amami-pr-1/index.html">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.tokyoamamikai.com/hp-amami-pr-1/index.html">
-  <meta property="og:title" content="奄美12市町村観光情報 | 東京奄美会">
-  <meta property="og:description" content="奄美12市町村を横断した旅行案内です。奄美大島、徳之島、沖永良部島、与論島、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町などの観光リンクや案内をまとめています。">
+  <meta property="og:title" content="奄美群島観光情報（12市町村情報）">
+  <meta property="og:description" content="奄美群島12市町村の観光・グルメ・特産・イベント情報を一括で探せる旅行案内。5つの島・12市町村の公式・観光サイトへのリンクをまとめました。">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:image" content="https://www.tokyoamamikai.com/hp-amami-pr-1/hp-image/amami-fukei.jpg?v=20260602-2">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="奄美群島観光情報（12市町村情報）">
+  <meta name="twitter:description" content="奄美群島12市町村の観光・グルメ・特産・イベント情報を一括で探せる旅行案内。">
   <meta name="twitter:image" content="https://www.tokyoamamikai.com/hp-amami-pr-1/hp-image/amami-fukei.jpg?v=20260602-2">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"奄美12市町村観光情報","description":"奄美12市町村を横断した旅行案内。奄美大島、徳之島、沖永良部島、与論島、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町などの公式や観光リンク、ぐーんと奄美の観光概要、地図・イメージ画像をまとめました。","url":"https://www.tokyoamamikai.com/hp-amami-pr-1/index.html","inLanguage":"ja","publisher":{"@type":"Organization","name":"東京奄美会","url":"https://www.tokyoamamikai.com/"}}
+  {"@context":"https://schema.org","@type":"WebPage","name":"奄美群島観光情報（12市町村情報）","description":"奄美群島12市町村の観光・グルメ・特産・イベント情報を一括で探せる旅行案内。奄美大島、喜界島、徳之島、沖永良部島、与論島の各市町村公式・観光サイトへのリンクをまとめました。","url":"https://www.tokyoamamikai.com/hp-amami-pr-1/index.html","inLanguage":"ja","publisher":{"@type":"Organization","name":"東京奄美会","url":"https://www.tokyoamamikai.com/"}}
   </script>
   <!-- 【◆02】全体デザインCSS（メイン）：色・文字サイズ・表・ポップアップ・スマホ表示など。
        変更ヒント：見た目の大半はここ。表やボタンの色・余白を変えたいときに編集。 -->
@@ -1415,6 +1444,49 @@
 
 <body>
 
+  <!-- 検索結果クリック直後：白画面の代わりにヒーロー写真1枚＋案内文を即表示 -->
+  <div id="amami-instant-splash" aria-busy="true" aria-live="polite" aria-label="ページを読み込んでいます">
+    <img src="hp-image/amami-fukei.jpg" alt="奄美群島の青い海と亜熱帯の自然の景色"
+         fetchpriority="high" decoding="sync" width="1200" height="675">
+    <p id="amami-instant-splash__msg">奄美群島観光情報 — 読み込み中…</p>
+  </div>
+  <script>
+  (function () {
+    function hideInstantSplash() {
+      var splash = document.getElementById("amami-instant-splash");
+      if (!splash || splash.classList.contains("is-done")) return;
+      splash.classList.add("is-done");
+      splash.setAttribute("aria-busy", "false");
+      setTimeout(function () {
+        if (splash.parentNode) splash.parentNode.removeChild(splash);
+      }, 380);
+    }
+    function heroReady() {
+      var heroImg = document.querySelector("#amami-images img");
+      return heroImg && (heroImg.complete || heroImg.naturalWidth > 0);
+    }
+    function tryHideWhenReady() {
+      if (heroReady()) { hideInstantSplash(); return true; }
+      return false;
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function () {
+        if (!tryHideWhenReady()) {
+          var heroImg = document.querySelector("#amami-images img");
+          if (heroImg) {
+            heroImg.addEventListener("load", hideInstantSplash, { once: true });
+            heroImg.addEventListener("error", hideInstantSplash, { once: true });
+          }
+          setTimeout(hideInstantSplash, 2500);
+        }
+      });
+    } else if (!tryHideWhenReady()) {
+      setTimeout(hideInstantSplash, 800);
+    }
+    setTimeout(hideInstantSplash, 10000);
+  })();
+  </script>
+
   <!-- ============================================================
        【◆目次】このページ（index.html）の処理ブロック一覧
        各処理の先頭に【◆番号】コメントを付けています。検索で「◆番号」を
@@ -1678,8 +1750,8 @@
   }
 })();
 </script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!-- 【◆06】Google翻訳ウィジェット初期化・言語切替：多言語表示の制御。 -->
+<!-- 【◆06】Google翻訳ウィジェット初期化・言語切替：多言語表示の制御。
+     element.js は async で後から読み込み（初回表示をブロックしない）。 -->
 <script type="text/javascript">
   /* この処理の中の関数（◆06-n）
      ◆06-1 googleTranslateElementInit : 翻訳ウィジェットを生成
@@ -1832,6 +1904,15 @@
       }
     }
     syncInitialFromCookie();
+  })();
+
+  /* Google翻訳 element.js は async で読み込み（初回表示の HTML 解析を止めない） */
+  (function () {
+    var s = document.createElement("script");
+    s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    document.head.appendChild(s);
   })();
 </script>
 
@@ -2325,21 +2406,38 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
 
   document.addEventListener("DOMContentLoaded", function () {
     if (!amamiPrIsNoCountNavigation()) {
-      // 通常表示は毎回「開いた回数」として日本語 +1（同じ人でも複数回訪問を数える）
-      counterPost("visit_login", "ja").then(function (counts) {
-        amamiPrVisitCountStatus = "ja";
-        applyCounterDisplay(counts);
-        // すでに外国語表示で読み込まれている場合は即座に補正
-        if (amamiPrIsForeignLang()) {
-          handleSwitchToForeign();
+      // 通常表示：日本語 +1（sendBeacon で非同期送信し初回表示をブロックしない）
+      amamiPrVisitCountStatus = "ja";
+      var beaconSent = false;
+      try {
+        if (navigator.sendBeacon) {
+          var body = new Blob(["action=visit_login&target=ja"], {
+            type: "application/x-www-form-urlencoded"
+          });
+          beaconSent = navigator.sendBeacon(COUNTER_ENDPOINT, body);
         }
-      }).catch(function () {
-        // 加算失敗時は最新値の取得だけ試みる
-        counterGet().then(applyCounterDisplay).catch(function () {});
-      });
+      } catch (eBeacon) {}
+      if (!beaconSent) {
+        counterPost("visit_login", "ja").then(function (counts) {
+          applyCounterDisplay(counts);
+          if (amamiPrIsForeignLang()) handleSwitchToForeign();
+        }).catch(function () {
+          counterGet().then(applyCounterDisplay).catch(function () {});
+        });
+      } else {
+        // 表示は遅延取得（サーバー初回応答が遅くてもページ表示は先に進む）
+        setTimeout(function () {
+          counterGet().then(function (counts) {
+            applyCounterDisplay(counts);
+            if (amamiPrIsForeignLang()) handleSwitchToForeign();
+          }).catch(function () {});
+        }, 1200);
+      }
     } else {
-      // F5・戻る/進むは加算せず、表示だけ最新化
-      counterGet().then(applyCounterDisplay).catch(function () {});
+      // F5・戻る/進むは加算せず、表示だけ最新化（遅延で初回描画を優先）
+      setTimeout(function () {
+        counterGet().then(applyCounterDisplay).catch(function () {});
+      }, 800);
     }
 
     // 言語切替監視（Google翻訳が translated-* / lang を書き換えるのを検知）
@@ -2411,49 +2509,145 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
   <!-- 【◆11】ヒーローセクション：キャッチコピーと主要ボタン（画像へ／観光情報へ／お願い）。
        変更ヒント：トップの紹介文やボタンの文言・リンク先はここ。 -->
   <!-- NOTE: ヒーローセクションは価値訴求文 + 主要導線CTA -->
-  <div class="title1">☆奄美群島の魅力をあなたに！☆ </div>
-  <div class="title2">美しい自然と文化</div>
-  <section class="impact-hero" aria-label="奄美群島PRの志">
-    <p class="impact-hero-lead">どなたが見ても「行ってみたい」と感じる、南国・奄美群島の魅力をこのページに集めました。</p>
-    <p class="impact-hero-sub">このページは、奄美大島・徳之島・沖永良部島・与論島をはじめ、奄美市、龍郷町、大和村、宇検村、瀬戸内町、喜界町、天城町、伊仙町の観光情報をまとめた東京奄美会の案内ページです。奄美航路や南国の旅、島めぐりの入口としてご覧ください。</p>
-    <p class="impact-hero-sub">下部のテーブルでは、これまでにない奄美群島12市町村を横断した旅行案内をご覧いただけます。気になる地域を見つけて、ぜひお気に入りの場所を訪ねてみてください。</p>
-    <p class="impact-hero-sub impact-hero-official">関東地域の奄美関係者の組織「東京奄美会」の案内の一環として本ページを公開しています。活動報告や最新のお知らせは、<a href="https://www.tokyoamamikai.com/" target="_blank" rel="noopener noreferrer">東京奄美会公式サイト</a>をご覧ください。</p>
-    <div class="impact-actions">
-      <a class="impact-btn secondary" href="#amami-images">奄美のイメージを見る</a>
-      <a class="impact-btn" href="#amami-table-section">奄美群島の観光情報を見る</a>
-      <a class="impact-btn secondary" href="pdfopn.html">ご利用にあたってのお願い</a>
+  <!-- 刷新版ヒーロー：景観画像の上にキャッチコピーを重ね、第一印象を強くする。
+       scoped CSS（.amami-hero 配下）で完結。既存ID #amami-images は維持。 -->
+  <section class="amami-hero" aria-label="奄美群島の観光案内">
+    <style>
+      .amami-hero{position:relative;width:100%;margin:0 0 4px;font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif;}
+      .amami-hero__bg{position:relative;width:100%;overflow:hidden;height:clamp(260px,46vw,520px);}
+      .amami-hero__bg img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;
+        opacity:0;transition:opacity 1.6s ease;will-change:opacity;}
+      .amami-hero__bg img.is-active,
+      .amami-hero__bg img.amami-hero-first{opacity:1;}
+      @media (prefers-reduced-motion:reduce){.amami-hero__bg img{transition:none;}}
+      .amami-hero__overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;
+        text-align:center;padding:20px;color:#fff;
+        background:linear-gradient(180deg,rgba(4,28,58,.35) 0%,rgba(4,28,58,.15) 40%,rgba(4,28,58,.55) 100%);}
+      .amami-hero__eyebrow{margin:0 0 10px;font-size:clamp(11px,2.4vw,14px);letter-spacing:.28em;font-weight:700;
+        text-shadow:0 1px 6px rgba(0,0,0,.5);}
+      .amami-hero__title{margin:0;font-size:clamp(26px,6.2vw,52px);font-weight:800;line-height:1.25;letter-spacing:.03em;
+        text-shadow:0 2px 14px rgba(0,0,0,.55);}
+      .amami-hero__title .ac{color:#ffd27a;}
+      .amami-hero__lead{margin:14px 0 0;font-size:clamp(13px,3vw,19px);font-weight:600;text-shadow:0 1px 10px rgba(0,0,0,.55);}
+      .amami-hero__body{width:min(1000px,94%);margin:-46px auto 0;position:relative;z-index:2;background:#fff;
+        border:1px solid #d9e7f5;border-radius:16px;padding:22px 22px 20px;box-shadow:0 12px 30px rgba(15,55,95,.16);}
+      .amami-hero__text{margin:0;color:#143b5e;font-size:clamp(15px,2.7vw,18px);line-height:2;font-weight:500;letter-spacing:.01em;}
+      .amami-hero__text strong{color:#0a3f7a;font-weight:800;background:linear-gradient(transparent 60%,#fff0a8 60%);padding:0 1px;}
+      .amami-hero__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:11px;margin:18px 0 4px;}
+      .amami-hero__btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:999px;
+        font-weight:700;font-size:clamp(13px,2.4vw,15px);text-decoration:none;border:1px solid transparent;transition:transform .12s ease,filter .15s ease,box-shadow .15s ease;}
+      .amami-hero__btn.primary{background:linear-gradient(180deg,#ff9b3d,#e4711e);color:#fff;box-shadow:0 5px 14px rgba(228,113,30,.3);}
+      .amami-hero__btn.solid{background:linear-gradient(180deg,#2f80d6,#1a5fa0);color:#fff;box-shadow:0 5px 14px rgba(26,95,160,.28);}
+      .amami-hero__btn.ghost{background:#fff;color:#1a5fa0;border-color:#bcd5ee;}
+      .amami-hero__btn:hover{transform:translateY(-2px);filter:brightness(1.05);}
+      .amami-hero__official{margin:14px 0 0;text-align:center;font-size:13.5px;color:#3f5d79;font-weight:500;}
+      .amami-hero__official a{color:#15538f;font-weight:800;text-decoration:underline;}
+      .amami-map-block{width:min(1000px,94%);margin:22px auto 6px;text-align:center;}
+      .amami-map-block img{width:100%;height:auto;border-radius:14px;border:1px solid #e0ebf5;box-shadow:0 6px 18px rgba(15,55,95,.1);}
+      .amami-map-cap{margin:8px 0 0;font-size:12.5px;color:#5b7790;}
+      @media (max-width:640px){.amami-hero__body{margin-top:-26px;padding:18px 15px 16px;border-radius:13px;}
+        .amami-hero__btn{width:100%;}}
+    </style>
+
+    <!-- ヒーロー画像は slideshow-images.json の "hero" から自動生成します（管理者はJSONのみ編集）。
+         下の<img>はJSON読込に失敗したときの「保険の1枚」です。通常は削除しないでください。 -->
+    <div class="amami-hero__bg" id="amami-images">
+      <img class="is-active amami-hero-first" src="hp-image/amami-fukei.jpg" alt="奄美群島の青い海と亜熱帯の自然の景色"
+           fetchpriority="high" decoding="async" width="1200" height="675">
+      <div class="amami-hero__overlay">
+        <p class="amami-hero__eyebrow">東京奄美会 公式観光案内</p>
+        <h1 class="amami-hero__title">青と緑の楽園、<br><span class="ac">奄美群島12市町村</span>へ。</h1>
+        <p class="amami-hero__lead">世界自然遺産の島々から、あなただけの「島めぐり」を。</p>
+      </div>
+    </div>
+
+    <div class="amami-hero__body">
+      <p class="amami-hero__text">
+        鹿児島と沖縄の間に連なる<strong>奄美群島</strong>には、
+        <strong>奄美大島・喜界島・徳之島・沖永良部島・与論島</strong>の5つの島と、
+        個性ゆたかな<strong>12の市町村</strong>があります。
+        透きとおる海、亜熱帯の森、島ごとの唄や祭り、そして島人のあたたかさ――
+        このページは、東京奄美会が12市町村の観光情報をひとつにまとめた、旅の入口です。
+      </p>
+      <div class="amami-hero__actions">
+        <a class="amami-hero__btn primary" href="#amami-guide-section">奄美12市町村ガイドを見る</a>
+        <a class="amami-hero__btn solid" href="#amami-table-section">観光情報の一覧表へ</a>
+        <a class="amami-hero__btn ghost" href="pdfopn.html">ご利用にあたって</a>
+      </div>
+      <p class="amami-hero__official">
+        関東で暮らす奄美出身者の組織「東京奄美会」が運営しています。活動やお知らせは
+        <a href="https://www.tokyoamamikai.com/" target="_blank" rel="noopener noreferrer">公式サイト</a>へ。
+      </p>
     </div>
   </section>
 
-  <!-- 奄美を象徴する画像 -->
-  <div id="amami-images">
-    <img src="hp-image/amami-fukei.jpg" alt="奄美群島の景色" style="width:100%; height:auto;">
-  </div>
-  <div class="hp-image-container02">
-    <img src="hp-image/title_map.jpg" alt="奄美群島地図.png" style="width:100%; height:auto;">
+  <!-- 【◆11-2】「今日の奄美」ランダム表示：訪問ごとに豆知識・見どころを1つ表示し、再訪時の新鮮さを出す。
+       文言は下部の <script> 内 AMAMI_TODAY_TIPS 配列で追加・編集できる。scoped CSS（.amami-today 配下）。 -->
+  <section class="amami-today" aria-label="今日の奄美">
+    <style>
+      .amami-today{width:min(1000px,94%);margin:18px auto 6px;
+        font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif;}
+      .amami-today__box{display:flex;align-items:flex-start;gap:14px;
+        background:linear-gradient(135deg,#fff7e6 0%,#fffdf6 60%,#eef7ff 100%);
+        border:2px solid #f0d49a;border-radius:16px;padding:16px 20px;box-shadow:0 6px 18px rgba(120,80,10,.10);}
+      .amami-today__badge{flex:0 0 auto;background:linear-gradient(180deg,#ff9b3d,#e4711e);color:#fff;
+        font-weight:800;font-size:clamp(14px,2vw,16px);border-radius:999px;padding:7px 16px;white-space:nowrap;
+        box-shadow:0 3px 8px rgba(228,113,30,.3);margin-top:2px;}
+      .amami-today__text{margin:0;color:#0d2f52;font-weight:600;line-height:1.85;
+        font-size:clamp(16px,2.3vw,20px);}
+      .amami-today__text b{color:#a83c06;background:linear-gradient(transparent 58%,#fff0a8 58%);}
+      @media (max-width:560px){.amami-today__box{flex-direction:column;gap:8px;}}
+    </style>
+    <div class="amami-today__box">
+      <span class="amami-today__badge">🌺 今日の奄美</span>
+      <p class="amami-today__text" id="amami-today-text">奄美群島は、世界自然遺産に登録された島々です。</p>
+    </div>
+  </section>
 
+  <!-- 奄美群島の地図 -->
+  <div class="hp-image-container02 amami-map-block">
+    <img src="hp-image/title_map.jpg" alt="奄美群島の地図（奄美大島・喜界島・徳之島・沖永良部島・与論島の位置）">
+    <p class="amami-map-cap">奄美群島の島々（北から：喜界島・奄美大島・徳之島・沖永良部島・与論島）</p>
   </div>
 
   <!-- 【◆12】スライドショー画像（HTML）：表示する画像はここに <img> で追加・削除する。
        変更ヒント：画像の差し替え・追加はこの並び。切替の動きは◆18。見た目は◆17。 -->
   <!-- NOTE: スライドショーは印象訴求用。JS 側で active クラスを3秒間隔でローテーション -->
+<section class="amami-gallery" aria-labelledby="amami-gallery-title">
+  <style>
+    .amami-gallery{width:min(1080px,94%);margin:28px auto 22px;padding:22px 18px 24px;
+      background:linear-gradient(135deg,#f7fbff 0%,#eef7ff 58%,#fff8ef 100%);
+      border:1px solid #d6e8f7;border-radius:18px;box-shadow:0 10px 28px rgba(15,55,95,.12);
+      font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif;}
+    .amami-gallery__head{text-align:center;margin:0 auto 18px;max-width:780px;}
+    .amami-gallery__head h2{margin:0;font-size:clamp(20px,3.8vw,28px);color:#0c4a8a;letter-spacing:.04em;}
+    .amami-gallery__head p{margin:8px 0 0;color:#3b5f80;font-size:14.5px;line-height:1.8;}
+    .amami-gallery__layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:20px;align-items:center;}
+    .amami-gallery #slideshow{width:100%;max-width:none;margin:0;border-radius:18px;overflow:hidden;
+      border:8px solid #fff;box-shadow:0 12px 30px rgba(15,55,95,.18);background:#0c3158;}
+    .amami-gallery #slideshow img{border-radius:10px;}
+    .amami-gallery #slideshow-controls{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+      border-radius:999px;padding:6px 10px;box-shadow:0 3px 10px rgba(0,0,0,.12);}
+    .amami-gallery .slide-ctrl-btn{border-radius:999px;}
+    .amami-gallery .monument-container{margin:0;gap:0;align-items:center;}
+    .amami-gallery .monument{width:210px;background:#fff;border:1px solid #e0ebf5;border-radius:18px;
+      padding:14px 12px 16px;box-shadow:0 8px 22px rgba(15,55,95,.12);}
+    .amami-gallery .monument img{border-radius:14px;box-shadow:0 6px 16px rgba(15,55,95,.18);}
+    .amami-gallery .monument-name{background:rgba(12,74,138,.9);color:#fff;border-radius:999px;padding:4px 14px;}
+    .amami-gallery .click-label{margin-top:12px;background:linear-gradient(180deg,#fff4ce,#ffe08a);
+      border:1px solid #e6bd48;color:#6a4b00;border-radius:999px;padding:7px 12px;font-size:13px;}
+    @media (max-width:760px){.amami-gallery{padding:18px 12px}.amami-gallery__layout{grid-template-columns:1fr}
+      .amami-gallery .monument-container{margin-top:8px}.amami-gallery .monument{width:min(220px,80%);}}
+  </style>
+  <div class="amami-gallery__head">
+    <h2 id="amami-gallery-title">奄美の風景を、ひと足先に。</h2>
+    <p>島ごとに表情を変える海、森、岬、集落の景色。写真を眺めながら、次に訪ねたい場所を探してみてください。</p>
+  </div>
+  <div class="amami-gallery__layout">
+<!-- ギャラリー画像は slideshow-images.json の "gallery" から自動生成します（管理者はJSONのみ編集）。
+     下の<img>はJSON読込に失敗したときの「保険の1枚」です。通常は削除しないでください。 -->
 <div id="slideshow" class="slideshow-frame">
-  <img src="hp-image/IsenTownInudabuCapeMemorial.jpg" alt="hp-image 1">
-  <img src="hp-image/IsenTownBullfight.jpg" alt="hp-image 2">
-  <img src="hp-image/UkenVillageArangachi.webp" alt="hp-image 3">
-  <img src="hp-image/SumiyoMangrove.webp" alt="hp-image 5">
-  <img src="hp-image/KikaiIslandX.jpg" alt="hp-image 6">
-  <img src="hp-image/SetouchiTownKakeroma.webp" alt="hp-image 7">
-  <img src="hp-image/YamatoVillageHanahanaBeach.webp" alt="hp-image 8">
-  <img src="hp-image/ChinamiTownTanami.webp" alt="hp-image 10">
-  <img src="hp-image/AmagiTownInutoNoFuta.webp" alt="hp-image 11">
-  <img src="hp-image/TokunoshiCapeObservatory.webp" alt="hp-image 12">
-  <img src="hp-image/NazeKinsakubaru.webp" alt="hp-image 13">
-  <img src="hp-image/YoronTownYurigahama.jpg" alt="hp-image 14">
-  <img src="hp-image/TatsugoSaigoNanshu.jpg" alt="hp-image 15">
-  <img src="hp-image/WadomariTownKasashi.jpg" alt="hp-image 16">
-  <img src="hp-image/kinsakubaru.jpg" alt="hp-image 17">
-  <img src="hp-image/manguro-bU.jpg" alt="hp-image 18">
+  <img src="hp-image/IsenTownInudabuCapeMemorial.jpg" alt="伊仙町 犬田布岬の慰霊塔">
   <!-- スライド画像はここまで -->
   <div id="slideshow-controls" class="slideshow-controls">
     <button type="button" id="slideStopBtn" class="slide-ctrl-btn">■ 停止</button>
@@ -2470,7 +2664,7 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
   <!-- 女性モニュメント -->
   <div class="monument" onclick="playVoice('amami-jyosei-annai.mp3')">
     <div class="monument-image-wrapper">
-      <img src="women-monument.png" alt="女性モニュメント">
+      <img src="women-monument.png" alt="女性モニュメント" loading="lazy" decoding="async">
       <div class="monument-name">【Jun】</div>
     </div>
     <p class="click-label">私をクリックしてね！</p>
@@ -2480,7 +2674,7 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
    <!--
   <div class="monument" onclick="playVoice('amami-kurousagi-annai.mp3')">
     <div class="monument-image-wrapper">
-      <img src="kurousagi-monument.png" alt="黒兎モニュメント">
+      <img src="kurousagi-monument.png" alt="黒兎モニュメント" loading="lazy" decoding="async">
       <div class="monument-name">【Brabi】</div>
     </div>
     <p class="click-label">私をクリックしてね！</p>
@@ -2491,13 +2685,15 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
    <!--
   <div class="monument" onclick="playVoice('amami-dansei-annai.mp3')">
     <div class="monument-image-wrapper">
-      <img src="men-monument.png" alt="男性モニュメント">
+      <img src="men-monument.png" alt="男性モニュメント" loading="lazy" decoding="async">
       <div class="monument-name">【Taro】</div>
     </div>
     <p class="click-label">私をクリックしてね！</p>
   </div>
     -->
 </div>
+  </div>
+</section>
 
  
   <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
@@ -2511,7 +2707,7 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
      リンク一覧.txt（◆22）からURLが差し込まれる。市町村名・島見出しの行構成はここ。
      変更ヒント：リンクのURLは index.html ではなく「リンク一覧.txt」を編集する。 -->
 <div id="amami-table-section" class="title3">奄美群島各地の観光情報一覧</div>
-<p class="amami-table-hint">※ 下の表では、<strong>文字</strong>・<strong>ボタン</strong>・<strong>旗の絵</strong>など表示がある箇所をクリックすると、各サイトの情報をご覧いただけます。（下線がない項目もリンクです）</p>
+<p class="amami-table-hint">※ 下の表では、<strong>文字</strong>・<strong>ボタン</strong>・<strong>旗の絵</strong>など表示がある箇所をクリックすると、各サイトの情報をご覧いただけます。</p>
 <!-- 表は 14 列まで増えており狭い画面で横にあふれる。
      画面全体ではなくこのラッパー内だけ横スクロールさせ、
      固定トップバー（言語切替）の位置がずれないようにする。 -->
@@ -2841,6 +3037,186 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
   </table>
 </div>
 <!-- /.amami-table-wrap -->
+
+<!-- 【◆13-2】奄美群島 12市町村ガイド（読み物・SEO本文）：
+     上の一覧表だけでは伝わりにくい各島・各市町村の魅力を文章で紹介する。
+     検索エンジン向けに独自テキスト量を確保しつつ、来訪者の旅情も高める。
+     デザインは scoped CSS（.amami-guide 配下）で完結させ、既存スタイルに影響しない。 -->
+<section id="amami-guide-section" class="amami-guide" aria-labelledby="amami-guide-title">
+  <style>
+    .amami-guide{max-width:1100px;margin:30px auto 10px;padding:0 16px;color:#0e2c49;
+      font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif;line-height:2;
+      font-size:18px;text-rendering:optimizeLegibility;}
+    .amami-guide .ag-lead{background:linear-gradient(135deg,#eaf5ff 0%,#f3fbff 60%,#fff8ef 100%);
+      border:2px solid #bcdcf5;border-radius:16px;padding:24px 24px;box-shadow:0 6px 20px rgba(15,55,95,.10);}
+    .amami-guide h2{font-size:clamp(26px,4.6vw,36px);margin:0 0 14px;color:#06335c;letter-spacing:.02em;
+      font-weight:800;line-height:1.5;text-shadow:0 1px 0 rgba(255,255,255,.7);}
+    .amami-guide h2 .ag-em{color:#a83c06;background:#ffe6bf;padding:.02em .3em;border-radius:8px;
+      box-shadow:0 1px 0 rgba(0,0,0,.05);}
+    .amami-guide .ag-lead p{margin:.7em 0 0;font-size:clamp(17px,2.3vw,20px);color:#0d2f52;font-weight:600;
+      background:rgba(255,255,255,.72);border-radius:10px;padding:14px 16px;}
+    .amami-guide .ag-lead p strong{color:#06335c;font-weight:800;
+      background:linear-gradient(transparent 58%,#fff0a8 58%);}
+    .amami-guide .ag-links{margin:16px 0 0;display:flex;flex-direction:column;gap:10px;}
+    .amami-guide .ag-links__row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+      background:#f4f9ff;border:1px solid #e0ecf8;border-radius:12px;padding:10px 12px;}
+    .amami-guide .ag-links__label{flex:0 0 auto;min-width:170px;font-size:15.5px;font-weight:800;color:#06335c;}
+    .amami-guide .ag-links__btns{display:flex;flex-wrap:wrap;gap:8px;}
+    .amami-guide .ag-links__btns a{display:inline-flex;align-items:center;gap:4px;text-decoration:none;
+      border-radius:999px;padding:9px 17px;font-size:15px;font-weight:700;color:#fff;
+      transition:transform .12s ease,filter .15s ease;}
+    .amami-guide .ag-links__btns a:hover{transform:translateY(-2px);filter:brightness(1.06);}
+    .amami-guide .ag-links__btns a .ext{font-size:10px;opacity:.85;}
+    .amami-guide .ag-links__row.is-access .ag-links__btns a{background:linear-gradient(180deg,#2f80d6,#1a5fa0);box-shadow:0 4px 10px rgba(26,95,160,.25);}
+    .amami-guide .ag-links__row.is-weather .ag-links__btns a{background:linear-gradient(180deg,#37b6c4,#1f8f9e);box-shadow:0 4px 10px rgba(31,143,158,.25);}
+    .amami-guide .ag-links__row.is-pr .ag-links__btns a{background:linear-gradient(180deg,#ff9b3d,#e4711e);box-shadow:0 4px 10px rgba(228,113,30,.28);}
+    @media (max-width:640px){.amami-guide .ag-links__label{flex-basis:100%;min-width:0;margin-bottom:-2px;}}
+    .amami-guide .ag-section-title{display:flex;align-items:center;gap:10px;margin:34px 0 16px;
+      font-size:clamp(21px,3.6vw,27px);color:#06335c;font-weight:800;line-height:1.45;
+      background:#e7f2fd;border:1px solid #cce1f4;border-radius:10px;padding:10px 14px;}
+    .amami-guide .ag-section-title::before{content:"";display:inline-block;width:8px;height:26px;border-radius:3px;
+      background:linear-gradient(180deg,#2b8ad6,#1a5fa0);}
+    .amami-guide .ag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+    .amami-guide .ag-card{background:#fff;border:1px solid #e0ebf5;border-radius:14px;padding:18px 18px 16px;
+      box-shadow:0 4px 14px rgba(15,55,95,.07);transition:transform .15s ease,box-shadow .15s ease;}
+    .amami-guide .ag-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(15,55,95,.13);}
+    .amami-guide .ag-card h3{margin:0 0 6px;font-size:22px;color:#0a447e;font-weight:800;line-height:1.4;}
+    .amami-guide .ag-card .ag-island{display:inline-block;font-size:14px;font-weight:800;color:#fff;
+      background:linear-gradient(135deg,#2b8ad6,#1a5fa0);border-radius:999px;padding:4px 13px;margin-bottom:10px;}
+    .amami-guide .ag-card p{margin:0 0 10px;font-size:16.5px;color:#173657;font-weight:500;line-height:1.85;}
+    .amami-guide .ag-towns{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+    .amami-guide .ag-towns b{font-size:14.5px;font-weight:800;color:#06335c;background:#e3f0fc;
+      border:1px solid #c6def4;border-radius:8px;padding:5px 11px;}
+    .amami-guide .ag-heritage{margin-top:26px;background:#0c4a8a;color:#eaf4ff;border-radius:16px;
+      padding:20px 22px;box-shadow:0 8px 22px rgba(12,74,138,.25);}
+    .amami-guide .ag-heritage h3{margin:0 0 8px;color:#fff;font-size:22px;font-weight:800;line-height:1.4;}
+    .amami-guide .ag-heritage p{margin:.4em 0 0;font-size:17px;color:#ffffff;font-weight:500;line-height:1.9;}
+    .amami-guide .ag-outro{margin:24px 0 4px;font-size:clamp(16px,2.2vw,19px);color:#0d2f52;font-weight:700;
+      text-align:center;background:#fff7e8;border:1px solid #f3dcb4;border-radius:12px;padding:16px 18px;}
+    .amami-guide .ag-next-link{display:inline-flex;align-items:center;justify-content:center;margin:16px auto 0;
+      padding:15px 28px;border-radius:999px;background:linear-gradient(180deg,#ff9b3d,#e4711e);
+      color:#fff;font-weight:800;font-size:clamp(16px,2.2vw,19px);text-decoration:none;box-shadow:0 4px 12px rgba(228,113,30,.28);}
+    .amami-guide .ag-next-link:hover{filter:brightness(1.05);transform:translateY(-1px);}
+    #amami-guide-section{scroll-margin-top:90px;}
+  </style>
+
+  <div class="ag-lead">
+    <h2 id="amami-guide-title">奄美群島<span class="ag-em">12市町村</span>を、ひとつの旅へ。</h2>
+    <p>
+      鹿児島と沖縄のほぼ中間、紺碧の海に浮かぶ<strong>奄美群島</strong>。
+      ここには<strong>奄美大島・喜界島・徳之島・沖永良部島・与論島</strong>の5つの島と、
+      個性ゆたかな<strong>12の市町村</strong>が暮らしています。
+      青く透きとおる海、亜熱帯の深い森、島ごとに受け継がれる唄と踊り、そして島人のあたたかさ――
+      この東京奄美会の公式案内ページでは、12市町村の観光情報をひとつの一覧表にまとめ、
+      あなたの「島めぐり」の入口をご用意しました。
+    </p>
+    <div class="ag-links">
+      <div class="ag-links__row is-access">
+        <span class="ag-links__label">✈⚓ 交通・アクセス</span>
+        <div class="ag-links__btns">
+          <a href="https://www.amami-tourism.org/access/#access" target="_blank" rel="noopener" title="奄美大島の交通・アクセス（奄美群島観光物産協会）">奄美大島<span class="ext">↗</span></a>
+          <a href="http://www.town.kikai.lg.jp/kankou/kanko-iju/kotsuannai/access.html" target="_blank" rel="noopener" title="喜界島へのアクセス方法（喜界町公式）">喜界島<span class="ext">↗</span></a>
+          <a href="http://www.tokunoshima-kanko.com/traffic/" target="_blank" rel="noopener" title="徳之島の交通手段（徳之島観光連盟）">徳之島<span class="ext">↗</span></a>
+          <a href="https://okinoerabujima.info/pickup/access" target="_blank" rel="noopener" title="沖永良部島の交通手段（おきえらぶ島観光協会）">沖永良部島<span class="ext">↗</span></a>
+          <a href="https://www.yorontou.info/on-island.html" target="_blank" rel="noopener" title="与論島の島内交通（ヨロン島観光協会）">与論島<span class="ext">↗</span></a>
+        </div>
+      </div>
+      <div class="ag-links__row is-weather">
+        <span class="ag-links__label">🌺 1年を通して温暖／天気</span>
+        <div class="ag-links__btns">
+          <a href="https://tenki.jp/forecast/9/49/1000/46222/" target="_blank" rel="noopener" title="奄美大島（奄美市）の天気予報">奄美大島<span class="ext">↗</span></a>
+          <a href="https://tenki.jp/forecast/9/49/1000/46529/" target="_blank" rel="noopener" title="喜界島（喜界町）の天気予報">喜界島<span class="ext">↗</span></a>
+          <a href="https://tenki.jp/forecast/9/49/1000/46530/" target="_blank" rel="noopener" title="徳之島（徳之島町）の天気予報">徳之島<span class="ext">↗</span></a>
+          <a href="https://tenki.jp/forecast/9/49/1000/46533/" target="_blank" rel="noopener" title="沖永良部島（和泊町）の天気予報">沖永良部島<span class="ext">↗</span></a>
+          <a href="https://tenki.jp/forecast/9/49/1000/46535/" target="_blank" rel="noopener" title="与論島（与論町）の天気予報">与論島<span class="ext">↗</span></a>
+        </div>
+      </div>
+      <div class="ag-links__row is-pr">
+        <span class="ag-links__label">🏝 各島のPR（公式観光サイト）</span>
+        <div class="ag-links__btns">
+          <a href="https://www.amami-tourism.org/" target="_blank" rel="noopener" title="奄美大島の公式観光サイト">奄美大島<span class="ext">↗</span></a>
+          <a href="https://kikaijimanavi.com/" target="_blank" rel="noopener" title="喜界島の公式観光サイト">喜界島<span class="ext">↗</span></a>
+          <a href="http://www.tokunoshima-kanko.com/" target="_blank" rel="noopener" title="徳之島の公式観光サイト">徳之島<span class="ext">↗</span></a>
+          <a href="https://okinoerabujima.info/" target="_blank" rel="noopener" title="沖永良部島の公式観光サイト">沖永良部島<span class="ext">↗</span></a>
+          <a href="https://www.yorontou.info/" target="_blank" rel="noopener" title="与論島の公式観光サイト">与論島<span class="ext">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="ag-section-title">5つの島と、12市町村の魅力</h2>
+  <div class="ag-grid">
+
+    <div class="ag-card">
+      <span class="ag-island">奄美大島</span>
+      <h3>世界自然遺産の森と海</h3>
+      <p>
+        群島最大の島。マングローブ原生林やアマミノクロウサギが息づく照葉樹の森、
+        どこまでも続く白浜と、伝統の大島紬・島唄の文化が魅力です。
+        中心の奄美市から、自然・集落・体験まで多彩に楽しめます。
+      </p>
+      <div class="ag-towns"><b>奄美市</b><b>龍郷町</b><b>大和村</b><b>宇検村</b><b>瀬戸内町</b></div>
+    </div>
+
+    <div class="ag-card">
+      <span class="ag-island">喜界島</span>
+      <h3>隆起サンゴと白い道</h3>
+      <p>
+        今も年に約2mm隆起し続ける、世界的にも珍しいサンゴ礁の島。
+        サトウキビ畑を貫く一本道、ハマボッスの花、ゆったり流れる島時間。
+        黒糖やゴマなど特産品もゆたかです。
+      </p>
+      <div class="ag-towns"><b>喜界町</b></div>
+    </div>
+
+    <div class="ag-card">
+      <span class="ag-island">徳之島</span>
+      <h3>闘牛と長寿、力強い島</h3>
+      <p>
+        島の象徴「闘牛」に沸く、活気あふれる島。世界自然遺産に登録された原生林、
+        トライアスロンや子宝・長寿の島としても知られます。
+        断崖や名所めぐり、新鮮な島の幸も見どころです。
+      </p>
+      <div class="ag-towns"><b>徳之島町</b><b>天城町</b><b>伊仙町</b></div>
+    </div>
+
+    <div class="ag-card">
+      <span class="ag-island">沖永良部島</span>
+      <h3>花と鍾乳洞のロマン</h3>
+      <p>
+        「えらぶゆり」に代表される花の島で、巨大鍾乳洞・昇竜洞などケイビングの聖地。
+        透明度抜群の海と、温暖な気候、人情あふれる集落が旅人を迎えます。
+      </p>
+      <div class="ag-towns"><b>和泊町</b><b>知名町</b></div>
+    </div>
+
+    <div class="ag-card">
+      <span class="ag-island">与論島</span>
+      <h3>東洋に浮かぶ楽園</h3>
+      <p>
+        サンゴ礁に囲まれた、群島最南端の小さな島。干潮時にだけ姿を現す
+        幻の砂浜「百合ヶ浜」はまさに絶景。「与論献奉」のもてなし文化も島の宝です。
+      </p>
+      <div class="ag-towns"><b>与論町</b></div>
+    </div>
+
+  </div>
+
+  <div class="ag-heritage">
+    <h3>🌿 2021年、世界自然遺産に登録</h3>
+    <p>
+      「奄美大島、徳之島、沖縄島北部及び西表島」が世界自然遺産に登録されました。
+      アマミノクロウサギをはじめ、ここにしか生きられない固有の生きものたち。
+      奄美群島は、未来へ守り伝えたい、かけがえのない自然の宝庫です。
+    </p>
+  </div>
+
+  <p class="ag-outro">
+    気になる島・市町村が見つかったら、観光情報一覧から各地の公式サイト・観光サイトへ。<br>
+    さあ、あなただけの奄美の旅へ出かけましょう。<br>
+    <a class="ag-next-link" href="#amami-table-section">奄美群島各地の観光情報一覧へ進む</a>
+  </p>
+</section>
 
 <!-- 【◆14】テーブル表示制御：上部スクロールバー同期・縮小/標準/拡大の切替・セルクリック集計（バッジ）。 -->
 <script>
@@ -3406,17 +3782,28 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
     }
 
     // ページロード後に初期化
+    // ※ 画像は slideshow-images.json から後から追加されるため、毎回 #slideshow img を取得し直す。
     function initSlideshow() {
+      if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
+      slides = document.querySelectorAll("#slideshow img");
+      slides.forEach(function (im) { im.classList.remove("active"); });
+      currentSlide = 0;
       if (slides.length > 0) {
         // 最初の画像を表示
         slides[0].classList.add("active");
         startSlideshow();
       }
 
-      const stopBtn = document.getElementById("slideStopBtn");
-      const resumeBtn = document.getElementById("slideResumeBtn");
-      if (stopBtn) stopBtn.addEventListener("click", stopSlideshow);
-      if (resumeBtn) resumeBtn.addEventListener("click", startSlideshow);
+      // 停止/再開ボタンの束縛は一度だけ
+      if (!initSlideshow._bound) {
+        const stopBtn = document.getElementById("slideStopBtn");
+        const resumeBtn = document.getElementById("slideResumeBtn");
+        if (stopBtn) stopBtn.addEventListener("click", stopSlideshow);
+        if (resumeBtn) resumeBtn.addEventListener("click", startSlideshow);
+        initSlideshow._bound = true;
+      } else {
+        updateSlideButtons(slides.length > 0 && slideTimer !== null);
+      }
     }
 
     function showNextSlide() {
@@ -4175,11 +4562,10 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
       }
       if (!links || !links.length) links = SNS_LIST_FALLBACK;
       if (!links || !links.length) return;
-      // どのポップアップを開いているか記録（←戻りで再表示するため）
+      // どのポップアップを開いているかを記録（←戻りで再表示するため）
       window.__amamiOpenPopup = { type: "sns" };
       showMultiLinkPopup(links, "SNS一覧", "cell-13-07");
     };
-
     fetch("island-related-links-api.php", { credentials: "same-origin" })
       .then(function (r) {
         if (!r.ok) throw new Error("api");
@@ -4804,6 +5190,130 @@ NOTE: テーブル内リンクの開き方ルール（保守用）※2026-06 方
     } else {
       init();
     }
+  })();
+  </script>
+
+  <!-- 【◆19】飽きさせない画面演出：①ヒーロー写真スライドショー ②スクロールでふわっと表示 ③「今日の奄美」ランダム表示。
+       いずれも高齢者配慮で「ゆっくり・点滅なし」。OSの「視差効果を減らす」設定時は自動で動きを止める。 -->
+  <style id="amami-motion-css">
+    html.amami-anim-ready .amami-reveal{opacity:0;transform:translateY(20px);
+      transition:opacity .8s ease,transform .8s ease;}
+    html.amami-anim-ready .amami-reveal.is-in{opacity:1;transform:none;}
+    @media (prefers-reduced-motion:reduce){
+      html.amami-anim-ready .amami-reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+    }
+  </style>
+  <script>
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ① スライドショー画像を外部JSON(slideshow-images.json)から読み込み（管理者はJSONのみ編集）。
+    //    A=ヒーロー(#amami-images) / B=ギャラリー(#slideshow)。読込失敗時はHTMLの「保険の1枚」を表示。
+    //    クロスフェード（不透明度のみ）は控えめな演出のため、動き抑制設定でも切り替える。
+    (function () {
+      var IMG_DIR = 'hp-image/';
+      var heroTimer = null;
+
+      function startHeroRotation() {
+        if (heroTimer) { clearInterval(heroTimer); heroTimer = null; }
+        var imgs = document.querySelectorAll('#amami-images img');
+        if (imgs.length < 2) return; // 1枚のときは静止画のまま
+        if (!document.querySelector('#amami-images img.is-active')) imgs[0].classList.add('is-active');
+        var i = 0;
+        heroTimer = setInterval(function () {
+          imgs[i].classList.remove('is-active');
+          i = (i + 1) % imgs.length;
+          imgs[i].classList.add('is-active');
+        }, 6000);
+      }
+
+      function buildHero(list) {
+        var box = document.getElementById('amami-images');
+        if (!box || !Array.isArray(list) || !list.length) return;
+        var overlay = box.querySelector('.amami-hero__overlay');
+        box.querySelectorAll('img').forEach(function (im) { im.remove(); });
+        list.forEach(function (item, idx) {
+          if (!item || !item.file) return;
+          var img = document.createElement('img');
+          img.src = IMG_DIR + item.file;
+          if (idx === 0) { img.className = 'is-active amami-hero-first'; img.alt = item.alt || ''; }
+          else { img.alt = ''; img.setAttribute('aria-hidden', 'true'); }
+          box.insertBefore(img, overlay);
+        });
+        startHeroRotation();
+      }
+
+      function buildGallery(list) {
+        var box = document.getElementById('slideshow');
+        if (!box || !Array.isArray(list) || !list.length) return;
+        var controls = document.getElementById('slideshow-controls');
+        box.querySelectorAll('img').forEach(function (im) { im.remove(); });
+        list.forEach(function (item) {
+          if (!item || !item.file) return;
+          var img = document.createElement('img');
+          img.src = IMG_DIR + item.file;
+          img.alt = item.alt || '';
+          box.insertBefore(img, controls);
+        });
+        // 画像生成後に◆18の初期化を呼び直す（停止/再開ボタン対応）。
+        if (typeof initSlideshow === 'function') initSlideshow();
+      }
+
+      fetch('slideshow-images.json?_=' + Date.now(), { cache: 'no-cache' })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          buildHero(data && data.hero);
+          buildGallery(data && data.gallery);
+        })
+        .catch(function () {
+          // JSON取得失敗時：HTMLの保険画像のままヒーローだけ回す（ギャラリーは◆18が初期化済み）。
+          startHeroRotation();
+        });
+    })();
+
+    // ② スクロールでふわっと表示（読みやすさは保ったまま）
+    (function () {
+      var selectors = [
+        '.amami-hero__body', '.amami-today__box',
+        '.amami-gallery__head', '.amami-gallery__layout',
+        '.amami-guide .ag-lead', '.amami-guide .ag-section-title',
+        '.amami-guide .ag-card', '.amami-guide .ag-heritage', '.amami-guide .ag-outro'
+      ];
+      var nodes = document.querySelectorAll(selectors.join(','));
+      if (!nodes.length) return;
+      if (reduce || !('IntersectionObserver' in window)) return; // 動き無し＝最初から表示
+      document.documentElement.classList.add('amami-anim-ready');
+      nodes.forEach(function (el) { el.classList.add('amami-reveal'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      nodes.forEach(function (el) { io.observe(el); });
+    })();
+
+    // ③ 「今日の奄美」：日付で1日1つ（その日は固定、翌日に切り替わる）。文言はこの配列で編集。
+    (function () {
+      var el = document.getElementById('amami-today-text');
+      if (!el) return;
+      var AMAMI_TODAY_TIPS = [
+        '奄美大島・徳之島は、2021年に<b>世界自然遺産</b>に登録されました。',
+        '「<b>百合ヶ浜</b>」（与論島）は、春から夏の干潮時にだけ現れる幻の砂浜です。',
+        '<b>アマミノクロウサギ</b>は奄美大島と徳之島だけに生きる、貴重な固有種です。',
+        '奄美の伝統織物「<b>大島紬</b>」は、世界三大織物のひとつに数えられます。',
+        '<b>喜界島</b>は、今も年に約2mmずつ隆起し続ける珍しいサンゴ礁の島です。',
+        '<b>徳之島</b>は闘牛と長寿で知られる、活気あふれる島です。',
+        '<b>沖永良部島</b>には、巨大な鍾乳洞「昇竜洞」があります。',
+        '奄美の海は1年を通して<b>温暖</b>。冬でも過ごしやすい南国です。',
+        '島ごとに受け継がれる<b>島唄</b>は、奄美の暮らしと心の宝です。',
+        '<b>マングローブ</b>の森では、カヌー体験で亜熱帯の自然を満喫できます。'
+      ];
+      // ローカル日付から「通算日数」を求め、配列を日替わりで一巡させる。
+      var now = new Date();
+      var dayNumber = Math.floor((now.getTime() - now.getTimezoneOffset() * 60000) / 86400000);
+      var idx = ((dayNumber % AMAMI_TODAY_TIPS.length) + AMAMI_TODAY_TIPS.length) % AMAMI_TODAY_TIPS.length;
+      el.innerHTML = AMAMI_TODAY_TIPS[idx];
+    })();
   })();
   </script>
 

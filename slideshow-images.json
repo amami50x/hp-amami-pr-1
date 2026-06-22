@@ -1,0 +1,24 @@
+{
+  "_使い方": "スライドショーの画像はここで管理します。index.html は編集不要です。hero=トップ大写真／gallery=下のギャラリー。同じ画像を hero と gallery の両方に入れないでください。画像ファイルは hp-image フォルダに置き、file には『ファイル名だけ』を書きます（例: amami-fukei.jpg）。alt は画像の説明（読み上げ用）です。",
+  "hero": [
+    { "file": "amami-fukei.jpg", "alt": "奄美群島の青い海と亜熱帯の自然の景色" },
+    { "file": "YoronTownYurigahama.jpg", "alt": "与論島 百合ヶ浜の白い砂浜と青い海" },
+    { "file": "SumiyoMangrove.webp", "alt": "奄美市住用町のマングローブ原生林" },
+    { "file": "kinsakubaru.jpg", "alt": "金作原原生林の亜熱帯の森" },
+    { "file": "SetouchiTownKakeroma.webp", "alt": "瀬戸内町 加計呂麻島の入り江" }
+  ],
+  "gallery": [
+    { "file": "IsenTownInudabuCapeMemorial.jpg", "alt": "伊仙町 犬田布岬の慰霊塔" },
+    { "file": "IsenTownBullfight.jpg", "alt": "伊仙町 闘牛の様子" },
+    { "file": "UkenVillageArangachi.webp", "alt": "宇検村 アランガチの滝" },
+    { "file": "KikaiIslandX.jpg", "alt": "喜界島の風景" },
+    { "file": "YamatoVillageHanahanaBeach.webp", "alt": "大和村 ハナハナビーチ" },
+    { "file": "ChinamiTownTanami.webp", "alt": "知名町 田皆岬" },
+    { "file": "AmagiTownInutoNoFuta.webp", "alt": "天城町 犬の門蓋" },
+    { "file": "TokunoshiCapeObservatory.webp", "alt": "徳之島町の岬展望台からの景色" },
+    { "file": "NazeKinsakubaru.webp", "alt": "奄美市名瀬 金作原の森" },
+    { "file": "TatsugoSaigoNanshu.jpg", "alt": "龍郷町 西郷南洲ゆかりの地" },
+    { "file": "WadomariTownKasashi.jpg", "alt": "和泊町 笠石海浜公園" },
+    { "file": "manguro-bU.jpg", "alt": "奄美のマングローブ林" }
+  ]
+}

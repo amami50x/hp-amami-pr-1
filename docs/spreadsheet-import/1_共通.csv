@@ -1,0 +1,13 @@
+ID,カテゴリ,管理項目名,説明,本番URL,ローカルパス,操作手順,担当,権限,更新頻度,最終更新日,更新者,状態,備考
+C-001,ドメイン,本番ドメイン,公開サイトのドメイン,https://www.tokyoamamikai.com/,,,,全体,随時,2026-06-22,,正常,
+C-002,ホスティング,サーバー（さくら）,FTPホスト等,https://www.sakura.ad.jp/,,kanri.html 4.サーバ情報参照,,全体,随時,2026-06-22,,正常,パスワードは別管理
+C-003,FileZilla,FileZilla（公式HP）,WordPressテーマ反映用,,"C:\Users\User\Local Sites\tokyo-amamikai\app\public\wp-content\themes\tokyo-amamikai",サイト名 tokyo-amamikai → wp-content/themes/tokyo-amamikai,,全体,随時,2026-06-22,,正常,
+C-004,FileZilla,FileZilla（観光HP）,hp-amami-pr-1 反映用,,C:\Users\User\Local Sites\tokyo-amamikai\app\public\hp-amami-pr-1,public_html/.../hp-amami-pr-1/,,全体,随時,2026-06-22,,正常,kanri.html 保存先参照
+C-005,リポジトリ,Git（観光HP）,hp-amami-pr-1,,hp-amami-pr-1,git-backup-github.bat,,全体,随時,2026-06-22,,正常,
+C-006,リポジトリ,Git（公式HPテーマ）,tokyo-amamikai テーマ,,wp-content/themes/tokyo-amamikai,変更後 FileZilla アップロード,,全体,随時,2026-06-22,,正常,
+C-007,セキュリティ,パスワード保管場所,FTP・WP・MENU13等の保管,,,パスワードマネージャまたは限定共有のみ,,全体,随時,2026-06-22,,正常,スプレッドシートに平文禁止
+C-008,権限,全体管理者,WordPress・テーマ・全設定,,,,,全体,随時,2026-06-22,,正常,Googleアカウント共有は4_担当一覧
+C-009,権限,一般管理者,限定MENU・限定ツールのみ,,,,,一般,随時,2026-06-22,,正常,WP管理画面は原則不可
+C-010,索引,管理者MENU（公式）,WordPress側運用索引,,wp-content/themes/tokyo-amamikai/docs/kanri-hp.html,ブラウザで開く,,全体,随時,2026-06-22,,正常,
+C-011,索引,管理者MENU（観光）,観光HP運用索引,,hp-amami-pr-1/kanri.html,ブラウザで開く,,全体,随時,2026-06-22,,正常,
+C-012,緊急,障害時連絡,,,,,,全体,随時,2026-06-22,,正常,連絡先を追記

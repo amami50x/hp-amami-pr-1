@@ -1,0 +1,21 @@
+# BGM バックアップ（約1GB・GitHub向きではない）
+hp-music-ORIGINAL20260614/
+
+# 重複コピー（hp-music 内の入れ子）
+hp-music/hp-music/
+
+# Python キャッシュ
+__pycache__/
+*.py[cod]
+*$py.class
+
+# デバッグ出力
+_debug-*.html
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ローカル設定（サンプルはコミット可）
+island-links-admin-config.php

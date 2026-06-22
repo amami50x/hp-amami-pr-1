@@ -1,0 +1,24 @@
+ID,カテゴリ,管理項目名,説明,本番URL,ローカルパス,操作手順,担当,権限,更新頻度,最終更新日,更新者,状態,備考
+K-001,概要,観光HP全体概要（3分）,関係者向け短縮,,docs/system-overview-kanko-index-brief-20260621.md,Markdownを開く,,全体,随時,2026-06-22,,正常,
+K-002,概要,観光HP全体概要（詳細）,管理者向け詳細,,docs/system-overview-kanko-index-full-20260621.md,Markdownを開く,,全体,随時,2026-06-22,,正常,
+K-003,公開画面,index.html（本体）,12市町村リンク一覧表,https://www.tokyoamamikai.com/hp-amami-pr-1/index.html,index.html,#amami-table 確認,,全体,随時,2026-06-22,,正常,約250KB
+K-004,公開画面,スライドショー,風景ギャラリー,,slideshow-images.json,JSON編集→FTP,,全体,随時,2026-06-22,,正常,
+K-005,公開画面,言語切替・トップバー,公式HPへ戻る等,,index.html 内,表示確認,,全体,随時,2026-06-22,,正常,
+K-006,コンテンツ,観光情報一覧表,市町村・観光・グルメ・特産・イベント,,index.html #amami-table,セル内URL・文言編集,,一般,随時,2026-06-22,,正常,一般管理者向け
+K-007,コンテンツ,5島「関連サイト」,JSON管理,https://www.tokyoamamikai.com/hp-amami-pr-1/island-links-manage.php,data/island_related_links.json,管理画面で編集→保存,,一般,随時,2026-06-22,,正常,PHPパスワードなし・URL周知で運用
+K-008,コンテンツ,リンク切れチェック,link-status 反映,,link-status.json / admin-link-check.html,チェック脚本実行後確認,,一般,月1,2026-06-22,,正常,
+K-009,データ,訪問カウント,日本語/外国語別,,access-counter.php / access-count.json,集計ファイル確認,,全体,月1,2026-06-22,,正常,
+K-010,データ,セルクリック集計,管理者向け,,cell-clicks.json 等,,,全体,月1,2026-06-22,,正常,
+K-011,運用,shops.xlsx → HTML,Excel→生成→UP,,shops.xlsx,1.shops更新 2.run_all.bat,,全体,随時,2026-06-22,,正常,shop-html.py 使用
+K-012,運用,FTP自動アップロード,watch_and_upload,,watch_and_upload.py,run_all.bat 内で実行,,全体,随時,2026-06-22,,正常,
+K-013,運用,関東情報ツール,kanto-info 連携,,kanto-info/,,,全体,随時,2026-06-22,,正常,
+K-014,本番反映,FileZilla（観光）,hp-amami-pr-1 反映,,hp-amami-pr-1,public_html/.../hp-amami-pr-1/,,全体,随時,2026-06-22,,正常,kanri.html 保存先
+K-015,本番反映,Gitバックアップ,GitHubへ,,,git-backup-github.bat,,全体,随時,2026-06-22,,正常,
+K-016,サーバ,FTPホスト,www1786.sakura.ne.jp,,,kanri.html 参照,,全体,随時,2026-06-22,,正常,パスワード別管理
+K-017,サーバ,FTPユーザー,violetfoal2,,,kanri.html 参照,,全体,随時,2026-06-22,,正常,
+K-018,サーバ,FTP保存先,public_html/tokyo/,,,kanri.html 参照,,全体,随時,2026-06-22,,正常,
+K-019,ドキュメント,管理者マニュアル,,,docs/admin-manual.md,,,全体,随時,2026-06-22,,正常,
+K-020,ドキュメント,運用索引 kanri,,,kanri.html,ブラウザで開く,,全体,随時,2026-06-22,,正常,
+K-021,セキュリティ,関連サイト IP制限,allowed_admin_ips,,island-links-admin-config.php,sample からコピー,,全体,随時,2026-06-22,,正常,任意
+K-022,セキュリティ,Basic認証,.htaccess 例,,island-links-manage.htaccess.example,必要時のみ,,全体,随時,2026-06-22,,正常,任意
+K-023,リンク,公式HPへの戻り,index 上部,,index.html,「公式HPへ」確認,,全体,随時,2026-06-22,,正常,シート2_公式HP

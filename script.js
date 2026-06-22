@@ -72,17 +72,6 @@ function closePopup(popupId) {
 
 
 window.onload = function () {
-  // Fetch counter data
-  fetch('counter.php')  // PHPスクリプトにリクエスト
-    .then(response => response.json())  // JSONデータを受け取る
-    .then(data => {
-      // 取得したカウントデータを表示
-      document.getElementById('total-counter').textContent = data.total;
-      document.getElementById('japanese-counter').textContent = data.japanese;
-      document.getElementById('foreign-counter').textContent = data.foreign;
-    })
-    .catch(error => console.error('Error fetching data:', error));
-
     // セルのクリックイベントを設定 (変更前)
   const cells = document.querySelectorAll('td');
   cells.forEach(cell => {

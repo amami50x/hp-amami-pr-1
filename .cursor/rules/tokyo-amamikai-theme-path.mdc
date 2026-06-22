@@ -1,0 +1,40 @@
+---
+description: WordPressテーマ（正式フォルダ）へのコード変更先
+alwaysApply: true
+---
+
+# 正式フォルダ（WordPressテーマ）
+
+テーマ・投稿編集・明細ページなど WordPress 関連のコード変更は、**必ず次の絶対パスに Write ツールで直接保存**する。相対パス・hp-amami-pr-1 経由は使わない。
+
+```
+C:\Users\User\Local Sites\tokyo-amamikai\app\public\wp-content\themes\tokyo-amamikai
+```
+
+## 作業順序（必須）
+
+1. **先に正式フォルダへ保存**（コード変更・修正を完了する）
+2. 保存後、更新日時・サイズを確認してからユーザーへ **アップロード連絡**
+3. **アップロード連絡だけ先に出さない**（正式フォルダに最新が無い状態で案内しない）
+4. テスト・確認は **正式フォルダの最新ファイル** を前提とする
+
+## アップロード連絡時の形式
+
+- ファイルごとに **更新日時・サイズ・サーバー上のパス** を記載
+- ファイル先頭に `@updated YYYY-MM-DD HH:MM` を付ける
+- 確認用: `no-up-正式フォルダ-サイズ確認.bat`（テーマ直下）
+
+## 主なパス
+
+| 用途 | パス（テーマ直下） |
+|------|-------------------|
+| 表の位置・IME | `inc/amamikai-post-table-align.php` |
+| IME保護JS | `assets/amamikai-tinymce-ime.js` |
+| テーマ本体 | `functions.php` |
+| エディタCSS | `editor-styles.css` |
+| 明細ページ | `template-menu-meisai-hp.php` |
+
+## FileZilla
+
+- サイト名: **tokyo-amamikai**（hp-amami-pr-1 ではない）
+- 左: 上記正式フォルダ → 右: `.../wp-content/themes/tokyo-amamikai`

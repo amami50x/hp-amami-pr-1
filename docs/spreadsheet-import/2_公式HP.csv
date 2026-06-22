@@ -1,0 +1,23 @@
+ID,カテゴリ,管理項目名,説明,本番URL,ローカルパス,操作手順,担当,権限,更新頻度,最終更新日,更新者,状態,備考
+G-001,概要,公式HP全体概要（3分）,関係者向け短縮説明,,wp-content/themes/tokyo-amamikai/docs/system-overview-amami-admin-brief-20260621.md,Markdownを開く,,全体,随時,2026-06-22,,正常,
+G-002,概要,公式HP全体概要（詳細）,管理者向け詳細,,wp-content/themes/tokyo-amamikai/docs/system-overview-amami-full-20260621.md,Markdownを開く,,全体,随時,2026-06-22,,正常,
+G-003,公開画面,トップ画面,入口・BGM・スライドショー,https://www.tokyoamamikai.com/amami-top/,wp-content/themes/tokyo-amamikai/template-amami-top.php,公開URLで表示確認,,全体,随時,2026-06-22,,正常,
+G-004,公開画面,MENU一覧,検索・絞り込み,https://www.tokyoamamikai.com/menu-ichiran-hp/,wp-content/themes/tokyo-amamikai/template-menu-ichiran-hp.php,一覧→明細遷移確認,,全体,随時,2026-06-22,,正常,
+G-005,公開画面,MENU明細,本文・履歴一覧,https://www.tokyoamamikai.com/menu-meisai-hp/?menu_no=02-02-02,wp-content/themes/tokyo-amamikai/template-menu-meisai-hp.php,menu_no を差し替え,,全体,随時,2026-06-22,,正常,例：02-02-02 会則
+G-006,コンテンツ,WordPress投稿（MENU）,投稿1件＝MENU1件・menu_no メタ,https://www.tokyoamamikai.com/wp-admin/edit.php,,WP管理画面→投稿,,全体,随時,2026-06-22,,正常,一般管理者は原則不可
+G-007,コンテンツ,13番台MENU（パスワード）,13-xx-xx 管理者専用,https://www.tokyoamamikai.com/menu-meisai-hp/?menu_no=13-01-01,,明細でパスワード入力,,全体,随時,2026-06-22,,正常,
+G-008,編集,投稿編集画面,ビジュアル＝公開と同見え方・720px,https://www.tokyoamamikai.com/wp-admin/post.php,,ビジュアルタブで編集,,全体,随時,2026-06-22,,正常,
+G-009,編集,表の位置（青バー）,表・左/中央/右,,inc/amamikai-post-table-align.php,表セルクリック→青バー,,全体,随時,2026-06-22,,正常,
+G-010,編集,行間等（紫バー）,行間・改行幅・文字（小/標/大）,,inc/amamikai-post-spacing-bar.php,段落クリック→紫バー,,全体,随時,2026-06-22,,正常,
+G-011,編集,字体・サイズ（緑バー）,字体・pxサイズ（12〜72px）,,inc/amamikai-post-editor-fonts.php,段落クリック→緑バー→適用,,全体,随時,2026-06-22,,正常,TinyMCEフォント欄は非表示
+G-012,編集,IME対策,v18/v19 案内表示,,inc/amamikai-post-editor-ime.php,編集画面でIME案内確認,,全体,随時,2026-06-22,,正常,
+G-013,本番反映,テーマ正式フォルダ,保存先（ローカル）,,C:\Users\User\Local Sites\tokyo-amamikai\app\public\wp-content\themes\tokyo-amamikai,コード変更は必ずここへ,,全体,随時,2026-06-22,,正常,
+G-014,本番反映,FileZillaアップロード,本番テーマ反映,,,サイト名 tokyo-amamikai,,全体,随時,2026-06-22,,正常,反映後 Ctrl+F5
+G-015,本番反映,サイズ確認bat,no-up-正式フォルダ-サイズ確認.bat,,wp-content/themes/tokyo-amamikai/no-up-正式フォルダ-サイズ確認.bat,アップロード前に実行,,全体,随時,2026-06-22,,正常,
+G-016,データ,アクセスカウント（全体）,top/ichiran/meisai,,visit_counts.csv,本番とローカルは別ファイル,,全体,月1,2026-06-22,,正常,数字不一致は正常
+G-017,データ,MENU別クリック数,,,menu_click_counts.csv,CSV参照,,全体,月1,2026-06-22,,正常,
+G-018,ドキュメント,管理者マニュアル,,,wp-content/themes/tokyo-amamikai/docs/admin-manual.md,,,全体,随時,2026-06-22,,正常,
+G-019,ドキュメント,運用索引 kanri-hp,,,wp-content/themes/tokyo-amamikai/docs/kanri-hp.html,ブラウザで開く,,全体,随時,2026-06-22,,正常,
+G-020,リンク,観光情報HPへの導線,トップ「奄美群島観光情報」,https://www.tokyoamamikai.com/hp-amami-pr-1/index.html,,トップからリンク確認,,全体,随時,2026-06-22,,正常,別シート3_観光情報HP
+G-021,セキュリティ,WordPress管理者,WP管理画面ログイン,https://www.tokyoamamikai.com/wp-admin/,,全体管理者のみ,,全体,随時,2026-06-22,,正常,
+G-022,バックアップ,GitHub（テーマ）,テーマ変更のバックアップ,,,コミット手順は admin-manual 参照,,全体,随時,2026-06-22,,正常,

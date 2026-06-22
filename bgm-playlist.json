@@ -1,0 +1,33 @@
+{
+  "_使い方": "BGMの曲順・追加・削除はこのファイルで管理します。HTMLやJSは編集不要です。音楽ファイルは hp-music フォルダに置き、file には『ファイル名だけ』を書きます（例: shima_blues.aac）。title は画面に表示する曲名です。",
+  "tracks": [
+    { "file": "amamiwoomouuta_sasori.aac", "title": "奄美を想うsasori" },
+    { "file": "shima_blues.aac", "title": "島のブルース" },
+    { "file": "furusatohekaeritai_sasori.aac", "title": "ふるさとへ帰りたいsasori" },
+    { "file": "yoronbojo.aac", "title": "与論慕情" },
+    { "file": "kazenomamani-yoronjimae.mp3", "title": "風のままに与論島へsasori" },
+    { "file": "kakeromabojo.aac", "title": "加計呂麻慕情" },
+    { "file": "furusatoamamiyo-towani_sasori.aac", "title": "ふるさと奄美よ永遠にsasori" },
+    { "file": "shima_sodachi.aac", "title": "島育ち" },
+    { "file": "imamo-omaenoegaoo-sasori.mp3", "title": "今もお前の笑顔をsasori" },
+    { "file": "tokunoshima_kouta.aac", "title": "徳之島小唄" },
+    { "file": "furusatoyo-hanareteitemo.mp3", "title": "ふるさとよ離れていてもsasori" },
+    { "file": "sinkawa_furusato.aac", "title": "ふるさとへ" },
+    { "file": "wagamichi.mp3", "title": "我が道sasori" },
+    { "file": "omokage.mp3", "title": "面影（おもかげ）sasori" },
+    { "file": "itumonomisede-hitorigurasukatamukete.mp3", "title": "いつもの店で一人グラス傾けてsasori" },
+    { "file": "yumenomukoni-okinoerabu.mp3", "title": "夢の向こうに沖永良部島sasori" },
+    { "file": "waidowaidono-tokunosima.mp3", "title": "ワイドワイドの徳之島へsasori" },
+    { "file": "amamihonto-yumeakari-sasori.mp3", "title": "奄美本島夢灯りsasori" },
+    { "file": "itukakaero-kikaijima-sasori.mp3", "title": "いつか帰ろう喜界島sasori" },
+    { "file": "kakeromahe-sasori.mp3", "title": "加計呂麻へsasori" },
+    { "file": "manabiyanoomoi-imamo-sasori.mp3", "title": "学び舎の想い今もsasori" },
+    { "file": "hosifuru-yoruha-sasori.mp3", "title": "星降る夜はsasori" },
+    { "file": "maewomuite-sasori.mp3", "title": "前を向いてsasori" },
+    { "file": "wagafurusato-tokunoshima-sasori .mp3", "title": "わがふるさと徳之島sasori" },
+    { "file": "dosokainoomoi-sasori.mp3", "title": "同窓会の思いsasori" },
+    { "file": "furusatoamamiwo-omou-sasori.mp3", "title": "ふるさと奄美を想うsasori" },
+    { "file": "furusato_kitahara.aac", "title": "ふるさとの話をしよう" },
+    { "file": "funaki_koukou_sannensei.aac", "title": "高校三年生" }
+  ]
+}

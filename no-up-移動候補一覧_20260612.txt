@@ -1,0 +1,76 @@
+================================================================
+ 不要ファイル 移動候補リスト（hp-amami-pr-1）   作成日: 2026-06-12
+================================================================
+※ このファイルは「移動前の確認用」です。まだ何も移動していません。
+※ 移動先（ご用意済み）: C:\Users\User\OneDrive\NEW-HP\（任意のサブフォルダ）
+※ 方針: 現役ページ（index.html）が使うファイルは「残す」。
+        万一のため、削除ではなく移動（後から戻せる）。
+
+----------------------------------------------------------------
+■ 現役チェーン（＝絶対に残す。移動しない）
+----------------------------------------------------------------
+- index.html                … 本体（旅行情報トップ）
+- pdfopn.html               … index.html「ご利用にあたってのお願い」リンク先
+- bgm-n-amami.html          … index.html のBGM再生ウィンドウ
+- kanri.html                … 管理メニュー（索引）
+- styles.css                … 共通スタイル
+- cell-click-counter.php / cell-click-report.php … クリック集計・分析レポート
+- cell-clicks.json          … カウント保存（.htaccessで外部直アクセス禁止済み）
+- リンク一覧.txt / extra-links.json … 表のリンク元データ
+- access-counter.php ほかカウンタ系 / island-*.php / data/ … 機能系
+- hp-image/ , hp-music/ , towninfo/（画像・音声） … 表示で使用する素材
+  （※ towninfo/ の「画像」は残す。下記の towninfo/*.html だけが移動候補）
+
+----------------------------------------------------------------
+■ A. ほぼ確実に不要（バックアップ／コピー／テスト）= 移動推奨
+----------------------------------------------------------------
+- amami-bk260111.html          （旧 amami.html の日付バックアップ）
+- amamibk0514.html             （同上）
+- amami-ok-20260514.html       （同上）
+- amami20260514ok.html         （同上）
+- amami_checked.html           （チェック用コピー／robots.txtでも除外済み）
+- index_checked.html           （チェック用コピー）
+- amami-upd.html               （一本化前の旧版）
+- amami-click.html             （旧版）
+- amami_click.html             （旧版）
+- copy_base.html               （ベースの複製）
+- _test-img.html               （テスト用）
+- counter-test.html            （テスト用）
+- styles.css-bk0419            （CSSのバックアップ）
+- towninfo/amami - コピー.html        （複製）
+- towninfo/amami - コピー (6).html    （複製）
+- towninfo/amami7.html         （旧版の可能性が高い）
+- towninfo/amami0503.html      （旧版の可能性が高い）
+- towninfo/amami-88.html       （旧版の可能性が高い）
+- hp-music/amami0514.html      （旧版の可能性が高い）
+- tbl-url-bk\（フォルダごと）   （バックアップ専用フォルダ）
+- kison-bk-hp\（フォルダごと）  （バックアップ専用フォルダ）
+
+----------------------------------------------------------------
+■ B. 要確認（旧版の可能性大。直接URLで周知していないか確認のうえ移動）
+----------------------------------------------------------------
+- bgm-amami.html     … 現役は bgm-n-amami.html。旧版の可能性大
+- bgm-k-amami.html   … 同上
+- yoron.html         … 表は外部URL使用のため未使用の可能性大（個別周知が無ければ移動可）
+- kikai.html         … 同上
+- tokunoshima.html   … 同上
+- okinoerabu.html    … 同上
+- amamiosima.html    … 同上
+- hp-update.html     … 用途要確認
+- pdfviewer.html     … 用途要確認（pdfopn.html とは別。未使用なら移動可）
+
+----------------------------------------------------------------
+■ 注意（残すか判断が必要なもの）
+----------------------------------------------------------------
+- amami.html … .htaccess で index.html へ301リダイレクト設定あり。
+               ファイル自体は実質未使用だが、リダイレクト設定があるので「残す」推奨。
+- towninfo/isen-kanko-navi.html … リンク先として使われている可能性。要確認のため当面「残す」。
+- official-top-link-snippet.html / admin-link-check.html … 管理用スニペット。当面「残す」。
+- hp-machi-inf-upd\ , kanto-info\ , akusesu-cnt\ … 別機能。今回の対象外（残す）。
+
+================================================================
+ 次のステップ（ご希望に応じて実施）
+   1) A だけ移動 → 数日サイト確認 → 問題なければ削除
+   2) A＋B（確認後）移動
+   3) この一覧を修正・追記
+================================================================

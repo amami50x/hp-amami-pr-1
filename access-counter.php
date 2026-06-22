@@ -2,19 +2,12 @@
 /**
  * 訪問回数カウンタ（旅行情報ページ用）
  *
- *  GET
- *      現在のカウントを JSON で返す。
- *
- *  POST action=visit_login&target=ja|foreign
- *      ログイン時 +1。仕様上 target=ja 固定の想定だが、将来の外国語LOGIN
- *      も視野に入れて target を取れるようにしておく。
- *
- *  POST action=switch_to_foreign
- *      ログイン後（日本語で +1 済み）に外国語へ切替が確認された時に呼ぶ。
- *      日本語 -1、外国語 +1（一度きり）。日本語が 0 のときは減らさない。
+ *  GET  現在のカウントを JSON で返す。
+ *  POST action=visit_login&target=ja|foreign  ログイン時 +1
+ *  POST action=switch_to_foreign               日本語 -1 / 外国語 +1
  *
  *  保存先: access-count.json
- *      形式: {"japaneseCount": N, "foreignCount": M}
+ *  @updated 2026-06-20  flock 待ちで初回表示が遅くならないようタイムアウト付き
  */
 
 ini_set('display_errors', '0');
@@ -22,6 +15,8 @@ error_reporting(E_ALL);
 
 $filename      = __DIR__ . '/access-count.json';
 $defaultCounts = array('japaneseCount' => 0, 'foreignCount' => 0);
+/** flock 最大待ち秒（初回・同時アクセス時の長時間ブロック防止） */
+define('AC_FLOCK_TIMEOUT_SEC', 2.0);
 
 if (!file_exists($filename)) {
 	file_put_contents($filename, json_encode($defaultCounts));
@@ -39,29 +34,58 @@ function ac_normalize_counts($raw, $defaults) {
 	return $data;
 }
 
-function ac_load_counts($filename, $defaults) {
-	$fp = fopen($filename, 'c+');
-	if (!$fp) {
+/**
+ * flock with timeout (LOCK_NB retry). Returns false if lock not acquired.
+ *
+ * @param resource $fp
+ * @param int      $operation LOCK_SH or LOCK_EX
+ * @return bool
+ */
+function ac_try_flock($fp, $operation) {
+	$deadline = microtime(true) + AC_FLOCK_TIMEOUT_SEC;
+	while (microtime(true) < $deadline) {
+		if (flock($fp, $operation | LOCK_NB)) {
+			return true;
+		}
+		usleep(50000);
+	}
+	return false;
+}
+
+/** ロックなしの読み取り（表示用フォールバック） */
+function ac_read_counts_unlocked($filename, $defaults) {
+	$raw = @file_get_contents($filename);
+	if ($raw === false || $raw === '') {
 		return $defaults;
 	}
+	return ac_normalize_counts($raw, $defaults);
+}
+
+function ac_load_counts($filename, $defaults) {
+	$fp = @fopen($filename, 'c+');
+	if (!$fp) {
+		return ac_read_counts_unlocked($filename, $defaults);
+	}
 	$counts = $defaults;
-	if (flock($fp, LOCK_SH)) {
+	if (ac_try_flock($fp, LOCK_SH)) {
 		rewind($fp);
 		$raw = stream_get_contents($fp);
 		$counts = ac_normalize_counts($raw, $defaults);
 		flock($fp, LOCK_UN);
+	} else {
+		$counts = ac_read_counts_unlocked($filename, $defaults);
 	}
 	fclose($fp);
 	return $counts;
 }
 
 function ac_update_counts($filename, $defaults, $updater) {
-	$fp = fopen($filename, 'c+');
+	$fp = @fopen($filename, 'c+');
 	if (!$fp) {
 		return $defaults;
 	}
 	$counts = $defaults;
-	if (flock($fp, LOCK_EX)) {
+	if (ac_try_flock($fp, LOCK_EX)) {
 		rewind($fp);
 		$raw = stream_get_contents($fp);
 		$counts = ac_normalize_counts($raw, $defaults);
@@ -75,6 +99,9 @@ function ac_update_counts($filename, $defaults, $updater) {
 		)));
 		fflush($fp);
 		flock($fp, LOCK_UN);
+	} else {
+		// ロック取得できなければ加算せず現在値を返す（表示を遅らせない）
+		$counts = ac_read_counts_unlocked($filename, $defaults);
 	}
 	fclose($fp);
 	return $counts;
@@ -82,6 +109,7 @@ function ac_update_counts($filename, $defaults, $updater) {
 
 function ac_send_json($counts) {
 	header('Content-Type: application/json; charset=UTF-8');
+	header('Cache-Control: no-store, no-cache, must-revalidate');
 	echo json_encode($counts);
 }
 

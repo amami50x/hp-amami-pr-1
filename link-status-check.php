@@ -16,11 +16,19 @@
  *   link-status.json （同じディレクトリに上書き）
  *
  * 仕様:
- *   - <table> 内の <a href="..."> から http(s) URL のみ抽出
+ *   - 対象URL = テーブルに登録された全URL。具体的には次の3つから抽出する:
+ *       (1) index.html の <table> 内 <a href="...">（直リンク）
+ *       (2) リンク一覧.txt（ポップアップ用。名前 = URL 形式）
+ *       (3) extra-links.json（ポップアップ用。旧JSON形式の予備データ）
  *   - HEAD で確認、HEAD が拒否される場合は GET にフォールバック
  *   - 並列8本で HTTP リクエスト（curl_multi）
  *   - 200〜399 を OK、それ以外（4xx/5xx/timeout/DNS失敗）を NG
- *   - JSON のキーは HTML 上の生の href 文字列（JS と突き合わせるため）
+ *   - JSON のキーは登録URL文字列（JS 側の href と突き合わせるため）
+ *
+ * 【チェック範囲の方針】
+ *   - 「テーブルに登録したURL自体」の生死だけを確認する。
+ *   - 遷移先ページの中にある内部リンク（その先）はチェックしない。
+ *     （市町村から受領したURLまでが管理範囲。範囲を広げすぎない方針。）
  *
  * NOTE: 装飾セル（.municipal-name / .amami-org-name / .island-title-row）も
  *       URL は抽出してチェックする。実際の着色対象から除外する制御は JS 側で行う。
@@ -51,12 +59,41 @@ const HTTP_TIMEOUT     = 12;   // 各リクエストのタイムアウト秒
 const PARALLEL         = 8;    // 並列数
 const RETRY_ON_TIMEOUT = 1;    // タイムアウト時の追加リトライ回数
 
+// 自動アクセスを拒否しやすいサイト。機械チェックだけで「リンク切れ確定」にしない。
+const MANUAL_CONFIRM_HOSTS = [
+    'tripadvisor.jp',
+    'www.tripadvisor.jp',
+    'instagram.com',
+    'www.instagram.com',
+    'x.com',
+    'twitter.com',
+    'www.twitter.com',
+    'facebook.com',
+    'www.facebook.com',
+    'm.facebook.com',
+];
+
+function is_manual_confirm_result(string $url, int $status, ?string $reason): bool {
+    $host = strtolower((string)(parse_url($url, PHP_URL_HOST) ?: ''));
+    if ($status === 403 || $status === 429) return true;
+    if (in_array($host, MANUAL_CONFIRM_HOSTS, true) && $status >= 400) return true;
+    if ($status === 0 && $reason && stripos($reason, 'timeout') !== false) return true;
+    return false;
+}
+
+// SNS・TripAdvisor 等は機械チェックでBOT拒否され誤検知になるため、自動チェック対象外。
+function is_skip_host(string $url): bool {
+    $host = strtolower((string)(parse_url($url, PHP_URL_HOST) ?: ''));
+    return in_array($host, MANUAL_CONFIRM_HOSTS, true);
+}
+
 // ---- 出力ユーティリティ -------------------------------------------------
 function out(string $msg, bool $cron): void {
     if ($cron) {
         // cron 実行時はコンソール向けのプレーン出力（HTMLタグなし）
         echo strip_tags($msg) . "\n";
     } else {
+        // 進行状況は今までどおり逐次表示する（止まって見えないように）。
         echo $msg . "\n";
         @flush();
     }
@@ -91,26 +128,35 @@ function html_header(bool $cron): void {
 <body>
 <h1>テーブル内リンク 到達性チェック</h1>
 <p>対象: index.html 内の全 <code>&lt;table&gt;</code> 配下の URL</p>
-<pre>
+<div id="summary-top"></div>
+<p id="runmsg" style="color:#9a6b00;background:#fff9e6;border:1px solid #e6c84a;border-radius:8px;padding:10px 14px;">チェック中です（進行状況は下に表示されます）。終わると結果がこの上に表示されます…</p>
+<pre id="log">
 HTML;
+    @flush();
 }
 
-function html_footer(string $jsonFile, int $checked, array $broken, bool $cron): void {
+function html_footer(string $jsonFile, int $checked, array $broken, bool $cron, array $warnings = []): void {
     if ($cron) {
-        echo "\nchecked={$checked}, broken=" . count($broken) . ", out={$jsonFile}\n";
+        echo "\nchecked={$checked}, broken=" . count($broken) . ", warnings=" . count($warnings) . ", out={$jsonFile}\n";
         return;
     }
+    // 明細（実行ログ）の <pre> を閉じる
     echo "</pre>\n";
+    // ここから結果サマリーを #result-summary にまとめて出力する。
+    // 出力後に JavaScript で画面の先頭へ移動させる（明細より上に表示）。
+    echo "<div id=\"result-summary\">\n";
     $brokenCount = count($broken);
+    $warningCount = count($warnings);
     $cls = $brokenCount === 0 ? 'ok' : 'ng';
     echo "<div class=\"summary\">";
     echo "<strong>結果サマリー：</strong>"
-       . "チェック {$checked} 件 ／ <span class=\"{$cls}\">リンク切れ {$brokenCount} 件</span>"
+       . "チェック {$checked} 件 ／ <span class=\"{$cls}\">要対応 {$brokenCount} 件</span>"
+       . " ／ ブラウザ確認 {$warningCount} 件"
        . "／ 出力: <code>" . htmlspecialchars($jsonFile, ENT_QUOTES, 'UTF-8') . "</code>";
     echo "</div>\n";
 
     if ($brokenCount > 0) {
-        echo "<h2 style=\"font-size:1.05em;margin-top:18px;\">リンク切れ一覧</h2>";
+        echo "<h2 style=\"font-size:1.05em;margin-top:18px;\">要対応（登録URLの修正/削除候補）一覧</h2>";
         echo "<table class=\"broken\"><thead><tr>"
            . "<th>#</th><th>status</th><th>セルID</th><th>テキスト</th><th>URL</th><th>原因</th>"
            . "</tr></thead><tbody>";
@@ -133,7 +179,41 @@ function html_footer(string $jsonFile, int $checked, array $broken, bool $cron):
         }
         echo "</tbody></table>";
     }
-    echo "<p style=\"margin-top:14px;\"><a href=\"index.html\">→ index.html を表示</a></p>";
+    if ($warningCount > 0) {
+        echo "<h2 style=\"font-size:1.05em;margin-top:18px;\">ブラウザ確認（機械判定ではNG・自動削除しない）一覧</h2>";
+        echo "<table class=\"broken\"><thead><tr>"
+           . "<th>#</th><th>status</th><th>セルID</th><th>テキスト</th><th>URL</th><th>原因</th>"
+           . "</tr></thead><tbody>";
+        $i = 0;
+        foreach ($warnings as $href => $info) {
+            $i++;
+            $status = (int)($info['status'] ?? 0);
+            $cell   = $info['cell']   ?? '';
+            $label  = $info['label']  ?? '';
+            $reason = $info['reason'] ?? '';
+            echo '<tr>'
+               . "<td>{$i}</td>"
+               . '<td>' . htmlspecialchars((string)$status, ENT_QUOTES, 'UTF-8') . '</td>'
+               . '<td>' . htmlspecialchars($cell,   ENT_QUOTES, 'UTF-8') . '</td>'
+               . '<td>' . htmlspecialchars($label,  ENT_QUOTES, 'UTF-8') . '</td>'
+               . '<td><a href="' . htmlspecialchars($href, ENT_QUOTES, 'UTF-8') . '" target="_blank" rel="noopener">'
+                 . htmlspecialchars($href, ENT_QUOTES, 'UTF-8') . '</a></td>'
+               . '<td>' . htmlspecialchars($reason, ENT_QUOTES, 'UTF-8') . '</td>'
+               . '</tr>';
+        }
+        echo "</tbody></table>";
+    }
+    echo "<p style=\"margin-top:14px;\"><a href=\"admin-link-check.html\">→ リンク切れ一覧画面を表示</a></p>";
+    echo "</div>\n"; // #result-summary 終わり
+
+    // サマリーを画面の先頭（明細より上）へ移動し、上までスクロールする。
+    echo "<script>(function(){"
+       . "var s=document.getElementById('result-summary');"
+       . "var a=document.getElementById('summary-top');"
+       . "var r=document.getElementById('runmsg'); if(r){r.parentNode.removeChild(r);}"
+       . "if(s&&a){a.parentNode.insertBefore(s,a);}"
+       . "window.scrollTo(0,0);"
+       . "})();</script>\n";
     echo "</body></html>";
 }
 
@@ -190,10 +270,147 @@ function extract_table_urls(string $htmlPath): array {
 
         if (!isset($map[$hrefRaw])) {
             $map[$hrefRaw] = [
-                'url'   => $url,
-                'label' => $label,
-                'cell'  => $cellId,
+                'url'    => $url,
+                'label'  => $label,
+                'cell'   => $cellId,
+                'source' => 'table',
             ];
+        }
+    }
+    return $map;
+}
+
+/**
+ * リンク一覧.txt（ポップアップ用データ）から URL を抽出する。
+ * 形式: 「名前 = URL」行。見出し [cell-XX-YY] / [SNS] / [島:名前] をラベル/セルに使う。
+ * @return array<string,array{url:string,label:string,cell:?string}> URL をキーにした連想配列
+ */
+function extract_listtxt_urls(string $baseDir): array {
+    $path = $baseDir . DIRECTORY_SEPARATOR . 'リンク一覧.txt';
+    $text = @file_get_contents($path);
+    if ($text === false || trim($text) === '') return [];
+
+    $map = [];
+    $current = '';
+    $lines = preg_split('/\r\n|\r|\n/', $text);
+    foreach ($lines as $rawLine) {
+        // 全角スペースを半角に寄せて trim
+        $line = trim(str_replace("\xE3\x80\x80", ' ', $rawLine));
+        if ($line === '') continue;
+        // コメント行（# または ＃）
+        if ($line[0] === '#' || strncmp($line, "\xEF\xBC\x83", 3) === 0) continue;
+        // 見出し行 [..] / ［..］
+        if (preg_match('/^[\[\x{FF3B}]\s*(.+?)\s*[\]\x{FF3D}]\s*$/u', $line, $m)) {
+            $current = trim($m[1]);
+            continue;
+        }
+        // 「名前 = URL」（＝ も許容）
+        $norm = str_replace('＝', '=', $line);
+        $pos  = strpos($norm, '=');
+        if ($pos !== false) {
+            $name = trim(substr($norm, 0, $pos));
+            $url  = trim(substr($norm, $pos + 1));
+        } else {
+            $name = '';
+            $url  = trim($line);
+        }
+        if ($url === '' || !preg_match('#^https?://#i', $url)) continue;
+        $cell = preg_match('/^cell-\d\d-\d\d$/', $current) ? $current : null;
+        if (!isset($map[$url])) {
+            $map[$url] = [
+                'url'    => $url,
+                'label'  => ($name !== '' ? $name : $current),
+                'cell'   => $cell,
+                'source' => 'list',
+            ];
+        }
+    }
+    return $map;
+}
+
+/**
+ * extra-links.json（ポップアップ用の予備データ）から URL を抽出する。
+ * 形式: { "links": {cellId:[{名前,URL}...]}, "islands": {...}, "sns": [...] }
+ * @return array<string,array{url:string,label:string,cell:?string}> URL をキーにした連想配列
+ */
+function extract_json_urls(string $baseDir): array {
+    $path = $baseDir . DIRECTORY_SEPARATOR . 'extra-links.json';
+    $raw  = @file_get_contents($path);
+    if ($raw === false || trim($raw) === '') return [];
+    $data = json_decode($raw, true);
+    if (!is_array($data)) return [];
+
+    $map = [];
+    $collect = function($items, $cell) use (&$map) {
+        if (!is_array($items)) return;
+        foreach ($items as $it) {
+            if (!is_array($it)) continue;
+            $url = '';
+            foreach (['URL', 'url', 'Url'] as $k) {
+                if (isset($it[$k]) && $it[$k] !== '') { $url = (string)$it[$k]; break; }
+            }
+            $name = '';
+            foreach (['名前', 'name', '表示名', 'title'] as $k) {
+                if (isset($it[$k]) && $it[$k] !== '') { $name = (string)$it[$k]; break; }
+            }
+            $url = trim($url);
+            if ($url === '' || !preg_match('#^https?://#i', $url)) continue;
+            if (!isset($map[$url])) {
+                $map[$url] = [
+                    'url'    => $url,
+                    'label'  => ($name !== '' ? $name : ($cell ?? '')),
+                    'cell'   => $cell,
+                    'source' => 'json',
+                ];
+            }
+        }
+    };
+
+    if (isset($data['links']) && is_array($data['links'])) {
+        foreach ($data['links'] as $cellKey => $items) {
+            $cell = preg_match('/^cell-\d\d-\d\d$/', (string)$cellKey) ? (string)$cellKey : null;
+            $collect($items, $cell);
+        }
+    }
+    if (isset($data['islands']) && is_array($data['islands'])) {
+        foreach ($data['islands'] as $islandKey => $items) {
+            $collect($items, 'cell-island-' . $islandKey);
+        }
+    }
+    if (isset($data['sns']) && is_array($data['sns'])) {
+        $collect($data['sns'], null);
+    }
+    return $map;
+}
+
+/**
+ * data/island_related_links.json（5島「関連サイト」の実データ）から URL を抽出する。
+ * 形式: { "links": { islandKey: [ {label,url}... ] } }
+ * @return array<string,array{url:string,label:string,cell:?string,source:string}>
+ */
+function extract_island_links(string $baseDir): array {
+    $path = $baseDir . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'island_related_links.json';
+    $raw  = @file_get_contents($path);
+    if ($raw === false || trim($raw) === '') return [];
+    $data = json_decode($raw, true);
+    if (!is_array($data) || empty($data['links']) || !is_array($data['links'])) return [];
+
+    $map = [];
+    foreach ($data['links'] as $islandKey => $items) {
+        if (!is_array($items)) continue;
+        foreach ($items as $it) {
+            if (!is_array($it)) continue;
+            $url = trim((string)($it['url'] ?? ''));
+            if ($url === '' || !preg_match('#^https?://#i', $url)) continue;
+            $name = trim((string)($it['label'] ?? ''));
+            if (!isset($map[$url])) {
+                $map[$url] = [
+                    'url'    => $url,
+                    'label'  => ($name !== '' ? $name : (string)$islandKey),
+                    'cell'   => 'cell-island-' . $islandKey,
+                    'source' => 'island',
+                ];
+            }
         }
     }
     return $map;
@@ -268,6 +485,11 @@ function http_check_parallel(array $urls, bool $cron, callable $progress): array
     $i = 0;
     foreach ($urls as $url) {
         $i++;
+        if (preg_match('/\s/', $url)) {
+            $results[$url] = ['status' => 0, 'reason' => 'URLに空白があります（登録文字を修正してください）', 'ok' => false];
+            $progress($i, count($urls), $url, $results[$url]);
+            continue;
+        }
         $r = $third[$url] ?? $second[$url] ?? $first[$url] ?? null;
         if (!$r) {
             $results[$url] = ['status' => 0, 'reason' => 'no response', 'ok' => false];
@@ -334,10 +556,27 @@ $jsonPath = $baseDir . DIRECTORY_SEPARATOR . OUTPUT_FILE;
 html_header($IS_CRON);
 
 try {
-    out("[1/3] HTML 解析: " . HTML_FILE, $IS_CRON);
+    out("[1/3] 登録URL 解析: " . HTML_FILE . " + リンク一覧.txt + extra-links.json + 島の関連サイト", $IS_CRON);
     $hrefToMeta = extract_table_urls($htmlPath);
+    $tableCount = count($hrefToMeta);
+
+    // ポップアップ用に登録された URL も対象に加える（その先＝遷移先内部はチェックしない）
+    $listCount = 0;
+    foreach (extract_listtxt_urls($baseDir) as $u => $meta) {
+        if (!isset($hrefToMeta[$u])) { $hrefToMeta[$u] = $meta; $listCount++; }
+    }
+    $jsonCount = 0;
+    foreach (extract_json_urls($baseDir) as $u => $meta) {
+        if (!isset($hrefToMeta[$u])) { $hrefToMeta[$u] = $meta; $jsonCount++; }
+    }
+    $islandCount = 0;
+    foreach (extract_island_links($baseDir) as $u => $meta) {
+        if (!isset($hrefToMeta[$u])) { $hrefToMeta[$u] = $meta; $islandCount++; }
+    }
+
     $total = count($hrefToMeta);
-    out("      対象 URL 件数: {$total}", $IS_CRON);
+    out("      表内リンク: {$tableCount} 件 / リンク一覧.txt 追加: {$listCount} 件 / extra-links.json 追加: {$jsonCount} 件 / 島の関連サイト 追加: {$islandCount} 件", $IS_CRON);
+    out("      対象 URL 件数（重複除外後）: {$total}", $IS_CRON);
 
     if ($total === 0) {
         $payload = [
@@ -346,15 +585,20 @@ try {
             'checked'     => 0,
             'brokenCount' => 0,
             'broken'      => (object)[],
+            'warningCount' => 0,
+            'warnings'     => (object)[],
+            'skippedCount' => 0,
+            'skipped'      => (object)[],
         ];
         @file_put_contents($jsonPath, json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
         html_footer(OUTPUT_FILE, 0, [], $IS_CRON);
         exit;
     }
 
-    // 重複URLは1回しか叩かないようにユニーク化
+    // 重複URLは1回しか叩かないようにユニーク化（SNS等は対象外）
     $urlsUnique = [];
     foreach ($hrefToMeta as $href => $meta) {
+        if (is_skip_host($meta['url'])) continue;
         $urlsUnique[$meta['url']] = true;
     }
     $urlsUnique = array_keys($urlsUnique);
@@ -382,16 +626,35 @@ try {
 
     // 結果を href ベースで再編成
     $broken = [];
+    $warnings = [];
+    $skipped = [];
     foreach ($hrefToMeta as $href => $meta) {
+        // SNS・TripAdvisor 等は「参考（自動チェック対象外）」。数が実行環境でぶれないよう常に固定表示。
+        if (is_skip_host($meta['url'])) {
+            $skipped[$href] = [
+                'status' => '-',
+                'reason' => 'SNS等',
+                'label'  => $meta['label']  ?? '',
+                'cell'   => $meta['cell']   ?? null,
+                'source' => $meta['source'] ?? '',
+            ];
+            continue;
+        }
         $r = $resultsByUrl[$meta['url']] ?? null;
         if (!$r) continue;
         if (!$r['ok']) {
-            $broken[$href] = [
+            $record = [
                 'status' => (int) $r['status'],
                 'reason' => $r['reason'] ?: ('HTTP ' . (int)$r['status']),
-                'label'  => $meta['label'] ?? '',
-                'cell'   => $meta['cell']  ?? null,
+                'label'  => $meta['label']  ?? '',
+                'cell'   => $meta['cell']   ?? null,
+                'source' => $meta['source'] ?? '',
             ];
+            if (is_manual_confirm_result($meta['url'], (int)$r['status'], $r['reason'] ?? null)) {
+                $warnings[$href] = $record;
+            } else {
+                $broken[$href] = $record;
+            }
         }
     }
 
@@ -402,6 +665,10 @@ try {
         'checked'     => $total,
         'brokenCount' => count($broken),
         'broken'      => $broken ?: (object)[],
+        'warningCount' => count($warnings),
+        'warnings'     => $warnings ?: (object)[],
+        'skippedCount' => count($skipped),
+        'skipped'      => $skipped ?: (object)[],
     ];
     $ok = @file_put_contents(
         $jsonPath,
@@ -413,10 +680,13 @@ try {
         out('  完了。', $IS_CRON);
     }
 
-    html_footer(OUTPUT_FILE, $total, $broken, $IS_CRON);
+    html_footer(OUTPUT_FILE, $total, $broken, $IS_CRON, $warnings);
 } catch (Throwable $e) {
     out('ERROR: ' . $e->getMessage(), $IS_CRON);
     if (!$IS_CRON) {
-        echo "</pre><p style=\"color:#b6303a;\">処理が中断されました。</p></body></html>";
+        echo "</pre>";
+        echo "<script>var _m=document.getElementById('runmsg'); if(_m){_m.parentNode.removeChild(_m);}</script>";
+        echo "<p style=\"color:#b6303a;\">処理が中断されました。</p>";
+        echo "</body></html>";
     }
 }

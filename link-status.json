@@ -1,114 +1,299 @@
 {
-  "generatedAt": "2026-05-20T18:14:33",
+  "generatedAt": "2026-06-13T09:19:55",
   "source": "index.html",
-  "checked": 120,
+  "checked": 204,
   "brokenCount": 0,
   "broken": {},
-  "innerBrokenCount": 8,
-  "innerBroken": {
-    "https://www.tokunoshima-town.org/": {
-      "label": "徳之島町",
-      "cell": "cell-07-01",
-      "innerCheckedCount": 5,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.tokunoshima-town.org/ketai/index.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+  "warningCount": 0,
+  "warnings": {},
+  "skippedCount": 41,
+  "skipped": {
+    "https://www.tripadvisor.jp/Restaurants-g1121607-Amagi_cho_Tokunoshima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "グルメ",
+      "cell": "cell-08-03",
+      "source": "list"
     },
-    "https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html": {
-      "label": "観光",
-      "cell": "cell-07-02",
-      "innerCheckedCount": 1,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.tokunoshima-town.org/omotenashikanko/kanko/kankorenmei.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+    "https://www.tripadvisor.jp/Attractions-g1121609-Activities-Wadomari_cho_Okinoerabu_jima_Oshima_gun_Kagoshima_Prefecture_Kyushu.html": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "体験",
+      "cell": "cell-11-07",
+      "source": "list"
     },
-    "https://www.tokunoshima-town.org/kanko/tokusan/index.html": {
-      "label": "特産品",
-      "cell": "cell-07-04",
-      "innerCheckedCount": 5,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.tokunoshima-town.org/ketai/index.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+    "https://x.com/PiiZmi": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：東京奄美会",
+      "cell": null,
+      "source": "list"
     },
-    "https://www.tokunoshima-town.org/shakaikyoikuka/kanko/rekishi/geno.html": {
-      "label": "郷土芸能",
-      "cell": "cell-07-05",
-      "innerCheckedCount": 5,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.tokunoshima-town.org/ketai/index.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+    "https://www.facebook.com/profile.php?id=61575154336855": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：東京奄美会",
+      "cell": null,
+      "source": "list"
     },
-    "https://www.tokunoshima-town.org/kanko/rekishi/index.html": {
-      "label": "歴史文化",
-      "cell": "cell-07-06",
-      "innerCheckedCount": 5,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.tokunoshima-town.org/ketai/index.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+    "https://www.instagram.com/accounts/edit/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：東京奄美会",
+      "cell": null,
+      "source": "list"
     },
-    "https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html": {
-      "label": "観光",
-      "cell": "cell-10-02",
-      "innerCheckedCount": 1,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.town.china.lg.jp/kikakushinkou/asobiniku/index.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+    "https://www.facebook.com/kikaicho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：喜界町",
+      "cell": null,
+      "source": "list"
     },
-    "https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html": {
-      "label": "特産品",
-      "cell": "cell-10-04",
-      "innerCheckedCount": 1,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.town.china.lg.jp/kikakushinkou/asobiniku/tokusanhin/index.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+    "https://www.instagram.com/kikaicho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：喜界町",
+      "cell": null,
+      "source": "list"
     },
-    "https://www.town.china.lg.jp/shougai/kurasu/kosodate-kyoiku/shogaigakushu/denshogeno/denshogeno.html": {
-      "label": "郷土芸能",
-      "cell": "cell-10-05",
-      "innerCheckedCount": 1,
-      "innerBrokenCount": 1,
-      "innerBrokenLinks": [
-        {
-          "url": "https://www.town.china.lg.jp/shougai/kurasu/kosodate-kyoiku/shogaigakushu/denshogeno/denshogeno.html",
-          "status": 404,
-          "reason": "HTTP 404"
-        }
-      ]
+    "https://x.com/kikaicho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：喜界町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/tatsugocho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：龍郷町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/tatsugocho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：龍郷町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/tatsugocho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：龍郷町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/amami.city/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：奄美市",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/amami_city/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：奄美市",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/amami_city": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：奄美市",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/yamatomura/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：大和村",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/yamatomura/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：大和村",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/yamatomura": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：大和村",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/ukenmura/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：宇検村",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/ukenmura/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：宇検村",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/ukenmura": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：宇検村",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/setouchicho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：瀬戸内町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/setouchicho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：瀬戸内町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/setouchicho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：瀬戸内町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/tokunoshimacho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：徳之島町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/tokunoshimacho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：徳之島町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/tokunoshimacho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：徳之島町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/isencho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：伊仙町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/isencho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：伊仙町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/isencho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：伊仙町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/amagicho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：天城町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/amagicho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：天城町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/amagicho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：天城町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/wadomari/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：和泊町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/wadomari/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：和泊町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/wadomari": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：和泊町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/chinacho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：知名町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/chinacho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：知名町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/chinacho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：知名町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.facebook.com/yoroncho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Facebook：与論町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://www.instagram.com/yoroncho/": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "Instagram：与論町",
+      "cell": null,
+      "source": "list"
+    },
+    "https://x.com/yoroncho": {
+      "status": "-",
+      "reason": "SNS等",
+      "label": "X（旧Twitter）：与論町",
+      "cell": null,
+      "source": "list"
     }
   }
 }

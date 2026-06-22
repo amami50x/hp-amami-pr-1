@@ -83,7 +83,7 @@
 
   <div class="volume-control">
     <label for="volumeSlider">音量:</label>
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+    <input type="range" id="volumeSlider" min="0" max="2" step="0.01" value="1">
   </div>
 
   <script>
@@ -99,8 +99,7 @@
     const totalTimeDisplay = document.getElementById("totalTime");
     const volumeSlider = document.getElementById("volumeSlider");
 
-    const playlist = [
-     
+    let playlist = [
       { file: "hp-music/amamiwoomouuta_sasori.aac", title: "奄美を想うsasori" },
       { file: "hp-music/shima_blues.aac", title: "島のブルース" },
       { file: "hp-music/furusatohekaeritai_sasori.aac", title: "ふるさとへ帰りたいsasori" },
@@ -127,9 +126,8 @@
       { file: "hp-music/wagafurusato-tokunoshima-sasori .mp3", title: "わがふるさと徳之島sasori" },
       { file: "hp-music/dosokainoomoi-sasori.mp3", title: "同窓会の思いsasori" },
       { file: "hp-music/furusatoamamiwo-omou-sasori.mp3", title: "ふるさと奄美を想うsasori" },
-	  { file: "hp-music/furusato_kitahara.aac", title: "ふるさとの話をしよう" },
+　　　{ file: "hp-music/furusato_kitahara.aac", title: "ふるさとの話をしよう" },
       { file: "hp-music/funaki_koukou_sannensei.aac", title: "高校三年生" }
-	
     ];
     let currentTrack = 0;
     let isPlaying = false;
@@ -141,7 +139,35 @@
       return `${minutes}:${remainingSeconds}`;
     }
 
+    function normalizeTrack(track) {
+      if (!track || !track.file) return null;
+      const file = String(track.file).trim();
+      return {
+        file: file.indexOf("hp-music/") === 0 ? file : "hp-music/" + file,
+        title: track.title || file
+      };
+    }
+
+    function setPlaylist(tracks) {
+      const next = Array.isArray(tracks) ? tracks.map(normalizeTrack).filter(Boolean) : [];
+      if (!next.length) return;
+      playlist = next;
+      currentTrack = 0;
+      pausedTime = 0;
+      trackTitle.textContent = "曲タイトル: " + playlist[0].title + "（再生ボタンで開始）";
+    }
+
+    fetch("bgm-playlist.json?_=" + Date.now(), { cache: "no-cache" })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (data) {
+        if (data && Array.isArray(data.tracks)) setPlaylist(data.tracks);
+      })
+      .catch(function () {
+        trackTitle.textContent = "曲タイトル: " + playlist[0].title + "（予備リストで再生）";
+      });
+
     function playTrack(trackIndex) {
+      if (!playlist.length) return;
       audioPlayer.src = playlist[trackIndex].file;
       audioPlayer.currentTime = pausedTime;
       pausedTime = 0;
@@ -154,7 +180,51 @@
       });
     }
 
+    // ===== 音量コントロール（Web Audio API） =====
+    // iPhone/iPad は <audio>.volume を変更できない仕様のため、GainNode を通して音量を変える。
+    // 非対応ブラウザでは従来の audio.volume にフォールバックする。
+    var audioCtx = null;
+    var gainNode = null;
+    var audioGraphFailed = false;
+
+    function ensureAudioGraph() {
+      if (audioCtx || audioGraphFailed) return;
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) { audioGraphFailed = true; return; }
+      try {
+        audioCtx = new Ctx();
+        var source = audioCtx.createMediaElementSource(audioPlayer);
+        gainNode = audioCtx.createGain();
+        gainNode.gain.value = parseFloat(volumeSlider.value);
+        source.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+      } catch (e) {
+        audioGraphFailed = true;
+        audioCtx = null;
+        gainNode = null;
+      }
+    }
+
+    // 再生操作（ユーザー操作）のたびに AudioContext を有効化する（自動再生制限対策）。
+    function unlockAudio() {
+      ensureAudioGraph();
+      if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+    }
+
+    function applyVolume(value) {
+      var vol = parseFloat(value);
+      if (isNaN(vol)) return;
+      if (gainNode) {
+        gainNode.gain.value = vol;                 // iOS含む：GainNodeで音量制御（1.0超で増幅可）
+      } else {
+        audioPlayer.volume = Math.min(vol, 1);     // フォールバック：従来方式は0〜1までに制限
+      }
+    }
+
     playButton.addEventListener("click", () => {
+      unlockAudio();
       if (isPlaying) {
         audioPlayer.pause();
         isPlaying = false;
@@ -176,11 +246,13 @@
     });
 
     nextTrackButton.addEventListener("click", () => {
+      unlockAudio();
       currentTrack = (currentTrack + 1) % playlist.length;
       playTrack(currentTrack);
     });
 
     prevTrackButton.addEventListener("click", () => {
+      unlockAudio();
       currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
       playTrack(currentTrack);
     });
@@ -209,8 +281,10 @@
       window.close();
     });
 
+    // 音量バー：起動時に実際の音量をスライダーの位置に合わせる（ズレ防止）
+    applyVolume(volumeSlider.value);
     volumeSlider.addEventListener("input", function () {
-      audioPlayer.volume = this.value;
+      applyVolume(this.value);
     });
   </script>
 </body>
