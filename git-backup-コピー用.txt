@@ -14,6 +14,17 @@ cmd /c git-backup-github.bat
 
 ※ メニュー 1 / 2 実行時、バックアップ対象のファイル名一覧が表示されます。
 
+■ Out of memory（pull / push 失敗）が出たとき
+原因: PC 全体の Git 設定 http.postBuffer=524288000（500MB）が大きすぎます。
+
+【1】次をターミナルにコピー（先頭は git。it ではありません）
+git config --global http.postBuffer 52428800
+
+【2】未 push のコミットだけ送るとき
+git -c http.postBuffer=52428800 push origin HEAD
+
+※ git-backup-github.bat もバッチ内で 50MB に緩和済みです。
+
 ■ 履歴を見る
 git log --oneline
 
