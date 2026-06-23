@@ -4,8 +4,6 @@ setlocal enabledelayedexpansion
 
 :: この .bat と同じフォルダを Git リポジトリのルートとみなす（フォルダを移してもパス修正不要）
 :: %~dp0 = このバッチがあるディレクトリ（末尾 \ 付き）
-:: 日本語ファイル名表示・大きな postBuffer による Out of memory をこのバッチ内だけ緩和
-set "GITOPTS=-c core.quotepath=false -c http.postBuffer=52428800"
 
 echo.
 echo ========================================
@@ -56,10 +54,10 @@ if errorlevel 1 goto commit_failed
 call :show_committed_files
 echo.
 echo リモートの変更を取り込みます（pull）...
-git %GITOPTS% pull --no-edit
+git -c http.postBuffer=52428800 pull --no-edit
 if errorlevel 1 goto pull_failed
 echo push します（現在のブランチ）...
-git %GITOPTS% push origin HEAD
+git -c http.postBuffer=52428800 push origin HEAD
 if errorlevel 1 goto push_failed
 goto end
 
@@ -68,11 +66,14 @@ echo.
 echo ========================================
 echo   バックアップ対象ファイル
 echo ========================================
+set "LIST=%TEMP%\hp-amami-git-backup-staged.txt"
+git -c core.quotepath=false diff --cached --name-status > "%LIST%" 2>nul
 set "file_count=0"
-for /f "usebackq delims=" %%F in (`git %GITOPTS% diff --cached --name-status`) do (
+for /f "usebackq delims=" %%F in ("%LIST%") do (
     echo   %%F
     set /a file_count+=1
 )
+if exist "%LIST%" del "%LIST%" >nul 2>&1
 if !file_count!==0 (
     echo   （対象ファイルなし）
 ) else (
@@ -87,13 +88,16 @@ echo.
 echo ========================================
 echo   今回バックアップしたファイル
 echo ========================================
+set "LIST=%TEMP%\hp-amami-git-backup-done.txt"
+git -c core.quotepath=false show --pretty=format: --name-only HEAD > "%LIST%" 2>nul
 set "done_count=0"
-for /f "usebackq delims=" %%F in (`git %GITOPTS% show --pretty^=format: --name-only HEAD`) do (
+for /f "usebackq delims=" %%F in ("%LIST%") do (
     if not "%%F"=="" (
         echo   %%F
         set /a done_count+=1
     )
 )
+if exist "%LIST%" del "%LIST%" >nul 2>&1
 if !done_count!==0 (
     echo   （ファイル名を取得できませんでした）
 ) else (
