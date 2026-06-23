@@ -29,6 +29,22 @@
         .file {
             color: #0066cc;
         }
+        .cmd-box {
+            display: block;
+            margin: 8px 0;
+            padding: 10px 12px;
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 6px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+            user-select: all;
+        }
+        .cmd-label {
+            font-weight: bold;
+            color: #334155;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +60,24 @@
     </div>
 
     <p><a href="docs/admin-manual.md">管理者マニュアル（docs/admin-manual.md）</a></p>
+
+    <div class="menu-section" style="background:#fff8e1;border-left:4px solid #f9a825;">
+        <h2>0. Git バックアップ（GitHub）</h2>
+        <p>大きな編集の<strong>前後</strong>に実行。観光HP（hp-amami-pr-1）専用です。WordPress テーマとは<strong>別リポジトリ</strong>です。</p>
+        <p class="cmd-label">バッチファイル（ダブルクリックでも可）</p>
+        <code class="cmd-box">git-backup-github.bat</code>
+        <p class="cmd-label">Cursor ターミナルに貼り付け（推奨）</p>
+        <code class="cmd-box">cmd /c git-backup-github.bat</code>
+        <p class="cmd-label">すでにこのフォルダにいるとき</p>
+        <code class="cmd-box">.\git-backup-github.bat</code>
+        <ul>
+            <li>メニュー <strong>1</strong> … クイックバックアップ（日時付き自動メッセージ）</li>
+            <li>メニュー <strong>2</strong> … コミットメッセージを自分で入力</li>
+            <li>半角・全角どちらの数字でも可（1 または １）</li>
+            <li>詳細コマンド一覧：<a href="git-backup-コピー用.txt"><span class="file">git-backup-コピー用.txt</span></a></li>
+            <li>GitHub：<a href="https://github.com/amami50x/hp-amami-pr-1" target="_blank" rel="noopener">amami50x/hp-amami-pr-1</a></li>
+        </ul>
+    </div>
 
     <div class="menu-section">
         <h2>1. HPの開始</h2>

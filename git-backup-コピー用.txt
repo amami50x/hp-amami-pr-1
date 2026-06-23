@@ -1,0 +1,21 @@
+hp-amami-pr-1 用 Git バックアップ（コピーしてターミナルに貼り付け → Enter）
+
+■ いちばん簡単（推奨）
+cmd /c git-backup-github.bat
+
+■ このフォルダがカレントのとき
+.\git-backup-github.bat
+
+■ メニュー
+1 = クイックバックアップ（日時付き自動メッセージ）
+2 = メッセージを自分で入力
+3 = キャンセル
+※ 半角 1 / 2 / 3 または全角 １２３ どちらでも可
+
+■ 履歴を見る
+git log --oneline
+
+■ GitHub
+https://github.com/amami50x/hp-amami-pr-1
+
+※ WordPress テーマ（tokyo-amamikai）とは別リポジトリです。テーマのバックアップは別フォルダで実行してください。
