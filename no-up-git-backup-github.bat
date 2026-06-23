@@ -59,6 +59,7 @@ if errorlevel 1 goto pull_failed
 echo push します（現在のブランチ）...
 git -c http.postBuffer=52428800 push origin HEAD
 if errorlevel 1 goto push_failed
+call :write_backup_log
 goto end
 
 :show_staged_files
@@ -66,20 +67,7 @@ echo.
 echo ========================================
 echo   バックアップ対象ファイル
 echo ========================================
-set "LIST=%TEMP%\hp-amami-git-backup-staged.txt"
-git -c core.quotepath=false diff --cached --name-status > "%LIST%" 2>nul
-set "file_count=0"
-for /f "usebackq delims=" %%F in ("%LIST%") do (
-    echo   %%F
-    set /a file_count+=1
-)
-if exist "%LIST%" del "%LIST%" >nul 2>&1
-if !file_count!==0 (
-    echo   （対象ファイルなし）
-) else (
-    echo.
-    echo   合計: !file_count! 件
-)
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0git-backup-list.ps1" staged
 echo ========================================
 exit /b 0
 
@@ -88,23 +76,12 @@ echo.
 echo ========================================
 echo   今回バックアップしたファイル
 echo ========================================
-set "LIST=%TEMP%\hp-amami-git-backup-done.txt"
-git -c core.quotepath=false show --pretty=format: --name-only HEAD > "%LIST%" 2>nul
-set "done_count=0"
-for /f "usebackq delims=" %%F in ("%LIST%") do (
-    if not "%%F"=="" (
-        echo   %%F
-        set /a done_count+=1
-    )
-)
-if exist "%LIST%" del "%LIST%" >nul 2>&1
-if !done_count!==0 (
-    echo   （ファイル名を取得できませんでした）
-) else (
-    echo.
-    echo   合計: !done_count! 件
-)
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0git-backup-list.ps1" committed
 echo ========================================
+exit /b 0
+
+:write_backup_log
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0git-backup-list.ps1" log
 exit /b 0
 
 :error_path
@@ -121,6 +98,10 @@ exit /b 1
 
 :nothing_to_commit
 echo 変更がありません。コミット・バックアップは不要です。
+if exist "git-backup-直近一覧.txt" (
+    echo.
+    echo 直近のバックアップ一覧: git-backup-直近一覧.txt
+)
 pause
 exit /b 0
 
@@ -139,6 +120,8 @@ exit /b 1
 :push_failed
 echo [エラー] git push に失敗しました。ネットワーク・認証・リモート設定をご確認ください。
 echo Out of memory のときは PC 全体の Git 設定 http.postBuffer を見直してください（例: 52428800）。
+echo ローカルにはコミット済みです。git-backup-直近一覧.txt でファイル名を確認できます。
+call :write_backup_log
 pause
 exit /b 1
 
@@ -147,6 +130,7 @@ echo.
 echo ========================================
 echo   バックアップ処理が完了しました
 echo ========================================
+echo   ファイル名一覧: git-backup-直近一覧.txt
 echo.
 pause
 exit /b 0
