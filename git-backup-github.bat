@@ -29,18 +29,8 @@ goto invalid
 cd /d "%~dp0" || goto error_path
 if not exist .git goto not_git_repo
 for /f %%D in ('powershell -NoProfile -Command "Get-Date -Format yyyy-MM-dd_HH-mm"') do set "TS=%%D"
-git add -A
-git diff --cached --quiet
-if %errorlevel%==0 goto nothing_to_commit
-git commit -m "バックアップ：!TS!"
-echo.
-echo リモートの変更を取り込みます（pull）...
-git pull --no-edit
-if errorlevel 1 goto pull_failed
-echo push します（現在のブランチ）...
-git push origin HEAD
-if errorlevel 1 goto push_failed
-goto end
+set "commit_msg=バックアップ：!TS!"
+goto do_backup
 
 :custombackup
 echo.
@@ -51,10 +41,17 @@ if not defined message (
 )
 cd /d "%~dp0" || goto error_path
 if not exist .git goto not_git_repo
+set "commit_msg=!message!"
+goto do_backup
+
+:do_backup
 git add -A
 git diff --cached --quiet
 if %errorlevel%==0 goto nothing_to_commit
-git commit -m "!message!"
+call :show_staged_files
+git commit -m "!commit_msg!"
+if errorlevel 1 goto commit_failed
+call :show_committed_files
 echo.
 echo リモートの変更を取り込みます（pull）...
 git pull --no-edit
@@ -63,6 +60,46 @@ echo push します（現在のブランチ）...
 git push origin HEAD
 if errorlevel 1 goto push_failed
 goto end
+
+:show_staged_files
+echo.
+echo ========================================
+echo   バックアップ対象ファイル
+echo ========================================
+set "file_count=0"
+for /f "usebackq delims=" %%F in (`git diff --cached --name-status`) do (
+    echo   %%F
+    set /a file_count+=1
+)
+if !file_count!==0 (
+    echo   （対象ファイルなし）
+) else (
+    echo.
+    echo   合計: !file_count! 件
+)
+echo ========================================
+exit /b 0
+
+:show_committed_files
+echo.
+echo ========================================
+echo   今回バックアップしたファイル
+echo ========================================
+set "done_count=0"
+for /f "usebackq delims=" %%F in (`git show --pretty^=format: --name-only HEAD`) do (
+    if not "%%F"=="" (
+        echo   %%F
+        set /a done_count+=1
+    )
+)
+if !done_count!==0 (
+    echo   （ファイル名を取得できませんでした）
+) else (
+    echo.
+    echo   合計: !done_count! 件
+)
+echo ========================================
+exit /b 0
 
 :error_path
 echo [エラー] バッチのあるフォルダへ移動できませんでした。
@@ -80,6 +117,11 @@ exit /b 1
 echo 変更がありません。コミット・バックアップは不要です。
 pause
 exit /b 0
+
+:commit_failed
+echo [エラー] git commit に失敗しました。
+pause
+exit /b 1
 
 :pull_failed
 echo [エラー] git pull に失敗しました。
